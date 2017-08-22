@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <p>
-      <router-link to="/">Battle</router-link>
-      <router-link to="/bee">bee</router-link>
-    </p>
+    <!--<router-link to="/">Battle</router-link>-->
     <router-view></router-view>
   </div>
 </template>
@@ -21,6 +18,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
 }
 </style>
