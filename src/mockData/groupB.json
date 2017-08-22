@@ -1,0 +1,50 @@
+{
+  "name": "B组",
+  "logo": "./static/liquid.png",
+  "slogan": "new bee",
+  "people": [
+    {
+      "name": "tom",
+      "avatar": ""
+    }, {
+      "name": "Jerry",
+      "avatar": ""
+    }, {
+      "name": "Fisher",
+      "avatar": ""
+    }, {
+      "name": "Lance",
+      "avatar": ""
+    }
+  ],
+  "score": {
+    "total": 16,
+    "each": [
+      3,
+      4,
+      6,
+      3
+    ]
+  },
+  "cards": {
+    "available": [
+      {
+        "name": "抢答卡",
+        "description": "优先抢答题目",
+        "level": 1,
+        "used": false,
+        "created": "2017-08-21 14:10:32"
+      }
+    ],
+    "used": [
+      {
+        "name": "抢答卡",
+        "description": "优先抢答题目",
+        "levle": 1,
+        "created": "2017-08-21 14:10:32",
+        "updated": "2017-08-21 14:22:32",
+        "used": true
+      }
+    ]
+  }
+}
