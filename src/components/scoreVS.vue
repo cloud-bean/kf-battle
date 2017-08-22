@@ -21,7 +21,7 @@
   import groupB from '../mockData/groupB.json'
 
   export default {
-    name: 'MemberCell',
+    name: 'ScoreVS',
     data () {
       return {
         left: groupA.score.total,
