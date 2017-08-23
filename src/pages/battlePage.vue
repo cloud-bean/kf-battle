@@ -39,16 +39,24 @@ export default {
   data () {
     return {
       cards: [
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2015/09/logo@2x.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2016/05/wip-vue-sketch.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2015/09/logo@2x.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2016/05/wip-vue-sketch.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2015/09/logo@2x.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2016/05/wip-vue-sketch.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2015/09/logo@2x.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2016/05/wip-vue-sketch.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2015/09/logo@2x.jpg'},
-        {imageURL: 'https://blog.wilddog.com/wp-content/uploads/2016/05/wip-vue-sketch.jpg'}
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'}
       ]
     }
   },
@@ -62,8 +70,4 @@ export default {
 }
 </script>
 <style>
-  .spacer {
-    margin: 30px auto;
-    padding: 30px 20px;
-  }
 </style>

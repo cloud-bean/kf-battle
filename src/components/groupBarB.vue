@@ -1,10 +1,10 @@
 <template>
   <Row type="flex" justify="start" class="code-row-bg">
-    <Col span="4" v-for="(member, index) in people">
+    <Col span="3" v-for="(member, index) in people">
       <member-cell :member="member" :key="'b' + index"></member-cell>
     </Col>
-    <Col span="4">
-      <img :src="logo" style="width: 100%; border: 1px solid mediumpurple">
+    <Col span="6">
+      <img :src="logo" style="width: 100%;">
     </Col>
   </Row>
 </template>

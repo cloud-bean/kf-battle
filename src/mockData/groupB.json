@@ -1,32 +1,37 @@
 {
   "name": "B组",
-  "logo": "./static/liquid.png",
+  "logo": "./static/ea.png",
   "slogan": "new bee",
   "people": [
     {
-      "name": "tom",
-      "avatar": ""
+      "name": "冯欣瑶",
+      "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXkL0YUX27ZJuNwmd13Tjs8Z2S6AU9GVqiahxuIkA7zuclQGpRKgptPkf7WI73pTzV7EBMmdBzFvuIERLEL1aYaQ/0"
     }, {
-      "name": "Jerry",
-      "avatar": ""
+      "name": "汪启轩",
+      "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxZ5lu9MsNya56Qj7GrEicbmVYEiajjs1NELmYKG6bfgXWVNd45esz4oKoytONw9Oq2gIdBhuROe3BS8kGN5DKmwF/0"
     }, {
-      "name": "Fisher",
-      "avatar": ""
+      "name": "赵研冰",
+      "avatar": "http://wx.qlogo.cn/mmhead/Xsv95XP1eZBZiaPYnaSTx8eZOUAFbpmOVrjicXEBLpVXc/0"
     }, {
-      "name": "Lance",
-      "avatar": ""
+      "name": "梁育豪",
+      "avatar": "http://wx.qlogo.cn/mmhead/IbQhd2Y9oKcL2cx2mp9w7UHQ98KwoOuRMq0ic0dEibwFf6VPyyRVR1Ew/0"
     }, {
-      "name": "Frank",
-      "avatar": ""
+      "name": "李昆岭",
+      "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWawbGrXSnr4HicpbwYQAA6hsGZ20j3zhr3te4XB5T14mN5Q6IWGoWM0XicczVyRibFVeuO8BXv3ghdWQ13h6R6KRUVl/0"
+    }, {
+      "name": "李欣荣",
+      "avatar": "http://wx.qlogo.cn/mmhead/23q0YK6xBXhvtgZwcYcpWUnpJ2AiavIzCtQRV0PshYXk/0"
     }
   ],
   "score": {
-    "total": 16,
+    "total": 0,
     "each": [
-      3,
-      4,
-      6,
-      3
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
     ]
   },
   "cards": {

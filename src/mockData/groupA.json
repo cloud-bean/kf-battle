@@ -4,29 +4,34 @@
   "slogan": "new bee",
   "people": [
     {
-      "name": "Able",
-      "avatar": ""
+      "name": "张家瑞",
+      "avatar": "http://wx.qlogo.cn/mmopen/ajNVdqHZLLBGleZu4hKG0stUCrcXvw787QVl92CCR29A99Gtk1tbKd0E2XydIpibQdjiaMpKh1WW26ibdiaYO2u6iahFyR4QDypNPEngMGfjw3YE/0"
     }, {
-      "name": "Adon",
-      "avatar": ""
+      "name": "訾博涵",
+      "avatar": "http://wx.qlogo.cn/mmopen/XtiaN53fq5PuBJGkjW2Xg67lUh5GWKjV39lEBsibg0YNbyWrRapHQ9PDdHhvbWkeMlc21ic9TVHgQZJ2xxTL5o25dQt5go4doks/0"
     }, {
-      "name": "Alice",
-      "avatar": ""
+      "name": "赵九江",
+      "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0"
     }, {
-      "name": "Azur",
-      "avatar": ""
+      "name": "马睿婕",
+      "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLibfDDovPUhxrGduSlUwZjs2I24upCXKsaNianwpdFcYWlexL1e5Wl5mPLTcnpXvPgdOGoHqy0JZbB/0"
     }, {
-      "name": "Aba",
-      "avatar": ""
+      "name": "刘霄阳",
+      "avatar": "http://wx.qlogo.cn/mmopen/nOPEgiaj5ThpPueoLQZ7L966abkK82JMbDhOkMNejp6f3A5YSAlhRxuT1aiaAXkC8BN85PhgfJiaaJQDbdILtr0qMiacNxfDoyKY/0"
+    }, {
+      "name": "何起源",
+      "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxRLMAvSen6JNf5VmkOMGR96Dibphmk7FibRqTEvKcXB0s81UF8q0vxL9h4ZQRBibUoSNN8M7ZMvJUc8U0ezQB9UpK/0"
     }
   ],
   "score": {
-    "total": 11,
+    "total": 0,
     "each": [
-      3,
-      3,
-      6,
-      -1
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
     ]
   },
   "cards": {
