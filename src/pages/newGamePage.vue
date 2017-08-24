@@ -57,24 +57,24 @@
         <pre>
           随机抽卡
 
-          基础卡 （抢答卡*3）
-          二级（小克罗卡*3、点名卡*3）
-          三级 （果实卡*3、转移卡*3）
+          基础卡 （抢答卡）
+          二级（小克罗卡、点名卡）
+          三级 （果实卡、转移卡）
         </pre>
 
         <table class="table">
-          <tr><td>张家瑞</td><td>抢答卡*3</td></tr>
-          <tr><td>訾博涵</td><td>抢答卡*3</td></tr>
-          <tr><td>赵九江</td><td>抢答卡*3</td></tr>
-          <tr><td>马睿婕</td><td>抢答卡*3</td></tr>
-          <tr><td>刘霄阳</td><td>抢答卡*3</td></tr>
-          <tr><td>何起源</td><td>抢答卡*3</td></tr>
-          <tr><td>冯欣瑶</td><td>抢答卡*3</td></tr>
-          <tr><td>汪启轩</td><td>抢答卡*3</td></tr>
-          <tr><td>赵研冰</td><td>抢答卡*3</td></tr>
-          <tr><td>梁育豪</td><td>抢答卡*3</td></tr>
-          <tr><td>李昆岭</td><td>抢答卡*3</td></tr>
-          <tr><td>李欣荣</td><td>抢答卡*3</td></tr>
+          <tr><td>张家瑞</td><td>抢答卡</td></tr>
+          <tr><td>訾博涵</td><td>抢答卡</td></tr>
+          <tr><td>赵九江</td><td>抢答卡</td></tr>
+          <tr><td>马睿婕</td><td>抢答卡</td></tr>
+          <tr><td>刘霄阳</td><td>抢答卡</td></tr>
+          <tr><td>何起源</td><td>抢答卡</td></tr>
+          <tr><td>冯欣瑶</td><td>抢答卡</td></tr>
+          <tr><td>汪启轩</td><td>抢答卡</td></tr>
+          <tr><td>赵研冰</td><td>抢答卡</td></tr>
+          <tr><td>梁育豪</td><td>抢答卡</td></tr>
+          <tr><td>李昆岭</td><td>抢答卡</td></tr>
+          <tr><td>李欣荣</td><td>抢答卡</td></tr>
         </table>
 
         <Button type="success" @click="setCardsDone">卡牌分配完成</Button>

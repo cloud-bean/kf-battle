@@ -1,6 +1,6 @@
 <template>
   <Row type="flex" :justify="justify" class="code-row-bg">
-    <Col span="6" v-for="(card, index) in cards">
+    <Col span="12" v-for="(card, index) in cards">
       <card :card="card" :key="'card' + index"></card>
     </Col>
   </Row>

@@ -11,7 +11,7 @@
 
 <style scoped>
   .card {
-    max-width: 100px;
-    padding:10px 20px;
+    max-width: 120px;
+    margin:10px 10px;
   }
 </style>

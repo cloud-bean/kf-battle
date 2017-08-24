@@ -16,15 +16,17 @@
     </div>
     <Row>
       <Col span="6">
-        <cards :cards="cards" justify="start"></cards>
+        <cards :cards="cardsA" justify="start"></cards>
       </Col>
       <Col span="12">
         <timeline></timeline>
       </Col>
       <Col span="6">
-        <cards :cards="cards" justify="end"></cards>
+        <cards :cards="cardsB" justify="end"></cards>
       </Col>
     </Row>
+
+
   </div>
 </template>
 
@@ -38,25 +40,14 @@ export default {
   name: 'BattlePage',
   data () {
     return {
-      cards: [
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
+      cardsA: [
         {imageURL: '/static/qiangda.jpeg'}
+      ],
+      cardsB: [
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/qiangda.jpeg'},
+        {imageURL: '/static/xiaokeluo.jpeg'}
       ]
     }
   },

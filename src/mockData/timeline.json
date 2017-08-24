@@ -1,0 +1,182 @@
+{
+  "events": [
+    {
+      "groupName": "球鞋",
+      "people": "刘霄阳",
+      "created": "2017-08-24T09:39:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "刘霄阳 回答正确, 解释正确，果实卡翻番，+2"
+    }, {
+      "groupName": "球鞋",
+      "people": "赵九江",
+      "created": "2017-08-24T09:37:43.536Z",
+      "color": "purple",
+      "type": "使用卡牌",
+      "card": {
+        "name": "果实卡",
+        "imageURL": "./static/xiaokeluo.jpeg"
+      },
+      "description": "赵九江 使用果实，本轮得分翻番"
+    }, {
+      "groupName": "球鞋",
+      "people": "何起源",
+      "created": "2017-08-24T09:37:43.536Z",
+      "color": "purple",
+      "type": "使用卡牌",
+      "card": {
+        "name": "小克罗卡",
+        "imageURL": "./static/xiaokeluo.jpeg"
+      },
+      "description": "何起源 使用小克罗卡，转移到刘霄阳"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "赵九江",
+      "created": "2017-08-24T09:35:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "赵九江 回答正确, 解释正确，+1"
+    }, {
+      "groupName": "球服",
+      "people": "李昆岭",
+      "created": "2017-08-24T09:34:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "李昆岭 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球服",
+      "people": "梁育豪",
+      "created": "2017-08-24T09:33:43.536Z",
+      "color": "purple",
+      "type": "使用卡牌",
+      "card": {
+        "name": "小克罗卡",
+        "imageURL": "./static/xiaokeluo.jpeg"
+      },
+      "description": "梁育豪 使用小克罗卡，转移到李昆玲"
+    },
+    {
+      "groupName": "球服",
+      "people": "李昆岭",
+      "created": "2017-08-24T09:33:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "李昆岭 回答正确, 解释正确，+1"
+    },{
+      "groupName": "球鞋",
+      "people": "何起源",
+      "created": "2017-08-24T09:31:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "何起源 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "何起源",
+      "created": "2017-08-24T09:30:43.536Z",
+      "color": "purple",
+      "type": "使用卡牌",
+      "card": {
+        "name": "抢答卡",
+        "imageURL": "./static/qiangda.png"
+      },
+      "description": "何起源 使用抢答卡，获得抢答机会"
+    },
+    {
+      "groupName": "球服",
+      "people": "汪启轩",
+      "created": "2017-08-24T09:25:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "汪启轩 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "李昆岭",
+      "created": "2017-08-24T09:24:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "李昆岭 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "何起源",
+      "created": "2017-08-24T09:23:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "何起源 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "赵研冰",
+      "created": "2017-08-24T09:21:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "赵研冰 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "李昆岭",
+      "created": "2017-08-24T09:14:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "李昆岭 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "何起源",
+      "created": "2017-08-24T09:15:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "何起源 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球服",
+      "people": "刘霄阳",
+      "created": "2017-08-24T09:17:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "刘霄阳 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "赵九江",
+      "created": "2017-08-24T09:18:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "赵九江 回答正确, 解释正确，+1"
+    },
+    {
+      "groupName": "球鞋",
+      "people": "梁育豪",
+      "created": "2017-08-24T09:19:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "梁育豪 回答正确, 解释正确，+1"
+    },{
+      "groupName": "球鞋",
+      "people": "李昆岭",
+      "created": "2017-08-24T09:20:44.445Z",
+      "color": "green",
+      "type": "回答题目",
+      "card": null,
+      "description": "李昆岭 回答正确, 解释正确，+1"
+    }
+  ]
+}

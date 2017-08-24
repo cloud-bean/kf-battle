@@ -1,46 +1,60 @@
 <template>
-  <Timeline class="container" pending>
-    <Timeline-item color="blue">
-      <p class="time">10秒前</p>
-      <p class="content">Alice 使用一张 抢答卡</p>
-    </Timeline-item>
-    <Timeline-item color="green">
-      <p class="time">5分钟前</p>
-      <p class="content">Frank 回答正确，解释正确完美且优雅，加 2 分</p>
-    </Timeline-item>
-    <Timeline-item color="red">
-      <p class="time">10分钟前</p>
-      <p class="content">Azur 打瞌睡，扣 1 分</p>
-    </Timeline-item>
-    <Timeline-item color="green">
-      <p class="time">15分钟前</p>
-      <p class="content">Tom 回答正确，解释正确完美且优雅，加 3 分</p>
-    </Timeline-item>
-    <Timeline-item color="green">
-      <p class="time">19分钟前</p>
-      <p class="content">Fisher 答案正确，解释错误，加 1 分</p>
-    </Timeline-item>
-    <Timeline-item color="white">
-      一切才刚刚开始
-    </Timeline-item>
-  </Timeline>
+  <div class="container">
+    <Button type="warning">游戏结束</Button>
+    <Timeline class="timeline-box" pending>
+      <Timeline-item v-for="item in timelineData" :color="item.color">
+        <p class="time">{{ moment(item.created).fromNow()}}</p>
+        <p class="content">{{ '【' +  item.type  + '】' + item.groupName + ', ' + item.description}}</p>
+      </Timeline-item>
+      <Timeline-item color="black">
+        开始于: {{moment(startTime).format("dddd, MMMM Do YYYY, h:mm:ss a")}}
+      </Timeline-item>
+    </Timeline>
+  </div>
 </template>
 
 <script>
-  export default {
+  var moment = require('moment')
+  moment.locale('zh-cn')
+  import timelineData from '../mockData/timeline.json'
 
+  export default {
+    name: 'timelineComponent',
+    data () {
+      return {
+        timelineData: timelineData.events,
+        startTime: '2017-08-24T02:27:43.536Z'
+      }
+    },
+
+    methods: {
+      moment
+    }
   }
 </script>
 <style scoped>
-  .time{
+  .time {
     font-size: 14px;
     font-weight: bold;
   }
-  .content{
+
+  .content {
     padding-left: 5px;
     font-size: 18px;
   }
+
+  .timeline-box {
+    text-align: left !important;
+    margin: 20px;
+    padding: 10px;
+    background-color: ghostwhite;
+  }
+
   .container {
-    text-align: left !important; margin: 20px; padding: 10px; background-color: ghostwhite;
+    text-align: right;
+    border-left: 3px solid whitesmoke;
+    border-right: 3px solid whitesmoke;
+    min-height: 800px;
+    padding: 10px;
   }
 </style>

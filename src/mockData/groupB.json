@@ -1,5 +1,5 @@
 {
-  "name": "B组",
+  "name": "球服",
   "logo": "./static/ea.png",
   "slogan": "new bee",
   "people": [
@@ -24,7 +24,7 @@
     }
   ],
   "score": {
-    "total": 0,
+    "total": 17,
     "each": [
       0,
       0,

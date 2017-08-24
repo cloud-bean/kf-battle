@@ -1,5 +1,5 @@
 {
-  "name": "A组",
+  "name": "球鞋",
   "logo": "./static/newbee.png",
   "slogan": "new bee",
   "people": [
@@ -24,7 +24,7 @@
     }
   ],
   "score": {
-    "total": 0,
+    "total": 15,
     "each": [
       0,
       0,
