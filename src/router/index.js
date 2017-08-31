@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import iView from 'iview'
-import 'iview/dist/styles/iview.css'   // 使用 CSS
-
 import Battle from '@/pages/BattlePage'
-import NewGame from '@/pages/newGamePage'
+import ChooseTeamPage from '@/pages/chooseTeamPage'
 
-Vue.use(iView)
 Vue.use(Router)
 
 export default new Router({
@@ -17,8 +13,8 @@ export default new Router({
       component: Battle
     }, {
       path: '/',
-      name: 'NewGame',
-      component: NewGame
+      name: 'ChooseTeamPage',
+      component: ChooseTeamPage
     }
   ]
 })

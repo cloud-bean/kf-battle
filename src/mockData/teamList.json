@@ -1,0 +1,49 @@
+{
+  "team": [
+    {
+      "name": "邪恶力量",
+      "head": "./static/battle_team/TeamLogo_1.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "胜利之魂",
+      "head": "./static/battle_team/TeamLogo_2.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "王的召唤",
+      "head": "./static/battle_team/TeamLogo_3.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "自由",
+      "head": "./static/battle_team/TeamLogo_4.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "神之召唤",
+      "head": "./static/battle_team/TeamLogo_5.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "呵呵",
+      "head": "./static/battle_team/TeamLogo_6.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "见好就收",
+      "head": "./static/battle_team/TeamLogo_7.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "疯狂",
+      "head": "./static/battle_team/TeamLogo_8.jpg",
+      "desc": "生的力量"
+    },
+    {
+      "name": "神",
+      "head": "./static/battle_team/TeamLogo_9.jpg",
+      "desc": "生的力量"
+    }
+  ]
+}
