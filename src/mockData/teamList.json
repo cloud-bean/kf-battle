@@ -1,49 +1,100 @@
 {
   "team": [
     {
-      "name": "邪恶力量",
-      "head": "./static/battle_team/TeamLogo_1.jpg",
-      "desc": "生的力量"
+      "_id": "1",
+      "name": "邪恶力量-球鞋-A",
+      "logo":{"URL": "./static/battle_team/TeamLogo_1.jpg"},
+      "description": "生的力量",
+      "students": [
+        {
+          "name": "张家瑞",
+          "avatar": "http://wx.qlogo.cn/mmopen/ajNVdqHZLLBGleZu4hKG0stUCrcXvw787QVl92CCR29A99Gtk1tbKd0E2XydIpibQdjiaMpKh1WW26ibdiaYO2u6iahFyR4QDypNPEngMGfjw3YE/0"
+        }, {
+          "name": "訾博涵",
+          "avatar": "http://wx.qlogo.cn/mmopen/XtiaN53fq5PuBJGkjW2Xg67lUh5GWKjV39lEBsibg0YNbyWrRapHQ9PDdHhvbWkeMlc21ic9TVHgQZJ2xxTL5o25dQt5go4doks/0"
+        }, {
+          "name": "赵九江",
+          "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0"
+        }, {
+          "name": "马睿婕",
+          "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLibfDDovPUhxrGduSlUwZjs2I24upCXKsaNianwpdFcYWlexL1e5Wl5mPLTcnpXvPgdOGoHqy0JZbB/0"
+        }, {
+          "name": "刘霄阳",
+          "avatar": "http://wx.qlogo.cn/mmopen/nOPEgiaj5ThpPueoLQZ7L966abkK82JMbDhOkMNejp6f3A5YSAlhRxuT1aiaAXkC8BN85PhgfJiaaJQDbdILtr0qMiacNxfDoyKY/0"
+        }, {
+          "name": "何起源",
+          "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxRLMAvSen6JNf5VmkOMGR96Dibphmk7FibRqTEvKcXB0s81UF8q0vxL9h4ZQRBibUoSNN8M7ZMvJUc8U0ezQB9UpK/0"
+        }
+      ]
     },
     {
-      "name": "胜利之魂",
-      "head": "./static/battle_team/TeamLogo_2.jpg",
-      "desc": "生的力量"
+      "_id": "2",
+      "name": "胜利之魂-球队-B",
+      "logo":{"URL": "./static/battle_team/TeamLogo_2.jpg"},
+      "description": "生的力量",
+      "students": [
+        {
+          "name": "冯欣瑶",
+          "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXkL0YUX27ZJuNwmd13Tjs8Z2S6AU9GVqiahxuIkA7zuclQGpRKgptPkf7WI73pTzV7EBMmdBzFvuIERLEL1aYaQ/0"
+        }, {
+          "name": "汪启轩",
+          "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxZ5lu9MsNya56Qj7GrEicbmVYEiajjs1NELmYKG6bfgXWVNd45esz4oKoytONw9Oq2gIdBhuROe3BS8kGN5DKmwF/0"
+        }, {
+          "name": "赵研冰",
+          "avatar": "http://wx.qlogo.cn/mmhead/Xsv95XP1eZBZiaPYnaSTx8eZOUAFbpmOVrjicXEBLpVXc/0"
+        }, {
+          "name": "梁育豪",
+          "avatar": "http://wx.qlogo.cn/mmhead/IbQhd2Y9oKcL2cx2mp9w7UHQ98KwoOuRMq0ic0dEibwFf6VPyyRVR1Ew/0"
+        }, {
+          "name": "李昆岭",
+          "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWawbGrXSnr4HicpbwYQAA6hsGZ20j3zhr3te4XB5T14mN5Q6IWGoWM0XicczVyRibFVeuO8BXv3ghdWQ13h6R6KRUVl/0"
+        }, {
+          "name": "李欣荣",
+          "avatar": "http://wx.qlogo.cn/mmhead/23q0YK6xBXhvtgZwcYcpWUnpJ2AiavIzCtQRV0PshYXk/0"
+        }
+      ]
     },
     {
+      "_id": "3",
       "name": "王的召唤",
-      "head": "./static/battle_team/TeamLogo_3.jpg",
-      "desc": "生的力量"
+      "logo":{"URL": "./static/battle_team/TeamLogo_3.jpg"},
+      "description": "生的力量"
     },
     {
+      "_id": "4",
       "name": "自由",
-      "head": "./static/battle_team/TeamLogo_4.jpg",
-      "desc": "生的力量"
+      "logo":{"URL": "./static/battle_team/TeamLogo_4.jpg"},
+      "description": "生的力量"
     },
     {
+      "_id": "5",
       "name": "神之召唤",
-      "head": "./static/battle_team/TeamLogo_5.jpg",
-      "desc": "生的力量"
+      "logo":{"URL": "./static/battle_team/TeamLogo_5.jpg"},
+      "description": "生的力量"
     },
     {
+      "_id": "6",
       "name": "呵呵",
-      "head": "./static/battle_team/TeamLogo_6.jpg",
-      "desc": "生的力量"
+      "logo":{"URL": "./static/battle_team/TeamLogo_6.jpg"},
+      "description": "生的力量"
     },
     {
+      "_id": "7",
       "name": "见好就收",
-      "head": "./static/battle_team/TeamLogo_7.jpg",
-      "desc": "生的力量"
+      "logo":{"URL": "./static/battle_team/TeamLogo_7.jpg"},
+      "description": "生的力量"
     },
     {
+      "_id": "8",
       "name": "疯狂",
-      "head": "./static/battle_team/TeamLogo_8.jpg",
-      "desc": "生的力量"
+      "logo":{"URL": "./static/battle_team/TeamLogo_8.jpg"},
+      "description": "生的力量"
     },
     {
+      "_id": "9",
       "name": "神",
-      "head": "./static/battle_team/TeamLogo_9.jpg",
-      "desc": "生的力量"
+      "logo":{"URL": "./static/battle_team/TeamLogo_9.jpg"},
+      "description": "生的力量"
     }
   ]
 }

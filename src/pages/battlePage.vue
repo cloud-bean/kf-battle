@@ -25,8 +25,6 @@
         <cards :cards="cardsB" justify="end"></cards>
       </Col>
     </Row>
-
-
   </div>
 </template>
 
