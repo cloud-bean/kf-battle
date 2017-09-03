@@ -1,9 +1,8 @@
 <template>
   <div class="container">
-    <Button type="warning">游戏结束</Button>
     <Timeline class="timeline-box" pending>
       <Timeline-item v-for="item in timelineData" :color="item.color">
-        <p class="time">{{ moment(item.created).fromNow()}}</p>
+        <p class="time">{{ moment(item.created).from(startTime)}}</p>
         <p class="content">{{ '【' +  item.type  + '】' + item.groupName + ', ' + item.description}}</p>
       </Timeline-item>
       <Timeline-item color="black">
@@ -16,14 +15,14 @@
 <script>
   var moment = require('moment')
   moment.locale('zh-cn')
-  import timelineData from '../mockData/timeline.json'
+  import timelineData from '../../mockData/timeline.json'
 
   export default {
     name: 'timelineComponent',
     data () {
       return {
         timelineData: timelineData.events,
-        startTime: '2017-08-24T02:27:43.536Z'
+        startTime: '2017-08-24T09:27:43.536Z'
       }
     },
 
@@ -40,7 +39,7 @@
 
   .content {
     padding-left: 5px;
-    font-size: 18px;
+    font-size: 12px;
   }
 
   .timeline-box {
@@ -48,12 +47,13 @@
     margin: 20px;
     padding: 10px;
     background-color: ghostwhite;
+    -webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;
   }
 
   .container {
     text-align: right;
-    border-left: 3px solid whitesmoke;
-    border-right: 3px solid whitesmoke;
+    /*border-left: 3px solid whitesmoke;*/
+    /*border-right: 3px solid whitesmoke;*/
     min-height: 800px;
     padding: 10px;
   }

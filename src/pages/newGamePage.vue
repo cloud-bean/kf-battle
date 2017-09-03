@@ -14,7 +14,7 @@
             <team-with-members :teamData="groupOneData"></team-with-members>
           </Col>
           <Col span="4">
-             <img src="/static/newGame/vs-1_cut.png" style="width: 100%">
+             <img src="/static/newGame/vs-art.png" style="width: 100%">
           </Col>
           <Col span="10">
             <team-with-members :teamData="groupTwoData"></team-with-members>

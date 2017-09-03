@@ -14,7 +14,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -29,7 +29,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("./assets/battle_bg/team_bg_1.jpg") no-repeat #000;
+  background: url("/static/battle_bg/team_bg_1.jpg") no-repeat #000;
   background-size: cover;
   z-index: -1;
 }

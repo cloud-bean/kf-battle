@@ -59,7 +59,7 @@
   .team-name {
     font-weight: 900;
     font-size: 2em;
-    text-shadow: 2px 2px 8px #FF0000;
+    text-shadow: 2px 2px 8px #8a8a8a;
   }
 
   .members {
