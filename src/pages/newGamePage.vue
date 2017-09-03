@@ -10,45 +10,14 @@
       </Steps>
       <div v-if="current === 0" class="panel">
         <Row>
-          <Col span="8">
-            <p>A组</p>
-          <ul>
-            <li>张家瑞</li>
-            <li>訾博涵</li>
-            <li>赵九江</li>
-            <li>马睿婕</li>
-            <li>刘霄阳</li>
-            <li>何起源</li>
-          </ul>
+          <Col span="10">
+            <team-with-members :teamData="groupOneData"></team-with-members>
           </Col>
-          <Col span="8">
-          <Button>加入A组</Button>
-          <Button>加入B组</Button>
-          <ul>
-            <li>张家瑞</li>
-            <li>訾博涵</li>
-            <li>赵九江</li>
-            <li>马睿婕</li>
-            <li>刘霄阳</li>
-            <li>何起源</li>
-            <li>冯欣瑶</li>
-            <li>汪启轩</li>
-            <li>赵研冰</li>
-            <li>梁育豪</li>
-            <li>李昆岭</li>
-            <li>李欣荣</li>
-          </ul>
+          <Col span="4">
+             <img src="/static/newGame/vs-1_cut.png" style="width: 100%">
           </Col>
-          <Col span="8">
-          <p>B组</p>
-          <ul>
-            <li>冯欣瑶</li>
-            <li>汪启轩</li>
-            <li>赵研冰</li>
-            <li>梁育豪</li>
-            <li>李昆岭</li>
-            <li>李欣荣</li>
-          </ul>
+          <Col span="10">
+            <team-with-members :teamData="groupTwoData"></team-with-members>
           </Col>
         </Row>
         <Button type="success" @click="setTeamDone">组队完成</Button>
@@ -109,13 +78,17 @@
 </template>
 <script>
   import router from '../router'
+  import teamListData from '../mockData/teamList.json'
+  import teamWithMembers from '../components/newGamePage/teamWithMemebers'
 
   export default {
     name: 'newGamePage',
     data () {
       return {
         current: 0,
-        status: 'process'
+        status: 'process',
+        groupOneData: teamListData.team[0],
+        groupTwoData: teamListData.team[1]
       }
     },
     methods: {
@@ -132,14 +105,22 @@
         alert('start the war')
         router.replace('/battle')
       }
+    },
+    components: {
+      teamWithMembers
     }
   }
 </script>
 
 <style scoped>
   .container {
-    margin: 0 auto;
-    padding: 10px;
+    margin: 2rem 2rem;
+    padding: 2rem 2rem;
+    background-color: rgba(255,255,255,.9);
+    border-radius: .5rem;
+    box-shadow: 0 0 15px #000;
+    overflow: scroll;
+    position: relative;
   }
   .steps {
     text-align: left;

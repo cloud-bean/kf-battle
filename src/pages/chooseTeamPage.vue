@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="container">
     <div class="title">
       选择战队
     </div>
@@ -57,5 +57,16 @@
   .button-area {
     position: relative;
     margin: 8rem 0 auto;
+  }
+
+  .container {
+    margin: 2rem 2rem;
+    padding: 2rem 2rem;
+    background-color: rgba(255,255,255,.9);
+    height: 45rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 15px #000;
+    overflow: scroll;
+    position: relative;
   }
 </style>
