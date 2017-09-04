@@ -5,8 +5,8 @@
 <script>
   export default {
     name: 'card',
-    props: ['card']
-  }
+    props: ['card'],
+  };
 </script>
 
 <style scoped>

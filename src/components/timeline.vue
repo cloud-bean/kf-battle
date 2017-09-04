@@ -14,23 +14,23 @@
 </template>
 
 <script>
-  var moment = require('moment')
-  moment.locale('zh-cn')
-  import timelineData from '../mockData/timeline.json'
+  const moment = require('moment');
+  moment.locale('zh-cn');
+  import timelineData from '../mockData/timeline.json';
 
   export default {
     name: 'timelineComponent',
-    data () {
+    data() {
       return {
         timelineData: timelineData.events,
-        startTime: '2017-08-24T02:27:43.536Z'
-      }
+        startTime: '2017-08-24T02:27:43.536Z',
+      };
     },
 
     methods: {
-      moment
-    }
-  }
+      moment,
+    },
+  };
 </script>
 <style scoped>
   .time {

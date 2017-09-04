@@ -8,8 +8,8 @@
 <script>
   export default {
     name: 'MemberCell',
-    props: ['member']
-  }
+    props: ['member'],
+  };
 </script>
 
 <style scoped>

@@ -10,16 +10,15 @@
 </template>
 
 <script>
-  import groupA from '../mockData/groupA.json'
-  import MemberCell from './memberCell'
+  import groupA from '../mockData/groupA.json';
+  import MemberCell from './memberCell';
   export default {
     name: 'GroupBar',
-    data () {
-      return groupA
+    data() {
+      return groupA;
     },
     components: {
-      'member-cell': MemberCell
-    }
-  }
+      'member-cell': MemberCell,
+    },
+  };
 </script>
-

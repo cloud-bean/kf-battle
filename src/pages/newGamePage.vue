@@ -108,32 +108,31 @@
   </div>
 </template>
 <script>
-  import router from '../router'
+  import router from '../router';
 
   export default {
     name: 'newGamePage',
-    data () {
+    data() {
       return {
         current: 0,
-        status: 'process'
-      }
+        status: 'process',
+      };
     },
     methods: {
-      setTeamDone: function () {
-        this.current = 1
+      setTeamDone() {
+        this.current = 1;
       },
-      setCardsDone: function () {
-        this.current = 2
+      setCardsDone() {
+        this.current = 2;
       },
-      showRulesDone: function () {
-        this.current = 3
+      showRulesDone() {
+        this.current = 3;
       },
-      startGame: function () {
-        alert('start the war')
-        router.replace('/battle')
-      }
-    }
-  }
+      startGame() {
+        router.replace('/battle');
+      },
+    },
+  };
 </script>
 
 <style scoped>

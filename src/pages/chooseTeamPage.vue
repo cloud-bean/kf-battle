@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="title">
-      选择战队
+      选择对战双方
     </div>
     <Row :gutter="16" class="team-list">
         <Col span="4" v-for="item in teamList" class="team-item">
@@ -14,22 +14,22 @@
   </div>
 </template>
 <script>
-import TeamItem from '../components/chooseTeamPage/teamItem'
-import teamData from '../mockData/teamList.json'
+import TeamItem from '../components/chooseTeamPage/teamItem';
+import teamData from '../mockData/teamList.json';
 
 export default {
-  data () {
+  data() {
     return {
-      teamList: teamData.team
-    }
+      teamList: teamData.team,
+    };
   },
   methods: {
 
   },
   components: {
-    TeamItem
-  }
-}
+    TeamItem,
+  },
+};
 </script>
 
 <style scoped>

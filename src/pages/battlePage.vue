@@ -25,40 +25,38 @@
         <cards :cards="cardsB" justify="end"></cards>
       </Col>
     </Row>
-
-
   </div>
 </template>
 
 <script>
-import GroupBarA from '../components/groupBarA'
-import GroupBarB from '../components/groupBarB'
-import ScoreVS from '../components/scoreVS'
-import Cards from '../components/cardsContainer'
-import TimeLine from '../components/timeline'
+import GroupBarA from '../components/groupBarA';
+import GroupBarB from '../components/groupBarB';
+import ScoreVS from '../components/scoreVS';
+import Cards from '../components/cardsContainer';
+import TimeLine from '../components/timeline';
 export default {
   name: 'BattlePage',
-  data () {
+  data() {
     return {
       cardsA: [
-        {imageURL: '/static/qiangda.jpeg'}
+        { imageURL: '/static/qiangda.jpeg' },
       ],
       cardsB: [
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/qiangda.jpeg'},
-        {imageURL: '/static/xiaokeluo.jpeg'}
-      ]
-    }
+        { imageURL: '/static/qiangda.jpeg' },
+        { imageURL: '/static/qiangda.jpeg' },
+        { imageURL: '/static/qiangda.jpeg' },
+        { imageURL: '/static/xiaokeluo.jpeg' },
+      ],
+    };
   },
   components: {
     'group-bar-a': GroupBarA,
     'group-bar-b': GroupBarB,
     'score-vs': ScoreVS,
-    'cards': Cards,
-    'timeline': TimeLine
-  }
-}
+    cards: Cards,
+    timeline: TimeLine,
+  },
+};
 </script>
 <style>
 </style>

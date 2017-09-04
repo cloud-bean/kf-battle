@@ -28,17 +28,17 @@
 
 export default {
   props: ['teamData'],
-  data () {
+  data() {
     return {
-      selected: false
-    }
+      selected: false,
+    };
   },
   methods: {
-    handleClick () {
-      this.selected = !this.selected
-    }
-  }
-}
+    handleClick() {
+      this.selected = !this.selected;
+    },
+  },
+};
 </script>
 
 <style scoped>

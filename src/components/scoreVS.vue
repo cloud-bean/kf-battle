@@ -17,18 +17,18 @@
 </template>
 
 <script>
-  import groupA from '../mockData/groupA.json'
-  import groupB from '../mockData/groupB.json'
+  import groupA from '../mockData/groupA.json';
+  import groupB from '../mockData/groupB.json';
 
   export default {
     name: 'ScoreVS',
-    data () {
+    data() {
       return {
         left: groupA.score.total,
-        right: groupB.score.total
-      }
-    }
-  }
+        right: groupB.score.total,
+      };
+    },
+  };
 </script>
 
 <style scoped>

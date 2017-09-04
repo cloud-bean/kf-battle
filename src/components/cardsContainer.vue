@@ -8,12 +8,12 @@
 
 
 <script>
-  import Card from './card'
+  import Card from './card';
   export default {
     name: 'cardsContainer',
     props: ['cards', 'justify'],
     components: {
-      'card': Card
-    }
-  }
+      card: Card,
+    },
+  };
 </script>
