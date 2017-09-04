@@ -16,6 +16,7 @@
 <script>
 import TeamItem from '../components/chooseTeamPage/teamItem';
 import teamData from '../mockData/teamList.json';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -24,7 +25,12 @@ export default {
     };
   },
   methods: {
-
+    ...mapActions([
+      'getAllTeams', // 映射 this.increment() 为 this.$store.dispatch('increment')
+    ]),
+  },
+  mounted() {
+    this.getAllTeams();
   },
   components: {
     TeamItem,
