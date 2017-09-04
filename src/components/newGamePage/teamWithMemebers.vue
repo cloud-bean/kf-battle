@@ -19,11 +19,11 @@
 <script>
   export default {
     props: ['teamData'],
-    data () {
-      return {}
+    data() {
+      return {};
     },
-    methods: {}
-  }
+    methods: {},
+  };
 </script>
 
 <style scoped>

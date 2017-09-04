@@ -16,10 +16,10 @@
   export default {
     name: 'ScoreVS',
     props: ['scoreData'],
-    data () {
-      return {}
-    }
-  }
+    data() {
+      return {};
+    },
+  };
 </script>
 
 <style scoped>

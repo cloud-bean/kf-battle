@@ -22,11 +22,11 @@
 
 <script>
   export default {
-    data: function () {
+    data() {
       return {
         avatar: 'http://wx.qlogo.cn/mmopen/nOPEgiaj5ThpPueoLQZ7L966abkK82JMbDhOkMNejp6f3A5YSAlhRxuT1aiaAXkC8BN85PhgfJiaaJQDbdILtr0qMiacNxfDoyKY/0',
-        name: '刘霄阳'
-      }
-    }
-  }
+        name: '刘霄阳',
+      };
+    },
+  };
 </script>

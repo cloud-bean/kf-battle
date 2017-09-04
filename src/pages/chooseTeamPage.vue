@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title">
-      选择战队
+      选择对战双方
     </div>
     <Row :gutter="16" class="team-list">
       <Col span="4" v-for="item in teamList" class="team-item">
@@ -14,28 +14,35 @@
   </div>
 </template>
 <script>
-  import TeamItem from '../components/chooseTeamPage/teamItem'
-  import teamData from '../mockData/teamList.json'
-  import router from '../router'
+import router from '../router';
+import TeamItem from '../components/chooseTeamPage/teamItem';
+import teamData from '../mockData/teamList.json';
+import { mapActions } from 'vuex';
 
-  export default {
-    data () {
-      return {
-        teamList: teamData.team
-      }
+export default {
+  data() {
+    return {
+      teamList: teamData.team,
+    };
+  },
+  methods: {
+    ...mapActions([
+      'getAllTeams', // 映射 this.increment() 为 this.$store.dispatch('increment')
+    ]),
+    onSelect(team, isSelected) {
+      alert(`on select:${team._id}${team.name}${isSelected}`); // eslint-disable-line 
     },
-    methods: {
-      onSelect: function (teamData, isSelected) {
-        alert('on select:' + teamData._id + teamData.name + isSelected)
-      },
-      goNewGame: function () {
-        router.replace('/newGame')
-      }
+    goNewGame() {
+      router.replace('/newGame');
     },
-    components: {
-      TeamItem
-    }
-  }
+  },
+  mounted() {
+    this.getAllTeams();
+  },
+  components: {
+    TeamItem,
+  },
+};
 </script>
 
 <style scoped>

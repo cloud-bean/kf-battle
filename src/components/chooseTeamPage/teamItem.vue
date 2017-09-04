@@ -20,18 +20,18 @@
 <script>
   export default {
     props: ['teamData', 'onSelect'],
-    data () {
+    data() {
       return {
-        selected: false
-      }
+        selected: false,
+      };
     },
     methods: {
-      handleClick () {
-        this.selected = !this.selected
-        this.onSelect(this.teamData, this.selected)
-      }
-    }
-  }
+      handleClick() {
+        this.selected = !this.selected;
+        this.onSelect(this.teamData, this.selected);
+      },
+    },
+  };
 </script>
 
 <style scoped>

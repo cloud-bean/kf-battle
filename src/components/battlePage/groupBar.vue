@@ -27,17 +27,17 @@
 </template>
 
 <script>
-  import MemberCell from './memberCell'
+  import MemberCell from './memberCell';
   export default {
     name: 'GroupBar',
     props: ['position'],
-    data () {
-      return {}
+    data() {
+      return {};
     },
     components: {
-      'member-cell': MemberCell
-    }
-  }
+      'member-cell': MemberCell,
+    },
+  };
 </script>
 
 <style scoped lang="less">

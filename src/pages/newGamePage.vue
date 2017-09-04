@@ -77,39 +77,39 @@
   </div>
 </template>
 <script>
-  import router from '../router'
-  import teamListData from '../mockData/teamList.json'
-  import teamWithMembers from '../components/newGamePage/teamWithMemebers'
+  import router from '../router';
+  import teamListData from '../mockData/teamList.json';
+  import teamWithMembers from '../components/newGamePage/teamWithMemebers';
 
   export default {
     name: 'newGamePage',
-    data () {
+    data() {
       return {
         current: 0,
         status: 'process',
         groupOneData: teamListData.team[0],
-        groupTwoData: teamListData.team[1]
-      }
+        groupTwoData: teamListData.team[1],
+      };
     },
     methods: {
-      setTeamDone: function () {
-        this.current = 1
+      setTeamDone() {
+        this.current = 1;
       },
-      setCardsDone: function () {
-        this.current = 2
+      setCardsDone() {
+        this.current = 2;
       },
-      showRulesDone: function () {
-        this.current = 3
+      showRulesDone() {
+        this.current = 3;
       },
-      startGame: function () {
-        alert('start the war')
-        router.replace('/battle')
-      }
+      startGame() {
+        // alert('start the war');
+        router.replace('/battle');
+      },
     },
     components: {
-      teamWithMembers
-    }
-  }
+      teamWithMembers,
+    },
+  };
 </script>
 
 <style scoped>
