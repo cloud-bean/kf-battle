@@ -28,108 +28,63 @@
       <Col span="8">
       <Card style="text-align: left; margin-bottom: 5px;">
         <p slot="title">
-          <img
-            style="width: 20px; height: 20px;"
-            src="http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0">
           赵九江
+          <span style="color: #57c5ff">【level 5, 悦币 120】</span>
         </p>
         <p slot="extra">
-          贡献 12 分
+          <span style="color: green;font-size: 1.2em; font-weight: 700;">+12</span> / <span style="color: red;font-size: 1.2em; font-weight: 700;">-0</span>
+          <Button shape="circle" size="small" style="margin-left: 10px;">
+            <Icon color="green" type="plus-round"></Icon>
+            <Icon color="red" type="minus-round"></Icon>
+          </Button>
         </p>
-        <div style="text-align:left">
+        <div style="text-align:left; margin: -10px;">
           <img width="80px;" src="/static/kf_card/qiangda.jpeg">
           <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
         </div>
       </Card>
       <Card style="text-align: left; margin-bottom: 5px;">
         <p slot="title">
-          <img
-            style="width: 20px; height: 20px;"
-            src="http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0">
-          赵九江
+          刘晓洋
+          <span style="color: #57c5ff">【level 3, 悦币 80】</span>
         </p>
         <p slot="extra">
-          贡献 12 分
+          <span style="color: green;font-size: 1.2em; font-weight: 700;">+10</span>
+          /
+          <span style="color: red;font-size: 1.2em; font-weight: 700;">-1</span>
+          <Button shape="circle" size="small" style="margin-left: 10px;">
+            <Icon color="green" type="plus-round"></Icon>
+            <Icon color="red" type="minus-round"></Icon>
+          </Button>
         </p>
-        <div style="text-align:left; margin-bottom: 5px;">
-          <img width="80px;" src="/static/kf_card/qiangda.jpeg">
-          <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
+        <div style="text-align:left; margin: -10px;">
+          <img style="width: 80px;" src="/static/kf_card/xiaokeluo.jpeg">
         </div>
       </Card>
-      <Card style="text-align: left; margin-bottom: 5px;">
-        <p slot="title">
-          <img
-            style="width: 20px; height: 20px;"
-            src="http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0">
-          赵九江
-        </p>
-        <p slot="extra">
-          贡献 12 分
-        </p>
-        <div style="text-align:left">
-          <img width="80px;" src="/static/kf_card/qiangda.jpeg">
-          <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
-        </div>
-      </Card>
-      <!--<div style="display: inline; background-color: whitesmoke;">-->
-      <!--<img src="http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0" style="width: 80px; height: 80px;"/>-->
-      <!--<span>赵九江</span>-->
-      <!--<span>贡献12分</span>-->
-      <!--<span>卡牌2张</span>-->
-      <!--</div>-->
+
       </Col>
       <Col span="8">
-        <ButtonGroup>
-          <Button type="" icon="ios-clock">计时器</Button>
-          <Button type="" icon="ios-color-wand-outline">随机事件</Button>
-          <Button type="" icon="ios-close">游戏结束</Button>
+        <ButtonGroup size="large">
+          <Button icon="ios-stopwatch-outline">计时器</Button>
+          <Button icon="wand">随机事件</Button>
+          <Button icon="ios-close-outline">游戏结束</Button>
         </ButtonGroup>
         <timeline></timeline>
       </Col>
       <Col span="8">
       <Card style="text-align: left; margin-bottom: 5px;">
         <p slot="title">
-          <img
-            style="width: 20px; height: 20px;"
-            src="http://wx.qlogo.cn/mmhead/Xsv95XP1eZBZiaPYnaSTx8eZOUAFbpmOVrjicXEBLpVXc/0">
           赵研冰
+          <span style="color: #57c5ff">【level 4, 悦币 100】</span>
         </p>
         <p slot="extra">
-          贡献 9 分
+          <span style="color: green;font-size: 1.2em; font-weight: 700;">+11</span> / <span style="color: red;font-size: 1.2em; font-weight: 700;">-3</span>
+          <Button shape="circle" size="small" style="margin-left: 10px;">
+            <Icon color="green" type="plus-round"></Icon>
+            <Icon color="red" type="minus-round"></Icon>
+          </Button>
         </p>
-        <div style="text-align:left">
-          <img width="80px;" src="/static/kf_card/qiangda.jpeg">
-          <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
-        </div>
-      </Card>
-
-      <Card style="text-align: left; margin-bottom: 5px;">
-        <p slot="title">
-          <img
-            style="width: 20px; height: 20px;"
-            src="http://wx.qlogo.cn/mmhead/Xsv95XP1eZBZiaPYnaSTx8eZOUAFbpmOVrjicXEBLpVXc/0">
-          赵研冰
-        </p>
-        <p slot="extra">
-          贡献 9 分
-        </p>
-        <div style="text-align:left">
-          <img width="80px;" src="/static/kf_card/qiangda.jpeg">
-          <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
-        </div>
-      </Card>
-
-      <Card style="text-align: left; margin-bottom: 5px;">
-        <p slot="title">
-          <img
-            style="width: 20px; height: 20px;"
-            src="http://wx.qlogo.cn/mmhead/Xsv95XP1eZBZiaPYnaSTx8eZOUAFbpmOVrjicXEBLpVXc/0">
-          赵研冰
-        </p>
-        <p slot="extra">
-          贡献 9 分
-        </p>
-        <div style="text-align:left">
+        <div style="text-align:left; margin: -10px;">
           <img width="80px;" src="/static/kf_card/qiangda.jpeg">
           <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
         </div>
@@ -146,7 +101,7 @@
   import ScoreVS from '../components/battlePage/scoreVS'
   import Cards from '../components/battlePage/cardsContainer'
   import TimeLine from '../components/battlePage/timeline'
-
+  import StudentBar from '../components/battlePage/studentBar'
   export default {
     name: 'BattlePage',
     data () {
@@ -171,9 +126,10 @@
       'group-bar-b': GroupBarB,
       'score-vs': ScoreVS,
       'cards': Cards,
-      'timeline': TimeLine
+      'timeline': TimeLine,
+      StudentBar
     }
   }
 </script>
-<style>
+<style scoped>
 </style>

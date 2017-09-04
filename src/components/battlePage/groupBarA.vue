@@ -12,7 +12,7 @@
 
 <script>
   import groupA from '../../mockData/groupA.json'
-  import MemberCell from '../memberCell'
+  import MemberCell from './memberCell'
   export default {
     name: 'GroupBar',
     data () {

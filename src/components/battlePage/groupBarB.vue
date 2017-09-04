@@ -5,14 +5,14 @@
       <img src="/static/battle_team/TeamLogo_2.jpg" style="width: 100%;">
     </Col>
     <Col span="12" class="teamName">
-      <span>胜利之魂-球队-B</span>
+      <span>胜利之魂-球服-B</span>
     </Col>
   </Row>
 </template>
 
 <script>
   import groupB from '../../mockData/groupB.json'
-  import MemberCell from '../memberCell'
+  import MemberCell from './memberCell'
 
   export default {
     name: 'GroupBar',
