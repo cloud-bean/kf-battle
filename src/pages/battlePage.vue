@@ -2,130 +2,172 @@
   <div>
     <Row style="background-color: #fff">
       <Col span="9">
-      <group-bar-a></group-bar-a>
+      <group-bar position="left"></group-bar>
       </Col>
       <Col span="6">
       <score-vs :scoreData="scoreData"></score-vs>
       </Col>
       <Col span="9">
-      <group-bar-b></group-bar-b>
+      <group-bar position="right"></group-bar>
       </Col>
     </Row>
     <div class="spacer">
       <hr style="border: 2px solid whitesmoke">
     </div>
-    <!--<Row style="border: 2px solid blue">-->
-    <!--<Col span="12">-->
-    <!--<cards :cards="cardsA" justify="start"></cards>-->
-    <!--</Col>-->
-    <!--<Col span="12">-->
-    <!--</Col>-->
-    <!--<Col span="12">-->
-    <!--<cards :cards="cardsB" justify="end"></cards>-->
-    <!--</Col>-->
-    <!--</Row>-->
+
     <Row style="margin-top: 10px;">
       <Col span="8">
-      <Card style="text-align: left; margin-bottom: 5px;">
-        <p slot="title">
-          赵九江
-          <span style="color: #57c5ff">【level 5, 悦币 120】</span>
-        </p>
-        <p slot="extra">
-          <span style="color: green;font-size: 1.2em; font-weight: 700;">+12</span> / <span style="color: red;font-size: 1.2em; font-weight: 700;">-0</span>
-          <Button shape="circle" size="small" style="margin-left: 10px;">
-            <Icon color="green" type="plus-round"></Icon>
-            <Icon color="red" type="minus-round"></Icon>
-          </Button>
-        </p>
-        <div style="text-align:left; margin: -10px;">
-          <img width="80px;" src="/static/kf_card/qiangda.jpeg">
-          <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
-        </div>
-      </Card>
-      <Card style="text-align: left; margin-bottom: 5px;">
-        <p slot="title">
-          刘晓洋
-          <span style="color: #57c5ff">【level 3, 悦币 80】</span>
-        </p>
-        <p slot="extra">
-          <span style="color: green;font-size: 1.2em; font-weight: 700;">+10</span>
-          /
-          <span style="color: red;font-size: 1.2em; font-weight: 700;">-1</span>
-          <Button shape="circle" size="small" style="margin-left: 10px;">
-            <Icon color="green" type="plus-round"></Icon>
-            <Icon color="red" type="minus-round"></Icon>
-          </Button>
-        </p>
-        <div style="text-align:left; margin: -10px;">
-          <img style="width: 80px;" src="/static/kf_card/xiaokeluo.jpeg">
-        </div>
-      </Card>
-
+      <member-cell :member="members[0]"></member-cell>
+      <member-cell :member="members[1]"></member-cell>
+      <member-cell :member="members[0]"></member-cell>
+      <member-cell :member="members[1]"></member-cell>
+      <member-cell :member="members[0]"></member-cell>
+      <member-cell :member="members[1]"></member-cell>
       </Col>
       <Col span="8">
-        <ButtonGroup size="large">
-          <Button icon="ios-stopwatch-outline">计时器</Button>
-          <Button icon="wand">随机事件</Button>
-          <Button icon="ios-close-outline">游戏结束</Button>
-        </ButtonGroup>
-        <timeline></timeline>
+      <ButtonGroup size="large">
+        <Button icon="ios-stopwatch-outline">计时器</Button>
+        <Button icon="wand">随机事件</Button>
+        <Button icon="ios-close-outline">游戏结束</Button>
+      </ButtonGroup>
+      <timeline></timeline>
       </Col>
       <Col span="8">
-      <Card style="text-align: left; margin-bottom: 5px;">
-        <p slot="title">
-          赵研冰
-          <span style="color: #57c5ff">【level 4, 悦币 100】</span>
-        </p>
-        <p slot="extra">
-          <span style="color: green;font-size: 1.2em; font-weight: 700;">+11</span> / <span style="color: red;font-size: 1.2em; font-weight: 700;">-3</span>
-          <Button shape="circle" size="small" style="margin-left: 10px;">
-            <Icon color="green" type="plus-round"></Icon>
-            <Icon color="red" type="minus-round"></Icon>
-          </Button>
-        </p>
-        <div style="text-align:left; margin: -10px;">
-          <img width="80px;" src="/static/kf_card/qiangda.jpeg">
-          <img width="80px;" src="/static/kf_card/xiaokeluo.jpeg">
-        </div>
-      </Card>
-
+      <member-cell :member="members[2]"></member-cell>
+      <member-cell :member="members[3]"></member-cell>
+      <member-cell :member="members[2]"></member-cell>
+      <member-cell :member="members[3]"></member-cell>
+      <member-cell :member="members[2]"></member-cell>
+      <member-cell :member="members[3]"></member-cell>
+      <member-cell :member="members[2]"></member-cell>
+      <member-cell :member="members[3]"></member-cell>
       </Col>
     </Row>
   </div>
 </template>
 
 <script>
-  import GroupBarA from '../components/battlePage/groupBarA'
-  import GroupBarB from '../components/battlePage/groupBarB'
+  import GroupBar from '../components/battlePage/groupBar'
   import ScoreVS from '../components/battlePage/scoreVS'
-  import Cards from '../components/battlePage/cardsContainer'
   import TimeLine from '../components/battlePage/timeline'
   import StudentBar from '../components/battlePage/studentBar'
+  import MemberCell from '../components/battlePage/memberCell.vue'
+
   export default {
     name: 'BattlePage',
     data () {
       return {
-        cardsA: [
-          {imageURL: '/static/kf_card/qiangda.jpeg'}
-        ],
-        cardsB: [
-          {imageURL: '/static/kf_card/qiangda.jpeg'},
-          {imageURL: '/static/kf_card/qiangda.jpeg'},
-          {imageURL: '/static/kf_card/qiangda.jpeg'},
-          {imageURL: '/static/kf_card/xiaokeluo.jpeg'}
-        ],
         scoreData: {
           left: 78,
           right: 65
-        }
+        },
+        members: [
+          {
+            name: '赵九江',
+            option: {
+              level: 3,
+              goldToken: 50
+            },
+            get: 19,
+            lost: 1,
+            avatar: '',
+            cards: [
+              {
+                name: '果实卡',
+                description: 'guoshika',
+                imageURL: '/static/kf_card/guoshi.jpeg'
+              },
+              {
+                name: '抢答卡',
+                description: 'qiangdaka',
+                imageURL: '/static/kf_card/qiangda.jpeg'
+              },
+              {
+                name: '小克罗卡',
+                description: 'xiaokeluo',
+                imageURL: '/static/kf_card/xiaokeluo.jpeg'
+              },
+              {
+                name: '转移卡',
+                description: 'zhuanyika',
+                imageURL: '/static/kf_card/zhuanyi.jpeg'
+              }
+            ]
+          },
+          {
+            name: '刘向阳',
+            option: {
+              level: 3,
+              goldToken: 50
+            },
+            get: 15,
+            lost: 4,
+            avatar: '',
+            cards: [
+              {
+                name: '抢答卡',
+                description: 'qiangdaka',
+                imageURL: '/static/kf_card/qiangda.jpeg'
+              }
+            ]
+          },
+          {
+            name: '何启元',
+            option: {
+              level: 3,
+              goldToken: 50
+            },
+            get: 8,
+            lost: 1,
+            avatar: '',
+            cards: [
+              {
+                name: '抢答卡',
+                description: 'qiangdaka',
+                imageURL: '/static/kf_card/qiangda.jpeg'
+              },
+              {
+                name: '果实卡',
+                description: 'guoshika',
+                imageURL: '/static/kf_card/guoshi.jpeg'
+              },
+              {
+                name: '小克罗卡',
+                description: 'xiaokeluo',
+                imageURL: '/static/kf_card/xiaokeluo.jpeg'
+              }
+            ]
+          },
+          {
+            name: '朱长璐',
+            option: {
+              level: 3,
+              goldToken: 50
+            },
+            get: 12,
+            lost: 2,
+            avatar: '',
+            cards: [
+              {
+                name: '果实卡',
+                description: 'guoshika',
+                imageURL: './static/kf_card/guoshi.jpeg'
+              },
+              {
+                name: '抢答卡',
+                description: 'qiangdaka',
+                imageURL:
+                  './static/kf_card/qiangda.jpeg'
+              }
+            ]
+          }
+        ]
       }
     },
     components: {
-      'group-bar-a': GroupBarA,
-      'group-bar-b': GroupBarB,
+      MemberCell,
+      'group-bar': GroupBar,
       'score-vs': ScoreVS,
-      'cards': Cards,
       'timeline': TimeLine,
       StudentBar
     }
