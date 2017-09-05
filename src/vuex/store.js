@@ -23,8 +23,9 @@ const rootState = {
 const actions = {
   async getAllTeams({ commit }) {
     commit('FETCH_DATA');
-    const teams = await api.getAllTeams();
-    commit('SET_TEAMS', teams);
+    const res = await api.getAllTeams();
+
+    commit('SET_TEAMS', { teams: res.data.data });
     commit('GOT_DATA');
   },
   async getCardPool({ commit }) {

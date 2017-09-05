@@ -4,7 +4,7 @@
       选择对战双方
     </div>
     <Row :gutter="16" class="team-list">
-      <Col span="4" v-for="item in teamList" class="team-item">
+      <Col span="4" v-for="item in teams" class="team-item">
       <team-item :teamData="item" :onSelect="onSelect"></team-item>
       </Col>
     </Row>
@@ -16,13 +16,12 @@
 <script>
 import router from '../router';
 import TeamItem from '../components/chooseTeamPage/teamItem';
-import teamData from '../mockData/teamList.json';
-import { mapActions } from 'vuex';
+// import teamData from '../mockData/teamList.json';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
     return {
-      teamList: teamData.team,
     };
   },
   methods: {
@@ -30,12 +29,15 @@ export default {
       'getAllTeams', // 映射 this.increment() 为 this.$store.dispatch('increment')
     ]),
     onSelect(team, isSelected) {
-      alert(`on select:${team._id}${team.name}${isSelected}`); // eslint-disable-line 
+      alert(`on select:${team._id}${team.name}${isSelected}`); // eslint-disable-line
     },
     goNewGame() {
       router.replace('/newGame');
     },
   },
+  computed: mapState({
+    teams: state => state.teams,
+  }),
   mounted() {
     this.getAllTeams();
   },
