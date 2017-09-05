@@ -7,23 +7,23 @@
       "description": "生的力量",
       "students": [
         {
-          "name": "张家瑞",
-          "avatar": "http://wx.qlogo.cn/mmopen/ajNVdqHZLLBGleZu4hKG0stUCrcXvw787QVl92CCR29A99Gtk1tbKd0E2XydIpibQdjiaMpKh1WW26ibdiaYO2u6iahFyR4QDypNPEngMGfjw3YE/0"
+          "displayName": "张家瑞",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/ajNVdqHZLLBGleZu4hKG0stUCrcXvw787QVl92CCR29A99Gtk1tbKd0E2XydIpibQdjiaMpKh1WW26ibdiaYO2u6iahFyR4QDypNPEngMGfjw3YE/0"
         }, {
-          "name": "訾博涵",
-          "avatar": "http://wx.qlogo.cn/mmopen/XtiaN53fq5PuBJGkjW2Xg67lUh5GWKjV39lEBsibg0YNbyWrRapHQ9PDdHhvbWkeMlc21ic9TVHgQZJ2xxTL5o25dQt5go4doks/0"
+          "displayName": "訾博涵",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/XtiaN53fq5PuBJGkjW2Xg67lUh5GWKjV39lEBsibg0YNbyWrRapHQ9PDdHhvbWkeMlc21ic9TVHgQZJ2xxTL5o25dQt5go4doks/0"
         }, {
-          "name": "赵九江",
-          "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0"
+          "displayName": "赵九江",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLwWu8asaI6Ch5DDoK8TfKGibkAFWTXk5BSemS9j98iaCLGa0ncEk7FryBJLcTnfOaGMDx8sSibjPd8f/0"
         }, {
-          "name": "马睿婕",
-          "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLibfDDovPUhxrGduSlUwZjs2I24upCXKsaNianwpdFcYWlexL1e5Wl5mPLTcnpXvPgdOGoHqy0JZbB/0"
+          "displayName": "马睿婕",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXaBYBNIXuBLibfDDovPUhxrGduSlUwZjs2I24upCXKsaNianwpdFcYWlexL1e5Wl5mPLTcnpXvPgdOGoHqy0JZbB/0"
         }, {
-          "name": "刘霄阳",
-          "avatar": "http://wx.qlogo.cn/mmopen/nOPEgiaj5ThpPueoLQZ7L966abkK82JMbDhOkMNejp6f3A5YSAlhRxuT1aiaAXkC8BN85PhgfJiaaJQDbdILtr0qMiacNxfDoyKY/0"
+          "displayName": "刘霄阳",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/nOPEgiaj5ThpPueoLQZ7L966abkK82JMbDhOkMNejp6f3A5YSAlhRxuT1aiaAXkC8BN85PhgfJiaaJQDbdILtr0qMiacNxfDoyKY/0"
         }, {
-          "name": "何起源",
-          "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxRLMAvSen6JNf5VmkOMGR96Dibphmk7FibRqTEvKcXB0s81UF8q0vxL9h4ZQRBibUoSNN8M7ZMvJUc8U0ezQB9UpK/0"
+          "displayName": "何起源",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxRLMAvSen6JNf5VmkOMGR96Dibphmk7FibRqTEvKcXB0s81UF8q0vxL9h4ZQRBibUoSNN8M7ZMvJUc8U0ezQB9UpK/0"
         }
       ]
     },
@@ -34,25 +34,29 @@
       "description": "生的力量",
       "students": [
         {
-          "name": "冯欣瑶",
-          "avatar": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXkL0YUX27ZJuNwmd13Tjs8Z2S6AU9GVqiahxuIkA7zuclQGpRKgptPkf7WI73pTzV7EBMmdBzFvuIERLEL1aYaQ/0"
+          "displayName": "冯欣瑶",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/BA8GZZ2EGwXkL0YUX27ZJuNwmd13Tjs8Z2S6AU9GVqiahxuIkA7zuclQGpRKgptPkf7WI73pTzV7EBMmdBzFvuIERLEL1aYaQ/0"
         }, {
-          "name": "汪启轩",
-          "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxZ5lu9MsNya56Qj7GrEicbmVYEiajjs1NELmYKG6bfgXWVNd45esz4oKoytONw9Oq2gIdBhuROe3BS8kGN5DKmwF/0"
+          "displayName": "汪启轩",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/XAJxlc1mWaxZ5lu9MsNya56Qj7GrEicbmVYEiajjs1NELmYKG6bfgXWVNd45esz4oKoytONw9Oq2gIdBhuROe3BS8kGN5DKmwF/0"
         }, {
-          "name": "赵研冰",
-          "avatar": "http://wx.qlogo.cn/mmhead/Xsv95XP1eZBZiaPYnaSTx8eZOUAFbpmOVrjicXEBLpVXc/0"
+          "displayName": "赵研冰",
+          "profileImageURL": "http://wx.qlogo.cn/mmhead/Xsv95XP1eZBZiaPYnaSTx8eZOUAFbpmOVrjicXEBLpVXc/0"
         }, {
-          "name": "梁育豪",
-          "avatar": "http://wx.qlogo.cn/mmhead/IbQhd2Y9oKcL2cx2mp9w7UHQ98KwoOuRMq0ic0dEibwFf6VPyyRVR1Ew/0"
+          "displayName": "梁育豪",
+          "profileImageURL": "http://wx.qlogo.cn/mmhead/IbQhd2Y9oKcL2cx2mp9w7UHQ98KwoOuRMq0ic0dEibwFf6VPyyRVR1Ew/0"
         }, {
-          "name": "李昆岭",
-          "avatar": "http://wx.qlogo.cn/mmopen/XAJxlc1mWawbGrXSnr4HicpbwYQAA6hsGZ20j3zhr3te4XB5T14mN5Q6IWGoWM0XicczVyRibFVeuO8BXv3ghdWQ13h6R6KRUVl/0"
+          "displayName": "李昆岭",
+          "profileImageURL": "http://wx.qlogo.cn/mmopen/XAJxlc1mWawbGrXSnr4HicpbwYQAA6hsGZ20j3zhr3te4XB5T14mN5Q6IWGoWM0XicczVyRibFVeuO8BXv3ghdWQ13h6R6KRUVl/0"
         }, {
-          "name": "李欣荣",
-          "avatar": "http://wx.qlogo.cn/mmhead/23q0YK6xBXhvtgZwcYcpWUnpJ2AiavIzCtQRV0PshYXk/0"
-        },{
-          "name": "李欣荣"
+          "displayName": "李欣荣",
+          "profileImageURL": "http://wx.qlogo.cn/mmhead/23q0YK6xBXhvtgZwcYcpWUnpJ2AiavIzCtQRV0PshYXk/0"
+        }, {
+          "displayName": "李欣荣",
+          "profileImageURL": "http://wx.qlogo.cn/mmhead/23q0YK6xBXhvtgZwcYcpWUnpJ2AiavIzCtQRV0PshYXk/0"
+        }, {
+          "displayName": "李欣荣",
+          "profileImageURL": "http://wx.qlogo.cn/mmhead/23q0YK6xBXhvtgZwcYcpWUnpJ2AiavIzCtQRV0PshYXk/0"
         }
       ]
     },

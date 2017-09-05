@@ -114,23 +114,23 @@
 
 <style scoped>
   .container {
-    margin: 2rem 2rem;
+    /*margin: 2rem 2rem;
     padding: 2rem 2rem;
     background-color: rgba(255,255,255,.9);
     border-radius: .5rem;
     box-shadow: 0 0 15px #000;
     overflow: scroll;
-    position: relative;
+    position: relative;*/
   }
   .steps {
     text-align: left;
     margin: 20px auto;
   }
-  .panel {
+  /*.panel {
     margin: 40px auto;
     height: 600px;
     text-align: center;
-  }
+  }*/
   .table{
     margin: 20px auto;
     border: 1px solid gray;

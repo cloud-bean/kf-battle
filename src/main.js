@@ -6,7 +6,20 @@ import router from './router';
 import store from './vuex/store';
 
 Vue.use(iView);
+iView.LoadingBar.config({
+  color: '#5cb85c',
+  failedColor: '#f0ad4e',
+  height: 5,
+});
+router.beforeEach((to, from, next) => {
+  iView.LoadingBar.start();
+  next();
+});
 
+router.afterEach((to, from, next) => {
+  iView.LoadingBar.finish();
+  next();
+});
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({

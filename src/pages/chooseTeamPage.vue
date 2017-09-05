@@ -3,7 +3,7 @@
     <div class="title">
       选择对战双方
     </div>
-    <Row :gutter="16" class="team-list">
+    <Row :gutter="16" class="main-content">
       <Col span="4" v-for="item in teams" class="team-item">
       <team-item :teamData="item" :onSelect="onSelect"></team-item>
       </Col>
@@ -32,7 +32,7 @@ export default {
       alert(`on select:${team._id}${team.name}${isSelected}`); // eslint-disable-line
     },
     goNewGame() {
-      router.replace('/newGame');
+      router.replace('/teamMemberPage');
     },
   },
   computed: mapState({
@@ -54,28 +54,14 @@ export default {
     border-bottom: 1px solid #ccc;
     padding-bottom: 0.3rem;
   }
-
-  .team-list {
+  .main-content{
     padding: 1rem 4rem;
   }
+  /*.team-list {
+    padding: 1rem 4rem;
+  }*/
 
   .team-item {
     margin: .5rem 0;
-  }
-
-  .button-area {
-    position: relative;
-    margin: 8rem 0 auto;
-  }
-
-  .container {
-    margin: 2rem 2rem;
-    padding: 2rem 2rem;
-    background-color: rgba(255,255,255,.9);
-    height: 45rem;
-    border-radius: .5rem;
-    box-shadow: 0 0 15px #000;
-    overflow: scroll;
-    position: relative;
   }
 </style>
