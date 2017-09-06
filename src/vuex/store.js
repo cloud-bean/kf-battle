@@ -1,12 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import * as api from '../api';
+import battle from './modules/battle';
+
 Vue.use(Vuex);
 
-// import * as actions from './actions';
-// import * as types from './mutation_types';
-
-// Vue.use(Vuex);
 const SET_TEAMS = 'SET_TEAMS';
 const FETCH_DATA = 'FETCH_DATA';
 const GOT_DATA = 'GOT_DATA';
@@ -17,7 +15,7 @@ const rootState = {
   loading: false,
   timeline: [],
   cardPool: [],
-  teams: [],
+  teamList: [],
 };
 
 const actions = {
@@ -25,7 +23,7 @@ const actions = {
     try {
       commit('FETCH_DATA');
       const res = await api.getAllTeams();
-      commit('SET_TEAMS', { teams: res.data.data });
+      commit('SET_TEAMS', { teamList: res.data.data });
       commit('GOT_DATA');
     } catch (e) {
       console.log(e);
@@ -42,7 +40,7 @@ const actions = {
 const mutations = {
   [SET_TEAMS](state, payload) {
     const newState = state;
-    newState.teams = payload.teams;
+    newState.teamList = payload.teamList;
   },
   [SET_CARD_POOL](state, payload) {
     const newState = state;
@@ -62,4 +60,7 @@ export default new Vuex.Store({
   state: rootState,
   mutations,
   actions,
+  modules: {
+    battle,
+  },
 });

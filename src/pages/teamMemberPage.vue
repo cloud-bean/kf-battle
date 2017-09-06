@@ -1,57 +1,51 @@
 <template lang="html">
   <div class="container">
-    <div class="title">
+    <div class="title-area">
       调整双方队员
     </div>
-    <Row class="main-content">
+    <Row class="main-area">
       <Col span="10">
-        <team-with-members :teamData="groupOneData"></team-with-members>
+        <team-with-members :teamData="battleTeams[0]"></team-with-members>
       </Col>
       <Col span="4">
         <div class="vs">
           <Icon type="ios-game-controller-a-outline" size="150"></Icon>
+          <!-- <Icon type="ios-game-controller-a" size="150"></Icon> -->
         </div>
          <!-- <img src="/static/newGame/vs-art.png" style="width: 50%"> -->
       </Col>
       <Col span="10">
-        <team-with-members :teamData="groupTwoData"></team-with-members>
+        <team-with-members :teamData="battleTeams[1]"></team-with-members>
       </Col>
     </Row>
     <div class="button-area">
-      <Button type="ghost" size="large" @click="goNewGame">下一步</Button>
+      <Button type="ghost" size="large" @click="startGame">下一步</Button>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .title {
-    font-size: 1.5rem;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 0.3rem;
-  }
-  .main-content{
-    padding: 1rem 4rem;
-  }
   .vs{
     padding-top: 8rem;
   }
 </style>
 
 <script>
-  import router from '../router';
-  import teamListData from '../mockData/teamList.json';
-  import teamWithMembers from '../components/newGamePage/teamWithMemebers';
+  // import teamListData from '../mockData/teamList.json';
+  import teamWithMembers from '../components/teamMemberPage/teamWithMemebers';
+  import { mapState } from 'vuex';
 
   export default {
-    name: 'newGamePage',
+    name: 'teamMemberPage',
     data() {
       return {
         current: 0,
         status: 'process',
-        groupOneData: teamListData.team[0],
-        groupTwoData: teamListData.team[1],
       };
     },
+    computed: mapState({
+      battleTeams: state => state.battle.battleTeams,
+    }),
     methods: {
       // setTeamDone() {
       //   this.current = 1;
@@ -64,7 +58,7 @@
       // },
       startGame() {
         // alert('start the war');
-        router.replace('/battle');
+        this.$router.push('/battle');
       },
     },
     components: {

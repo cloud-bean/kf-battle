@@ -10,6 +10,9 @@
       <Col span="8" v-for="member in teamData.students" class="member-item">
           <member-item :memberData="member"></member-item>
       </Col>
+      <Col span="8" class="member-item">
+          <Card><Icon type="plus-round" size="20"></Icon></Card>
+      </Col>
     </Row>
   </div>
 </template>

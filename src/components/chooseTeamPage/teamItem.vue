@@ -19,7 +19,7 @@
 
 <script>
   export default {
-    props: ['teamData', 'onSelect'],
+    props: ['teamData', 'index', 'onSelect'],
     data() {
       return {
         selected: false,
@@ -28,7 +28,7 @@
     methods: {
       handleClick() {
         this.selected = !this.selected;
-        this.onSelect(this.teamData, this.selected);
+        this.onSelect(this.index, this.teamData, this.selected);
       },
     },
   };

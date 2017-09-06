@@ -16,9 +16,8 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.afterEach((to, from, next) => {
+router.afterEach((to, from) => { // eslint-disable-line
   iView.LoadingBar.finish();
-  next();
 });
 Vue.config.productionTip = false;
 /* eslint-disable no-new */

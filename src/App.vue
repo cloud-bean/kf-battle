@@ -45,7 +45,16 @@ export default {
   box-shadow: 0 0 15px #000;
   overflow: scroll;
 }
+.title-area {
+  font-size: 1.5rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.3rem;
+}
+.main-area{
+  padding: 1rem 4rem;
+}
 .button-area {
+  padding: 0 5rem;
     bottom: 2rem;
     position: absolute;
     /*top:0;*/
