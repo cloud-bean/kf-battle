@@ -47,18 +47,8 @@
       battleTeams: state => state.battle.battleTeams,
     }),
     methods: {
-      // setTeamDone() {
-      //   this.current = 1;
-      // },
-      // setCardsDone() {
-      //   this.current = 2;
-      // },
-      // showRulesDone() {
-      //   this.current = 3;
-      // },
       startGame() {
-        // alert('start the war');
-        this.$router.push('/battle');
+        this.$router.push('/randomCardPage');
       },
     },
     components: {

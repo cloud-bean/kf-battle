@@ -9,6 +9,7 @@ const SET_TEAMS = 'SET_TEAMS';
 const FETCH_DATA = 'FETCH_DATA';
 const GOT_DATA = 'GOT_DATA';
 const SET_CARD_POOL = 'SET_CARD_POOL';
+const SET_TEAM_SELECTED_STATUS = 'SET_TEAM_SELECTED_STATUS';
 
 
 const rootState = {
@@ -28,6 +29,9 @@ const actions = {
     } catch (e) {
       console.log(e);
     }
+  },
+  toggleTeamSelected({ commit }, payload) {
+    commit('SET_TEAM_SELECTED_STATUS', payload);
   },
   async getCardPool({ commit }) {
     commit('FETCH_DATA');
@@ -54,12 +58,29 @@ const mutations = {
     const newState = state;
     newState.loading = false;
   },
+  [SET_TEAM_SELECTED_STATUS](state, payload) {
+    const newState = state;
+    const team = newState.teamList[payload.index];
+    const status = newState.teamList[payload.index].selected;
+    const newTeam = { ...team, selected: !status };
+    newState.teamList.splice(payload.index, 1, newTeam);
+  },
+};
+
+const getters = {
+  selectedTeamCount(state, getter) {
+    return getter.selectedTeam.length;
+  },
+  selectedTeam(state) {
+    return state.teamList.filter((team) => (team.selected));
+  },
 };
 
 export default new Vuex.Store({
   state: rootState,
   mutations,
   actions,
+  getters,
   modules: {
     battle,
   },

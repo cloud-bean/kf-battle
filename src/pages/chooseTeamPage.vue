@@ -6,17 +6,17 @@
 
     <Row :gutter="16" class="main-area">
       <Col span="4" v-for="(item, index) in teamList" class="team-item">
-        <team-item :teamData="item" :index="index" :onSelect="onSelect"></team-item>
+        <team-item :teamData="item" :selected="!!item.selected" @click.native="handleSelect(index)"></team-item>
       </Col>
     </Row>
-    <Alert type="info" show-icon v-show="teamCount!=2" style="width:30%;margin:0 auto">
+    <Alert type="info" show-icon v-show="selectedTeamCount!=2" style="width:30%;margin:0 auto">
         <span slot="desc">
             请选择两支战队。
         </span>
     </Alert>
     <div class="button-area">
 
-      <Button type="primary" size="large" @click="goNewGame" v-show="teamCount==2">
+      <Button type="primary" size="large" @click="initNewGame" v-show="selectedTeamCount==2">
         确认选择
         <Icon type="chevron-right"></Icon>
       </Button>
@@ -27,7 +27,7 @@
 <script>
 import TeamItem from '../components/chooseTeamPage/teamItem';
 // import teamData from '../mockData/teamList.json';
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -37,37 +37,28 @@ export default {
     };
   },
   methods: {
-    ...mapMutations([
-      'setBattleTeam',
-    ]),
     ...mapActions([
+      'setBattleTeams',
       'getAllTeams',
+      'toggleTeamSelected',
     ]),
-    onSelect(index, teamData, selected) {
-      if (selected) {
-        this.teamCount++;
-        this.teamSelect[index] = true;
-      } else {
-        this.teamCount--;
-        this.teamSelect[index] = false;
-      }
-      // alert(`on select:${selected}`); // eslint-disable-line
+    handleSelect(index) {
+      this.toggleTeamSelected({ index });
     },
-    goNewGame() {
-      const that = this;
-      this.teamSelect.filter((item, index) => {
-        if (!!item) {
-          that.setBattleTeam({ team: that.teamList[index] });
-          console.log(index);
-        }
-        return 0;
-      });
+    initNewGame() {
+      this.setBattleTeams({ teams: this.selectedTeam });
       this.$router.push('/teamMemberPage');
     },
   },
-  computed: mapState({
-    teamList: state => state.teamList,
-  }),
+  computed: {
+    ...mapState({
+      teamList: state => state.teamList,
+    }),
+    ...mapGetters([
+      'selectedTeam',
+      'selectedTeamCount',
+    ]),
+  },
   mounted() {
     this.getAllTeams();
   },
