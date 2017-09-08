@@ -31,9 +31,9 @@
 </style>
 
 <script>
-  // import teamListData from '../mockData/teamList.json';
   import teamWithMembers from '../components/teamMemberPage/teamWithMemebers';
-  import { mapState } from 'vuex';
+  import { createNamespacedHelpers } from 'vuex';
+  const { mapGetters } = createNamespacedHelpers('team');
 
   export default {
     name: 'teamMemberPage',
@@ -43,9 +43,11 @@
         status: 'process',
       };
     },
-    computed: mapState({
-      battleTeams: state => state.battle.battleTeams,
-    }),
+    computed: {
+      ...mapGetters([
+        'battleTeams',
+      ]),
+    },
     methods: {
       startGame() {
         this.$router.push('/randomCardPage');

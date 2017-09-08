@@ -6,7 +6,7 @@
 
     <Row :gutter="16" class="main-area">
       <Col span="4" v-for="(item, index) in teamList" class="team-item">
-        <team-item :teamData="item" :selected="!!item.selected" @click.native="handleSelect(index)"></team-item>
+      <team-item :teamData="item" :selected="!!item.selected" @click.native="handleSelect(index)"></team-item>
       </Col>
     </Row>
     <Alert type="info" show-icon v-show="selectedTeamCount!=2" style="width:30%;margin:0 auto">
@@ -25,47 +25,46 @@
   </div>
 </template>
 <script>
-import TeamItem from '../components/chooseTeamPage/teamItem';
-// import teamData from '../mockData/teamList.json';
-import { mapState, mapActions, mapGetters } from 'vuex';
+  import TeamItem from '../components/chooseTeamPage/teamItem';
+  import { createNamespacedHelpers } from 'vuex';
+  const { mapGetters, mapActions } = createNamespacedHelpers('team');
 
-export default {
-  data() {
-    return {
-      teamCount: 0,
-      teamSelect: [],
-    };
-  },
-  methods: {
-    ...mapActions([
-      'setBattleTeams',
-      'getAllTeams',
-      'toggleTeamSelected',
-    ]),
-    handleSelect(index) {
-      this.toggleTeamSelected({ index });
+  export default {
+    data() {
+      return {
+        teamCount: 0,
+        teamSelect: [],
+      };
     },
-    initNewGame() {
-      this.setBattleTeams({ teams: this.selectedTeam });
-      this.$router.push('/teamMemberPage');
+    methods: {
+      ...mapActions([
+        'setBattleTeams',
+        'getAllTeams',
+        'toggleTeamSelected',
+      ]),
+      handleSelect(index) {
+        this.toggleTeamSelected({ index });
+      },
+      initNewGame() {
+        this.setBattleTeams({ teams: this.selectedTeam });
+        this.$router.push('/teamMemberPage');
+      },
     },
-  },
-  computed: {
-    ...mapState({
-      teamList: state => state.teamList,
-    }),
-    ...mapGetters([
-      'selectedTeam',
-      'selectedTeamCount',
-    ]),
-  },
-  mounted() {
-    this.getAllTeams();
-  },
-  components: {
-    TeamItem,
-  },
-};
+    computed: {
+      ...mapGetters([
+        'teamList',
+        'selectedTeam',
+        'selectedTeamCount',
+      ]),
+    },
+    mounted() {
+      this.getAllTeams();
+    },
+    components: {
+      TeamItem,
+    },
+  };
+
 </script>
 
 <style scoped>
@@ -75,9 +74,11 @@ export default {
     border-bottom: 1px solid #ccc;
     padding-bottom: 0.3rem;
   }
-  .main-content{
+
+  .main-content {
     padding: 1rem 4rem;
   }
+
   /*.team-list {
     padding: 1rem 4rem;
   }*/

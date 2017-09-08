@@ -3,7 +3,7 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import App from './App';
 import router from './router';
-import store from './vuex/store';
+import store from './store';
 
 Vue.use(iView);
 iView.LoadingBar.config({

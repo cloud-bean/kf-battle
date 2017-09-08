@@ -8,6 +8,4 @@ const service = axios.create({
 
 export const getAllTeams = () => service.get('/teams');
 
-export const getCardPool = () => {
-
-};
+export const getCardPool = () => service.get('/cards?category=课堂battle');
