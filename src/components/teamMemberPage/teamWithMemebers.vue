@@ -8,7 +8,7 @@
     </div>
     <Row class="members" :gutter="16" type="flex" justify="start">
       <Col span="8" v-for="member in teamData.students" class="member-item">
-          <member-item :memberData="member"></member-item>
+          <member-item :memberData="member" :setMemberOnline="setMemberOnline" :groupIndex="groupIndex"></member-item>
       </Col>
       <Col span="8" class="member-item">
           <Card><Icon type="plus-round" size="20"></Icon></Card>
@@ -20,11 +20,12 @@
 <script>
 import memberItem from './memberItem';
 export default {
-  props: ['teamData'],
+  props: ['teamData', 'setMemberOnline', 'groupIndex'],
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+  },
   components: {
     memberItem,
   },

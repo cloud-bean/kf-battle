@@ -10,15 +10,17 @@
 
 <script>
   export default {
-    props: ['memberData'],
+    props: ['memberData', 'setMemberOnline', 'groupIndex'],
     data() {
       return {
-        onLine: true,
+        onLine: false,
       };
     },
     methods: {
       handleClick() {
+        console.log(this.groupIndex, this.memberData);
         this.onLine = !this.onLine;
+        this.setMemberOnline(this.memberData, this.groupIndex, this.onLine);
       },
     },
   };

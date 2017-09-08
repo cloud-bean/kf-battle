@@ -5,7 +5,7 @@
     </div>
     <Row class="main-area">
       <Col span="10">
-        <team-with-members :teamData="battleTeams[0]"></team-with-members>
+        <team-with-members :teamData="battleTeams[0]" :setMemberOnline="setMemberOnline" groupIndex="0"></team-with-members>
       </Col>
       <Col span="4">
         <div class="vs">
@@ -15,7 +15,7 @@
          <!-- <img src="/static/newGame/vs-art.png" style="width: 50%"> -->
       </Col>
       <Col span="10">
-        <team-with-members :teamData="battleTeams[1]"></team-with-members>
+        <team-with-members :teamData="battleTeams[1]" :setMemberOnline="setMemberOnline" groupIndex="1"></team-with-members>
       </Col>
     </Row>
     <div class="button-area">
@@ -31,9 +31,12 @@
 </style>
 
 <script>
+
+  const _ = require('lodash');
   import teamWithMembers from '../components/teamMemberPage/teamWithMemebers';
-  import { createNamespacedHelpers } from 'vuex';
+  import { mapActions, createNamespacedHelpers } from 'vuex';
   const { mapGetters } = createNamespacedHelpers('team');
+
 
   export default {
     name: 'teamMemberPage',
@@ -41,6 +44,7 @@
       return {
         current: 0,
         status: 'process',
+        onlineMembers: [],
       };
     },
     computed: {
@@ -50,8 +54,42 @@
     },
     methods: {
       startGame() {
+        // save onlineMembers data to the state
+        this.setMembers(this.onlineMembers);
         this.$router.push('/randomCardPage');
       },
+      setMemberOnline(member, groupIndex, status) {
+        console.log(member, groupIndex, status);
+        if (status === true) {
+          this.pushMember(member, groupIndex);
+        } else {
+          this.removeMember(member, groupIndex);
+        }
+        console.log(this.onlineMembers);
+      },
+      pushMember(member, groupIndex) {
+        console.log('pushMember', member.displayName);
+        member.groupIndex = groupIndex;
+        const index = _.findIndex(this.onlineMembers, item => item === member);
+        if (index === -1) {
+          this.onlineMembers.push(member);
+        } else {
+          console.log('find index:', index);
+        }
+      },
+      removeMember(member, groupIndex) {
+        console.log('removeMember', member.displayName);
+        member.groupIndex = groupIndex;
+        const index = _.findIndex(this.onlineMembers, item => item === member);
+        if (index !== -1) {
+          this.onlineMembers.splice(index, 1);
+        } else {
+          console.log('not found');
+        }
+      },
+      ...mapActions('battle', [
+        'setMembers',
+      ]),
     },
     components: {
       teamWithMembers,

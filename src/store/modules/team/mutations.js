@@ -33,6 +33,7 @@ export default {
   },
   [types.SET_BATTLE_MEMBERS](state, payload) {
     const newState = state;
+    console.log(newState.battleMembers);
     newState.battleMembers.push(payload.member);
   },
 };
