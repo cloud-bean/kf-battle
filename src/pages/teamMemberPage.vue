@@ -32,7 +32,6 @@
 
 <script>
 
-  const _ = require('lodash');
   import teamWithMembers from '../components/teamMemberPage/teamWithMemebers';
   import { mapActions, createNamespacedHelpers } from 'vuex';
   const { mapGetters } = createNamespacedHelpers('team');
@@ -70,7 +69,7 @@
       pushMember(member, groupIndex) {
         console.log('pushMember', member.displayName);
         member.groupIndex = groupIndex;
-        const index = _.findIndex(this.onlineMembers, item => item === member);
+        const index = this.onlineMembers.findIndex(item => item === member);
         if (index === -1) {
           this.onlineMembers.push(member);
         } else {
@@ -80,7 +79,7 @@
       removeMember(member, groupIndex) {
         console.log('removeMember', member.displayName);
         member.groupIndex = groupIndex;
-        const index = _.findIndex(this.onlineMembers, item => item === member);
+        const index = this.onlineMembers.findIndex(item => item === member);
         if (index !== -1) {
           this.onlineMembers.splice(index, 1);
         } else {
