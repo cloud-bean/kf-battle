@@ -3,11 +3,11 @@
     <Row v-if="position === 'left'" type="flex" align="middle" class="code-row-bg white-bg">
 
       <Col span="6">
-      <img src="/static/battle_team/TeamLogo_1.jpg" style="width: 100%">
+      <img :src="data.logo.URL" style="width: 100%">
       </Col>
 
       <Col span="12" class="teamName">
-      <span>邪恶力量-球鞋-A</span>
+      <span>{{data.name}}</span>
       </Col>
 
       <Col span="6"></Col>
@@ -16,11 +16,11 @@
       <Col span="6"></Col>
 
       <Col span="12" class="teamName">
-      <span>胜利之魂-球服-B</span>
+      <span>{{data.name}}</span>
       </Col>
 
       <Col span="6">
-      <img src="/static/battle_team/TeamLogo_2.jpg" style="width: 100%;">
+      <img :src="data.logo.URL"  style="width: 100%;">
       </Col>
     </Row>
   </div>
@@ -30,7 +30,7 @@
   import MemberCell from './memberCell';
   export default {
     name: 'GroupBar',
-    props: ['position'],
+    props: ['position', 'data'],
     data() {
       return {};
     },

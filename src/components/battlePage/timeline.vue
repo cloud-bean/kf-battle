@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Timeline class="timeline-box" pending>
-      <Timeline-item v-for="item in timelineData" :color="item.color">
+      <Timeline-item v-for="item, index in timelineData" :color="item.color" :key="index">
         <p class="time">{{ moment(item.created).from(startTime)}}</p>
         <p class="content">{{ '【' +  item.type  + '】' + item.groupName + ', ' + item.description}}</p>
       </Timeline-item>

@@ -4,6 +4,7 @@ import Battle from '@/pages/BattlePage';
 import TeamMemberPage from '@/pages/teamMemberPage';
 import ChooseTeamPage from '@/pages/chooseTeamPage';
 import randomCardPage from '@/pages/randomCardPage';
+import winPage from '../pages/winPage';
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/randomCardPage',
       name: 'randomCardPage',
       component: randomCardPage,
+    },
+    {
+      path: '/winPage',
+      name: 'winPage',
+      component: winPage,
     },
   ],
 });

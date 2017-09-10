@@ -12,4 +12,10 @@ export default {
     console.log('addCardToMember', payload);
     commit(types.ADD_CARD_TO_MEMBER, payload);
   },
+  clearCards({ commit }) {
+    commit(types.clearCards);
+  },
+  setGroups({ commit }, payload) {
+    commit(types.SET_GROUPS, payload);
+  },
 };

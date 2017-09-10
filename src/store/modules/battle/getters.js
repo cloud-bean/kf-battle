@@ -1,5 +1,5 @@
 export default {
   members: state => state.members,
-  groupA: state => state.groups[0],
-  groupB: state => state.groups[1],
+  groupOne: state => state.groups[0],
+  groupTwo: state => state.groups[1],
 };

@@ -5,8 +5,8 @@
     </div>
 
     <Row :gutter="16" class="main-area">
-      <Col span="4" v-for="(item, index) in teamList" class="team-item">
-      <team-item :teamData="item" :selected="!!item.selected" @click.native="handleSelect(index)"></team-item>
+      <Col span="4" v-for="(item, index) in teamList"  :key="index" class="team-item">
+      <team-item :teamData="item" :selected="!!item.selected"  :key="index" @click.native="handleSelect(index)"></team-item>
       </Col>
     </Row>
     <Alert type="info" show-icon v-show="selectedTeamCount!=2" style="width:30%;margin:0 auto">
@@ -57,7 +57,7 @@
         'selectedTeamCount',
       ]),
     },
-    mounted() {
+    created() {
       this.getAllTeams();
     },
     components: {

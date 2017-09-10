@@ -1,7 +1,6 @@
 export function initialState() {
   return {
-    groups: [
-    ],
+    groups: [],
     created: '',
     members: [],
   };
