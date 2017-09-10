@@ -1,14 +1,18 @@
 import types from './mutation-types';
-import * as api from '../../../api';
+import * as api from '../../api';
 
 export default {
   resetState({ commit }) {
     commit(types.resetState);
   },
   async fetchCardPool({ commit }) {
-    commit('FETCH_DATA');
+    commit(types.FETCH_DATA);
     const res = await api.getCardPool();
-    commit('FETCH_CARDPOOL', { cardPool: res.data.data });
-    commit('GOT_DATA');
+    const cardPool = res.data.data.sort((a, b) => a.level - b.level);
+    commit(types.FETCH_CARDPOOL, { cardPool });
+    commit(types.GOT_DATA);
+  },
+  getRandomCardIndex({ commit }, level) {
+    commit(types.RANDOM_INDEX, level);
   },
 };

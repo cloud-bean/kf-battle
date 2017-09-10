@@ -1,5 +1,5 @@
 import types from './mutation-types';
-import * as api from '../../../api';
+import * as api from '../../api';
 
 export default {
   resetState({ commit }) {
