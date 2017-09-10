@@ -48,8 +48,8 @@
     data() {
       return {
         scoreData: {
-          left: 78,
-          right: 65,
+          left: 0,
+          right: 0,
         },
       };
     },
