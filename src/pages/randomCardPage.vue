@@ -55,7 +55,6 @@
   import CardItem from '../components/randomCardPage/cardItem';
   import VeRing from 'v-charts/lib/ring';
 
-
   export default {
     data() {
       return {
@@ -92,7 +91,6 @@
     computed: {
       ...mapGetters('card', [
         'cardPool',
-        'randomCardIndex',
       ]),
       ...mapGetters('battle', [
         'members',
@@ -104,11 +102,9 @@
     methods: {
       ...mapActions('card', [
         'fetchCardPool',
-        'getRandomCardIndex',
       ]),
       ...mapActions('battle', [
         'addCardToMember',
-        'removeCardFromMember',
         'clearCards',
         'setGroups',
       ]),
@@ -133,13 +129,43 @@
         }
         return level + 1;
       },
+      getRandomCardIndex(randomLevel) {
+        const countLevel = (cardPool, level) => cardPool.filter(card => card.level === level).length;
+
+        let index = -1;
+        const levelOneCount = countLevel(this.cardPool, 1);
+        const levelTwoCount = countLevel(this.cardPool, 2);
+        const levelThreeCount = countLevel(this.cardPool, 3);
+
+        switch (randomLevel) {
+          case 1:
+            if (levelOneCount > 0) {
+              index = Math.random() * levelOneCount;
+            }
+            break;
+          case 2:
+            if (levelTwoCount > 0) {
+              index = levelOneCount + Math.random() * levelTwoCount;
+            }
+            break;
+          case 3:
+            if (levelThreeCount > 0) {
+              index = levelOneCount + levelTwoCount + Math.random() * levelThreeCount;
+            }
+            break;
+          default:
+            break;
+        }
+
+        return parseInt(index, 10);
+      },
       addCardToMemberTest() {
         this.members.map((member) => {
           for (let i = 0; i < this.maxCardsLimit; i++) {
-            this.getRandomCardIndex(this.getRandomLevel());
+            const randomCardIndex = this.getRandomCardIndex(this.getRandomLevel());
             this.addCardToMember({
               member,
-              card: this.cardPool[this.randomCardIndex],
+              card: this.cardPool[randomCardIndex],
             });
           }
           return 0;
@@ -155,8 +181,6 @@
       this.clearCards();
     },
     mounted() {
-      console.log(this.cardPool);
-      console.log(this.battleTeams);
       this.setGroups({ groups: this.battleTeams });
     },
     components: {

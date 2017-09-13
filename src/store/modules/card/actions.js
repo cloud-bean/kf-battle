@@ -12,7 +12,4 @@ export default {
     commit(types.FETCH_CARDPOOL, { cardPool });
     commit(types.GOT_DATA);
   },
-  getRandomCardIndex({ commit }, level) {
-    commit(types.RANDOM_INDEX, level);
-  },
 };
