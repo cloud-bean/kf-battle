@@ -14,17 +14,18 @@
       </Button>
     </p>
     <div style="text-align:left; margin: -10px;">
-      <Tooltip placement="top" v-for="card, index in member.cards"  :key="index">
+      <Tooltip placement="top" v-for="(card, index) in member.cards"  :key="index">
         <div style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
           <img style="width: 60px; margin: 5px; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL">
           <p style="font-size: 0.8em;">{{card.name}}</p>
+          <Button @click="removeIt(index)">施放</Button>
         </div>
         <div slot="content">
           <p>{{card.name}}</p>
           <p><i>{{card.description}}</i></p>
         </div>
       </Tooltip>
-      <!--<img style="width: 80px; margin: 0 5px;" :src="card.imageURL" v-for="card in member.cards">-->
+      <p v-if="member.cards.length == 0">无可用卡牌</p>
     </div>
   </Card>
 </template>
@@ -32,7 +33,19 @@
 <script>
   export default {
     name: 'MemberCell',
-    props: ['member'],
+    props: ['member', 'removeCard'],
+    data() {
+      return {};
+    },
+    methods: {
+      removeIt(cardIndex) {
+        this.removeCard({
+          member: this.member,
+          card: this.member.cards[cardIndex],
+        });
+        this.$forceUpdate();
+      },
+    },
   };
 </script>
 

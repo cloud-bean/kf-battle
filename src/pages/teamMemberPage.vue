@@ -58,32 +58,24 @@
         this.$router.push('/randomCardPage');
       },
       setMemberOnline(member, groupIndex, status) {
-        console.log(member, groupIndex, status);
         if (status === true) {
           this.pushMember(member, groupIndex);
         } else {
           this.removeMember(member, groupIndex);
         }
-        console.log(this.onlineMembers);
       },
       pushMember(member, groupIndex) {
-        console.log('pushMember', member.displayName);
         member.groupIndex = groupIndex;
         const index = this.onlineMembers.findIndex(item => item === member);
         if (index === -1) {
           this.onlineMembers.push(member);
-        } else {
-          console.log('find index:', index);
         }
       },
       removeMember(member, groupIndex) {
-        console.log('removeMember', member.displayName);
         member.groupIndex = groupIndex;
         const index = this.onlineMembers.findIndex(item => item === member);
         if (index !== -1) {
           this.onlineMembers.splice(index, 1);
-        } else {
-          console.log('not found');
         }
       },
       ...mapActions('battle', [

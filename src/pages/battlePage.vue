@@ -17,7 +17,7 @@
 
     <Row style="margin-top: 10px;">
       <Col span="8">
-        <member-cell :member="member" v-for="member in members" v-if="member.groupIndex == 0"></member-cell>
+        <member-cell :member="member" v-for="member in members" :removeCard="removeCardFromMember" v-if="member.groupIndex == 0"></member-cell>
       </Col>
       <Col span="8">
       <ButtonGroup size="large">
@@ -41,7 +41,7 @@
   import StudentBar from '../components/battlePage/studentBar';
   import MemberCell from '../components/battlePage/memberCell.vue';
   import { createNamespacedHelpers } from 'vuex';
-  const { mapGetters } = createNamespacedHelpers('battle');
+  const { mapGetters, mapActions } = createNamespacedHelpers('battle');
 
   export default {
     name: 'BattlePage',
@@ -58,6 +58,11 @@
         'members',
         'groupOne',
         'groupTwo',
+      ]),
+    },
+    methods: {
+      ...mapActions([
+        'removeCardFromMember',
       ]),
     },
     components: {
