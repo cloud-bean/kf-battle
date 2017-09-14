@@ -27,6 +27,7 @@
       </Tooltip>
       <p v-if="member.cards.length == 0">无可用卡牌</p>
     </div>
+    <audio ref="audio" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
   </Card>
 </template>
 
@@ -44,6 +45,10 @@
           card: this.member.cards[cardIndex],
         });
         this.$forceUpdate();
+        this.playMusic();
+      },
+      playMusic() {
+        this.$refs.audio.play();
       },
     },
   };
