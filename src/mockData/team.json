@@ -2,7 +2,7 @@
   "teamlist": [
     {
       "name": "邪恶之力",
-      "head": "./static/battle_team/TeamLogo_1.jpg",
+      "head": "./static/img/battle_team/TeamLogo_1.jpg",
       "desc": "哈哈哈",
     }
   ]

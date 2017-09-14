@@ -4,7 +4,7 @@
       {{ scoreData.left }}
     </Col>
     <Col span="6" class="vs-card">
-     <img src="/static/newGame/vs-text.png">
+     <img src="/static/img/newGame/vs-text.png">
     </Col>
     <Col span="9" class="score-card">
       {{ scoreData.right }}
