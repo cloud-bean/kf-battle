@@ -28,7 +28,7 @@
       <timeline></timeline>
       </Col>
       <Col span="8">
-        <member-cell :member="member" v-for="member in members" v-if="member.groupIndex == 1"></member-cell>
+        <member-cell :member="member" v-for="member in members" :removeCard="removeCardFromMember" v-if="member.groupIndex == 1"></member-cell>
       </Col>
     </Row>
   </div>
