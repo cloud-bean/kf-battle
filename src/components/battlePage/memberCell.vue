@@ -8,7 +8,7 @@
       <span style="color: green;font-size: 1.2em; font-weight: 700;">+{{member.get || 0}}</span>
       /
       <span style="color: red;font-size: 1.2em; font-weight: 700;">-{{member.lost || 0}}</span>
-      <Button shape="circle" size="small" style="margin-left: 10px;">
+      <Button shape="circle" size="small" style="margin-left: 10px;"  @click="opModal = true">
         <Icon color="green" type="plus-round"></Icon>
         <Icon color="red" type="minus-round"></Icon>
       </Button>
@@ -28,6 +28,38 @@
       <p v-if="member.cards.length == 0">无可用卡牌</p>
     </div>
     <audio ref="audio" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
+    <Modal
+      title="计分板"
+      v-model="opModal"
+      width="80%"
+      class-name="vertical-center-modal">
+      <Row>
+        <Col span="8">
+          <p>Profile</p>
+          <img :src="member.profileImageURL" style="width:80%">
+          <p>{{ member.displayName }}</p>
+          <p>经验值：{{ member.option.exp }}</p>
+          <p>金币：{{ member.option.goldToken }}</p>
+          <p>座右铭：{{ member.option.slogan }}</p>
+        </Col>
+        <Col span="8" style="margin:0 auto; padding:10px;">
+          <p>Good Job (Get Score)</p>
+          <Button type="success"  class="scoreBtn">+1 回答正确</Button>
+          <br>
+          <Button type="success" class="scoreBtn" >+2 回答正确，解释正确</Button>
+        <br>
+          <Button type="success" class="scoreBtn" >+3 回答正确，解释正确，举一反三</Button>
+        </Col>
+        <Col span="8" style="margin:0 auto; padding:10px;">
+          <p>Take care (Lose Score)</p>
+          <Button type="error"  class="scoreBtn">-1 大声喧哗</Button>
+        <br>
+          <Button type="error"  class="scoreBtn">-2 玩手机</Button>
+        <br>
+          <Button type="error"  class="scoreBtn">-3 睡觉</Button>
+        </Col>
+      </Row>
+    </Modal>
   </Card>
 </template>
 
@@ -36,7 +68,9 @@
     name: 'MemberCell',
     props: ['member', 'removeCard'],
     data() {
-      return {};
+      return {
+        opModal: false,
+      };
     },
     methods: {
       removeIt(cardIndex) {
@@ -54,5 +88,17 @@
   };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+  .vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .ivu-modal {
+      top: 0;
+    }
+  }
+  .scoreBtn{
+    margin: 10px 0;
+  }
 </style>

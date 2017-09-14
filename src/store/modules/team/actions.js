@@ -11,9 +11,6 @@ export default {
     commit('SET_TEAMS', { teams: res.data.data });
     commit('GOT_DATA');
   },
-  toggleTeamSelected({ commit }, payload) {
-    commit('SET_TEAM_SELECTED_STATUS', payload);
-  },
   setBattleTeams({ commit }, payload) {
     commit('SET_BATTLE_TEAMS', payload);
   },
