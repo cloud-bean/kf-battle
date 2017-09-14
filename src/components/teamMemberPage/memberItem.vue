@@ -19,8 +19,6 @@
     },
     methods: {
       handleClick() {
-        console.log(this.groupIndex, this.memberData);
-        console.log(this.onLine, this.msg);
         this.onLine = !this.onLine;
         this.setMemberOnline(this.memberData, this.groupIndex, this.onLine);
       },

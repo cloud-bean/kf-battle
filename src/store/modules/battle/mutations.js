@@ -17,6 +17,12 @@ export default {
     state.members[index].cards.sort((a, b) => a.level - b.level);
     state.members[index].cardsCount = state.members[index].cards.length;
   },
+  [types.REMOVE_CARD_FROM_MEMBER](state, payload) {
+    const index = state.members.findIndex(item => item === payload.member);
+    const cardIndex = state.members[index].cards.findIndex(item => item === payload.card);
+    state.members[index].cards.splice(cardIndex, 1);
+    state.members[index].cardsCount = state.members[index].cards.length;
+  },
   [types.clearCards](state) {
     state.members.map((member) => {
       member.cards = [];
@@ -24,7 +30,6 @@ export default {
     });
   },
   [types.SET_GROUPS](state, payload) {
-    console.log('set groups payload:', payload);
     state.groups = payload.groups;
   },
 };

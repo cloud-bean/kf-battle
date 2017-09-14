@@ -3,7 +3,7 @@
     {
       "_id": "1",
       "name": "邪恶力量-球鞋-A",
-      "logo":{"URL": "./static/battle_team/TeamLogo_1.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_1.jpg"},
       "description": "生的力量",
       "students": [
         {
@@ -30,7 +30,7 @@
     {
       "_id": "2",
       "name": "胜利之魂-球队-B",
-      "logo":{"URL": "./static/battle_team/TeamLogo_2.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_2.jpg"},
       "description": "生的力量",
       "students": [
         {
@@ -63,43 +63,43 @@
     {
       "_id": "3",
       "name": "王的召唤",
-      "logo":{"URL": "./static/battle_team/TeamLogo_3.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_3.jpg"},
       "description": "生的力量"
     },
     {
       "_id": "4",
       "name": "自由",
-      "logo":{"URL": "./static/battle_team/TeamLogo_4.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_4.jpg"},
       "description": "生的力量"
     },
     {
       "_id": "5",
       "name": "神之召唤",
-      "logo":{"URL": "./static/battle_team/TeamLogo_5.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_5.jpg"},
       "description": "生的力量"
     },
     {
       "_id": "6",
       "name": "呵呵",
-      "logo":{"URL": "./static/battle_team/TeamLogo_6.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_6.jpg"},
       "description": "生的力量"
     },
     {
       "_id": "7",
       "name": "见好就收",
-      "logo":{"URL": "./static/battle_team/TeamLogo_7.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_7.jpg"},
       "description": "生的力量"
     },
     {
       "_id": "8",
       "name": "疯狂",
-      "logo":{"URL": "./static/battle_team/TeamLogo_8.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_8.jpg"},
       "description": "生的力量"
     },
     {
       "_id": "9",
       "name": "神",
-      "logo":{"URL": "./static/battle_team/TeamLogo_9.jpg"},
+      "logo":{"URL": "./static/img/battle_team/TeamLogo_9.jpg"},
       "description": "生的力量"
     }
   ]
