@@ -5,7 +5,7 @@
       <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
       <Col span="6">
-      <score-vs :scoreData="scoreData"></score-vs>
+      <score-vs :scoreData="getScoreData()"></score-vs>
       </Col>
       <Col span="9">
       <group-bar position="right" :data="groupTwo"></group-bar>
@@ -17,7 +17,9 @@
 
     <Row style="margin-top: 10px;">
       <Col span="8">
-        <member-cell :member="member" v-for="member in members" :removeCard="removeCardFromMember" v-if="member.groupIndex == 0"></member-cell>
+        <member-cell :member="member" v-for="member in members"
+                     :addScoreToMember="addScore"
+                     :removeCard="removeCardFromMember" v-if="member.groupIndex == 0"></member-cell>
       </Col>
       <Col span="8">
       <ButtonGroup size="large">
@@ -28,7 +30,9 @@
       <timeline></timeline>
       </Col>
       <Col span="8">
-        <member-cell :member="member" v-for="member in members" :removeCard="removeCardFromMember" v-if="member.groupIndex == 1"></member-cell>
+        <member-cell :member="member" v-for="member in members"
+                     :addScoreToMember="addScore"
+                     :removeCard="removeCardFromMember" v-if="member.groupIndex == 1"></member-cell>
       </Col>
     </Row>
   </div>
@@ -63,7 +67,30 @@
     methods: {
       ...mapActions([
         'removeCardFromMember',
+        'addScoreToMember',
       ]),
+      getScoreData() {
+        let left = 0;
+        let right = 0;
+        this.members.forEach(item => {
+          if (item.groupIndex === 0) {
+            left += item.get + item.lost;
+          } else {
+            right += item.get + item.lost;
+          }
+          return 0;
+        });
+
+        console.log(left, right);
+        return {
+          left,
+          right,
+        };
+      },
+      addScore(payload) {
+        this.addScoreToMember(payload);
+        this.$forceUpdate();
+      },
     },
     components: {
       MemberCell,

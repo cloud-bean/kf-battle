@@ -6,7 +6,7 @@
     <p slot="extra">
       <span style="color: green;font-size: 1.2em; font-weight: 700;">+{{member.get || 0}}</span>
       /
-      <span style="color: red;font-size: 1.2em; font-weight: 700;">-{{member.lost || 0}}</span>
+      <span style="color: red;font-size: 1.2em; font-weight: 700;">-{{Math.abs(member.lost) || 0}}</span>
 
     </p>
     <span style="color: #57c5ff">
@@ -19,7 +19,9 @@
       &nbsp;
       <Icon color="red" type="minus-round"></Icon>
     </Button>
-    <audio ref="audio" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioUseCard" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioGetScore" src="/static/audio/Events/get.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>
     <Modal
       title="计分板"
       v-model="opModal"
@@ -36,19 +38,19 @@
         </Col>
         <Col span="8" style="margin:0 auto; padding:10px;">
           <p>Good Job (Get Score)</p>
-          <Button type="success"  class="scoreBtn" size="large">+1 回答正确</Button>
+          <Button type="success"  class="scoreBtn" size="large" @click="addScore(1)">+1 回答正确</Button>
           <br>
-          <Button type="success" class="scoreBtn" size="large">+2 回答正确，解释正确</Button>
+          <Button type="success" class="scoreBtn" size="large" @click="addScore(2)">+2 回答正确，解释正确</Button>
         <br>
-          <Button type="success" class="scoreBtn" size="large">+3 回答正确，解释正确，举一反三</Button>
+          <Button type="success" class="scoreBtn" size="large" @click="addScore(3)">+3 回答正确，解释正确，举一反三</Button>
         </Col>
         <Col span="8" style="margin:0 auto; padding:10px;">
           <p>Take care (Lose Score)</p>
-          <Button type="error"  class="scoreBtn" size="large">-1 大声喧哗</Button>
+          <Button type="error"  class="scoreBtn" size="large" @click="addScore(-1)">-1 大声喧哗</Button>
         <br>
-          <Button type="error"  class="scoreBtn" size="large">-2 玩手机</Button>
+          <Button type="error"  class="scoreBtn" size="large" @click="addScore(-2)">-2 玩手机</Button>
         <br>
-          <Button type="error"  class="scoreBtn" size="large">-3 睡觉</Button>
+          <Button type="error"  class="scoreBtn" size="large" @click="addScore(-3)">-3 睡觉</Button>
         </Col>
       </Row>
       <div style="text-align:center; margin: 10px;">
@@ -72,7 +74,7 @@
 <script>
   export default {
     name: 'MemberCell',
-    props: ['member', 'removeCard'],
+    props: ['member', 'removeCard', 'addScoreToMember'],
     data() {
       return {
         opModal: false,
@@ -87,8 +89,31 @@
         this.$forceUpdate();
         this.playMusic();
       },
-      playMusic() {
-        this.$refs.audio.play();
+      addScore(score) {
+        console.log('addScore', this.member, score);
+        const member = this.member;
+        if (parseInt(score, 10) > 0) {
+          this.playMusic(1);
+        } else {
+          this.playMusic(2);
+        }
+        this.addScoreToMember({ member, score });
+      },
+      playMusic(index) {
+        switch (index) {
+          case 0:
+            this.$refs.audioUseCard.play();
+            break;
+          case 1:
+            this.$refs.audioGetScore.play();
+            break;
+          case 2:
+            this.$refs.audioLostScore.play();
+            break;
+          default:
+            this.$refs.audioUseCard.play();
+            break;
+        }
       },
     },
   };
