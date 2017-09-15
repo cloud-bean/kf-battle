@@ -8,4 +8,7 @@ export default {
       state[key] = initial[key];
     });
   },
+  [types.ADD_FEED](state, payload) {
+    state.feeds.unshift(payload.feed);
+  },
 };

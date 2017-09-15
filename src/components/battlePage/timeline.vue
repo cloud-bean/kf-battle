@@ -1,9 +1,13 @@
 <template>
   <div class="container">
     <Timeline class="timeline-box" pending>
-      <Timeline-item v-for="item, index in timelineData" :color="item.color" :key="index">
+      <Timeline-item v-for="item, index in feeds" :color="item.color" :key="index">
         <p class="time">{{ moment(item.created).from(startTime)}}</p>
-        <p class="content">{{ '【' +  item.type  + '】' + item.groupName + ', ' + item.description}}</p>
+        <p class="content">
+          <span>{{ item.people + '(' + item.groupName + ')' }}</span>
+          <br>
+          <span>{{item.description}}</span>
+        </p>
       </Timeline-item>
       <Timeline-item color="black">
         开始于: {{moment(startTime).format("dddd, MMMM Do YYYY, h:mm:ss a")}}
@@ -15,17 +19,16 @@
 <script>
   const moment = require('moment');
   moment.locale('zh-cn');
-  import timelineData from '../../mockData/timeline.json';
 
   export default {
     name: 'timelineComponent',
     data() {
       return {
-        timelineData: timelineData.events,
-        startTime: '2017-08-24T02:27:43.536Z',
       };
     },
-
+    props: ['feeds', 'startTime'],
+    computed: {
+    },
     methods: {
       moment,
     },
