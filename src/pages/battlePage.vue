@@ -5,7 +5,7 @@
       <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
       <Col span="6">
-      <score-vs :scoreData="scoreData"></score-vs>
+      <score-vs :scoreData="getScoreData()"></score-vs>
       </Col>
       <Col span="9">
       <group-bar position="right" :data="groupTwo"></group-bar>
@@ -17,18 +17,22 @@
 
     <Row style="margin-top: 10px;">
       <Col span="8">
-        <member-cell :member="member" v-for="member in members" :removeCard="removeCardFromMember" v-if="member.groupIndex == 0"></member-cell>
+        <member-cell :member="member" v-for="member in members"
+                     :addScoreToMember="addScore"
+                     :removeCard="removeCard" v-if="member.groupIndex == 0"></member-cell>
       </Col>
       <Col span="8">
       <ButtonGroup size="large">
-        <Button icon="ios-stopwatch-outline">计时器</Button>
+        <Button icon="ios-stopwatch-outline">点 名</Button>
         <Button icon="wand">随机事件</Button>
-        <Button icon="ios-close-outline">游戏结束</Button>
+        <Button icon="ios-close-outline">结束游戏</Button>
       </ButtonGroup>
-      <timeline></timeline>
+      <timeline :feeds="feeds" :startTime="startTime"></timeline>
       </Col>
       <Col span="8">
-        <member-cell :member="member" v-for="member in members" v-if="member.groupIndex == 1"></member-cell>
+        <member-cell :member="member" v-for="member in members"
+                     :addScoreToMember="addScore"
+                     :removeCard="removeCard" v-if="member.groupIndex == 1"></member-cell>
       </Col>
     </Row>
   </div>
@@ -40,8 +44,7 @@
   import TimeLine from '../components/battlePage/timeline';
   import StudentBar from '../components/battlePage/studentBar';
   import MemberCell from '../components/battlePage/memberCell.vue';
-  import { createNamespacedHelpers } from 'vuex';
-  const { mapGetters, mapActions } = createNamespacedHelpers('battle');
+  import { mapGetters, mapActions } from 'vuex';
 
   export default {
     name: 'BattlePage',
@@ -51,19 +54,78 @@
           left: 0,
           right: 0,
         },
+        startTime: new Date(),
       };
     },
     computed: {
-      ...mapGetters([
+      ...mapGetters('battle', [
         'members',
         'groupOne',
         'groupTwo',
       ]),
+      ...mapGetters('timeline', [
+        'feeds',
+      ]),
     },
     methods: {
-      ...mapActions([
+      ...mapActions('battle', [
         'removeCardFromMember',
+        'addScoreToMember',
       ]),
+      ...mapActions('timeline', [
+        'addFeed',
+      ]),
+      getScoreData() {
+        let left = 0;
+        let right = 0;
+        this.members.forEach(item => {
+          if (item.groupIndex === 0) {
+            left += item.get + item.lost;
+          } else {
+            right += item.get + item.lost;
+          }
+          return 0;
+        });
+        return {
+          left,
+          right,
+        };
+      },
+      addScore(payload) {
+        this.addScoreToMember(payload);
+        const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
+        let scoreStr = `${payload.score}`;
+        if (payload.score > 0) {
+          scoreStr = `+${scoreStr}`;
+        }
+        this.addFeed({
+          feed: {
+            groupName,
+            people: payload.member.displayName,
+            created: new Date(),
+            color: payload.score > 0 ? 'green' : 'red',
+            type: '答题',
+            description: scoreStr,
+          },
+        });
+        this.$forceUpdate();
+      },
+      removeCard(payload) {
+        this.removeCardFromMember(payload);
+        const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
+        this.addFeed({
+          feed: {
+            groupName,
+            people: payload.member.displayName,
+            created: new Date(),
+            color: 'purple',
+            type: '使用卡牌',
+            card: payload.card,
+            description: payload.card.name,
+          },
+        });
+        this.$forceUpdate();
+      },
     },
     components: {
       MemberCell,

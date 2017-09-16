@@ -65,14 +65,14 @@
         }
       },
       pushMember(member, groupIndex) {
-        member.groupIndex = groupIndex;
+        member.groupIndex = parseInt(groupIndex, 10);
         const index = this.onlineMembers.findIndex(item => item === member);
         if (index === -1) {
           this.onlineMembers.push(member);
         }
       },
       removeMember(member, groupIndex) {
-        member.groupIndex = groupIndex;
+        member.groupIndex = parseInt(groupIndex, 10);
         const index = this.onlineMembers.findIndex(item => item === member);
         if (index !== -1) {
           this.onlineMembers.splice(index, 1);
