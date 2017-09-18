@@ -57,7 +57,6 @@
         }
       },
       initNewGame() {
-        console.log(this.teamSelect);
         this.setBattleTeams({ teams: this.teamSelect });
         this.$router.push('/teamMemberPage');
       },

@@ -3,6 +3,10 @@ export function initialState() {
     groups: [],
     created: '',
     members: [],
+    finalScore: {
+      left: 0,
+      right: 0,
+    },
   };
 }
 

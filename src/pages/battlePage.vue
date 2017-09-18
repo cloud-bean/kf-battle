@@ -25,7 +25,7 @@
       <ButtonGroup size="large">
         <Button icon="ios-stopwatch-outline">点 名</Button>
         <Button icon="wand">随机事件</Button>
-        <Button icon="ios-close-outline">结束游戏</Button>
+        <Button icon="ios-close-outline" @click="gotoWinnerPage">结束游戏</Button>
       </ButtonGroup>
       <timeline :feeds="feeds" :startTime="startTime"></timeline>
       </Col>
@@ -71,6 +71,7 @@
       ...mapActions('battle', [
         'removeCardFromMember',
         'addScoreToMember',
+        'setFinalScore',
       ]),
       ...mapActions('timeline', [
         'addFeed',
@@ -125,6 +126,10 @@
           },
         });
         this.$forceUpdate();
+      },
+      gotoWinnerPage() {
+        this.setFinalScore(this.getScoreData());
+        this.$router.push('/winPage');
       },
     },
     components: {

@@ -6,6 +6,7 @@ export default [
   'ADD_SCORE_TO_MEMBER',
   'clearCards',
   'SET_GROUPS',
+  'SET_SCORE',
 ].reduce((acc, value) => {
   acc[value] = value;
   return acc;
