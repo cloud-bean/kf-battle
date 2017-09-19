@@ -139,6 +139,22 @@
       timeline: TimeLine,
       StudentBar,
     },
+    mounted() {
+      let timer;
+      const gotoTop = function () {
+        let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+        currentPosition -= 10;
+        if (currentPosition > 0) {
+          window.scrollTo(0, currentPosition);
+        } else {
+          window.scrollTo(0, 0);
+          clearInterval(timer);
+          timer = null;
+        }
+      };
+
+      timer = setInterval(gotoTop, 1);
+    },
   };
 </script>
 <style scoped>

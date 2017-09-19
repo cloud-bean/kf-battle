@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container large-box">
     <div class="title-area">
       随机抽卡
     </div>
@@ -191,6 +191,7 @@
 </script>
 
 <style scoped>
-  .main-area {
+  .large-box {
+    height: 100%;
   }
 </style>
