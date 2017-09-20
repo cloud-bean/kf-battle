@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Row style="background-color: #fff">
+    <Row class="battle-top">
       <Col span="9">
       <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
@@ -37,7 +37,13 @@
     </Row>
   </div>
 </template>
+<style scoped>
+.battle-top{
+  background-color: #fff;
+  /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
+}
 
+</style>
 <script>
   import GroupBar from '../components/battlePage/groupBar';
   import ScoreVS from '../components/battlePage/scoreVS';
@@ -157,5 +163,3 @@
     },
   };
 </script>
-<style scoped>
-</style>

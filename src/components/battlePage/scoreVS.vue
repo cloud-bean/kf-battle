@@ -4,7 +4,8 @@
       {{ scoreData.left }}
     </Col>
     <Col span="6" class="vs-card">
-     <img src="/static/img/newGame/vs-text.png">
+     <!-- <img src="/static/img/newGame/vs-text.png"> -->
+     vs
     </Col>
     <Col span="9" class="score-card">
       {{ scoreData.right }}
@@ -24,15 +25,14 @@
 
 <style scoped>
   .score-card {
-    color: rgb(255, 141, 7);
-    font-weight: 800;
-    font-size: 3.6em;
-    padding: 5px;
-    text-shadow: 2px 2px 8px #8a8a8a;
+    font-size: 7rem;
+    color: #555;
   }
 
   .vs-card {
     margin: 0 auto;
+    color: #ccc;
+    font-size: 5rem;
   }
 
   .vs-card img {
