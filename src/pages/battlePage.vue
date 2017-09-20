@@ -25,7 +25,7 @@
       <ButtonGroup size="large">
         <Button icon="ios-stopwatch-outline">点 名</Button>
         <Button icon="wand">随机事件</Button>
-        <Button icon="ios-close-outline">结束游戏</Button>
+        <Button icon="ios-close-outline" @click="gotoWinnerPage">结束游戏</Button>
       </ButtonGroup>
       <timeline :feeds="feeds" :startTime="startTime"></timeline>
       </Col>
@@ -71,6 +71,7 @@
       ...mapActions('battle', [
         'removeCardFromMember',
         'addScoreToMember',
+        'setFinalScore',
       ]),
       ...mapActions('timeline', [
         'addFeed',
@@ -126,6 +127,10 @@
         });
         this.$forceUpdate();
       },
+      gotoWinnerPage() {
+        this.setFinalScore(this.getScoreData());
+        this.$router.push('/winPage');
+      },
     },
     components: {
       MemberCell,
@@ -133,6 +138,22 @@
       'score-vs': ScoreVS,
       timeline: TimeLine,
       StudentBar,
+    },
+    mounted() {
+      let timer;
+      const gotoTop = function () {
+        let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+        currentPosition -= 10;
+        if (currentPosition > 0) {
+          window.scrollTo(0, currentPosition);
+        } else {
+          window.scrollTo(0, 0);
+          clearInterval(timer);
+          timer = null;
+        }
+      };
+
+      timer = setInterval(gotoTop, 1);
     },
   };
 </script>

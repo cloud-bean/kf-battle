@@ -22,4 +22,7 @@ export default {
   setGroups({ commit }, payload) {
     commit(types.SET_GROUPS, payload);
   },
+  setFinalScore({ commit }, payload) {
+    commit(types.SET_SCORE, payload);
+  },
 };

@@ -53,4 +53,10 @@ export default {
   [types.SET_GROUPS](state, payload) {
     state.groups = payload.groups;
   },
+  [types.SET_SCORE](state, payload) {
+    state.finalScore = {
+      left: payload.left,
+      right: payload.right,
+    };
+  },
 };
