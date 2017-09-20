@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Row class="battle-top">
+    <Row class="battle-top" type="flex" justify="center" align="middle">
       <Col span="9">
       <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
@@ -40,6 +40,7 @@
 <style scoped>
 .battle-top{
   background-color: #fff;
+  padding-top: .5rem;
   /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
 }
 

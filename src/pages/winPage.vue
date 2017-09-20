@@ -15,6 +15,24 @@
         <Tag color="red" v-if="finalScore.left < finalScore.right">Winner</Tag>
       </Col>
     </Row>
+    <!-- <Row class="battle-top" type="flex" justify="center" align="middle">
+      <Col span="9">
+      <group-bar position="left" :data="group[0]"></group-bar>
+      <Tag color="red" v-if="finalScore.left >= finalScore.right">Winner</Tag>
+
+      </Col>
+      <Col span="6">
+      <score-vs :scoreData="getScoreData()"></score-vs>
+      </Col>
+      <Col span="9">
+      <group-bar position="right" :data="group[1]"></group-bar>
+      <Tag color="red" v-if="finalScore.left >= finalScore.right">Winner</Tag>
+
+      </Col>
+    </Row>
+    <div class="spacer">
+      <hr style="border: 2px solid whitesmoke">
+    </div> -->
     <hr>
     <Row style="background: rgba(255,255,255,0.36);">
       <Col span="12" style="padding: 20px;">
