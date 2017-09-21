@@ -27,7 +27,7 @@
       <p slot="title" style="text-align: left;">
         {{ member.displayName }}
       </p>
-      <Avatar size="large" shape="square" :src="member.profileImageURL" style="margin-right: 10px; float: left"  @click.native="opModal = true"></Avatar>
+      <Avatar size="large" shape="square" :src="member.profileImageURL" style="margin-right: 10px; float: left"></Avatar>
 
       <span style="color: #57c5ff;">
         <Tag type="border" color="blue">等级 {{member.option.level}}</Tag>

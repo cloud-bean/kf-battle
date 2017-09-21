@@ -55,7 +55,7 @@
     font-size: 4rem;
     // font-weight: 700;
     // text-shadow: 1px 1px 4px gray;
-    color:#eef;
+    color:#7b7b9e;
     text-align: left;
   }
   // img{

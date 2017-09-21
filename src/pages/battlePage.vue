@@ -15,10 +15,12 @@
       <hr style="border: 2px solid whitesmoke">
     </div>
 
-    <Row style="margin-top: 10px;">
+    <transition name="fade">
+      <Row style="margin-top: 10px;" v-if="showMembers">
       <Col span="8">
         <member-cell :member="member" v-for="member in members"
                    :toggleOpModal="toggleOpModal"
+                     ref="groupOne"
                    v-if="member.groupIndex == 0"></member-cell>
       </Col>
       <Col span="8">
@@ -45,6 +47,7 @@
                      v-if="member.groupIndex == 1"></member-cell>
       </Col>
     </Row>
+    </transition>
 
     <Modal
       title="计分板"
@@ -58,8 +61,6 @@
                        :playMusic="playMusic"
                        :removeCard="removeCard"></member-op-modal>
     </Modal>
-
-
 
     <Modal
       v-model="showRandomEventModal"
@@ -94,22 +95,22 @@
     /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
   }
 
-.panel{
-  padding: 1rem;
-  display: inline-block;
-}
-.vertical-center-modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  .ivu-modal {
-    top: 0;
+  .panel{
+    padding: 1rem;
+    display: inline-block;
   }
-}
-.selected {
-  border: 2px dashed red;
-}
+  .vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    .ivu-modal {
+      top: 0;
+    }
+  }
+  .selected {
+    border: 2px dashed red;
+  }
 
   .random-box {
     text-align: center;
@@ -117,6 +118,13 @@
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0
   }
 </style>
 <script>
@@ -128,7 +136,7 @@
   import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
 
   import { mapGetters, mapActions } from 'vuex';
-
+//  import Vue from 'vue';
   export default {
     name: 'BattlePage',
     data() {
@@ -145,6 +153,8 @@
         opModal: false,
         selectedMember: null,
         opRandomNumberModal: false,
+        copyedMembers: [],
+        showMembers: true,
       };
     },
     computed: {
@@ -183,10 +193,9 @@
           right,
         };
       },
-      showRandomPanel() {
-        this.showPanel = true;
-      },
       addScore(payload) {
+        this.showMembers = false;
+
         this.addScoreToMember(payload);
         const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
         let scoreStr = `${payload.score}`;
@@ -203,9 +212,17 @@
             description: scoreStr,
           },
         });
-        this.$forceUpdate();
+
+        setTimeout(() => {
+          this.showMembers = true;
+          return 0;
+        }, 100);
+
+        // Vue.set(this.members, index, payload.member);
+//
       },
       removeCard(payload) {
+        this.showMembers = false;
         this.removeCardFromMember(payload);
         const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
         this.addFeed({
@@ -219,7 +236,11 @@
             description: payload.card.name,
           },
         });
-        this.$forceUpdate();
+
+        setTimeout(() => {
+          this.showMembers = true;
+          return 0;
+        }, 100);
       },
       gotoWinnerPage() {
         this.setFinalScore(this.getScoreData());
@@ -239,9 +260,6 @@
             this.selectedIndex = (this.selectedIndex + 1) % this.randomEvents.length;
           }, 100);
           setTimeout(() => {
-            console.log('timeout now');
-            console.log('finalSelectedIndex:', finalSelectedIndex);
-
             this.selectedIndex = finalSelectedIndex;
             if (this.randomTimer) {
               clearInterval(this.randomTimer);
