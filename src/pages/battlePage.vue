@@ -18,8 +18,8 @@
     <Row style="margin-top: 10px;">
       <Col span="8">
         <member-cell :member="member" v-for="member in members"
-                     :addScoreToMember="addScore"
-                     :removeCard="removeCard" v-if="member.groupIndex == 0"></member-cell>
+                   :toggleOpModal="toggleOpModal"
+                   v-if="member.groupIndex == 0"></member-cell>
       </Col>
       <Col span="8">
       <ButtonGroup size="large">
@@ -33,10 +33,24 @@
       </Col>
       <Col span="8">
         <member-cell :member="member" v-for="member in members"
-                     :addScoreToMember="addScore"
-                     :removeCard="removeCard" v-if="member.groupIndex == 1"></member-cell>
+                     :toggleOpModal="toggleOpModal"
+                     v-if="member.groupIndex == 1"></member-cell>
       </Col>
     </Row>
+
+    <Modal
+      title="计分板"
+      v-model="opModal"
+      width="80%"
+      class-name="vertical-center-modal">
+      <member-op-modal v-if="selectedMember"
+                       :member="selectedMember"
+                       :addScoreToMember="addScore"
+                       :playMusic="playMusic"
+                       :removeCard="removeCard"></member-op-modal>
+    </Modal>
+
+
 
     <Modal
       v-model="showRandomEventModal"
@@ -57,6 +71,11 @@
       <div slot="footer">
       </div>
     </Modal>
+
+    <audio ref="audioUseCard" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioGetScore" src="/static/audio/Events/get.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>
+
   </div>
 </template>
 <style scoped lang="less">
@@ -95,7 +114,8 @@
   import GroupBar from '../components/battlePage/groupBar';
   import ScoreVS from '../components/battlePage/scoreVS';
   import TimeLine from '../components/battlePage/timeline';
-  import MemberCell from '../components/battlePage/memberCell.vue';
+  import MemberCell from '../components/battlePage/memberCell';
+  import MemberOpModal from '../components/battlePage/memberOpModal';
   import { mapGetters, mapActions } from 'vuex';
 
   export default {
@@ -110,6 +130,8 @@
         showRandomEventModal: false,
         selectedIndex: 0,
         randomTimer: null,
+        opModal: false,
+        selectedMember: null,
       };
     },
     computed: {
@@ -211,12 +233,34 @@
           }, 3 * 1000);
         }
       },
+      playMusic(index) {
+        switch (index) {
+          case 0:
+            this.$refs.audioUseCard.play();
+            break;
+          case 1:
+            this.$refs.audioGetScore.play();
+            break;
+          case 2:
+            this.$refs.audioLostScore.play();
+            break;
+          default:
+            this.$refs.audioUseCard.play();
+            break;
+        }
+      },
+      toggleOpModal(member) {
+        this.opModal = true;
+        this.selectedMember = member;
+        console.log('toggleOpModal', this.opModal, member.displayName);
+      },
     },
     components: {
       MemberCell,
       'group-bar': GroupBar,
       'score-vs': ScoreVS,
       timeline: TimeLine,
+      'member-op-modal': MemberOpModal,
     },
     mounted() {
       let timer;

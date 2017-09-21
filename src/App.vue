@@ -40,7 +40,7 @@ export default {
   margin: 2rem 2rem;
   padding: 2rem 2rem;
   background-color: rgba(255,255,255,.9);
-  height: 46rem;
+  height: 36rem;
   border-radius: .5rem;
   box-shadow: 0 0 15px #000;
   overflow: scroll;
