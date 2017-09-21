@@ -26,13 +26,13 @@
 <style scoped>
   .score-card {
     font-size: 7rem;
-    color: #555;
+    color: #888;
   }
 
   .vs-card {
     margin: 0 auto;
-    color: #ccc;
-    font-size: 5rem;
+    color: #eee;
+    font-size: 4rem;
   }
 
   .vs-card img {

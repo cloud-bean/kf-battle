@@ -167,6 +167,7 @@
           this.playMusic(2);
         }
         this.addScoreToMember({ member, score: scoreNumber });
+        this.$forceUpdate();
       },
       playMusic(index) {
         switch (index) {
