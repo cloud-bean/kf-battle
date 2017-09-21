@@ -23,11 +23,19 @@
       </Col>
       <Col span="8">
       <ButtonGroup size="large">
-        <Button icon="ios-stopwatch-outline">点 名</Button>
+        <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button>
         <Button icon="ios-close-outline" @click="gotoWinnerPage">结束游戏</Button>
       </ButtonGroup>
 
+      <Modal
+        title="随机选人"
+        v-model="opRandomNumberModal"
+        width="80%"
+        class-name="vertical-center-modal">
+        <p slot="footer"></p>
+        <random-member-panel :members="members" :show="showPanel"></random-member-panel>
+      </Modal>
 
       <timeline :feeds="feeds" :startTime="startTime"></timeline>
       </Col>
@@ -43,6 +51,7 @@
       v-model="opModal"
       width="80%"
       class-name="vertical-center-modal">
+      <p slot="footer"></p>
       <member-op-modal v-if="selectedMember"
                        :member="selectedMember"
                        :addScoreToMember="addScore"
@@ -116,6 +125,8 @@
   import TimeLine from '../components/battlePage/timeline';
   import MemberCell from '../components/battlePage/memberCell';
   import MemberOpModal from '../components/battlePage/memberOpModal';
+  import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
+
   import { mapGetters, mapActions } from 'vuex';
 
   export default {
@@ -127,11 +138,13 @@
           right: 0,
         },
         startTime: new Date(),
+        showPanel: false,
         showRandomEventModal: false,
         selectedIndex: 0,
         randomTimer: null,
         opModal: false,
         selectedMember: null,
+        opRandomNumberModal: false,
       };
     },
     computed: {
@@ -169,6 +182,9 @@
           left,
           right,
         };
+      },
+      showRandomPanel() {
+        this.showPanel = true;
       },
       addScore(payload) {
         this.addScoreToMember(payload);
@@ -252,7 +268,6 @@
       toggleOpModal(member) {
         this.opModal = true;
         this.selectedMember = member;
-        console.log('toggleOpModal', this.opModal, member.displayName);
       },
     },
     components: {
@@ -261,6 +276,7 @@
       'score-vs': ScoreVS,
       timeline: TimeLine,
       'member-op-modal': MemberOpModal,
+      RandomMemberPanel,
     },
     mounted() {
       let timer;
