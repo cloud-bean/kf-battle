@@ -23,7 +23,8 @@
       </Col>
       <Col span="8">
       <ButtonGroup size="large">
-        <Button icon="ios-stopwatch-outline">点 名</Button>
+        <!-- <Button icon="ios-stopwatch-outline" @click="showRandomPanel">点 名</Button> -->
+        <random-member-panel :members="members" :show="showPanel"></random-member-panel>
         <Button icon="wand">随机事件</Button>
         <Button icon="ios-close-outline" @click="gotoWinnerPage">结束游戏</Button>
       </ButtonGroup>
@@ -51,6 +52,8 @@
   import TimeLine from '../components/battlePage/timeline';
   import StudentBar from '../components/battlePage/studentBar';
   import MemberCell from '../components/battlePage/memberCell.vue';
+  import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
+
   import { mapGetters, mapActions } from 'vuex';
 
   export default {
@@ -62,6 +65,7 @@
           right: 0,
         },
         startTime: new Date(),
+        showPanel: false,
       };
     },
     computed: {
@@ -98,6 +102,9 @@
           left,
           right,
         };
+      },
+      showRandomPanel() {
+        this.showPanel = true;
       },
       addScore(payload) {
         this.addScoreToMember(payload);
@@ -145,6 +152,7 @@
       'score-vs': ScoreVS,
       timeline: TimeLine,
       StudentBar,
+      RandomMemberPanel,
     },
     mounted() {
       let timer;
