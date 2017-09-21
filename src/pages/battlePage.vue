@@ -23,11 +23,12 @@
       </Col>
       <Col span="8">
       <ButtonGroup size="large">
-        <!-- <Button icon="ios-stopwatch-outline" @click="showRandomPanel">点 名</Button> -->
         <random-member-panel :members="members" :show="showPanel"></random-member-panel>
-        <Button icon="wand">随机事件</Button>
+        <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button>
         <Button icon="ios-close-outline" @click="gotoWinnerPage">结束游戏</Button>
       </ButtonGroup>
+
+
       <timeline :feeds="feeds" :startTime="startTime"></timeline>
       </Col>
       <Col span="8">
@@ -36,21 +37,64 @@
                      :removeCard="removeCard" v-if="member.groupIndex == 1"></member-cell>
       </Col>
     </Row>
+
+    <Modal
+      v-model="showRandomEventModal"
+      width="80%"
+      class-name="vertical-center-modal">
+      <p slot="header" style="text-align: center;">
+        随机事件
+      </p>
+      <div class="panel">
+          <Row type="flex" justify="space-around" class="code-row-bg">
+            <Col span="5" v-for="e,index in randomEvents" class="random-box" :class="selectedIndex == index ? 'selected': ''">
+              <img style="width: 100%; height: 120px;" :src="e.file.URL">
+              <p style="font-size: 1.2em; font-weight: 600;">{{ e.name }}</p>
+              <p>{{ e.description }}</p>
+            </Col>
+          </Row>
+      </div>
+      <div slot="footer">
+      </div>
+    </Modal>
   </div>
 </template>
-<style scoped>
-.battle-top{
-  background-color: #fff;
-  padding-top: .5rem;
-  /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
+<style scoped lang="less">
+  .battle-top {
+    background-color: #fff;
+    padding-top: .5rem;
+    /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
+  }
+
+.panel{
+  padding: 1rem;
+  display: inline-block;
+}
+.vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  .ivu-modal {
+    top: 0;
+  }
+}
+.selected {
+  border: 2px dashed red;
 }
 
+  .random-box {
+    text-align: center;
+    background-color: aliceblue;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+  }
 </style>
 <script>
   import GroupBar from '../components/battlePage/groupBar';
   import ScoreVS from '../components/battlePage/scoreVS';
   import TimeLine from '../components/battlePage/timeline';
-  import StudentBar from '../components/battlePage/studentBar';
   import MemberCell from '../components/battlePage/memberCell.vue';
   import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
 
@@ -66,6 +110,9 @@
         },
         startTime: new Date(),
         showPanel: false,
+        showRandomEventModal: false,
+        selectedIndex: 0,
+        randomTimer: null,
       };
     },
     computed: {
@@ -73,6 +120,7 @@
         'members',
         'groupOne',
         'groupTwo',
+        'randomEvents',
       ]),
       ...mapGetters('timeline', [
         'feeds',
@@ -145,13 +193,36 @@
         this.setFinalScore(this.getScoreData());
         this.$router.push('/winPage');
       },
+      toggleRandomEventModal() {
+        this.showRandomEventModal = !this.showRandomEventModal;
+
+        if (this.randomTimer) {
+          clearInterval(this.randomTimer);
+          this.randomTimer = null;
+        }
+
+        if (this.showRandomEventModal) {
+          const finalSelectedIndex = parseInt(Math.random() * this.randomEvents.length, 10);
+          this.randomTimer = setInterval(() => {
+            this.selectedIndex = (this.selectedIndex + 1) % this.randomEvents.length;
+          }, 100);
+          setTimeout(() => {
+            console.log('timeout now');
+            console.log('finalSelectedIndex:', finalSelectedIndex);
+
+            this.selectedIndex = finalSelectedIndex;
+            if (this.randomTimer) {
+              clearInterval(this.randomTimer);
+            }
+          }, 3 * 1000);
+        }
+      },
     },
     components: {
       MemberCell,
       'group-bar': GroupBar,
       'score-vs': ScoreVS,
       timeline: TimeLine,
-      StudentBar,
       RandomMemberPanel,
     },
     mounted() {

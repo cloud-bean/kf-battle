@@ -1,0 +1,68 @@
+{
+  "events": [
+    {
+      "name": "落后要挨打",
+      "description": "所有人中得分最少的人减1分",
+      "type": "分数",
+      "file": {
+        "URL": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505976987003&di=3d931d9326672b1dd561f2fc48d5f6e7&imgtype=0&src=http%3A%2F%2Fi.dimg.cc%2F48%2Fb5%2F5a%2F77%2Fe4%2F19%2Fc5%2F6c%2F72%2F25%2Fa5%2F0f%2F34%2F7b%2Ffc%2F74.jpg"
+      }
+    },
+    {
+      "name": "强者更强",
+      "description": "所有人中得分最高的人增加1分",
+      "type": "分数",
+      "file": {
+        "URL": "http://img1.szhk.com/Image/2017/06/06/201706061006327619.jpg"
+      }
+    },
+    {
+      "name": "强者更强",
+      "description": "所有人中得分最高的人增加1分",
+      "type": "分数",
+      "file": {
+        "URL": "http://img1.szhk.com/Image/2017/06/06/201706061006327619.jpg"
+      }
+    },
+    {
+      "name": "落后要挨打",
+      "description": "所有人中得分最少的人减1分",
+      "type": "分数",
+      "file": {
+        "URL": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505976987003&di=3d931d9326672b1dd561f2fc48d5f6e7&imgtype=0&src=http%3A%2F%2Fi.dimg.cc%2F48%2Fb5%2F5a%2F77%2Fe4%2F19%2Fc5%2F6c%2F72%2F25%2Fa5%2F0f%2F34%2F7b%2Ffc%2F74.jpg"
+      }
+    },
+    {
+      "name": "强者更强",
+      "description": "所有人中得分最高的人增加1分",
+      "type": "分数",
+      "file": {
+        "URL": "http://img1.szhk.com/Image/2017/06/06/201706061006327619.jpg"
+      }
+    },
+    {
+      "name": "落后要挨打",
+      "description": "所有人中得分最少的人减1分",
+      "type": "分数",
+      "file": {
+        "URL": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505976987003&di=3d931d9326672b1dd561f2fc48d5f6e7&imgtype=0&src=http%3A%2F%2Fi.dimg.cc%2F48%2Fb5%2F5a%2F77%2Fe4%2F19%2Fc5%2F6c%2F72%2F25%2Fa5%2F0f%2F34%2F7b%2Ffc%2F74.jpg"
+      }
+    },
+    {
+      "name": "强者更强",
+      "description": "所有人中得分最高的人增加1分",
+      "type": "分数",
+      "file": {
+        "URL": "http://img1.szhk.com/Image/2017/06/06/201706061006327619.jpg"
+      }
+    },
+    {
+      "name": "落后要挨打",
+      "description": "所有人中得分最少的人减1分",
+      "type": "分数",
+      "file": {
+        "URL": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505976987003&di=3d931d9326672b1dd561f2fc48d5f6e7&imgtype=0&src=http%3A%2F%2Fi.dimg.cc%2F48%2Fb5%2F5a%2F77%2Fe4%2F19%2Fc5%2F6c%2F72%2F25%2Fa5%2F0f%2F34%2F7b%2Ffc%2F74.jpg"
+      }
+    }
+  ]
+}
