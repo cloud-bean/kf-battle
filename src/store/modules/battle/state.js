@@ -1,3 +1,5 @@
+import { events } from '../../../mockData/randomEvent';
+
 export function initialState() {
   return {
     groups: [],
@@ -7,6 +9,7 @@ export function initialState() {
       left: 0,
       right: 0,
     },
+    randomEvents: events,
   };
 }
 
