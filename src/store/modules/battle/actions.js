@@ -33,4 +33,10 @@ export default {
     commit(types.FETCH_RANDOM_EVENTS, { randomEvents });
     commit(types.GOT_DATA);
   },
+  async postBattleResult({ commit }, payload) {
+    commit(types.POST_REQ);
+    const res = await api.postBattleResult(payload);
+    console.log('post result', res.data.data);
+    commit(types.POST_SUCC);
+  },
 };

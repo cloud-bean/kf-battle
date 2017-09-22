@@ -10,6 +10,8 @@ export default [
   'SET_SCORE',
   'FETCH_DATA',
   'GOT_DATA',
+  'POST_REQ',
+  'POST_SUCC',
 ].reduce((acc, value) => {
   acc[value] = value;
   return acc;

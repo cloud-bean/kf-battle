@@ -43,7 +43,7 @@
       <ButtonGroup size="large">
         <!-- <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button> -->
-        <Button icon="ios-close-outline" @click="gotoWinnerPage">结束游戏</Button>
+        <Button icon="ios-close-outline" @click="goToWinnerPage">结束游戏</Button>
       </ButtonGroup>
 
       <Modal
@@ -188,6 +188,7 @@
     computed: {
       ...mapGetters('battle', [
         'members',
+        'groups',
         'groupOne',
         'groupTwo',
         'randomEvents',
@@ -202,6 +203,7 @@
         'addScoreToMember',
         'setFinalScore',
         'fetchRandomEvents',
+        'postBattleResult',
       ]),
       ...mapActions('timeline', [
         'addFeed',
@@ -271,8 +273,18 @@
           return 0;
         }, 100);
       },
-      gotoWinnerPage() {
-        this.setFinalScore(this.getScoreData());
+      goToWinnerPage() {
+        const finalScore = this.getScoreData();
+        this.setFinalScore(finalScore);
+        this.postBattleResult({
+          feeds: this.feeds,
+          groups: this.groups,
+          finalScore,
+          members: this.members,
+          prizes: this.prizes || [],
+          started: this.startTime,
+          name: `battle @${this.startTime.toLocaleString()}`,
+        });
         this.$router.push('/winPage');
       },
       toggleRandomEventModal() {

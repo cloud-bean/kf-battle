@@ -68,4 +68,10 @@ export default {
   [types.GOT_DATA](state) {
     state.loading = false;
   },
+  [types.POST_REQ](state) {
+    state.loading = true;
+  },
+  [types.POST_SUCC](state) {
+    state.loading = false;
+  },
 };
