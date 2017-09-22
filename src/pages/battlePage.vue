@@ -17,13 +17,32 @@
 
     <transition name="fade">
       <Row style="margin-top: 10px;" v-if="showMembers">
-      <Col span="8">
-        <member-cell :member="member" v-for="member in members"
+      <Col span="9">
+        <Row type="flex" justify="start" :gutter="16" style="margin-left:5px">
+          <Col span="8"  v-for="member in members" v-if="member.groupIndex == 0">
+        <member-cell :member="member"
                    :toggleOpModal="toggleOpModal"
                      ref="groupOne"
-                   v-if="member.groupIndex == 0"></member-cell>
+                   ></member-cell>
+                 </Col>
+        </Row>
       </Col>
-      <Col span="8">
+      <Col span="6">
+        <div class="control-panel">
+          <div class="control-button">
+            <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:120px;">
+            <div class="">
+              传令信使
+            </div>
+          </div>
+          <div class="control-button">
+            <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:120px;">
+            <div class="">
+              命运之轮
+            </div>
+          </div>
+
+        </div>
       <ButtonGroup size="large">
         <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button>
@@ -39,12 +58,19 @@
         <random-member-panel :members="members" :show="showPanel"></random-member-panel>
       </Modal>
 
-      <timeline :feeds="feeds" :startTime="startTime"></timeline>
+      <!-- <timeline :feeds="feeds" :startTime="startTime"></timeline> -->
       </Col>
-      <Col span="8">
-        <member-cell :member="member" v-for="member in members"
+      <Col span="9">
+        <Row type="flex" justify="start" :gutter="16"  style="margin-right:5px">
+          <Col span="8"  v-for="member in members" v-if="member.groupIndex == 1">
+        <member-cell :member="member"
+                   :toggleOpModal="toggleOpModal"
+                   ></member-cell>
+                 </Col>
+        </Row>
+        <!-- <member-cell :member="member" v-for="member in members"
                      :toggleOpModal="toggleOpModal"
-                     v-if="member.groupIndex == 1"></member-cell>
+                     v-if="member.groupIndex == 1"></member-cell> -->
       </Col>
     </Row>
     </transition>
@@ -91,7 +117,7 @@
 <style scoped lang="less">
   .battle-top {
     background-color: #fff;
-    padding-top: .5rem;
+    padding-top: .3rem;
     /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
   }
 
@@ -119,7 +145,18 @@
     margin: 5px;
     padding: 5px;
   }
-
+.control-panel{
+  background: rgba(255, 255, 255, 1);
+  margin: 10px 50px;
+  height: 450px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 5px solid #ccc;
+  // box-shadow: 0 0 0 5px #888;
+}
+.control-button{
+  margin-top: 20px;
+}
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s
   }
@@ -284,6 +321,7 @@
         }
       },
       toggleOpModal(member) {
+        console.log('dddd');
         this.opModal = true;
         this.selectedMember = member;
       },

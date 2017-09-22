@@ -1,24 +1,72 @@
 <template>
   <div>
-    <Card v-if="member.groupIndex == 0" style="text-align: left; margin-bottom: 5px;" @click.native="toggleOpModal(member)">
-      <p slot="extra">
-        {{ member.displayName }}
-      </p>
-      <p slot="title">
-        <span style="color: green;font-size: 1.2em; font-weight: 700;">+{{member.get || 0}}</span>
-        /
-        <span style="color: red;font-size: 1.2em; font-weight: 700;">-{{Math.abs(member.lost) || 0}}</span>
+    <!-- <Card style="text-align: left; margin-bottom: 5px;" @click.native="toggleOpModal(member)">
 
+      <p slot="title" style="">
+        <img :src="member.profileImageURL"></img>
+        <span style="font-size:1.2rem; color:#888;">{{ member.displayName }}</span>-<span style="color:#57c5ff">等级 {{member.option.level}}</span>
       </p>
       <span style="color: #57c5ff">
         <Tag type="border" color="green">可用卡牌数 {{member.cards.length}}</Tag>
         <Tag type="border" color="yellow">悦币 {{member.option.goldToken}}</Tag>
         <Tag type="border" color="blue">等级 {{member.option.level}}</Tag>
       </span>
-      <Avatar size="large" shape="square" :src="member.profileImageURL" style="margin-left: 10px; float: right;"></Avatar>
-    </Card>
+      <Row type="flex" justify="space-around">
+        <Col span="8">
+        </Col>
+        <Col span="16">
+          <div class="mark">
+            <span style="color:#a5ffde">{{member.get || 0}}</span>
+            <span style="font-size:.5rem;">-</span>
+            <span style="color:#ffa5a5">{{Math.abs(member.lost) || 0}}</span>
+          </div>
+        </Col>
+      </Row>
+      <Row class="card-area">
+        <Col span="8" v-for="card in member.cards">
+          <Tag type="border" color="blue">{{card.name}}</Tag>
+        </Col>
+      </Row>
+    </Card> -->
+    <div class="member-cell" @click="toggleOpModal(member)">
+      <!-- <p slot="extra">
+      </p> -->
+      <div class="member-head">
+      <!-- <div class=""> -->
+        <div class="">
+          <img :src="member.profileImageURL"></img>
+        </div>
+        <span style="font-size:1rem; color:#888;">{{ member.displayName }}</span>
+        <!-- <span style="color:#57c5ff;font-size:.8rem;">等级{{member.option.level}}</span> -->
+        <span style="color:#57c5ff;font-size:.8rem;">卡牌{{member.cards.length}}</span>
+      <!-- </div> -->
+    </div>
+      <!-- <span style="color: #57c5ff">
+        <Tag type="border" color="green">可用卡牌数 {{member.cards.length}}</Tag>
+        <Tag type="border" color="yellow">悦币 {{member.option.goldToken}}</Tag>
+        <Tag type="border" color="blue">等级 {{member.option.level}}</Tag>
+      </span> -->
+      <Row type="flex" justify="space-around">
+        <!-- <Col span="8">
+        </Col> -->
+        <!-- <Col span="2">
+        </Col> -->
+        <Col span="24">
+          <div class="mark">
+            <span style="color:#b0ff8d">{{member.get || 0}}</span>
+            <span style="">/</span>
+            <span style="color:#ff8d92">{{Math.abs(member.lost) || 0}}</span>
+          </div>
+        </Col>
+      </Row>
+      <!-- <Row class="card-area">
+        <Col span="8" v-for="card in member.cards">
+          <Tag type="border" color="blue">{{card.name}}</Tag>
+        </Col>
+      </Row> -->
+    </div>
 
-    <Card v-if="member.groupIndex == 1" style="text-align: right; margin-bottom: 5px;" @click.native="toggleOpModal(member)">
+    <!-- <Card v-if="member.groupIndex == 1" style="text-align: right; margin-bottom: 5px;" @click.native="toggleOpModal(member)">
       <p slot="extra">
         <span style="color: green;font-size: 1.2em; font-weight: 700;">+{{member.get || 0}}</span>
         /
@@ -34,7 +82,7 @@
         <Tag type="border" color="yellow">悦币 {{member.option.goldToken}}</Tag>
         <Tag type="border" color="green">可用卡牌数 {{member.cards.length}}</Tag>
     </span>
-    </Card>
+    </Card> -->
   </div>
 </template>
 
@@ -46,21 +94,43 @@
 </script>
 
 <style scoped lang="less">
+.member-cell{
+  margin-top: 10px;
+  background-color: rgba(255,255,255,1);
+  border:1px solid #fff;
+  padding: 5px;
+  box-shadow: 0 0 10px #888;
 
+}
+.member-head{
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
 img{
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #eee;
   // box-shadow: 0 0 5px #888;
   width:80px;
 
 }
+.ivu-card-body {
+    padding: 10px !important;
+}
 .name-area{
   padding: 20px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #888;
 }
 .user-detail{
   font-size: 1rem;
 }
-
+.mark{
+  font-size: 2rem;
+  color: #ccc;
+  margin: 0 auto;
+  text-align: center;
+}
+.card-area{
+  margin-top: .5rem;
+}
 </style>
