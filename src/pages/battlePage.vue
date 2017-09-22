@@ -19,7 +19,7 @@
       <Row style="margin-top: 10px;" v-if="showMembers">
       <Col span="9">
         <Row type="flex" justify="start" :gutter="16" style="margin-left:5px">
-          <Col span="8"  v-for="(member, index) in groupMembers(0)" :key="index">
+          <Col span="8"  v-for="member in groupMembers(0)" :key="member._id">
             <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
           </Col>
         </Row>
@@ -59,8 +59,8 @@
       </Col>
       <Col span="9">
         <Row type="flex" justify="start" :gutter="16"  style="margin-right:5px">
-          <Col span="8" v-for="member in groupMembers(1)">
-            <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
+          <Col span="8" v-for="member in groupMembers(1)" :key="member._id">
+            <member-cell :member="member" :toggleOpModal="toggleOpModal" :key="member._id"></member-cell>
           </Col>
         </Row>
       </Col>
@@ -89,10 +89,10 @@
       </p>
       <div class="panel">
           <Row type="flex" justify="space-around" class="code-row-bg">
-            <Col span="5" v-for="e,index in randomEvents" class="random-box" :class="selectedIndex == index ? 'selected': ''">
-              <img style="width: 100%; height: 120px;" :src="e.file.URL">
-              <p style="font-size: 1.2em; font-weight: 600;">{{ e.name }}</p>
-              <p>{{ e.description }}</p>
+            <Col span="5" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
+              <img style="width: 100%; height: 120px;" :src="event.file.URL">
+              <p style="font-size: 1.2em; font-weight: 600;">{{ event.name }}</p>
+              <p>{{ event.description }}</p>
             </Col>
           </Row>
       </div>
@@ -317,7 +317,6 @@
         }
       },
       toggleOpModal(member) {
-        console.log('dddd');
         this.opModal = true;
         this.selectedMember = member;
       },

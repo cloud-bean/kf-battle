@@ -18,7 +18,7 @@
 
       <Row v-if="showMemberWithCards">
         <Col span="12" >
-          <Card v-for="member, index in members" v-if="member.groupIndex == 0" style="margin: 10px;">
+          <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 0" style="margin: 10px;">
             <p slot="title">
               {{ member.displayName }}
             </p>
@@ -29,7 +29,7 @@
           </Card>
         </Col>
         <Col span="12">
-          <Card v-for="member, index in members" v-if="member.groupIndex == 1" style="margin: 10px;">
+          <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 1" style="margin: 10px;">
             <p slot="title">
               {{ member.displayName }}
             </p>
