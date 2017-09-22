@@ -26,13 +26,13 @@
       </Col>
       <Col span="6">
         <div class="control-panel">
-          <div class="control-button">
+          <div class="control-button" @click="toggleRandomEventModal">
             <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:120px;">
             <div class="">
               传令信使
             </div>
           </div>
-          <div class="control-button">
+          <div class="control-button" @click="opRandomNumberModal = true">
             <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:120px;">
             <div class="">
               命运之轮
@@ -41,8 +41,8 @@
 
         </div>
       <ButtonGroup size="large">
-        <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
-        <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button>
+        <!-- <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
+        <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button> -->
         <Button icon="ios-close-outline" @click="gotoWinnerPage">结束游戏</Button>
       </ButtonGroup>
 
