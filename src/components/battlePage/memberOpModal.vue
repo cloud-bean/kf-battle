@@ -8,7 +8,7 @@
           </Col>
           <Col span="16">
             <Row>
-              {{ member.displayName }}
+              <span class="name">{{ member.displayName }}</span>
             </Row>
             <Row class="user-detail">
               <Col span="10">
@@ -18,7 +18,7 @@
               -
               </Col>
               <Col span="10">
-              金币 : {{ member.option.goldToken }}
+              悦币 : {{ member.option.goldToken }}
               </Col>
             </Row>
 
@@ -116,7 +116,7 @@
 
 <style scoped lang="less">
   .panel{
-    padding: 1rem;
+    // padding:.5rem;
   }
   .vertical-center-modal {
     display: flex;
@@ -136,9 +136,15 @@
     border: 1px solid #eee;
     width:80px;
   }
+.name{
+  font-size: 1.5rem;
+}
+.name-area{
+  font-size: 1rem;
 
+}
   .mark{
-    font-size: 10rem;
+    font-size: 8rem;
     color: #ccc;
     margin: 0 auto;
     text-align: center;
