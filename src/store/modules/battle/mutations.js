@@ -62,4 +62,10 @@ export default {
   [types.FETCH_RANDOM_EVENTS](state, payload) {
     state.randomEvents = payload.randomEvents;
   },
+  [types.FETCH_DATA](state) {
+    state.loading = true;
+  },
+  [types.GOT_DATA](state) {
+    state.loading = false;
+  },
 };

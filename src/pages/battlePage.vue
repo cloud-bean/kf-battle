@@ -19,12 +19,9 @@
       <Row style="margin-top: 10px;" v-if="showMembers">
       <Col span="9">
         <Row type="flex" justify="start" :gutter="16" style="margin-left:5px">
-          <Col span="8"  v-for="member in members" v-if="member.groupIndex == 0">
-        <member-cell :member="member"
-                   :toggleOpModal="toggleOpModal"
-                     ref="groupOne"
-                   ></member-cell>
-                 </Col>
+          <Col span="8"  v-for="(member, index) in groupMembers(0)" :key="index">
+            <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
+          </Col>
         </Row>
       </Col>
       <Col span="6">
@@ -62,15 +59,10 @@
       </Col>
       <Col span="9">
         <Row type="flex" justify="start" :gutter="16"  style="margin-right:5px">
-          <Col span="8"  v-for="member in members" v-if="member.groupIndex == 1">
-        <member-cell :member="member"
-                   :toggleOpModal="toggleOpModal"
-                   ></member-cell>
-                 </Col>
+          <Col span="8" v-for="member in groupMembers(1)">
+            <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
+          </Col>
         </Row>
-        <!-- <member-cell :member="member" v-for="member in members"
-                     :toggleOpModal="toggleOpModal"
-                     v-if="member.groupIndex == 1"></member-cell> -->
       </Col>
     </Row>
     </transition>
@@ -215,6 +207,9 @@
       ...mapActions('timeline', [
         'addFeed',
       ]),
+      groupMembers(index) {
+        return this.members.filter((member) => member.groupIndex === index);
+      },
       getScoreData() {
         let left = 0;
         let right = 0;
@@ -337,7 +332,8 @@
     },
     mounted() {
       let timer;
-      const gotoTop = function () {
+
+      timer = setInterval(() => {
         let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
         currentPosition -= 10;
         if (currentPosition > 0) {
@@ -347,9 +343,7 @@
           clearInterval(timer);
           timer = null;
         }
-      };
-
-      timer = setInterval(gotoTop, 1);
+      }, 1);
     },
     created() {
       this.fetchRandomEvents();

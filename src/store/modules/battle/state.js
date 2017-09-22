@@ -3,6 +3,7 @@
 export function initialState() {
   return {
     groups: [],
+    loading: false,
     created: '',
     members: [],
     finalScore: {
