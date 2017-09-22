@@ -28,7 +28,9 @@
           <Col span="24">
           <!-- <p>个人得分</p> -->
           <div class="mark">
-            <span style="color:#a5ffde">{{member.get}}</span><span>/</span><span style="color:#ffa5a5">{{Math.abs(member.lost)}}</span>
+            <span style="color:#a5ffde">{{member.get}}</span>
+            <span>/</span>
+            <span style="color:#ffa5a5">{{Math.abs(member.lost)}}</span>
           </div>
           </Col>
         </Row>
@@ -36,31 +38,28 @@
       <Col span="16">
         <Row>
           <Col span="12" style="margin:0 auto; padding:10px;">
-          <p>Good Job (Get Score)</p>
-          <Button type="success"  class="scoreBtn" size="large" @click="addScore(1)" long>+1 回答正确</Button>
-          <br>
-          <Button type="success" class="scoreBtn" size="large" @click="addScore(2)" long>+2 回答正确，解释正确</Button>
-          <br>
-          <Button type="success" class="scoreBtn" size="large" @click="addScore(3)" long>+3 回答正确，解释正确，举一反三</Button>
+            <p>得 分</p>
+            <Button type="success"  class="scoreBtn" size="large" @click="addScore(1)" long>+1 回答正确</Button>
+            <br>
+            <Button type="success" class="scoreBtn" size="large" @click="addScore(2)" long>+2 回答正确，解释正确</Button>
+            <br>
+            <Button type="success" class="scoreBtn" size="large" @click="addScore(3)" long>+3 回答正确，解释正确，举一反三</Button>
 
-          <Button type="success" class="scoreBtn" @click="addScore(1)">+1 随机事件</Button>
-          <Button type="success" class="scoreBtn" @click="addScore(2)">+2 随机事件</Button>
-          <Button type="success" class="scoreBtn" @click="addScore(2)">+3 随机事件</Button>
-
-
+            <Button type="success" class="scoreBtn" @click="addScore(1)">+1 随机事件</Button>
+            <Button type="success" class="scoreBtn" @click="addScore(2)">+2 随机事件</Button>
+            <Button type="success" class="scoreBtn" @click="addScore(2)">+3 随机事件</Button>
           </Col>
           <Col span="12" style="margin:0 auto; padding:10px;">
-          <p>Take care (Lose Score)</p>
-          <Button type="error"  class="scoreBtn" size="large" @click="addScore(-1)" long>-1 大声喧哗</Button>
-          <br>
-          <Button type="error"  class="scoreBtn" size="large" @click="addScore(-2)" long>-2 玩手机</Button>
-          <br>
-          <Button type="error"  class="scoreBtn" size="large" @click="addScore(-3)" long>-3 睡觉</Button>
+            <p>丢 分</p>
+            <Button type="error"  class="scoreBtn" size="large" @click="addScore(-1)" long>-1 大声喧哗</Button>
+            <br>
+            <Button type="error"  class="scoreBtn" size="large" @click="addScore(-2)" long>-2 玩手机</Button>
+            <br>
+            <Button type="error"  class="scoreBtn" size="large" @click="addScore(-3)" long>-3 睡觉</Button>
 
-          <Button type="error" class="scoreBtn" @click="addScore(-1)">-1 随机事件</Button>
-          <Button type="error" class="scoreBtn" @click="addScore(-2)">-2 随机事件</Button>
-          <Button type="error" class="scoreBtn" @click="addScore(-2)">-3 随机事件</Button>
-
+            <Button type="error" class="scoreBtn" @click="addScore(-1)">-1 随机事件</Button>
+            <Button type="error" class="scoreBtn" @click="addScore(-2)">-2 随机事件</Button>
+            <Button type="error" class="scoreBtn" @click="addScore(-2)">-3 随机事件</Button>
           </Col>
         </Row>
       </Col>
@@ -73,7 +72,6 @@
             <div style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
               <img style="width: 120px; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL" @click="removeIt(index)">
               <p style="font-size: 1rem; padding:.2rem;">{{card.name}}</p>
-              <!-- <Button @click="removeIt(index)">施放</Button> -->
             </div>
             <div slot="content">
               <p>{{card.name}}</p>
@@ -136,13 +134,14 @@
     border: 1px solid #eee;
     width:80px;
   }
-.name{
-  font-size: 1.5rem;
-}
-.name-area{
-  font-size: 1rem;
 
-}
+  .name{
+    font-size: 1.5rem;
+  }
+  .name-area{
+    font-size: 1rem;
+
+  }
   .mark{
     font-size: 8rem;
     color: #ccc;

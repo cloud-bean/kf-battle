@@ -69,15 +69,15 @@
 
     <Modal
       title="计分板"
-      v-model="opModal"
+      v-model="showMemberBoard"
       width="80%"
       class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <member-op-modal v-if="selectedMember"
+      <member-board v-if="selectedMember"
                        :member="selectedMember"
                        :addScoreToMember="addScore"
                        :playMusic="playMusic"
-                       :removeCard="removeCard"></member-op-modal>
+                       :removeCard="removeCard"></member-board>
     </Modal>
 
     <Modal
@@ -161,7 +161,7 @@
   import ScoreVS from '../components/battlePage/scoreVS';
   import TimeLine from '../components/battlePage/timeline';
   import MemberCell from '../components/battlePage/memberCell';
-  import MemberOpModal from '../components/battlePage/memberOpModal';
+  import MemberBoard from '../components/battlePage/memberBoard';
   import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
 
   import { mapGetters, mapActions } from 'vuex';
@@ -175,15 +175,14 @@
           right: 0,
         },
         startTime: new Date(),
-        showPanel: false,
-        showRandomEventModal: false,
         selectedIndex: 0,
         randomTimer: null,
-        opModal: false,
         selectedMember: null,
-        opRandomNumberModal: false,
-        copyedMembers: [],
         showMembers: true,
+        showMemberBoard: false,
+        opRandomNumberModal: false,
+        showPanel: false,
+        showRandomEventModal: false,
       };
     },
     computed: {
@@ -250,9 +249,6 @@
           this.showMembers = true;
           return 0;
         }, 100);
-
-        // Vue.set(this.members, index, payload.member);
-//
       },
       removeCard(payload) {
         this.showMembers = false;
@@ -317,7 +313,7 @@
         }
       },
       toggleOpModal(member) {
-        this.opModal = true;
+        this.showMemberBoard = true;
         this.selectedMember = member;
       },
     },
@@ -326,7 +322,7 @@
       'group-bar': GroupBar,
       'score-vs': ScoreVS,
       timeline: TimeLine,
-      'member-op-modal': MemberOpModal,
+      'member-board': MemberBoard,
       RandomMemberPanel,
     },
     mounted() {
