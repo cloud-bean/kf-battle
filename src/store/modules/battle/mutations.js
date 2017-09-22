@@ -59,4 +59,7 @@ export default {
       right: payload.right,
     };
   },
+  [types.FETCH_RANDOM_EVENTS](state, payload) {
+    state.randomEvents = payload.randomEvents;
+  },
 };

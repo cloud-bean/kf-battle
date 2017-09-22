@@ -1,4 +1,4 @@
-import { events } from '../../../mockData/randomEvent';
+// import { events } from '../../../mockData/randomEvent';
 
 export function initialState() {
   return {
@@ -9,7 +9,7 @@ export function initialState() {
       left: 0,
       right: 0,
     },
-    randomEvents: events,
+    randomEvents: [],
   };
 }
 

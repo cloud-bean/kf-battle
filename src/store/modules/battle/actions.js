@@ -1,4 +1,5 @@
 import types from './mutation-types';
+import * as api from '../../api';
 
 export default {
   resetState({ commit }) {
@@ -24,5 +25,12 @@ export default {
   },
   setFinalScore({ commit }, payload) {
     commit(types.SET_SCORE, payload);
+  },
+  async fetchRandomEvents({ commit }) {
+    commit(types.FETCH_DATA);
+    const res = await api.getRandomEvents();
+    const randomEvents = res.data.data.sort((a, b) => a.level - b.level);
+    commit(types.FETCH_RANDOM_EVENTS, { randomEvents });
+    commit(types.GOT_DATA);
   },
 };

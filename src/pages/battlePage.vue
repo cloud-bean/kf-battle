@@ -173,6 +173,7 @@
         'removeCardFromMember',
         'addScoreToMember',
         'setFinalScore',
+        'fetchRandomEvents',
       ]),
       ...mapActions('timeline', [
         'addFeed',
@@ -311,6 +312,9 @@
       };
 
       timer = setInterval(gotoTop, 1);
+    },
+    created() {
+      this.fetchRandomEvents();
     },
   };
 </script>
