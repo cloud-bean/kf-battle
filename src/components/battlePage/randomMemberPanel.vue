@@ -3,7 +3,7 @@
     <Row class="panel" type="flex" justify="start">
       <Col v-for="(member,index) in members" span="3">
       <div class="member-head">
-        <img :src="member.profileImageURL" v-bind:class="[ (isActive==index) ? 'active' : '', 'pic']">
+        <img :src="member.profileImageURL" v-bind:class="[(isActive==index) ? 'active' : '', 'pic']">
         <div class="">
           {{member.displayName}}
         </div>

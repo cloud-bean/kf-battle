@@ -19,7 +19,10 @@
       </Col>
     </Row>
     <div class="button-area">
-      <Button type="ghost" size="large" @click="startGame">下一步</Button>
+      <Button type="primary" size="large" @click="startGame">
+        确认选择
+        <Icon type="chevron-right"></Icon>
+      </Button>
     </div>
   </div>
 </template>
