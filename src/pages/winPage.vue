@@ -1,9 +1,10 @@
 <template>
   <div>
-    <Row style="background: rgba(87,197,255,0.38); ">
+    <Row class="battle-top">
       <Col span="9" class="groupName">
-        <span>{{groups[0].name}}</span>
-        <Tag color="red" v-if="finalScore.left >= finalScore.right">Winner</Tag>
+        <group-bar position="left" :data="groups[0]" :win="finalScore.left >= finalScore.right" ></group-bar>
+        <!-- <span>{{groups[0].name}}</span> -->
+        <!-- <Tag color="red" v-if="finalScore.left >= finalScore.right">Winner</Tag> -->
       </Col>
 
       <Col span="6">
@@ -11,8 +12,9 @@
       </Col>
 
       <Col span="9" class="groupName">
-         <span>{{groups[1].name}}</span>
-        <Tag color="red" v-if="finalScore.left < finalScore.right">Winner</Tag>
+        <group-bar position="right" :data="groups[1]" :win="finalScore.left  < finalScore.right"></group-bar>
+         <!-- <span>{{groups[1].name}}</span> -->
+        <!-- <Tag color="red" v-if="finalScore.left < finalScore.right">Winner</Tag> -->
       </Col>
     </Row>
     <!-- <Row class="battle-top" type="flex" justify="center" align="middle">
@@ -34,7 +36,7 @@
       <hr style="border: 2px solid whitesmoke">
     </div> -->
     <hr>
-    <Row style="background: rgba(255,255,255,0.36);">
+    <Row style="background: rgba(255,255,255,0.9); height:100%;">
       <Col span="12" style="padding: 20px;">
         <member-table :members="getMembers(0)" :groupScore="finalScore.left"></member-table>
       </Col>
@@ -48,6 +50,8 @@
 <script>
   import ScoreVS from '../components/battlePage/scoreVS';
   import MemberTable from '../components/winPage/memberTable';
+  import GroupBar from '../components/battlePage/groupBar';
+
   import { createNamespacedHelpers } from 'vuex';
   const { mapGetters } = createNamespacedHelpers('battle');
   export default {
@@ -82,20 +86,26 @@
     components: {
       'score-vs': ScoreVS,
       'member-table': MemberTable,
+      'group-bar': GroupBar,
     },
   };
 </script>
 
 <style>
-  .score-card {
+  /*.score-card {
     color: rgb(255, 141, 7);
     font-weight: 800;
     font-size: 3.6em;
     padding: 5px;
     text-shadow: 2px 2px 8px #8a8a8a;
-  }
+  }*/
   .groupName {
     padding-top: 20px;
     font-size: 2.4em;
+  }
+  .battle-top {
+    background-color: #fff;
+    padding-top: .3rem;
+    /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
   }
 </style>
