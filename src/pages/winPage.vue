@@ -37,11 +37,7 @@
       <hr style="border: 2px solid whitesmoke">
     </div> -->
     <hr>
-    <Row class="button-area">
-      <Button size="large" type="primary" @click="showTimeLineModal=true">
-        回看比赛进程
-      </Button>
-    </Row>
+
     <Row style="background: rgba(255,255,255,0.9); height:100%;">
       <Col span="12" style="padding: 20px;">
         <member-table :members="getMembers(0)" :groupScore="finalScore.left"></member-table>
@@ -50,6 +46,13 @@
         <member-table :members="getMembers(1)" :groupScore="finalScore.right"></member-table>
       </Col>
     </Row>
+
+    <Row class="button-area">
+      <Button size="large" type="primary" @click="showTimeLineModal=true">
+        回看比赛进程
+      </Button>
+    </Row>
+
     <Modal
       v-model="showWinnerTeamModal"
       width="80%"
@@ -58,28 +61,56 @@
         获胜队伍
       </p>
       <div class="panel" style="padding:2rem;text-align:center">
-        <Row>
-          <Col span="12">
-            <div class="winner-card">
-              <img :src="mvp.profileImageURL" alt="" style="width:300px;">
-              <div class="winner-name" style="">
-                {{mvp.displayName}}
-              </div>
+          <div class="winner-card">
+            <img :src="winnerTeam.logo.URL" alt="" style="width:300px;">
+            <div class="winner-name" style="font-size: 4em;">
+              {{winnerTeam.name}}
             </div>
-          </Col>
-          <Col span="12">
-            <div class="winner-card">
-              <img :src="winnerTeam.logo.URL" alt="" style="width:300px;">
-              <div class="winner-name" style="">
-                {{winnerTeam.name}}
-              </div>
-            </div>
-          </Col>
-        </Row>
+          </div>
       </div>
-      <!-- <div slot="footer">
-      </div> -->
+      <div slot="footer">
+      </div>
     </Modal>
+
+    <Modal
+      v-model="showMVP1Modal"
+      width="80%"
+      class-name="vertical-center-modal">
+      <p slot="header" style="text-align: center;font-size:1.2rem;">
+        胜者组 MVP
+      </p>
+      <div class="panel" style="padding:2rem;text-align:center">
+        <div class="winner-card">
+          <img :src="mvp1.profileImageURL" alt="" style="width:300px;">
+          <div class="winner-name" style="font-size: 4em;">
+            {{mvp1.displayName}}
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+      </div>
+    </Modal>
+
+    <Modal
+      v-model="showMVP2Modal"
+      width="80%"
+      class-name="vertical-center-modal">
+      <p slot="header" style="text-align: center;font-size:1.2rem;">
+        败者组 MVP
+      </p>
+      <div class="panel" style="padding:2rem;text-align:center">
+        <div class="winner-card">
+          <img :src="mvp2.profileImageURL" alt="" style="width:300px;">
+          <div class="winner-name" style="font-size: 4em;">
+            {{mvp2.displayName}}
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+      </div>
+    </Modal>
+
+
     <Modal
       v-model="showTimeLineModal"
       width="80%"
@@ -93,6 +124,11 @@
       <div slot="footer">
       </div>
     </Modal>
+
+    <audio ref="audioTeamWin" src="/static/audio/Events/wonTeam_4s.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioMVP1" src="/static/audio/Events/mvp1.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioMVP2" src="/static/audio/Events/mvp2.m4a" preload="auto" style="display: none;"></audio>
+
   </div>
 
 </template>
@@ -110,10 +146,11 @@
     data() {
       return {
         winner: 'who is the winner',
-        showWinnerTeamModal: true,
+        showWinnerTeamModal: false,
         showTimeLineModal: false,
+        showMVP1Modal: false,
+        showMVP2Modal: false,
         startTime: new Date(),
-
       };
     },
     computed: {
@@ -131,18 +168,11 @@
       winnerIndex() {
         return (this.finalScore.left >= this.finalScore.right ? 0 : 1);
       },
-      mvp() {
-        const mvp = this.members.filter(item => item.groupIndex === this.winnerIndex);
-        console.log(mvp);
-        let mvpIndex = 0;
-        mvp.forEach((item, ord) => {
-          item.isMVP = false;
-          const maxScore = mvp[mvpIndex].get + mvp[mvpIndex].lost;
-          if (item.get + item.lost > maxScore) {
-            mvpIndex = ord;
-          }
-        });
-        return mvp[mvpIndex];
+      mvp1() {
+        return this.getMembers(this.winnerIndex).filter(item => item.isMVP === true)[0];
+      },
+      mvp2() {
+        return this.getMembers(1 - this.winnerIndex).filter(item => item.isMVP === true)[0];
       },
     },
     methods: {
@@ -160,12 +190,45 @@
         filterMembers[mvpIndex].isMVP = true;
         return filterMembers;
       },
+      playMusic(index) {
+        switch (index) {
+          case 0:
+            this.$refs.audioTeamWin.play();
+            break;
+          case 1:
+            this.$refs.audioMVP1.play();
+            break;
+          case 2:
+            this.$refs.audioMVP2.play();
+            break;
+          default:
+            this.$refs.audioTeamWin.play();
+            break;
+        }
+      },
     },
     components: {
       'score-vs': ScoreVS,
       'member-table': MemberTable,
       'group-bar': GroupBar,
       'time-line': TimeLine,
+    },
+    mounted() {
+      setTimeout(() => {
+        this.showWinnerTeamModal = true;
+        this.playMusic(0);
+        setTimeout(() => {
+          this.showWinnerTeamModal = false;
+          this.showMVP1Modal = true;
+          this.playMusic(1);
+
+          setTimeout(() => {
+            this.showMVP1Modal = false;
+            this.showMVP2Modal = true;
+            this.playMusic(2);
+          }, 4000);
+        }, 5000);
+      }, 1000);
     },
   };
 </script>
