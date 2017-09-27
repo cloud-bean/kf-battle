@@ -12,7 +12,15 @@
       </Col>
     </Row>
     <div class="spacer">
-      <hr style="border: 2px solid whitesmoke">
+      <Row>
+        <Col span="12">
+          当前时间：{{now}}
+        </Col>
+        <Col span="12">
+          比赛已开始：{{duration}}
+        </Col>
+      </Row>
+      <!-- <hr style="border: 2px solid whitesmoke"> -->
     </div>
 
     <transition name="fade">
@@ -156,6 +164,11 @@
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0
   }
+.spacer{
+  padding: 5px;
+  background-color: rgba(0, 0, 0, .7);
+  color: #fff;
+}
 </style>
 <script>
   import GroupBar from '../components/battlePage/groupBar';
@@ -163,7 +176,8 @@
   import MemberCell from '../components/battlePage/memberCell';
   import MemberBoard from '../components/battlePage/memberBoard';
   import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
-
+  const moment = require('moment');
+  moment.locale('zh-cn');
   import { mapGetters, mapActions } from 'vuex';
 //  import Vue from 'vue';
   export default {
@@ -174,6 +188,9 @@
           left: 0,
           right: 0,
         },
+        duration: '',
+        durationTime: new Date(0, 0),
+        now: '',
         startTime: new Date(),
         selectedIndex: 0,
         randomTimer: null,
@@ -196,6 +213,7 @@
       ...mapGetters('timeline', [
         'feeds',
       ]),
+
     },
     methods: {
       ...mapActions('battle', [
@@ -272,6 +290,9 @@
           this.showMembers = true;
           return 0;
         }, 100);
+      },
+      getTime() {
+        this.now = moment().format('HH:mm:ss');
       },
       goToWinnerPage() {
         const finalScore = this.getScoreData();
@@ -350,6 +371,13 @@
           timer = null;
         }
       }, 1);
+      setInterval(() => {
+        this.getTime();
+      }, 1000);
+      setInterval(() => {
+        this.durationTime = moment(this.durationTime).add(1, 's');
+        this.duration = this.durationTime.format('HH:mm:ss');
+      }, 1000);
     },
     created() {
       this.fetchRandomEvents();
