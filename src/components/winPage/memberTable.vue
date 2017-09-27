@@ -16,7 +16,7 @@
       <td><span>{{member.lost}}</span></td>
       <td><span>{{ (member.get + member.lost) * 100}}</span></td>
       <td>
-        <span>{{ parseInt((member.get + member.lost) / groupScore * 100, 10) / 4 }}</span>
+        <span>{{ parseInt((member.get + member.lost) / (groupScore == 0?1:groupScore) * 100, 10) / 4 }}</span>
         <!-- <Tag v-if="member.isMVP" color="red">MVP</Tag> -->
       </td>
     </tr>
@@ -28,7 +28,7 @@
     props: ['members', 'groupScore'],
     data() {
       return {
-  
+
       };
     },
   };
