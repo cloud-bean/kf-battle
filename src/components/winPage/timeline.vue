@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="">
     <Timeline class="timeline-box" pending>
       <Timeline-item v-for="item, index in feeds" :color="item.color" :key="index">
         <p class="time">{{ moment(item.created).from(startTime)}}</p>

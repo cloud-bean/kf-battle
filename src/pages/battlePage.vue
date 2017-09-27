@@ -26,7 +26,7 @@
       </Col>
       <Col span="6">
         <div class="control-panel">
-          <div class="control-button" @click="toggleRandomEventModal">
+          <div class="control-button flash" @click="toggleRandomEventModal">
             <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:120px;">
             <div class="">
               传令信使
@@ -90,7 +90,7 @@
       <div class="panel">
           <Row type="flex" justify="space-around" class="code-row-bg">
             <Col span="5" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
-              <img style="width: 100%; height: 120px;" :src="event.file.URL">
+              <img style="width: 100%; height: 130px;" :src="event.file.URL">
               <p style="font-size: 1.2em; font-weight: 600;">{{ event.name }}</p>
               <p>{{ event.description }}</p>
             </Col>
@@ -127,7 +127,7 @@
     }
   }
   .selected {
-    border: 2px dashed red;
+    border: 3px solid red !important;
   }
 
   .random-box {
@@ -136,6 +136,7 @@
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
+    border: 1px solid #888;
   }
 .control-panel{
   background: rgba(255, 255, 255, 1);
@@ -159,7 +160,6 @@
 <script>
   import GroupBar from '../components/battlePage/groupBar';
   import ScoreVS from '../components/battlePage/scoreVS';
-  import TimeLine from '../components/battlePage/timeline';
   import MemberCell from '../components/battlePage/memberCell';
   import MemberBoard from '../components/battlePage/memberBoard';
   import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
@@ -333,7 +333,6 @@
       MemberCell,
       'group-bar': GroupBar,
       'score-vs': ScoreVS,
-      timeline: TimeLine,
       'member-board': MemberBoard,
       RandomMemberPanel,
     },

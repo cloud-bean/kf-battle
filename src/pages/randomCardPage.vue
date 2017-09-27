@@ -4,15 +4,18 @@
       随机抽卡
     </div>
     <div class="main-area">
-      <Card style="margin-bottom: 20px;" v-if="!showMemberWithCards">
-        <p slot="title">
+      <!-- <Card style="margin-bottom: 20px;" v-if="!showMemberWithCards"> -->
+        <!-- <p slot="title">
           抽卡规则
-        </p>
-        <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring>
-        <h3>
-          每人{{maxCardsLimit}}张卡
-        </h3>
-      </Card>
+        </p> -->
+        <div class="" style="margin-bottom: 20px;" v-if="!showMemberWithCards">
+          <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring>
+          <h1>
+            每人{{maxCardsLimit}}张卡
+          </h1>
+        </div>
+
+      <!-- </Card> -->
 
       <card-item v-if="!showMemberWithCards" :card="card" :key="index" v-for="card, index in cardPool"></card-item>
 
