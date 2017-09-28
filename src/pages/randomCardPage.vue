@@ -26,7 +26,7 @@
               {{ member.displayName }}
             </p>
             <div v-for="item, index in member.cards" :key="index" style="display: inline-block;">
-              <img :src="item.file.URL" style="width: 80px; margin: 5px;" >
+              <img :src="item.file.URL + '-kf_card_w200_h460'" style="width: 80px; margin: 5px;" >
               <h4>{{item.name}}</h4>
             </div>
           </Card>
@@ -37,7 +37,7 @@
               {{ member.displayName }}
             </p>
             <div v-for="item, index in member.cards" :key="index" style="display: inline-block;">
-              <img :src="item.file.URL" style="width: 80px; margin: 5px;" >
+              <img :src="item.file.URL + '-kf_card_w200_h460'" style="width: 80px; margin: 5px;" >
               <h4>{{item.name}}</h4>
             </div>
           </Card>

@@ -39,27 +39,29 @@
         <Row>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <p>得 分</p>
-            <Button type="success"  class="scoreBtn" size="large" @click="addScore(1)" long>+1 回答正确</Button>
+            <Button type="success" class="scoreBtn" size="large" @click="addScore(1, '+1分, 回答正确')" long>+1分, 回答正确</Button>
             <br>
-            <Button type="success" class="scoreBtn" size="large" @click="addScore(2)" long>+2 回答正确，解释正确</Button>
+            <Button type="success" class="scoreBtn" size="large" @click="addScore(2, '+2分, 回答正确，解释正确')" long>+2分, 回答正确，解释正确</Button>
             <br>
-            <Button type="success" class="scoreBtn" size="large" @click="addScore(3)" long>+3 回答正确，解释正确，举一反三</Button>
+            <Button type="success" class="scoreBtn" size="large" @click="addScore(3, '+3分, 回答正确，解释正确，举一反三')" long>+3分, 回答正确，解释正确，举一反三</Button>
 
-            <Button type="success" class="scoreBtn" @click="addScore(1)">+1 随机事件</Button>
-            <Button type="success" class="scoreBtn" @click="addScore(2)">+2 随机事件</Button>
-            <Button type="success" class="scoreBtn" @click="addScore(2)">+3 随机事件</Button>
+            <p>随机事件</p>
+            <Button type="success" class="scoreBtn" @click="addScore(1, '+1分, 随机事件')">+1分</Button>
+            <Button type="success" class="scoreBtn" @click="addScore(2, '+2分, 随机事件')">+2分</Button>
+            <Button type="success" class="scoreBtn" @click="addScore(3, '+3分, 随机事件')">+3分</Button>
           </Col>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <p>丢 分</p>
-            <Button type="error"  class="scoreBtn" size="large" @click="addScore(-1)" long>-1 大声喧哗</Button>
+            <Button type="error" class="scoreBtn" size="large" @click="addScore(-1, '-1分, 大声喧哗')" long>-1分, 大声喧哗</Button>
             <br>
-            <Button type="error"  class="scoreBtn" size="large" @click="addScore(-2)" long>-2 玩手机</Button>
+            <Button type="error" class="scoreBtn" size="large" @click="addScore(-2, '-2分, 玩手机')" long>-2分, 玩手机</Button>
             <br>
-            <Button type="error"  class="scoreBtn" size="large" @click="addScore(-3)" long>-3 睡觉</Button>
+            <Button type="error" class="scoreBtn" size="large" @click="addScore(-3, '-3分, 睡觉')" long>-3分, 睡觉</Button>
 
-            <Button type="error" class="scoreBtn" @click="addScore(-1)">-1 随机事件</Button>
-            <Button type="error" class="scoreBtn" @click="addScore(-2)">-2 随机事件</Button>
-            <Button type="error" class="scoreBtn" @click="addScore(-2)">-3 随机事件</Button>
+            <p>随机事件</p>
+            <Button type="error" class="scoreBtn" @click="addScore(-1, '-1分, 随机事件')">-1分</Button>
+            <Button type="error" class="scoreBtn" @click="addScore(-2, '-2分, 随机事件')">-2分</Button>
+            <Button type="error" class="scoreBtn" @click="addScore(-3, '-3分, 随机事件')">-3分</Button>
           </Col>
         </Row>
       </Col>
@@ -70,7 +72,7 @@
         <div style="text-align:center; margin: 10px;">
           <Tooltip placement="top" v-for="(card, index) in member.cards"  :key="index">
             <div style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
-              <img style="width: 120px; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL" @click="removeIt(index)">
+              <img style="width: 120px; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL + '-kf_card_w200_h460'" @click="removeIt(index)">
               <p style="font-size: 1rem; padding:.2rem;">{{card.name}}</p>
             </div>
             <div slot="content">
@@ -97,14 +99,14 @@
         this.$forceUpdate();
         this.playMusic();
       },
-      addScore(score) {
+      addScore(score, desc) {
         const scoreNumber = parseInt(score, 10);
         if (scoreNumber > 0) {
           this.playMusic(1);
         } else {
           this.playMusic(2);
         }
-        this.addScoreToMember({ member: this.member, score: scoreNumber });
+        this.addScoreToMember({ member: this.member, score: scoreNumber, desc });
         this.$forceUpdate();
       },
     },

@@ -250,10 +250,6 @@
 
         this.addScoreToMember(payload);
         const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
-        let scoreStr = `${payload.score}`;
-        if (payload.score > 0) {
-          scoreStr = `+${scoreStr}`;
-        }
         this.addFeed({
           feed: {
             groupName,
@@ -261,7 +257,7 @@
             created: new Date(),
             color: payload.score > 0 ? 'green' : 'red',
             type: '答题',
-            description: `回答问题 ${scoreStr}分`,
+            description: `${payload.desc}`,
           },
         });
 
