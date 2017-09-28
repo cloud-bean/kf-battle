@@ -261,7 +261,7 @@
             created: new Date(),
             color: payload.score > 0 ? 'green' : 'red',
             type: '答题',
-            description: scoreStr,
+            description: `回答问题 ${scoreStr}分`,
           },
         });
 
@@ -282,7 +282,7 @@
             color: 'purple',
             type: '使用卡牌',
             card: payload.card,
-            description: payload.card.name,
+            description: `使用了 ${payload.card.name}`,
           },
         });
 

@@ -5,7 +5,6 @@
         <p class="time">{{ moment(item.created).from(startTime)}}</p>
         <p class="content">
           <span>{{ item.people + '(' + item.groupName + ')' }}</span>
-          <br>
           <span>{{item.description}}</span>
         </p>
       </Timeline-item>
@@ -51,6 +50,8 @@
     padding: 10px;
     background-color: ghostwhite;
     -webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;
+    height: 400px;
+    overflow-y: scroll;
   }
 
   .container {
