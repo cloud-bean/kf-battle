@@ -5,6 +5,8 @@ export default [
   'SET_BATTLE_TEAMS',
   'SET_BATTLE_MEMBERS',
   'resetState',
+  'POST_REQ',
+  'POST_SUCC',
 ].reduce((acc, value) => {
   acc[value] = value;
   return acc;

@@ -28,4 +28,10 @@ export default {
     const newState = state;
     newState.battleMembers.push(payload.member);
   },
+  [types.POST_REQ](state) {
+    state.loading = true;
+  },
+  [types.POST_SUCC](state) {
+    state.loading = false;
+  },
 };
