@@ -43,6 +43,7 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'space-before-function-paren': ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
-    'no-param-reassign': ["error", { "props": false }]
+    'no-param-reassign': ["error", { "props": false }],
+    "no-underscore-dangle": 0,
   }
 }

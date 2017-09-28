@@ -4,21 +4,24 @@
       随机抽卡
     </div>
     <div class="main-area">
-      <Card style="margin-bottom: 20px;" v-if="!showMemberWithCards">
-        <p slot="title">
+      <!-- <Card style="margin-bottom: 20px;" v-if="!showMemberWithCards"> -->
+        <!-- <p slot="title">
           抽卡规则
-        </p>
-        <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring>
-        <h3>
-          每人{{maxCardsLimit}}张卡
-        </h3>
-      </Card>
+        </p> -->
+        <div class="" style="margin-bottom: 20px;" v-if="!showMemberWithCards">
+          <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring>
+          <h1>
+            每人{{maxCardsLimit}}张卡
+          </h1>
+        </div>
+
+      <!-- </Card> -->
 
       <card-item v-if="!showMemberWithCards" :card="card" :key="index" v-for="card, index in cardPool"></card-item>
 
       <Row v-if="showMemberWithCards">
         <Col span="12" >
-          <Card v-for="member, index in members" v-if="member.groupIndex == 0" style="margin: 10px;">
+          <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 0" style="margin: 10px;">
             <p slot="title">
               {{ member.displayName }}
             </p>
@@ -29,7 +32,7 @@
           </Card>
         </Col>
         <Col span="12">
-          <Card v-for="member, index in members" v-if="member.groupIndex == 1" style="margin: 10px;">
+          <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 1" style="margin: 10px;">
             <p slot="title">
               {{ member.displayName }}
             </p>
@@ -43,8 +46,16 @@
 
     </div>
     <div class="">
-      <Button v-if="showMemberWithCards" type="error" @click="goToBattle">THE WAR IS COMING!</Button>
-      <Button v-if="!showMemberWithCards" shape="circle" size="large" type="warning" :disabled="members.length == 0" @click="addCardToMemberTest">抽 卡</Button>
+      <!-- <Button v-if="showMemberWithCards" type="error" @click="goToBattle">THE WAR IS COMING!</Button> -->
+      <Button  v-if="showMemberWithCards" type="error" size="large" @click="goToBattle" >
+        开始作战
+        <Icon type="chevron-right"></Icon>
+      </Button>
+      <Button v-if="!showMemberWithCards" type="primary" size="large" :disabled="members.length == 0" @click="addCardToMemberTest">
+        随机抽卡
+        <Icon type="chevron-right"></Icon>
+      </Button>
+      <!-- <Button v-if="!showMemberWithCards" shape="circle" size="large" type="warning" :disabled="members.length == 0" @click="addCardToMemberTest">抽 卡</Button> -->
     </div>
   </div>
 
@@ -58,7 +69,7 @@
   export default {
     data() {
       return {
-        maxCardsLimit: 5,
+        maxCardsLimit: 3,
         levelRate: [65, 35, 0],
         showMemberWithCards: false,
         chartData: {

@@ -59,4 +59,19 @@ export default {
       right: payload.right,
     };
   },
+  [types.FETCH_RANDOM_EVENTS](state, payload) {
+    state.randomEvents = payload.randomEvents;
+  },
+  [types.FETCH_DATA](state) {
+    state.loading = true;
+  },
+  [types.GOT_DATA](state) {
+    state.loading = false;
+  },
+  [types.POST_REQ](state) {
+    state.loading = true;
+  },
+  [types.POST_SUCC](state) {
+    state.loading = false;
+  },
 };
