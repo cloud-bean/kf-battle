@@ -4,7 +4,7 @@
       <Col span="8" v-for="team in teamList" :key="team._id" style="padding: 10px;">
         <Card>
           <div @click="selectedTeam = team;">
-            <p style="font-size: 2em;">{{team.name}}</p>
+            <p style="font-size: 2em; color: dimgray">{{team.name}}</p>
             <img :src="team.logo.URL" style="width: 120px;">
             <div v-if="selectedTeam && selectedTeam._id == team._id">
               <Button @click="showLogosModal = true;">换战队logo</Button>
