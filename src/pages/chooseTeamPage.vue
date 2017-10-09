@@ -10,16 +10,16 @@
       </Col>
     </Row>
     <Alert type="info" show-icon v-show="teamSelect.length < maxTeamCount" style="width:30%;margin:0 auto">
-        <span slot="desc">
-            请选择两支战队。
+        <span slot="desc" style="font-size:16px;">
+            请选择两支战队
         </span>
     </Alert>
     <div class="button-area">
 
-      <Button type="primary" size="large" @click="initNewGame" v-show="teamSelect.length == maxTeamCount">
+      <div @click="initNewGame" v-show="teamSelect.length == maxTeamCount" class="i-button">
         确认选择
         <Icon type="chevron-right"></Icon>
-      </Button>
+      </div>
 
     </div>
   </div>
@@ -95,4 +95,5 @@
   .team-item {
     margin: .5rem 0;
   }
+
 </style>

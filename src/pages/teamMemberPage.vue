@@ -19,10 +19,10 @@
       </Col>
     </Row>
     <div class="button-area">
-      <Button type="primary" size="large" @click="startGame">
+      <div class="i-button" @click="startGame">
         确认选择
         <Icon type="chevron-right"></Icon>
-      </Button>
+      </div>
     </div>
   </div>
 </template>

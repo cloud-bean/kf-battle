@@ -40,7 +40,7 @@ export default {
   margin: 2rem 2rem;
   padding: 2rem 2rem;
   background-color: rgba(255,255,255,.9);
-  height: 36rem;
+  height: 40rem;
   border-radius: .5rem;
   box-shadow: 0 0 15px #000;
   overflow: scroll;
@@ -55,12 +55,23 @@ export default {
 }
 .button-area {
   padding: 0 5rem;
-    bottom: 2rem;
+    bottom: 1rem;
     position: absolute;
-    /*top:0;*/
    left: 0;
    right: 0;
    bottom: 2rem;
    margin:auto;
+  }
+  .i-button{
+    padding: 10px;
+    background-color: #2d8cf0;
+    width: 200px;
+    height:50px;
+    color: #fff;
+    border-radius: .5rem;
+    border:1px solid #eee;
+    margin: 0 auto;
+    box-shadow: 0 0 5px #888;
+    font-size: 18px;
   }
 </style>

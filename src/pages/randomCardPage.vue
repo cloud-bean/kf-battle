@@ -47,14 +47,14 @@
     </div>
     <div class="">
       <!-- <Button v-if="showMemberWithCards" type="error" @click="goToBattle">THE WAR IS COMING!</Button> -->
-      <Button  v-if="showMemberWithCards" type="error" size="large" @click="goToBattle" >
+      <div  v-if="showMemberWithCards" @click="goToBattle"  class="i-button">
         开始作战
         <Icon type="chevron-right"></Icon>
-      </Button>
-      <Button v-if="!showMemberWithCards" type="primary" size="large" :disabled="members.length == 0" @click="addCardToMemberTest">
+      </div>
+      <div v-if="!showMemberWithCards"  :disabled="members.length == 0" @click="addCardToMemberTest" class="i-button">
         随机抽卡
         <Icon type="chevron-right"></Icon>
-      </Button>
+      </div>
       <!-- <Button v-if="!showMemberWithCards" shape="circle" size="large" type="warning" :disabled="members.length == 0" @click="addCardToMemberTest">抽 卡</Button> -->
     </div>
   </div>

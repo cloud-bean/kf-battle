@@ -48,9 +48,9 @@
     </Row>
 
     <Row class="button-area">
-      <Button size="large" type="primary" @click="showTimeLineModal=true">
+      <div class="i-button" @click="showTimeLineModal=true">
         回看比赛进程
-      </Button>
+      </div>
     </Row>
 
     <Modal

@@ -48,11 +48,11 @@
           </div>
 
         </div>
-      <ButtonGroup size="large">
+      <!-- <ButtonGroup size="large"> -->
         <!-- <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button> -->
-        <Button icon="ios-close-outline" @click="goToWinnerPage">结束游戏</Button>
-      </ButtonGroup>
+        <div class="i-button" @click="goToWinnerPage" style="background-color:#5cadff">结束游戏</div>
+      <!-- </ButtonGroup> -->
 
       <Modal
         title="随机选人"
