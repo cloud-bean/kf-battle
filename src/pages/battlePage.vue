@@ -76,9 +76,9 @@
     </transition>
 
     <Modal
-      title="计分板"
       v-model="showMemberBoard"
-      width="80%"
+      width="85%"
+      :closable="false"
       class-name="vertical-center-modal">
       <p slot="footer"></p>
       <member-board v-if="selectedMember"

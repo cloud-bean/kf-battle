@@ -25,7 +25,7 @@
     </div>
   </div>
 <div class="">
-  <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px">
+  <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
     配置战队信息
 <Icon type="ios-gear">
 </Icon>
