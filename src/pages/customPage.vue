@@ -5,17 +5,19 @@
         <Card>
           <div @click="selectedTeam = team;">
             <p style="font-size: 2em; color: dimgray">{{team.name}}</p>
-            <img :src="team.logo.URL" style="width: 120px;">
+            <img :src="team.logo.URL" style="width: 120px;" @click="showLogosModal = true;">
             <div v-if="selectedTeam && selectedTeam._id == team._id">
-              <Button @click="showLogosModal = true;">换战队logo</Button>
-              <br>
-              <input v-model="team.name">
-              <Button @click="saveTeam(team)">换个战队名字</Button>
-              <hr>
-              <div v-for="member in team.students" :key="member._id" style="border: 1px solid rgba(128,128,128,0.26); padding: 5px; margin: 5px; display: inline-block;">
-                <img :src="member.profileImageURL" style="width: 60px;" @click="openSetMemberAvatarModal(member)">
-                <p>{{ member.displayName }}</p>
-              </div>
+              <!-- <Button @click="showLogosModal = true;">换战队logo</Button> -->
+              <!-- <br> -->
+              <!-- <input v-model="team.name"/>
+              <Button @click="saveTeam(team)">换个战队名字</Button> -->
+
+              <Row class="member-container">
+                <Col span="4" v-for="member in team.students" :key="member._id" style=" margin: 5px;">
+                  <img :src="member.profileImageURL" style="width: 60px;" @click="openSetMemberAvatarModal(member)">
+                  <p>{{ member.displayName }}</p>
+                </Col>
+              </Row>
             </div>
           </div>
         </Card>
@@ -48,7 +50,11 @@
     </div>
   </div>
 </template>
-
+<style scoped>
+.member-container{
+  margin-top: 20px;
+}
+</style>
 <script>
   import { mapGetters, mapActions } from 'vuex';
   export default {
