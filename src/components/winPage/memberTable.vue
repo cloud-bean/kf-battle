@@ -1,12 +1,12 @@
 <template>
   <table class="member-table" style="width: 100%; border-collapse: collapse; padding: 10px;">
     <tr>
-      <th>头像</th>
-      <th>名字</th>
+      <th>形象</th>
+      <th>姓名</th>
       <th>得分</th>
       <th>丢分</th>
-      <th>获得经验值</th>
-      <th>贡献值</th>
+      <th>经验</th>
+      <th>贡献</th>
     </tr>
     <tr v-for="member in members" :class="member.isMVP ? 'winner': ''">
       <td v-if="member.isMVP"><Badge count="MVP"><img  style="width: 40px;"  :src="member.profileImageURL"></Badge></td>
@@ -42,6 +42,7 @@ img{
 }
 .member-table tr{
   line-height: 60px;
+  font-size: 1.5rem;
   /*background-color: rgba(255, 255, 255, 0.9);*/
   /*vertical-align: bottom;*/
 }
