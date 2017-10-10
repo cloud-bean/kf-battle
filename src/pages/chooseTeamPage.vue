@@ -1,4 +1,6 @@
 <template>
+  <div class="">
+
   <div class="container">
     <div class="title-area">
       选择对战双方
@@ -20,9 +22,17 @@
         确认选择
         <Icon type="chevron-right"></Icon>
       </div>
-
     </div>
   </div>
+<div class="">
+  <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px">
+    配置战队信息
+<Icon type="ios-gear">
+</Icon>
+  </div>
+</div>
+</div>
+
 </template>
 <script>
   import TeamItem from '../components/chooseTeamPage/teamItem';
@@ -59,6 +69,9 @@
       initNewGame() {
         this.setBattleTeams({ teams: this.teamSelect });
         this.$router.push('/teamMemberPage');
+      },
+      goCustom() {
+        this.$router.push('/custom');
       },
     },
     computed: {

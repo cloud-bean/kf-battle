@@ -39,6 +39,13 @@
       <p slot="footer"></p>
       <img  v-for="avatar in memberAvatars" :key="avatar._id" :src="avatar.URL" @click="setAvatar(avatar.URL)" style="margin: 10px; max-width: 60px; max-height: 60px; background-color: gray;">
     </Modal>
+    <div class="">
+      <div @click="goIndex"  class="i-button" style="background-color:#19be6b;">
+        返回首页
+        <Icon type="chevron-right"></Icon>
+      </div>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -80,6 +87,9 @@
             name: team.name,
           },
         });
+      },
+      goIndex() {
+        this.$router.push('/');
       },
       openSetTeamLogoModal(team) {
         this.selectedTeam = team;

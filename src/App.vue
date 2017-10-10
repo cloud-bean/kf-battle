@@ -65,7 +65,7 @@ export default {
   .i-button{
     padding: 10px;
     background-color: #2d8cf0;
-    width: 200px;
+    max-width: 200px;
     height:50px;
     color: #fff;
     border-radius: .5rem;
