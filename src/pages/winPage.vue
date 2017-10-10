@@ -57,13 +57,13 @@
       v-model="showWinnerTeamModal"
       width="80%"
       class-name="vertical-center-modal">
-      <p slot="header" style="text-align: center;font-size:1.2rem;">
-        获胜队伍
-      </p>
+      <div  style="text-align: center;font-size:3rem; color:#5cadff;margin-top:20px;">
+         获胜队伍
+      </div>
       <div class="panel" style="padding:2rem;text-align:center">
           <div class="winner-card">
-            <img :src="winnerTeam.logo.URL" alt="" style="width:300px;">
-            <div class="winner-name" style="font-size: 4em;">
+            <img :src="winnerTeam.logo.URL" alt="" style="width:200px;">
+            <div class="winner-name" style="font-size: 2em;">
               {{winnerTeam.name}}
             </div>
           </div>
@@ -76,13 +76,13 @@
       v-model="showMVP1Modal"
       width="80%"
       class-name="vertical-center-modal">
-      <p slot="header" style="text-align: center;font-size:1.2rem;">
-        胜者组 MVP
-      </p>
+      <div  style="text-align: center;font-size:3.5rem; color:#5cadff;margin-top:20px;">
+         王者
+      </div>
       <div class="panel" style="padding:2rem;text-align:center">
         <div class="winner-card">
-          <img :src="mvp1.profileImageURL" alt="" style="width:300px;">
-          <div class="winner-name" style="font-size: 4em;">
+          <img :src="mvp1.profileImageURL" alt="" style="width:200px;">
+          <div class="winner-name" style="font-size: 2em;">
             {{mvp1.displayName}}
           </div>
         </div>
@@ -95,13 +95,13 @@
       v-model="showMVP2Modal"
       width="80%"
       class-name="vertical-center-modal">
-      <p slot="header" style="text-align: center;font-size:1.2rem;">
-        败者组 MVP
-      </p>
-      <div class="panel" style="padding:2rem;text-align:center">
+      <div  style="text-align: center;font-size:3.5rem; color:#5cadff;margin-top:20px;">
+         勇士
+      </div>
+      <div class="panel" style="padding:.5rem;text-align:center;">
         <div class="winner-card">
           <img :src="mvp2.profileImageURL" alt="" style="width:300px;">
-          <div class="winner-name" style="font-size: 4em;">
+          <div class="winner-name" style="font-size: 2em;">
             {{mvp2.displayName}}
           </div>
         </div>
