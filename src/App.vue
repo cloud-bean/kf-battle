@@ -4,16 +4,36 @@
 
     <div class="bg">
     </div>
+    <transition name="fade">
+    <div class="bg-enter" v-if="showLogo" @click="close">
+    </div>
+  </transition>
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
+  data() {
+    return {
+      showLogo: true,
+    };
+  },
+  methods: {
+    close() {
+      this.showLogo = false;
+    },
+  },
 };
 </script>
 
 <style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
+}
 #app {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -36,6 +56,16 @@ export default {
   background: url("/static/img/battle_bg/team_bg_1.jpg") no-repeat #000;
   background-size: cover;
   z-index: -1;
+}
+.bg-enter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/static/img/enterbg.jpg") no-repeat #000;
+  background-size: cover;
+  z-index: 999;
 }
 .container {
   position: relative;

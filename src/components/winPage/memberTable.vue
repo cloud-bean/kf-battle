@@ -1,5 +1,5 @@
 <template>
-  <table class="member-table" style="width: 100%; border-collapse: separate;  border-spacing:0px 2rem;">
+  <table class="member-table" style="width: 100%; border-collapse: separate;  border-spacing:0px 1rem;">
     <tr>
       <th>形象</th>
       <th>姓名</th>
@@ -37,11 +37,9 @@
 <style scoped>
 img{
   vertical-align: middle;
-  box-shadow:  0 0  1px #888;
-
 }
 .member-table tr{
-  line-height: 60px;
+  /*line-height: 60px;*/
   font-size: 2rem;
   /*background-color: rgba(255, 255, 255, 0.9);*/
   /*vertical-align: bottom;*/
@@ -50,7 +48,5 @@ img{
     background-color: rgba(255, 0, 0, 0.2);
     margin: 2px;
   }
-  tr{
 
-  }
 </style>

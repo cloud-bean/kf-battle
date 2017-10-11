@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow-y: scroll;">
     <Row class="battle-top">
       <Col span="9" class="groupName">
         <group-bar position="left" :data="groups[0]" :win="finalScore.left >= finalScore.right" ></group-bar>
@@ -38,7 +38,7 @@
     </div> -->
     <hr>
 
-    <Row style="background: rgba(255,255,255,0.9); height:100%;">
+    <Row style="background: rgba(255,255,255,0.9);">
       <Col span="12" style="padding: 20px;">
         <member-table :members="getMembers(0)" :groupScore="finalScore.left"></member-table>
       </Col>
@@ -47,11 +47,18 @@
       </Col>
     </Row>
 
-    <Row class="" style="margin-top:1rem;">
-      <div class="i-button" @click="showTimeLineModal=true">
-        回看比赛进程
-      </div>
+    <Row type="flex" justify="center" align="middle" style="margin-top:1rem;">
+        <Col span="4"><div class="i-button" @click="showTimeLineModal=true">
+          回看比赛
+        </div></Col>
+        <Col span="4"><div class="i-button" @click="goInit" style="background-color:#ed3f14;display:in-block">
+          重新开战
+        </div></Col>
     </Row>
+    <div class="" >
+
+
+    </div>
 
     <Modal
       v-model="showWinnerTeamModal"
@@ -190,6 +197,9 @@
         filterMembers[mvpIndex].isMVP = true;
         return filterMembers;
       },
+      goInit() {
+        this.$router.replace('/');
+      },
       playMusic(index) {
         switch (index) {
           case 0:
@@ -262,8 +272,5 @@
     font-size: 2rem;
     margin:.5rem;
     color: #888;
-  }
-  .button-area{
-    /*background: rgba(0,0,0,0.9);*/
   }
 </style>
