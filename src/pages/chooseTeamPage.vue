@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <!-- <div class=""> -->
 
   <div class="container">
     <div class="title-area">
@@ -24,14 +24,14 @@
       </div>
     </div>
   </div>
-<div class="">
+<!-- <div class="">
   <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
     配置战队信息
 <Icon type="ios-gear">
 </Icon>
   </div>
-</div>
-</div>
+</div> -->
+<!-- </div> -->
 
 </template>
 <script>

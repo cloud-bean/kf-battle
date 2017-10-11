@@ -35,14 +35,14 @@
       <Col span="6">
         <div class="control-panel">
           <div class="control-button flash" @click="toggleRandomEventModal">
-            <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:120px;">
-            <div class="">
+            <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:10rem;">
+            <div style="font-size:2rem;">
               传令信使
             </div>
           </div>
           <div class="control-button" @click="opRandomNumberModal = true">
-            <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:120px;">
-            <div class="">
+            <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:10rem;">
+            <div style="font-size:2rem;">
               命运之轮
             </div>
           </div>
@@ -99,8 +99,8 @@
           <Row type="flex" justify="space-around" class="code-row-bg">
             <Col span="5" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
               <img style="width: 100%; height: 130px;" :src="event.file.URL">
-              <p style="font-size: 1.2em; font-weight: 600;">{{ event.name }}</p>
-              <p>{{ event.description }}</p>
+              <p style="font-size: 1.5rem; font-weight: 600;">{{ event.name }}</p>
+              <p style="font-size: 1rem;">{{ event.description }}</p>
             </Col>
           </Row>
       </div>
@@ -149,7 +149,7 @@
 .control-panel{
   background: rgba(255, 255, 255, 1);
   margin: 10px 50px;
-  height: 450px;
+  height: 35rem;
   padding: 20px;
   border-radius: 10px;
   border: 5px solid #ccc;

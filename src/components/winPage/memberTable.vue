@@ -1,5 +1,5 @@
 <template>
-  <table class="member-table" style="width: 100%; border-collapse: collapse; padding: 10px;">
+  <table class="member-table" style="width: 100%; border-collapse: separate;  border-spacing:0px 2rem;">
     <tr>
       <th>形象</th>
       <th>姓名</th>
@@ -9,8 +9,8 @@
       <th>贡献</th>
     </tr>
     <tr v-for="member in members" :class="member.isMVP ? 'winner': ''">
-      <td v-if="member.isMVP"><Badge count="MVP"><img  style="width: 40px;"  :src="member.profileImageURL"></Badge></td>
-      <td v-if="!member.isMVP"><img  style="width: 40px;"  :src="member.profileImageURL"></td>
+      <td v-if="member.isMVP"><Badge count="MVP"><img  style="width: 4rem;"  :src="member.profileImageURL"></Badge></td>
+      <td v-if="!member.isMVP"><img  style="width: 4rem;"  :src="member.profileImageURL"></td>
       <td><span>{{member.displayName}}</span></td>
       <td><span>{{member.get}}</span></td>
       <td><span>{{member.lost}}</span></td>
@@ -42,12 +42,15 @@ img{
 }
 .member-table tr{
   line-height: 60px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   /*background-color: rgba(255, 255, 255, 0.9);*/
   /*vertical-align: bottom;*/
 }
   .winner {
     background-color: rgba(255, 0, 0, 0.2);
     margin: 2px;
+  }
+  tr{
+
   }
 </style>

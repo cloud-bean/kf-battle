@@ -1,5 +1,5 @@
 <template>
-  <div class="container large-box">
+  <div class="container">
     <div class="title-area">
       随机抽卡
     </div>
@@ -9,9 +9,9 @@
           抽卡规则
         </p> -->
         <div class="" style="margin-bottom: 20px;" v-if="!showMemberWithCards">
-          <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring>
+          <!-- <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring> -->
           <h1>
-            每人{{maxCardsLimit}}张卡
+            每人随机抽取{{maxCardsLimit}}张卡
           </h1>
         </div>
 
@@ -22,23 +22,23 @@
       <Row v-if="showMemberWithCards">
         <Col span="12" >
           <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 0" style="margin: 10px;">
-            <p slot="title">
+            <div class="member-name">
               {{ member.displayName }}
-            </p>
+            </div>
             <div v-for="item, index in member.cards" :key="index" style="display: inline-block;">
-              <img :src="item.file.URL + '-kf_card_w200_h460'" style="width: 80px; margin: 5px;" >
-              <h4>{{item.name}}</h4>
+              <img :src="item.file.URL + '-kf_card_w200_h460'" class="card-img" >
+              <div class="card-name">{{item.name}}</div>
             </div>
           </Card>
         </Col>
         <Col span="12">
           <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 1" style="margin: 10px;">
-            <p slot="title">
+            <div class="member-name">
               {{ member.displayName }}
-            </p>
+            </div>
             <div v-for="item, index in member.cards" :key="index" style="display: inline-block;">
-              <img :src="item.file.URL + '-kf_card_w200_h460'" style="width: 80px; margin: 5px;" >
-              <h4>{{item.name}}</h4>
+              <img :src="item.file.URL + '-kf_card_w200_h460'"  class="card-img" >
+              <div class="card-name">{{item.name}}</div>
             </div>
           </Card>
         </Col>
@@ -60,6 +60,22 @@
   </div>
 
 </template>
+<style scoped>
+  .large-box {
+    height: 100%;
+  }
+  .card-img {
+    width:8rem;
+    margin: 5px;
+  }
+  .card-name{
+    font-size: 1.5rem;
+  }
+  .member-name{
+    font-size: 2rem;
+    color: #888;
+  }
+</style>
 <script>
 
   import { mapGetters, mapActions } from 'vuex';
@@ -200,9 +216,3 @@
     },
   };
 </script>
-
-<style scoped>
-  .large-box {
-    height: 100%;
-  }
-</style>

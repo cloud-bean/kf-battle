@@ -11,7 +11,7 @@
           <member-item :memberData="member" :setMemberOnline="setMemberOnline" :groupIndex="groupIndex"></member-item>
       </Col>
       <Col span="8" class="member-item">
-          <Card><Icon type="plus-round" size="20"></Icon></Card>
+          <Card><Icon type="plus-round" size="35"></Icon></Card>
       </Col>
     </Row>
   </div>
@@ -44,14 +44,14 @@ export default {
     position: relative;
   }
   img {
-      width: 10rem;
-      height: 10rem;
+      width: 15rem;
+      height: 15rem;
       /*border: 2px solid white;*/
       border-radius:50%;
       box-shadow:0px 0px 5px #555555;
   }
   .team-name {
-    font-size: 1.5rem;
+    font-size: 2rem;
     line-height: 3rem;
   }
   .member-item{
