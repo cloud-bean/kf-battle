@@ -3,7 +3,13 @@
 
   <div class="container">
     <div class="title-area">
-      选择对战双方
+      选择对战双方 <Icon type="ios-gear"  @click.native="goCustom" style="color:#19be6b;"></Icon>
+      <div class="">
+        <!-- <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
+          配置战队信息 -->
+
+        <!-- </div> -->
+      </div>
     </div>
 
     <Row :gutter="16" class="main-area">
@@ -24,13 +30,7 @@
       </div>
     </div>
   </div>
-<!-- <div class="">
-  <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
-    配置战队信息
-<Icon type="ios-gear">
-</Icon>
-  </div>
-</div> -->
+
 <!-- </div> -->
 
 </template>
