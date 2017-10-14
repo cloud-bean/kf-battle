@@ -31,7 +31,7 @@
 
 <style scoped>
 .member-item{
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 .online{
   color: #19be6b;

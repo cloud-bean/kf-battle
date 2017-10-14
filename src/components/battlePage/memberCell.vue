@@ -36,9 +36,9 @@
         <div class="">
           <img :src="member.profileImageURL"></img>
         </div>
-        <span style="font-size:1rem; color:#888;">{{ member.displayName }}</span>
+        <span style="font-size:1.5rem; color:#888;">{{ member.displayName }}</span>
         <!-- <span style="color:#57c5ff;font-size:.8rem;">等级{{member.option.level}}</span> -->
-        <span style="color:#57c5ff;font-size:.8rem;">卡牌{{member.cards.length}}</span>
+        <span style="color:#57c5ff;font-size:1rem;">卡牌{{member.cards.length}}</span>
       <!-- </div> -->
     </div>
       <!-- <span style="color: #57c5ff">
@@ -95,7 +95,7 @@
 
 <style scoped lang="less">
 .member-cell{
-  margin-top: 10px;
+  margin-top: 1rem;
   background-color: rgba(255,255,255,1);
   border:1px solid #fff;
   padding: 5px;
@@ -103,14 +103,14 @@
 
 }
 .member-head{
-  padding: 5px;
+  padding: 1rem;
   border-bottom: 1px solid #ccc;
 }
 img{
   border-radius: 5px;
   border: 1px solid #eee;
   // box-shadow: 0 0 5px #888;
-  width:80px;
+  width:6rem;
 
 }
 .ivu-card-body {
@@ -118,14 +118,14 @@ img{
 }
 .name-area{
   padding: 20px;
-  font-size: 1rem;
+  font-size: 3rem;
   color: #888;
 }
 .user-detail{
-  font-size: 1rem;
+  font-size: 2rem;
 }
 .mark{
-  font-size: 2rem;
+  font-size: 3rem;
   color: #ccc;
   margin: 0 auto;
   text-align: center;

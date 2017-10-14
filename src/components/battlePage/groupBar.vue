@@ -9,12 +9,12 @@
         <span class="teamName">{{data.name}}</span>
       </Col>
       <Col span="6">
-        <img :src="data.logo.URL" style="width: 100%;">
+        <img :src="data.logo.URL" style="width: 10rem;">
       </Col>
     </Row>
     <Row v-if="position === 'right'" type="flex" align="middle" class="code-row-bg white-bg">
       <Col span="6">
-        <img :src="data.logo.URL"  style="width: 100%;">
+        <img :src="data.logo.URL"  style="width: 10rem;">
 
       </Col>
       <Col span="18">

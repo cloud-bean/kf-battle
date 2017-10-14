@@ -1,7 +1,7 @@
 <template>
   <div>
     <Row class="panel">
-      <Col span="8">
+      <Col span="8" class="left">
         <Row class="name-area"  type="flex" justify="center" align="middle">
           <Col span="8">
             <img :src="member.profileImageURL" >
@@ -89,8 +89,8 @@
         <div style="text-align:center; margin: 10px;">
           <Tooltip placement="top" v-for="(card, index) in member.cards"  :key="index">
             <div style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
-              <img style="width: 160px; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL + '-kf_card_w200_h460'" @click="removeIt(index)">
-              <p style="font-size: 1.3rem; padding:.2rem;">{{card.name}}</p>
+              <img style="width: 12rem; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL + '-kf_card_w200_h460'" @click="removeIt(index)">
+              <p style="font-size: 2rem; padding:.2rem;">{{card.name}}</p>
             </div>
             <div slot="content">
               <p>{{card.name}}</p>
@@ -151,20 +151,23 @@
   img{
     border-radius: 10px;
     border: 1px solid #eee;
-    width:80px;
+    width:8rem;
   }
 
   .name{
-    font-size: 1.5rem;
+    font-size: 3rem;
   }
   .name-area{
-    font-size: 1rem;
+    font-size: 1.5rem;
 
   }
   .mark{
-    font-size: 8rem;
+    font-size: 10rem;
     color: #ccc;
     margin: 0 auto;
     text-align: center;
+  }
+  .left{
+    padding: 1rem;
   }
 </style>

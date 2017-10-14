@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow-y: scroll;">
     <Row class="battle-top">
       <Col span="9" class="groupName">
         <group-bar position="left" :data="groups[0]" :win="finalScore.left >= finalScore.right" ></group-bar>
@@ -38,7 +38,7 @@
     </div> -->
     <hr>
 
-    <Row style="background: rgba(255,255,255,0.9); height:100%;">
+    <Row style="background: rgba(255,255,255,0.9);">
       <Col span="12" style="padding: 20px;">
         <member-table :members="getMembers(0)" :groupScore="finalScore.left"></member-table>
       </Col>
@@ -47,23 +47,30 @@
       </Col>
     </Row>
 
-    <Row class="button-area">
-      <div class="i-button" @click="showTimeLineModal=true">
-        回看比赛进程
-      </div>
+    <Row type="flex" justify="center" align="middle" style="margin-top:1rem;">
+        <Col span="4"><div class="i-button" @click="showTimeLineModal=true">
+          回看比赛
+        </div></Col>
+        <Col span="4"><div class="i-button" @click="goInit" style="background-color:#ed3f14;display:in-block">
+          重新开战
+        </div></Col>
     </Row>
+    <div class="" >
+
+
+    </div>
 
     <Modal
       v-model="showWinnerTeamModal"
       width="80%"
       class-name="vertical-center-modal">
-      <div  style="text-align: center;font-size:3rem; color:#5cadff;margin-top:20px;">
+      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
          获胜队伍
       </div>
       <div class="panel" style="padding:2rem;text-align:center">
           <div class="winner-card">
             <img :src="winnerTeam.logo.URL" alt="" style="width:200px;">
-            <div class="winner-name" style="font-size: 2em;">
+            <div class="winner-name" style="font-size: 3rem;">
               {{winnerTeam.name}}
             </div>
           </div>
@@ -76,13 +83,13 @@
       v-model="showMVP1Modal"
       width="80%"
       class-name="vertical-center-modal">
-      <div  style="text-align: center;font-size:3.5rem; color:#5cadff;margin-top:20px;">
+      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
          王者
       </div>
       <div class="panel" style="padding:2rem;text-align:center">
         <div class="winner-card">
           <img :src="mvp1.profileImageURL" alt="" style="width:200px;">
-          <div class="winner-name" style="font-size: 2em;">
+          <div class="winner-name" style="font-size: 3rem;">
             {{mvp1.displayName}}
           </div>
         </div>
@@ -95,13 +102,13 @@
       v-model="showMVP2Modal"
       width="80%"
       class-name="vertical-center-modal">
-      <div  style="text-align: center;font-size:3.5rem; color:#5cadff;margin-top:20px;">
+      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
          勇士
       </div>
       <div class="panel" style="padding:.5rem;text-align:center;">
         <div class="winner-card">
           <img :src="mvp2.profileImageURL" alt="" style="width:300px;">
-          <div class="winner-name" style="font-size: 2em;">
+          <div class="winner-name" style="font-size: 3rem;">
             {{mvp2.displayName}}
           </div>
         </div>
@@ -190,6 +197,9 @@
         filterMembers[mvpIndex].isMVP = true;
         return filterMembers;
       },
+      goInit() {
+        this.$router.replace('/');
+      },
       playMusic(index) {
         switch (index) {
           case 0:
@@ -262,8 +272,5 @@
     font-size: 2rem;
     margin:.5rem;
     color: #888;
-  }
-  .button-area{
-    /*background: rgba(0,0,0,0.9);*/
   }
 </style>

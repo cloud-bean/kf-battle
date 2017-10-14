@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block;">
-    <img style="width: 150px; margin: 0 5px;" :src="card.file.URL + '-kf_card_w200_h460'">
+    <img style="width: 10rem; margin: 0 1rem;" :src="card.file.URL + '-kf_card_w200_h460'">
     <div slot="content">
       <p>{{card.name}}</p>
       <p>{{'LVL. ' + card.level}}</p>
