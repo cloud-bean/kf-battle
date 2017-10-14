@@ -18,7 +18,6 @@
 <script>
   const moment = require('moment');
   moment.locale('zh-cn');
-
   export default {
     name: 'timelineComponent',
     data() {

@@ -1,7 +1,15 @@
 <template>
+  <!-- <div class=""> -->
+
   <div class="container">
     <div class="title-area">
-      选择对战双方
+      选择对战双方 <Icon type="ios-gear"  @click.native="goCustom" style="color:#19be6b;"></Icon>
+      <div class="">
+        <!-- <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
+          配置战队信息 -->
+
+        <!-- </div> -->
+      </div>
     </div>
 
     <Row :gutter="16" class="main-area">
@@ -10,19 +18,21 @@
       </Col>
     </Row>
     <Alert type="info" show-icon v-show="teamSelect.length < maxTeamCount" style="width:30%;margin:0 auto">
-        <span slot="desc">
-            请选择两支战队。
+        <span slot="desc" style="font-size:16px;">
+            请选择两支战队
         </span>
     </Alert>
     <div class="button-area">
 
-      <Button type="primary" size="large" @click="initNewGame" v-show="teamSelect.length == maxTeamCount">
+      <div @click="initNewGame" v-show="teamSelect.length == maxTeamCount" class="i-button">
         确认选择
         <Icon type="chevron-right"></Icon>
-      </Button>
-
+      </div>
     </div>
   </div>
+
+<!-- </div> -->
+
 </template>
 <script>
   import TeamItem from '../components/chooseTeamPage/teamItem';
@@ -60,6 +70,9 @@
         this.setBattleTeams({ teams: this.teamSelect });
         this.$router.push('/teamMemberPage');
       },
+      goCustom() {
+        this.$router.push('/custom');
+      },
     },
     computed: {
       ...mapGetters([
@@ -95,4 +108,5 @@
   .team-item {
     margin: .5rem 0;
   }
+
 </style>

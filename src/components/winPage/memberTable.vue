@@ -1,16 +1,16 @@
 <template>
-  <table class="member-table" style="width: 100%; border-collapse: collapse; padding: 10px;">
+  <table class="member-table" style="width: 100%; border-collapse: separate;  border-spacing:0px 1rem;">
     <tr>
-      <th>头像</th>
-      <th>名字</th>
+      <th>形象</th>
+      <th>姓名</th>
       <th>得分</th>
       <th>丢分</th>
-      <th>获得经验值</th>
-      <th>贡献值</th>
+      <th>经验</th>
+      <th>贡献</th>
     </tr>
     <tr v-for="member in members" :class="member.isMVP ? 'winner': ''">
-      <td v-if="member.isMVP"><Badge count="MVP"><img  style="width: 40px;"  :src="member.profileImageURL"></Badge></td>
-      <td v-if="!member.isMVP"><img  style="width: 40px;"  :src="member.profileImageURL"></td>
+      <td v-if="member.isMVP"><Badge count="MVP"><img  style="width: 4rem;"  :src="member.profileImageURL"></Badge></td>
+      <td v-if="!member.isMVP"><img  style="width: 4rem;"  :src="member.profileImageURL"></td>
       <td><span>{{member.displayName}}</span></td>
       <td><span>{{member.get}}</span></td>
       <td><span>{{member.lost}}</span></td>
@@ -37,11 +37,10 @@
 <style scoped>
 img{
   vertical-align: middle;
-  box-shadow:  0 0  1px #888;
-
 }
 .member-table tr{
-  line-height: 60px;
+  /*line-height: 60px;*/
+  font-size: 2rem;
   /*background-color: rgba(255, 255, 255, 0.9);*/
   /*vertical-align: bottom;*/
 }
@@ -49,4 +48,5 @@ img{
     background-color: rgba(255, 0, 0, 0.2);
     margin: 2px;
   }
+
 </style>

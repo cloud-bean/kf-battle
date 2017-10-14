@@ -4,18 +4,20 @@
       <Col span="8" v-for="team in teamList" :key="team._id" style="padding: 10px;">
         <Card>
           <div @click="selectedTeam = team;">
-            <p style="font-size: 2em; color: dimgray">{{team.name}}</p>
-            <img :src="team.logo.URL" style="width: 120px;">
+            <p style="font-size: 3rem; color: #888">{{team.name}}</p>
+            <img :src="team.logo.URL" style="width: 15rem; margin:1rem 0;" @click="showLogosModal = true;">
             <div v-if="selectedTeam && selectedTeam._id == team._id">
-              <Button @click="showLogosModal = true;">换战队logo</Button>
-              <br>
-              <input v-model="team.name">
-              <Button @click="saveTeam(team)">换个战队名字</Button>
-              <hr>
-              <div v-for="member in team.students" :key="member._id" style="border: 1px solid rgba(128,128,128,0.26); padding: 5px; margin: 5px; display: inline-block;">
-                <img :src="member.profileImageURL" style="width: 60px;" @click="openSetMemberAvatarModal(member)">
-                <p>{{ member.displayName }}</p>
-              </div>
+              <!-- <Button @click="showLogosModal = true;">换战队logo</Button> -->
+              <!-- <br> -->
+              <!-- <input v-model="team.name"/>
+              <Button @click="saveTeam(team)">换个战队名字</Button> -->
+
+              <Row class="member-container">
+                <Col span="4" v-for="member in team.students" :key="member._id" style=" margin: 5px;">
+                  <img :src="member.profileImageURL" style="width: 5rem;" @click="openSetMemberAvatarModal(member)">
+                  <p style="font-size:1.5rem;">{{ member.displayName }}</p>
+                </Col>
+              </Row>
             </div>
           </div>
         </Card>
@@ -28,7 +30,7 @@
       width="80%"
       class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <img v-for="logo in teamLogos" :key="logo._id" :src="logo.URL" style="margin: 10px; max-width: 120px; max-height: 120px; background-color: gray;" @click="setLogo(logo)">
+      <img v-for="logo in teamLogos" :key="logo._id" :src="logo.URL" style="margin: 10px; max-width: 10rem; max-height: 10rem; background-color: gray;" @click="setLogo(logo)">
     </Modal>
 
     <Modal
@@ -37,11 +39,22 @@
       width="80%"
       class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <img  v-for="avatar in memberAvatars" :key="avatar._id" :src="avatar.URL" @click="setAvatar(avatar.URL)" style="margin: 10px; max-width: 60px; max-height: 60px; background-color: gray;">
+      <img  v-for="avatar in memberAvatars" :key="avatar._id" :src="avatar.URL" @click="setAvatar(avatar.URL)" style="margin: 10px; max-width: 8rem; max-height: 8rem; background-color: gray;">
     </Modal>
+    <div class="">
+      <div @click="goIndex"  class="i-button" style="background-color:#19be6b;">
+        返回首页
+        <Icon type="chevron-right"></Icon>
+      </div>
+    </div>
+    </div>
   </div>
 </template>
-
+<style scoped>
+.member-container{
+  margin-top: 20px;
+}
+</style>
 <script>
   import { mapGetters, mapActions } from 'vuex';
   export default {
@@ -80,6 +93,9 @@
             name: team.name,
           },
         });
+      },
+      goIndex() {
+        this.$router.push('/');
       },
       openSetTeamLogoModal(team) {
         this.selectedTeam = team;

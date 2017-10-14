@@ -1,7 +1,7 @@
 <template>
   <div>
     <Row class="panel">
-      <Col span="8">
+      <Col span="8" class="left">
         <Row class="name-area"  type="flex" justify="center" align="middle">
           <Col span="8">
             <img :src="member.profileImageURL" >
@@ -38,30 +38,47 @@
       <Col span="16">
         <Row>
           <Col span="12" style="margin:0 auto; padding:10px;">
-            <p>得 分</p>
-            <Button type="success" class="scoreBtn" size="large" @click="addScore(1, '+1分, 回答正确')" long>+1分, 回答正确</Button>
+            <!-- <h1>得 分</h1> -->
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '答题', '+1分, 答题正确')" >+1分, 答题正确</div>
             <br>
-            <Button type="success" class="scoreBtn" size="large" @click="addScore(2, '+2分, 回答正确，解释正确')" long>+2分, 回答正确，解释正确</Button>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '答题', '+2分, 受到表扬')" >+2分, 受到表扬</div>
             <br>
-            <Button type="success" class="scoreBtn" size="large" @click="addScore(3, '+3分, 回答正确，解释正确，举一反三')" long>+3分, 回答正确，解释正确，举一反三</Button>
-
-            <p>随机事件</p>
-            <Button type="success" class="scoreBtn" @click="addScore(1, '+1分, 随机事件')">+1分</Button>
-            <Button type="success" class="scoreBtn" @click="addScore(2, '+2分, 随机事件')">+2分</Button>
-            <Button type="success" class="scoreBtn" @click="addScore(3, '+3分, 随机事件')">+3分</Button>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '答题', '+3分, 听写满分')" >+3分, 听写满分</div>
+            <br>
+            <!-- <h1>随机事件</h1> -->
+            <Row>
+              <Col span="8">
+                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '随机事件', '+1分, 随机事件')">+1分</div>
+              </Col>
+              <Col span="8">
+                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '随机事件', '+2分, 随机事件')">+2分</div>
+              </Col>
+              <Col span="8">
+                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '随机事件', '+3分, 随机事件')">+3分</div>
+              </Col>
+            </Row>
           </Col>
           <Col span="12" style="margin:0 auto; padding:10px;">
-            <p>丢 分</p>
-            <Button type="error" class="scoreBtn" size="large" @click="addScore(-1, '-1分, 大声喧哗')" long>-1分, 大声喧哗</Button>
+            <!-- <h1>丢 分</h1> -->
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '答题', '-1分, 上课迟到')" >-1分, 上课迟到</div>
             <br>
-            <Button type="error" class="scoreBtn" size="large" @click="addScore(-2, '-2分, 玩手机')" long>-2分, 玩手机</Button>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '答题', '-2分, 违规答题')" >-2分, 违规答题</div>
             <br>
-            <Button type="error" class="scoreBtn" size="large" @click="addScore(-3, '-3分, 睡觉')" long>-3分, 睡觉</Button>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '答题', '-3分, 闲聊走神')" >-3分, 闲聊走神</div>
+            <br>
 
-            <p>随机事件</p>
-            <Button type="error" class="scoreBtn" @click="addScore(-1, '-1分, 随机事件')">-1分</Button>
-            <Button type="error" class="scoreBtn" @click="addScore(-2, '-2分, 随机事件')">-2分</Button>
-            <Button type="error" class="scoreBtn" @click="addScore(-3, '-3分, 随机事件')">-3分</Button>
+            <!-- <h1>随机事件</h1> -->
+            <Row>
+              <Col span="8">
+                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '随机事件', '-1分, 随机事件')">-1分</div>
+              </Col>
+              <Col span="8">
+                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '随机事件', '-2分, 随机事件')">-2分</div>
+              </Col>
+              <Col span="8">
+                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '随机事件', '-3分, 随机事件')">-3分</div>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Col>
@@ -72,8 +89,8 @@
         <div style="text-align:center; margin: 10px;">
           <Tooltip placement="top" v-for="(card, index) in member.cards"  :key="index">
             <div style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
-              <img style="width: 120px; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL + '-kf_card_w200_h460'" @click="removeIt(index)">
-              <p style="font-size: 1rem; padding:.2rem;">{{card.name}}</p>
+              <img style="width: 12rem; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL + '-kf_card_w200_h460'" @click="removeIt(index)">
+              <p style="font-size: 2rem; padding:.2rem;">{{card.name}}</p>
             </div>
             <div slot="content">
               <p>{{card.name}}</p>
@@ -99,14 +116,14 @@
         this.$forceUpdate();
         this.playMusic();
       },
-      addScore(score, desc) {
+      addScore(score, type, desc) {
         const scoreNumber = parseInt(score, 10);
         if (scoreNumber > 0) {
           this.playMusic(1);
         } else {
           this.playMusic(2);
         }
-        this.addScoreToMember({ member: this.member, score: scoreNumber, desc });
+        this.addScoreToMember({ member: this.member, score: scoreNumber, type, desc });
         this.$forceUpdate();
       },
     },
@@ -134,20 +151,23 @@
   img{
     border-radius: 10px;
     border: 1px solid #eee;
-    width:80px;
+    width:8rem;
   }
 
   .name{
-    font-size: 1.5rem;
+    font-size: 3rem;
   }
   .name-area{
-    font-size: 1rem;
+    font-size: 1.5rem;
 
   }
   .mark{
-    font-size: 8rem;
+    font-size: 10rem;
     color: #ccc;
     margin: 0 auto;
     text-align: center;
+  }
+  .left{
+    padding: 1rem;
   }
 </style>

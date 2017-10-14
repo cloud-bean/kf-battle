@@ -1,5 +1,5 @@
 <template>
-  <div class="container large-box">
+  <div class="container">
     <div class="title-area">
       随机抽卡
     </div>
@@ -9,9 +9,9 @@
           抽卡规则
         </p> -->
         <div class="" style="margin-bottom: 20px;" v-if="!showMemberWithCards">
-          <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring>
+          <!-- <vue-ring :data="chartData" :settings="chartSettings" height="200px"></vue-ring> -->
           <h1>
-            每人{{maxCardsLimit}}张卡
+            每人随机抽取{{maxCardsLimit}}张卡
           </h1>
         </div>
 
@@ -22,23 +22,23 @@
       <Row v-if="showMemberWithCards">
         <Col span="12" >
           <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 0" style="margin: 10px;">
-            <p slot="title">
+            <div class="member-name">
               {{ member.displayName }}
-            </p>
+            </div>
             <div v-for="item, index in member.cards" :key="index" style="display: inline-block;">
-              <img :src="item.file.URL + '-kf_card_w200_h460'" style="width: 80px; margin: 5px;" >
-              <h4>{{item.name}}</h4>
+              <img :src="item.file.URL + '-kf_card_w200_h460'" class="card-img" >
+              <div class="card-name">{{item.name}}</div>
             </div>
           </Card>
         </Col>
         <Col span="12">
           <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 1" style="margin: 10px;">
-            <p slot="title">
+            <div class="member-name">
               {{ member.displayName }}
-            </p>
+            </div>
             <div v-for="item, index in member.cards" :key="index" style="display: inline-block;">
-              <img :src="item.file.URL + '-kf_card_w200_h460'" style="width: 80px; margin: 5px;" >
-              <h4>{{item.name}}</h4>
+              <img :src="item.file.URL + '-kf_card_w200_h460'"  class="card-img" >
+              <div class="card-name">{{item.name}}</div>
             </div>
           </Card>
         </Col>
@@ -47,19 +47,35 @@
     </div>
     <div class="">
       <!-- <Button v-if="showMemberWithCards" type="error" @click="goToBattle">THE WAR IS COMING!</Button> -->
-      <Button  v-if="showMemberWithCards" type="error" size="large" @click="goToBattle" >
+      <div  v-if="showMemberWithCards" @click="goToBattle"  class="i-button">
         开始作战
         <Icon type="chevron-right"></Icon>
-      </Button>
-      <Button v-if="!showMemberWithCards" type="primary" size="large" :disabled="members.length == 0" @click="addCardToMemberTest">
+      </div>
+      <div v-if="!showMemberWithCards"  :disabled="members.length == 0" @click="addCardToMemberTest" class="i-button">
         随机抽卡
         <Icon type="chevron-right"></Icon>
-      </Button>
+      </div>
       <!-- <Button v-if="!showMemberWithCards" shape="circle" size="large" type="warning" :disabled="members.length == 0" @click="addCardToMemberTest">抽 卡</Button> -->
     </div>
   </div>
 
 </template>
+<style scoped>
+  .large-box {
+    height: 100%;
+  }
+  .card-img {
+    width:8rem;
+    margin: 5px;
+  }
+  .card-name{
+    font-size: 1.5rem;
+  }
+  .member-name{
+    font-size: 2rem;
+    color: #888;
+  }
+</style>
 <script>
 
   import { mapGetters, mapActions } from 'vuex';
@@ -200,9 +216,3 @@
     },
   };
 </script>
-
-<style scoped>
-  .large-box {
-    height: 100%;
-  }
-</style>

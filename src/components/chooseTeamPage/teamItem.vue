@@ -3,7 +3,7 @@
     <Tooltip placement="top">
       <div class="team-head" @click="handleClick">
         <div class="mask" v-if="selected">
-          <Icon type="checkmark" size="30" class="icon"></Icon>
+          <Icon type="checkmark" size="80" class="icon"></Icon>
         </div>
         <img :src="teamData.logo.URL" alt="">
       </div>
@@ -41,8 +41,8 @@
   }
 
   .mask {
-    width: 100px;
-    height: 100px;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, .3);
     position: absolute;
@@ -51,8 +51,8 @@
   }
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     border: 1px solid #ccc;
     box-shadow: 0 0 5px #888;

@@ -35,24 +35,24 @@
       <Col span="6">
         <div class="control-panel">
           <div class="control-button flash" @click="toggleRandomEventModal">
-            <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:120px;">
-            <div class="">
+            <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:10rem;">
+            <div style="font-size:2rem;">
               传令信使
             </div>
           </div>
           <div class="control-button" @click="opRandomNumberModal = true">
-            <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:120px;">
-            <div class="">
+            <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:10rem;">
+            <div style="font-size:2rem;">
               命运之轮
             </div>
           </div>
 
         </div>
-      <ButtonGroup size="large">
+      <!-- <ButtonGroup size="large"> -->
         <!-- <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button> -->
-        <Button icon="ios-close-outline" @click="goToWinnerPage">结束游戏</Button>
-      </ButtonGroup>
+        <div class="i-button" @click="goToWinnerPage" style="background-color:#5cadff">结束游戏</div>
+      <!-- </ButtonGroup> -->
 
       <Modal
         title="随机选人"
@@ -76,9 +76,9 @@
     </transition>
 
     <Modal
-      title="计分板"
       v-model="showMemberBoard"
-      width="80%"
+      width="85%"
+      :closable="false"
       class-name="vertical-center-modal">
       <p slot="footer"></p>
       <member-board v-if="selectedMember"
@@ -98,9 +98,9 @@
       <div class="panel">
           <Row type="flex" justify="space-around" class="code-row-bg">
             <Col span="5" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
-              <img style="width: 100%; height: 130px;" :src="event.file.URL">
-              <p style="font-size: 1.2em; font-weight: 600;">{{ event.name }}</p>
-              <p>{{ event.description }}</p>
+              <img v-if="event.file" style="width: 100%; height: 130px;" :src="event.file.URL">
+              <p style="font-size: 1.5rem; font-weight: 600;">{{ event.name }}</p>
+              <p style="font-size: 1rem;">{{ event.description }}</p>
             </Col>
           </Row>
       </div>
@@ -149,7 +149,7 @@
 .control-panel{
   background: rgba(255, 255, 255, 1);
   margin: 10px 50px;
-  height: 450px;
+  height: 35rem;
   padding: 20px;
   border-radius: 10px;
   border: 5px solid #ccc;
@@ -256,7 +256,7 @@
             people: payload.member.displayName,
             created: new Date(),
             color: payload.score > 0 ? 'green' : 'red',
-            type: '答题',
+            type: payload.type,
             description: `${payload.desc}`,
           },
         });
