@@ -39,11 +39,11 @@
         <Row>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <!-- <h1>得 分</h1> -->
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '+1分, 回答正确')" >+1分, 回答正确</div>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '+1分, 答题正确')" >+1分, 答题正确</div>
             <br>
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '+2分, 回答正确，解释正确')" >+2分, 回答正确，解释正确</div>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '+2分, 受到表扬')" >+2分, 受到表扬</div>
             <br>
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '+3分, 回答正确，解释正确，举一反三')" >+3分, 回答正确，解释正确，举一反三</div>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '+3分, 听写满分')" >+3分, 听写满分</div>
             <br>
             <!-- <h1>随机事件</h1> -->
             <Row>
@@ -60,11 +60,11 @@
           </Col>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <!-- <h1>丢 分</h1> -->
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '-1分, 大声喧哗')" >-1分, 大声喧哗</div>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '-1分, 大声喧哗')" >-1分, 上课迟到</div>
             <br>
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '-2分, 玩手机')" >-2分, 玩手机</div>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '-2分, 玩手机')" >-2分, 违规答题</div>
             <br>
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '-3分, 睡觉')" >-3分, 睡觉</div>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '-3分, 睡觉')" >-3分, 闲聊走神</div>
             <br>
 
             <!-- <h1>随机事件</h1> -->
