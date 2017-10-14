@@ -256,7 +256,7 @@
             people: payload.member.displayName,
             created: new Date(),
             color: payload.score > 0 ? 'green' : 'red',
-            type: '答题',
+            type: payload.type,
             description: `${payload.desc}`,
           },
         });

@@ -39,44 +39,44 @@
         <Row>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <!-- <h1>得 分</h1> -->
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '+1分, 答题正确')" >+1分, 答题正确</div>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '答题', '+1分, 答题正确')" >+1分, 答题正确</div>
             <br>
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '+2分, 受到表扬')" >+2分, 受到表扬</div>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '答题', '+2分, 受到表扬')" >+2分, 受到表扬</div>
             <br>
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '+3分, 听写满分')" >+3分, 听写满分</div>
+            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '答题', '+3分, 听写满分')" >+3分, 听写满分</div>
             <br>
             <!-- <h1>随机事件</h1> -->
             <Row>
               <Col span="8">
-                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '+1分, 随机事件')">+1分</div>
+                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '随机事件', '+1分, 随机事件')">+1分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '+2分, 随机事件')">+2分</div>
+                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '随机事件', '+2分, 随机事件')">+2分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '+3分, 随机事件')">+3分</div>
+                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '随机事件', '+3分, 随机事件')">+3分</div>
               </Col>
             </Row>
           </Col>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <!-- <h1>丢 分</h1> -->
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '-1分, 大声喧哗')" >-1分, 上课迟到</div>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '答题', '-1分, 上课迟到')" >-1分, 上课迟到</div>
             <br>
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '-2分, 玩手机')" >-2分, 违规答题</div>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '答题', '-2分, 违规答题')" >-2分, 违规答题</div>
             <br>
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '-3分, 睡觉')" >-3分, 闲聊走神</div>
+            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '答题', '-3分, 闲聊走神')" >-3分, 闲聊走神</div>
             <br>
 
             <!-- <h1>随机事件</h1> -->
             <Row>
               <Col span="8">
-                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '-1分, 随机事件')">-1分</div>
+                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '随机事件', '-1分, 随机事件')">-1分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '-2分, 随机事件')">-2分</div>
+                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '随机事件', '-2分, 随机事件')">-2分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '-3分, 随机事件')">-3分</div>
+                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '随机事件', '-3分, 随机事件')">-3分</div>
               </Col>
             </Row>
           </Col>
@@ -116,14 +116,14 @@
         this.$forceUpdate();
         this.playMusic();
       },
-      addScore(score, desc) {
+      addScore(score, type, desc) {
         const scoreNumber = parseInt(score, 10);
         if (scoreNumber > 0) {
           this.playMusic(1);
         } else {
           this.playMusic(2);
         }
-        this.addScoreToMember({ member: this.member, score: scoreNumber, desc });
+        this.addScoreToMember({ member: this.member, score: scoreNumber, type, desc });
         this.$forceUpdate();
       },
     },
