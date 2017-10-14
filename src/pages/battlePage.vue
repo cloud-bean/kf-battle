@@ -98,7 +98,7 @@
       <div class="panel">
           <Row type="flex" justify="space-around" class="code-row-bg">
             <Col span="5" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
-              <img style="width: 100%; height: 130px;" :src="event.file.URL">
+              <img v-if="event.file" style="width: 100%; height: 130px;" :src="event.file.URL">
               <p style="font-size: 1.5rem; font-weight: 600;">{{ event.name }}</p>
               <p style="font-size: 1rem;">{{ event.description }}</p>
             </Col>
