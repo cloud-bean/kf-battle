@@ -36,9 +36,10 @@
         <div class="">
           <img :src="member.profileImageURL"></img>
         </div>
-        <span style="font-size:1.5rem; color:#888;">{{ member.displayName }}</span>
+        <span style="font-size:1.5rem; color:#555;">{{ member.displayName }}</span>
+        <span>-</span>
         <!-- <span style="color:#57c5ff;font-size:.8rem;">等级{{member.option.level}}</span> -->
-        <span style="color:#57c5ff;font-size:1rem;">卡牌{{member.cards.length}}</span>
+        <span style="color:#57c5ff;font-size:1.2rem;">卡牌{{member.cards.length}}</span>
       <!-- </div> -->
     </div>
       <!-- <span style="color: #57c5ff">
@@ -53,9 +54,9 @@
         </Col> -->
         <Col span="24">
           <div class="mark">
-            <span style="color:#b0ff8d">{{member.get || 0}}</span>
-            <span style="">/</span>
-            <span style="color:#ff8d92">{{Math.abs(member.lost) || 0}}</span>
+            <span style="color:#ff8d92">{{member.get-Math.abs(member.lost) || 0}}</span>
+            <!-- <span style="">/</span> -->
+            <!-- <span style="color:#ff8d92">{{Math.abs(member.lost) || 0}}</span> -->
           </div>
         </Col>
       </Row>
