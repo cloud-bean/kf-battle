@@ -42,7 +42,7 @@ export default {
   color: #2c3e50;
   margin: 0;
   font-size: 20pt;
-  overflow:hidden;
+  /*overflow:hidden;*/
   height: 100%;
   width: 100%;
   position: absolute;

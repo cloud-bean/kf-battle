@@ -52,6 +52,13 @@
         <!-- <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button> -->
         <div class="i-button" @click="goToWinnerPage" style="background-color:#5cadff">结束游戏</div>
+        <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
+        <div class="lock" v-if="lock">
+          <div class="key-area">
+          <div>输入解锁密码</div>
+            <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
+          </div>
+        </div>
       <!-- </ButtonGroup> -->
 
       <Modal
@@ -169,6 +176,29 @@
   background-color: rgba(0, 0, 0, .7);
   color: #fff;
 }
+.lock{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,.7);
+  background-size: cover;
+  z-index: 999;
+}
+.key{
+  background-color: rgba(0,0,0,.9);
+  height: 5rem;
+  width: 20rem;
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+}
+.key-area{
+  position: relative;
+  top:30rem;
+  font-size: 2rem;
+}
 </style>
 <script>
   import GroupBar from '../components/battlePage/groupBar';
@@ -188,6 +218,7 @@
           left: 0,
           right: 0,
         },
+        key: '1234',
         duration: '',
         durationTime: new Date(0, 0),
         now: '',
@@ -200,6 +231,8 @@
         opRandomNumberModal: false,
         showPanel: false,
         showRandomEventModal: false,
+        lock: false,
+        inputKey: '',
       };
     },
     computed: {
@@ -213,7 +246,14 @@
       ...mapGetters('timeline', [
         'feeds',
       ]),
-
+    },
+    watch: {
+      inputKey() {
+        if (this.inputKey === this.key) {
+          this.lock = false;
+          this.inputKey = '';
+        }
+      },
     },
     methods: {
       ...mapActions('battle', [
@@ -344,6 +384,9 @@
       toggleOpModal(member) {
         this.showMemberBoard = true;
         this.selectedMember = member;
+      },
+      lockScreen() {
+        this.lock = true;
       },
     },
     components: {

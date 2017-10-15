@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 95%; margin: 0 auto;">
+  <div style="width: 95%; margin: 0 auto; overflow:scroll;">
     <Row>
       <Col span="8" v-for="team in teamList" :key="team._id" style="padding: 10px;">
         <Card>
