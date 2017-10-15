@@ -96,9 +96,9 @@
         随机事件
       </p>
       <div class="panel">
-          <Row type="flex" justify="space-around" class="code-row-bg">
-            <Col span="5" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
-              <img v-if="event.file" style="width: 100%; height: 130px;" :src="event.file.URL">
+          <Row type="flex" justify="flex-start">
+            <Col span="4" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
+              <img v-if="event.file" style=" height: 8rem;" :src="event.file.URL">
               <p style="font-size: 1.5rem; font-weight: 600;">{{ event.name }}</p>
               <p style="font-size: 1rem;">{{ event.description }}</p>
             </Col>
@@ -122,8 +122,8 @@
   }
 
   .panel{
-    padding: 1rem;
-    display: inline-block;
+    padding: .5rem;
+    // display: inline-block;
   }
   .vertical-center-modal {
     display: flex;
@@ -142,8 +142,8 @@
     text-align: center;
     background-color: aliceblue;
     border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
+    margin: 1rem;
+    padding: 1rem;
     border: 1px solid #888;
   }
 .control-panel{
