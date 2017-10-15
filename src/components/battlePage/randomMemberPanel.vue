@@ -15,8 +15,8 @@
       </Col>
     </Row>
     <Row type="flex" justify="center" align-items="center">
-          <div class="i-button" @click="randomMember" size="large" v-if="!startButton">开始</div>
-          <div  class="i-button" @click="stop" size="large"  v-if="!stopButton">停止</div>
+          <div class="i-button" @click="randomMember"  v-if="startButton">命运之轮</div>
+          <div  class="i-button"   v-if="!startButton" style="background-color:#eee">命运之轮</div>
     </Row>
   </div>
 </template>
@@ -37,6 +37,8 @@
     },
     methods: {
       randomMember() {
+        this.startButton = false;
+
         const selectedMembers = [];
         const selectedMembersIndexArray = [];
         this.members.forEach((item, index) => {
@@ -51,14 +53,19 @@
           const num = parseInt(Math.random() * max, 10);
           this.isActive = selectedMembersIndexArray[num];
         }, 100);
-        this.startButton = true;
-        this.stopButton = false;
+        setTimeout(() => {
+          if (this.intervalId) {
+            clearInterval(this.intervalId);
+          }
+          this.startButton = true;
+        }, 3 * 1000);
+        // this.stopButton = false;
       },
-      stop() {
-        clearInterval(this.intervalId);
-        this.startButton = false;
-        this.stopButton = true;
-      },
+      // stop() {
+      //   clearInterval(this.intervalId);
+      //   this.startButton = false;
+      //   this.stopButton = true;
+      // },
       toggleSelected(index) {
         const member = this.members[index];
         member.isSelected = !member.isSelected;
@@ -98,7 +105,7 @@
   }
 
   .active {
-    border: 5px solid #19be6b;
+    border: 5px solid #ed3f14;
   }
 
   .online {

@@ -135,7 +135,7 @@
     }
   }
   .selected {
-    border: 3px solid red !important;
+    border: 5px solid red !important;
   }
 
   .random-box {
