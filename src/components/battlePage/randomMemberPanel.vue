@@ -29,8 +29,7 @@
         opModal: false,
         isActive: 0,
         intervalId: 0,
-        startButton: false,
-        stopButton: true,
+        startButton: true,
       };
     },
     computed: {
@@ -52,7 +51,7 @@
         this.intervalId = setInterval(() => {
           const num = parseInt(Math.random() * max, 10);
           this.isActive = selectedMembersIndexArray[num];
-        }, 100);
+        }, 50);
         setTimeout(() => {
           if (this.intervalId) {
             clearInterval(this.intervalId);
