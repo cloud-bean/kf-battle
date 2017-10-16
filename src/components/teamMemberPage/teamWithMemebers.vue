@@ -74,6 +74,8 @@ export default {
           },
         },
       });
+      this.tempMember = '';
+      this.showAddMemberModal = false;
     },
     ...mapActions('team', [
       'addTempMember',

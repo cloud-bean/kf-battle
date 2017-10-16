@@ -107,7 +107,7 @@
       </div>
       <div class="panel" style="padding:.5rem;text-align:center;">
         <div class="winner-card">
-          <img :src="mvp2.profileImageURL" alt="" style="width:300px;">
+          <img :src="mvp2.profileImageURL" alt="" style="width:200px;">
           <div class="winner-name" style="font-size: 3rem;">
             {{mvp2.displayName}}
           </div>
