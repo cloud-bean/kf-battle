@@ -10,21 +10,74 @@
       <Col span="8" v-for="member, index in teamData.students" class="member-item"  :key="index">
           <member-item :memberData="member" :setMemberOnline="setMemberOnline" :groupIndex="groupIndex"></member-item>
       </Col>
-      <Col span="8" class="member-item">
-          <Card><Icon type="plus-round" size="35"></Icon></Card>
+      <Col span="8" class="member-item" @click.native="showAddTempMemberPanel">
+          <Card ><Icon type="plus-round" size="35"></Icon></Card>
       </Col>
     </Row>
+    <Modal
+      v-model="showAddMemberModal"
+      width="20%"
+      class-name="vertical-center-modal">
+      <p slot="header" style="text-align: center;">
+        添加外援
+      </p>
+      <div class="panel" style="text-align:center;">
+          <div style="text-align:center;font-size:2.5rem;color:#2d8cf0">
+            添加外援
+          </div>
+          <div style="margin-top:2rem;">
+            <img src="static/img/defaultUserHead.jpeg" style="width:5rem;height:5rem;border-radius:0;margin:0 auto;" alt="">
+            <div style="margin-top:2rem;">
+              <input type="text" v-model="tempMember" value="" placeholder="外援姓名" style="text-align:center;font-size:1.5rem;width:10rem;border:1px solid #888;">
+            </div>
+          </div>
+
+          <!-- <div class=""> -->
+            <button @click="addMember" class="i-button" style="margin-top:2rem;height:3rem;font-size:1.2rem;padding:5px;width:6rem;">加入战队</button>
+          <!-- </div> -->
+      </div>
+      <div slot="footer">
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
 import memberItem from './memberItem';
+import { mapActions } from 'vuex';
+
 export default {
   props: ['teamData', 'setMemberOnline', 'groupIndex'],
   data() {
-    return {};
+    return {
+      showAddMemberModal: false,
+      tempMember: '',
+    };
   },
   methods: {
+    showAddTempMemberPanel() {
+      this.showAddMemberModal = true;
+    },
+    addMember() {
+      this.addTempMember({
+        groupIndex: this.groupIndex,
+        member: {
+          displayName: this.tempMember,
+          groupIndex: this.groupIndex,
+          profileImageURL: 'static/img/defaultUserHead.jpeg',
+          isSelected: true,
+          _id: '',
+          option: {
+            exp: 0,
+            goldToken: 0,
+            level: 0,
+          },
+        },
+      });
+    },
+    ...mapActions('team', [
+      'addTempMember',
+    ]),
   },
   components: {
     memberItem,
@@ -83,4 +136,5 @@ export default {
     /*display: inline-flex;*/
     margin-top: 20px;
   }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Row class="battle-top" type="flex" justify="center" align="middle">
+    <Row class="battle-top" type="flex"  align="middle">
       <Col span="9">
       <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
@@ -26,7 +26,7 @@
     <transition name="fade">
       <Row style="margin-top: 10px;" v-if="showMembers">
       <Col span="9">
-        <Row type="flex" justify="start" :gutter="16" style="margin-left:5px">
+        <Row type="flex"  :gutter="16" style="margin-left:5px">
           <Col span="8"  v-for="member in groupMembers(0)" :key="member._id">
             <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
           </Col>
@@ -73,7 +73,7 @@
       <!-- <timeline :feeds="feeds" :startTime="startTime"></timeline> -->
       </Col>
       <Col span="9">
-        <Row type="flex" justify="start" :gutter="16"  style="margin-right:5px">
+        <Row type="flex" :gutter="16"  style="margin-right:5px">
           <Col span="8" v-for="member in groupMembers(1)" :key="member._id">
             <member-cell :member="member" :toggleOpModal="toggleOpModal" :key="member._id"></member-cell>
           </Col>
@@ -103,7 +103,7 @@
         随机事件
       </p>
       <div class="panel">
-          <Row type="flex" justify="flex-start">
+          <Row type="flex" >
             <Col span="4" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
               <img v-if="event.file" style=" height: 8rem;" :src="event.file.URL">
               <p style="font-size: 1.5rem; font-weight: 600;">{{ event.name }}</p>

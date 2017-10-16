@@ -2,7 +2,7 @@
   <div>
     <Row class="panel">
       <Col span="8" class="left">
-        <Row class="name-area"  type="flex" justify="center" align="middle">
+        <Row class="name-area"  type="flex" align="middle">
           <Col span="8">
             <img :src="member.profileImageURL" >
           </Col>

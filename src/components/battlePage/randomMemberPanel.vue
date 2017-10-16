@@ -99,12 +99,13 @@
 
   .pic {
     width: 10rem;
-    border: 1px solid #ccc;
-
+    border: 3px solid #ccc;
+    // filter: grayscale(100%);
   }
 
   .active {
-    border: 5px solid #ed3f14;
+    border: 6px solid #ed3f14;
+    // filter: grayscale(0%);
   }
 
   .online {
