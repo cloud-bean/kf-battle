@@ -1,21 +1,21 @@
 <template>
   <div style="width: 95%; margin: 0 auto; overflow:scroll;">
     <Row>
-      <Col span="8" v-for="team in teamList" :key="team._id" style="padding: 10px;">
+      <Col span="8" v-for="team in teamList" :key="team._id" style="padding: 10px; height:660px;">
         <Card>
           <div @click="selectedTeam = team;">
             <p style="font-size: 3rem; color: #888">{{team.name}}</p>
             <img :src="team.logo.URL" style="width: 15rem; margin:1rem 0;" @click="showLogosModal = true;">
-            <div v-if="selectedTeam && selectedTeam._id == team._id">
+            <div>
               <!-- <Button @click="showLogosModal = true;">换战队logo</Button> -->
-              <!-- <br> -->
+              <!-- <br>  v-if="selectedTeam && selectedTeam._id == team._id" -->
               <!-- <input v-model="team.name"/>
               <Button @click="saveTeam(team)">换个战队名字</Button> -->
 
               <Row class="member-container">
                 <Col span="4" v-for="member in team.students" :key="member._id" style=" margin: 5px;">
                   <img :src="member.profileImageURL" style="width: 5rem;" @click="openSetMemberAvatarModal(member)">
-                  <p style="font-size:1.5rem;">{{ member.displayName }}</p>
+                  <p style="font-size:1rem;">{{ member.displayName }}</p>
                 </Col>
               </Row>
             </div>
