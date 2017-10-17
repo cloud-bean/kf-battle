@@ -78,7 +78,6 @@
       <!-- </ButtonGroup> -->
 
       <Modal
-        title="随机选人"
         v-model="opRandomNumberModal"
         width="80%"
         class-name="vertical-center-modal">
