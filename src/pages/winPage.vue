@@ -40,20 +40,31 @@
 
     <Row style="background: rgba(255,255,255,0.9);">
       <Col span="12" style="padding: 20px;">
-        <member-table :members="getMembers(0)" :groupScore="finalScore.left"></member-table>
+        <member-table :members="getMembers(0)" :groupScore="finalScore.left" :honorName="finalScore.left >= finalScore.right ? '王者' : '勇士'"></member-table>
       </Col>
       <Col span="12" style="padding: 20px;">
-        <member-table :members="getMembers(1)" :groupScore="finalScore.right"></member-table>
+        <member-table :members="getMembers(1)" :groupScore="finalScore.right" :honorName="finalScore.left < finalScore.right ? '王者' : '勇士'"></member-table>
       </Col>
     </Row>
 
     <Row type="flex" justify="center" align="middle" style="margin-top:1rem;">
-        <Col span="4"><div class="i-button" @click="showTimeLineModal=true">
-          回看比赛
-        </div></Col>
-        <Col span="4"><div class="i-button" @click="goInit" style="background-color:#ed3f14;display:in-block">
+      <Col span="6">
+      <ButtonGroup size="large">
+        <Button style="padding: 10px; font-size: 1em;" @click="showWinnerTeamModal = true">获胜队伍</Button>
+        <Button style="padding: 10px; font-size: 1em;" @click="showMVP1Modal = true">王者</Button>
+        <Button style="padding: 10px; font-size: 1em;" @click="showMVP2Modal = true">勇士</Button>
+      </ButtonGroup>
+      </Col>
+      <Col span="4">
+          <div class="i-button" @click="showTimeLineModal=true">
+            回看比赛
+          </div>
+      </Col>
+      <Col span="4">
+        <div class="i-button" @click="goInit" style="background-color:#ed3f14;display:in-block">
           重新开战
-        </div></Col>
+        </div>
+      </Col>
     </Row>
     <div class="" >
 
@@ -236,6 +247,10 @@
             this.showMVP1Modal = false;
             this.showMVP2Modal = true;
             this.playMusic(2);
+
+            setTimeout(() => {
+              this.showMVP2Modal = false;
+            }, 3000);
           }, 4000);
         }, 5000);
       }, 1000);

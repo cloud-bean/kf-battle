@@ -37,9 +37,7 @@
           <img :src="member.profileImageURL"></img>
         </div>
         <span style="font-size:1.5rem; color:#555;">{{ member.displayName }}</span>
-        <span>-</span>
         <!-- <span style="color:#57c5ff;font-size:.8rem;">等级{{member.option.level}}</span> -->
-        <span style="color:#57c5ff;font-size:1.2rem;">卡牌{{member.cards.length}}</span>
       <!-- </div> -->
     </div>
       <!-- <span style="color: #57c5ff">
@@ -48,17 +46,23 @@
         <Tag type="border" color="blue">等级 {{member.option.level}}</Tag>
       </span> -->
       <Row type="flex" justify="space-around">
-        <!-- <Col span="8">
-        </Col> -->
-        <!-- <Col span="2">
-        </Col> -->
-        <Col span="24">
+        <Col span="12">
+          <div style="font-size: .8em; vertical-align: middle; padding: 10px;">
+            <Badge className="green-badge" :count="member.cards.length"><span>卡牌</span></Badge>
+            <!--<p>卡牌 x <span style="color: #ff7e34">{{ member.cards.length }}</span></p>-->
+            <!--<span>卡牌</span>-->
+            <!--<Badge count="20" className="demo-badge-alone"></Badge>-->
+            <!--<sup class="ivu-badge-count" style="background: blue;"></sup>-->
+          </div>
+        </Col>
+        <Col span="12">
           <div class="mark">
-            <span style="color:#ff8d92">{{member.get-Math.abs(member.lost) || 0}}</span>
+            <span style="color:#06810a">{{member.get-Math.abs(member.lost) || 0}}</span>
             <!-- <span style="">/</span> -->
             <!-- <span style="color:#ff8d92">{{Math.abs(member.lost) || 0}}</span> -->
           </div>
         </Col>
+
       </Row>
       <!-- <Row class="card-area">
         <Col span="8" v-for="card in member.cards">
@@ -95,43 +99,45 @@
 </script>
 
 <style scoped lang="less">
-.member-cell{
-  margin-top: 1rem;
-  background-color: rgba(255,255,255,1);
-  border:1px solid #fff;
-  padding: 5px;
-  box-shadow: 0 0 10px #888;
+  .member-cell{
+    margin-top: 1rem;
+    background-color: rgba(255,255,255,1);
+    border:1px solid #fff;
+    padding: 5px;
+    box-shadow: 0 0 10px #888;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .member-head{
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  img{
+    border-radius: 5px;
+    border: 1px solid #eee;
+    // box-shadow: 0 0 5px #888;
+    width:6rem;
 
-}
-.member-head{
-  padding: 1rem;
-  border-bottom: 1px solid #ccc;
-}
-img{
-  border-radius: 5px;
-  border: 1px solid #eee;
-  // box-shadow: 0 0 5px #888;
-  width:6rem;
-
-}
-.ivu-card-body {
-    padding: 10px !important;
-}
-.name-area{
-  padding: 20px;
-  font-size: 3rem;
-  color: #888;
-}
-.user-detail{
-  font-size: 2rem;
-}
-.mark{
-  font-size: 3rem;
-  color: #ccc;
-  margin: 0 auto;
-  text-align: center;
-}
-.card-area{
-  margin-top: .5rem;
-}
+  }
+  .ivu-card-body {
+      padding: 10px !important;
+  }
+  .name-area{
+    padding: 20px;
+    font-size: 3rem;
+    color: #888;
+  }
+  .user-detail{
+    font-size: 2rem;
+  }
+  .mark{
+    font-size: 3rem;
+    color: #ccc;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .card-area{
+    margin-top: .5rem;
+  }
 </style>
