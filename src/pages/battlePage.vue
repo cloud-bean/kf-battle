@@ -34,12 +34,28 @@
       </Col>
       <Col span="6">
         <div class="control-panel">
-          <div class="control-button flash" @click="toggleRandomEventModal">
+          <div class="control-button" @click="toggleRandomEventModal" >
             <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:10rem;">
             <div style="font-size:2rem;">
-              传令信使
+              <!-- <Badge count="1"> -->
+                传令信使
+              <!-- </Badge> -->
             </div>
           </div>
+          <!-- <div class="control-button" v-if="coldTime>0">
+            <div class="team-head">
+              <div class="mask">
+                <div style="margin-top:1rem;">
+                  {{coldTime}}
+
+                </div>
+              </div>
+              <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:10rem;">
+            </div>
+            <div style="font-size:2rem;">
+                传令信使
+            </div>
+          </div> -->
           <div class="control-button" @click="opRandomNumberModal = true">
             <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:10rem;">
             <div style="font-size:2rem;">
@@ -164,6 +180,7 @@
 }
 .control-button{
   margin-top: 20px;
+
 }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s
@@ -199,6 +216,28 @@
   top:30rem;
   font-size: 2rem;
 }
+.mask {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .7);
+    position: absolute;
+    magin:auto;
+    top:0;
+   left: 5rem;
+   right: 0;
+   bottom: 0;
+   color: #ccc;
+   font-size: 2rem;
+
+    // left:0;
+    /*border: 1px solid #ccc;*/
+    /*box-shadow: 0 0 5px #888;*/
+  }
+  .team-head{
+    position: relative;
+    text-align: center;
+  }
 </style>
 <script>
   import GroupBar from '../components/battlePage/groupBar';
@@ -223,6 +262,7 @@
         durationTime: new Date(0, 0),
         now: '',
         startTime: new Date(),
+        coldTime: '600',
         selectedIndex: 0,
         randomTimer: null,
         selectedMember: null,
@@ -287,7 +327,6 @@
       },
       addScore(payload) {
         this.showMembers = false;
-
         this.addScoreToMember(payload);
         const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
         this.addFeed({
