@@ -157,7 +157,9 @@
     }
   }
   .selected {
-    border: 5px solid red !important;
+    background-color: #ff6d10 !important;
+    color: white !important;
+    border: 1px solid gold !important;
   }
 
   .random-box {
@@ -391,16 +393,15 @@
         }
 
         if (this.showRandomEventModal) {
-          const finalSelectedIndex = parseInt(Math.random() * this.randomEvents.length, 10);
+          const len = this.randomEvents.length;
           this.randomTimer = setInterval(() => {
-            this.selectedIndex = (this.selectedIndex + 1) % this.randomEvents.length;
-          }, 100);
+            this.selectedIndex = parseInt(Math.random() * len, 10);
+          }, 120);
           setTimeout(() => {
-            this.selectedIndex = finalSelectedIndex;
             if (this.randomTimer) {
               clearInterval(this.randomTimer);
             }
-          }, 3 * 1000);
+          }, 2400);
         }
       },
       playMusic(index) {
