@@ -5,7 +5,7 @@
       <div @click="setAllMembers(false)" class="i-button">全不选</div>
     </Row>
     <Row class="panel" type="flex" justify="start">
-      <Col v-for="(member,index) in members" :key="member._id" span="3">
+      <Col v-for="(member,index) in members" :key="member._id" span="4">
       <div class="member-head" @click="toggleSelected(index)">
         <img :src="member.profileImageURL" v-bind:class="[(isActive==index) ? 'active' : '', 'pic']">
         <div >
