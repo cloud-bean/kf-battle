@@ -33,7 +33,7 @@
     </Row>
 
     <div class="button-area">
-      <div @click="goCumstom" v-show="teamSelect.length < maxTeamCount" class="i-button">
+      <div @click="goCustom" v-show="teamSelect.length < maxTeamCount" class="i-button">
         <Icon type="ios-gear"></Icon>
         配置战队
       </div>
