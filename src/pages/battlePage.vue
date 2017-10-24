@@ -373,15 +373,27 @@
       goToWinnerPage() {
         const finalScore = this.getScoreData();
         this.setFinalScore(finalScore);
-        this.postBattleResult({
+        const groupIds = [this.groups[0]._id, this.groups[1]._id];
+        const memberIds = [];
+        this.members.forEach((member) => {
+          if (member._id) {
+            memberIds.push(member._id);
+          }
+        });
+
+        const battleResult = {
           feeds: this.feeds,
           groups: this.groups,
+          groupIds,
+          memberIds,
           finalScore,
           members: this.members,
           prizes: this.prizes || [],
           started: this.startTime,
           name: `battle @${this.startTime.toLocaleString()}`,
-        });
+        };
+
+        this.postBattleResult(battleResult);
         this.$router.push('/winPage');
       },
       toggleRandomEventModal() {
