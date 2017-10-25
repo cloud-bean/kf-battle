@@ -12,6 +12,7 @@ export default [
   'GOT_DATA',
   'POST_REQ',
   'POST_SUCC',
+  'ADD_MEMBER_PICKED_COUNT',
 ].reduce((acc, value) => {
   acc[value] = value;
   return acc;

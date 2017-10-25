@@ -13,6 +13,7 @@ export default {
     members.map(member => {
       member.get = 0;
       member.lost = 0;
+      member.pickedCount = 0;
       return member;
     });
     state.members = members;
@@ -73,5 +74,13 @@ export default {
   },
   [types.POST_SUCC](state) {
     state.loading = false;
+  },
+  [types.ADD_MEMBER_PICKED_COUNT](state, payload) {
+    const index = state.members.findIndex(item => {
+      console.log(item._id, payload.memberId);
+      return item._id === payload.memberId;
+    });
+    state.members[index].pickedCount += 1;
+    console.log(state.members[index]);
   },
 };

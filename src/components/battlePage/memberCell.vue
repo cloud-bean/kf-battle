@@ -46,22 +46,32 @@
         <Tag type="border" color="blue">等级 {{member.option.level}}</Tag>
       </span> -->
       <Row type="flex" justify="space-around">
-        <Col span="12">
-          <div style="font-size: .8em; vertical-align: middle; padding: 10px;">
-            <Badge className="green-badge" :count="member.cards.length"><span>卡牌</span></Badge>
-            <!--<p>卡牌 x <span style="color: #ff7e34">{{ member.cards.length }}</span></p>-->
-            <!--<span>卡牌</span>-->
-            <!--<Badge count="20" className="demo-badge-alone"></Badge>-->
-            <!--<sup class="ivu-badge-count" style="background: blue;"></sup>-->
-          </div>
-        </Col>
-        <Col span="12">
+        <Col span="24">
           <div class="mark">
-            <span style="color:#06810a">{{member.get-Math.abs(member.lost) || 0}}</span>
+            <span :class="member.get + member.lost < 0 ? 'color-gray' : 'color-green'">{{member.get-Math.abs(member.lost) || 0}}</span>
             <!-- <span style="">/</span> -->
             <!-- <span style="color:#ff8d92">{{Math.abs(member.lost) || 0}}</span> -->
           </div>
         </Col>
+        <!--<Col span="12">-->
+          <!--&lt;!&ndash;<div style="font-size: .8em; vertical-align: middle; padding: 10px;">&ndash;&gt;-->
+            <!--<Badge className="green-badge" :count="member.cards.length"><span>卡牌</span></Badge>-->
+            <!--&lt;!&ndash;&lt;!&ndash;<p>卡牌 x <span style="color: #ff7e34">{{ member.cards.length }}</span></p>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<span>卡牌</span>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<Badge count="20" className="demo-badge-alone"></Badge>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<sup class="ivu-badge-count" style="background: blue;"></sup>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--<span>得分</span>-->
+        <!--</Col>-->
+        <!--<Col span="12">-->
+          <!--<div class="mark">-->
+            <!--<span>得分</span>-->
+            <!--<span style="color:#06810a">{{member.get-Math.abs(member.lost) || 0}}</span>-->
+            <!--&lt;!&ndash; <span style="">/</span> &ndash;&gt;-->
+            <!--&lt;!&ndash; <span style="color:#ff8d92">{{Math.abs(member.lost) || 0}}</span> &ndash;&gt;-->
+          <!--</div>-->
+        <!--</Col>-->
+
 
       </Row>
       <!-- <Row class="card-area">
@@ -139,5 +149,13 @@
   }
   .card-area{
     margin-top: .5rem;
+  }
+
+  .color-gray {
+    color: gray;
+  }
+
+  .color-green {
+    color: #19be6b;
   }
 </style>

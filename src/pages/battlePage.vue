@@ -82,7 +82,9 @@
         width="80%"
         class-name="vertical-center-modal">
         <p slot="footer"></p>
-        <random-member-panel :members="members" :show="showPanel"></random-member-panel>
+        <random-member-panel :members="members" :show="showPanel"
+                             :addMemberPickedCount="addMemberPickedCountMethod"
+        ></random-member-panel>
       </Modal>
 
       <!-- <timeline :feeds="feeds" :startTime="startTime"></timeline> -->
@@ -107,7 +109,8 @@
                        :member="selectedMember"
                        :addScoreToMember="addScore"
                        :playMusic="playMusic"
-                       :removeCard="removeCard"></member-board>
+                       :removeCard="removeCard"
+      ></member-board>
     </Modal>
 
     <Modal
@@ -303,6 +306,7 @@
         'setFinalScore',
         'fetchRandomEvents',
         'postBattleResult',
+        'addMemberPickedCount',
       ]),
       ...mapActions('timeline', [
         'addFeed',
@@ -366,6 +370,9 @@
           this.showMembers = true;
           return 0;
         }, 100);
+      },
+      addMemberPickedCountMethod(memberId) {
+        this.addMemberPickedCount({ memberId });
       },
       getTime() {
         this.now = moment().format('HH:mm:ss');

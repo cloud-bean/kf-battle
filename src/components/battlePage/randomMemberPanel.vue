@@ -11,6 +11,7 @@
         <div >
           <div><Icon type="record" v-bind:class="[member.isSelected ? 'online' : 'offline']"/>{{member.displayName}}</div>
         </div>
+        <span>{{ member.pickedCount }}</span>
       </div>
       </Col>
     </Row>
@@ -23,11 +24,12 @@
 
 <script>
   export default {
-    props: ['members'],
+    props: ['members', 'addMemberPickedCount'],
     data() {
       return {
         opModal: false,
         isActive: 0,
+        activedMemberIndex: 0,
         intervalId: 0,
         startButton: true,
       };
@@ -49,14 +51,14 @@
 
         const max = selectedMembers.length;
         this.intervalId = setInterval(() => {
-          const num = parseInt(Math.random() * max, 10);
-          this.isActive = selectedMembersIndexArray[num];
+          this.isActive = selectedMembersIndexArray[parseInt(Math.random() * max, 10)];
         }, 50);
         setTimeout(() => {
           if (this.intervalId) {
             clearInterval(this.intervalId);
           }
           this.startButton = true;
+          this.addMemberPickedCount(this.members[this.isActive]._id);
         }, 3 * 1000);
         // this.stopButton = false;
       },

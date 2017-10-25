@@ -28,9 +28,9 @@
           <Col span="24">
           <!-- <p>个人得分</p> -->
           <div class="mark">
-            <span style="color:#a5ffde">{{member.get}}</span>
+            <span style="color:#19be6b">{{member.get}}</span>
             <span>/</span>
-            <span style="color:#ffa5a5">{{Math.abs(member.lost)}}</span>
+            <span style="color:#808080">{{Math.abs(member.lost)}}</span>
           </div>
           </Col>
         </Row>
@@ -39,44 +39,44 @@
         <Row>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <!-- <h1>得 分</h1> -->
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '答题', '+1分, 答题正确')" >+1分, 答题正确</div>
+            <div class="i-button btn-get-score" @click="addScore(1, '答题', '+1分, 答题正确')" >+1分, 答题正确</div>
             <br>
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '答题', '+2分, 受到表扬')" >+2分, 受到表扬</div>
+            <div class="i-button btn-get-score" @click="addScore(2, '答题', '+2分, 受到表扬')" >+2分, 受到表扬</div>
             <br>
-            <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '答题', '+3分, 听写满分')" >+3分, 听写满分</div>
+            <div class="i-button btn-get-score" @click="addScore(3, '答题', '+3分, 听写满分')" >+3分, 听写满分</div>
             <br>
             <!-- <h1>随机事件</h1> -->
             <Row>
               <Col span="8">
-                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(1, '随机事件', '+1分, 随机事件')">+1分</div>
+                <div class="i-button btn-get-score" @click="addScore(1, '随机事件', '+1分, 随机事件')">+1分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(2, '随机事件', '+2分, 随机事件')">+2分</div>
+                <div class="i-button btn-get-score" @click="addScore(2, '随机事件', '+2分, 随机事件')">+2分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#19be6b;width:auto;" @click="addScore(3, '随机事件', '+3分, 随机事件')">+3分</div>
+                <div class="i-button btn-get-score" @click="addScore(3, '随机事件', '+3分, 随机事件')">+3分</div>
               </Col>
             </Row>
           </Col>
           <Col span="12" style="margin:0 auto; padding:10px;">
             <!-- <h1>丢 分</h1> -->
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '答题', '-1分, 上课迟到')" >-1分, 上课迟到</div>
+            <div class="i-button btn-lose-score" @click="addScore(-1, '答题', '-1分, 上课迟到')" >-1分, 上课迟到</div>
             <br>
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '答题', '-2分, 违规答题')" >-2分, 违规答题</div>
+            <div class="i-button btn-lose-score" @click="addScore(-2, '答题', '-2分, 违规答题')" >-2分, 违规答题</div>
             <br>
-            <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '答题', '-3分, 闲聊走神')" >-3分, 闲聊走神</div>
+            <div class="i-button btn-lose-score" @click="addScore(-3, '答题', '-3分, 闲聊走神')" >-3分, 闲聊走神</div>
             <br>
 
             <!-- <h1>随机事件</h1> -->
             <Row>
               <Col span="8">
-                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-1, '随机事件', '-1分, 随机事件')">-1分</div>
+                <div class="i-button btn-lose-score" @click="addScore(-1, '随机事件', '-1分, 随机事件')">-1分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-2, '随机事件', '-2分, 随机事件')">-2分</div>
+                <div class="i-button btn-lose-score" @click="addScore(-2, '随机事件', '-2分, 随机事件')">-2分</div>
               </Col>
               <Col span="8">
-                <div class="i-button" style="background-color:#ed3f14;width:auto;" @click="addScore(-3, '随机事件', '-3分, 随机事件')">-3分</div>
+                <div class="i-button btn-lose-score" @click="addScore(-3, '随机事件', '-3分, 随机事件')">-3分</div>
               </Col>
             </Row>
           </Col>
@@ -169,5 +169,15 @@
   }
   .left{
     padding: 1rem;
+  }
+
+  .btn-get-score {
+    background-color: #19be6b;
+    width:auto;
+  }
+
+  .btn-lose-score {
+    background-color: gray;
+    width:auto;
   }
 </style>
