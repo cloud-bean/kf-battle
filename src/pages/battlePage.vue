@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="showAll">
     <Row class="battle-top" type="flex"  align="middle">
       <Col span="9">
       <group-bar position="left" :data="groupOne"></group-bar>
@@ -135,8 +135,8 @@
 
     <audio ref="audioUseCard" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
     <audio ref="audioGetScore" src="/static/audio/Events/get.m4a" preload="auto" style="display: none;"></audio>
-    <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>
-
+    <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>>
+    <audio ref="audioLoadBattle" src="/static/audio/Events/loadBattle.m4a" preload="auto" style="display: none;"></audio  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>>
   </div>
 </template>
 <style scoped lang="less">
@@ -277,6 +277,7 @@
         showRandomEventModal: false,
         lock: false,
         inputKey: '',
+        showAll: false,
       };
     },
     computed: {
@@ -434,6 +435,9 @@
           case 2:
             this.$refs.audioLostScore.play();
             break;
+          case 3:
+            this.$refs.audioLoadBattle.play();
+            break;
           default:
             this.$refs.audioUseCard.play();
             break;
@@ -455,9 +459,13 @@
       RandomMemberPanel,
     },
     mounted() {
-      let timer;
+      const that = this;
+      this.playMusic(3);
+      setTimeout(() => {
+        that.showAll = true;
+      }, 2500);
 
-      timer = setInterval(() => {
+      let timer = setInterval(() => {
         let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
         currentPosition -= 10;
         if (currentPosition > 0) {

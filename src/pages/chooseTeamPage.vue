@@ -1,49 +1,49 @@
 <template>
-  <!-- <div class=""> -->
+    <div class="container" >
+      <div class="title-area">
+        选择对战双方
+        <div class="">
+          <!-- <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
+            配置战队信息 -->
 
-  <div class="container">
-    <div class="title-area">
-      选择对战双方
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <Alert type="info" show-icon style="width:30%;margin:10px auto; size: 2rem;">
+        <span slot="desc" style="font-size:16px;">
+            请选择两支战队
+        </span>
+      </Alert>
+
       <div class="">
-        <!-- <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
-          配置战队信息 -->
+        <div @click="goCustom" v-show="teamSelect.length < maxTeamCount" class="i-button">
+          <Icon type="ios-gear"></Icon>
+          配置战队
+        </div>
 
-        <!-- </div> -->
-      </div>
-    </div>
-
-    <Row :gutter="16" class="main-area">
-      <Col span="4" v-for="(item, index) in teamList"  :key="index" class="team-item">
-      <team-item :teamData="item" :selected="!!item.selected"  :key="index" @click.native="handleSelect(item)"></team-item>
-      </Col>
-    </Row>
-
-    <Alert type="info" show-icon v-if="teamSelect.length < maxTeamCount" style="width:30%;margin:0 auto; size: 2rem;">
-      <span slot="desc" style="font-size:16px;">
-          请选择两支战队
-      </span>
-    </Alert>
-
-    <Row v-if="teamSelect.length == maxTeamCount" style="font-size: 48px; margin: 20px auto; width: 50%; border: 1px solid gray; padding: 20px;">
-      <Col span="8">{{ teamSelect[0].name }}</Col>
-      <Col span="8">
-        <Icon type="arrow-swap" size="large" color="#5cadff" @click.native="switchSelected"></Icon>
-      </Col>
-      <Col span="8">{{ teamSelect[1].name }}</Col>
-    </Row>
-
-    <div class="button-area">
-      <div @click="goCustom" v-show="teamSelect.length < maxTeamCount" class="i-button">
-        <Icon type="ios-gear"></Icon>
-        配置战队
+        <div @click="initNewGame" v-show="teamSelect.length == maxTeamCount" class="i-button">
+          确认选择
+          <Icon type="chevron-right"></Icon>
+        </div>
       </div>
 
-      <div @click="initNewGame" v-show="teamSelect.length == maxTeamCount" class="i-button">
-        确认选择
-        <Icon type="chevron-right"></Icon>
-      </div>
-    </div>
+        <Row v-if="teamSelect.length == maxTeamCount" style="font-size: 48px; margin: 20px auto; width: 50%; border: 1px solid gray; padding: 20px;">
+        <Col span="8">{{ teamSelect[0].name }}</Col>
+        <Col span="8">
+          <Icon type="arrow-swap" size="large" color="#5cadff" @click.native="switchSelected"></Icon>
+        </Col>
+        <Col span="8">{{ teamSelect[1].name }}</Col>
+      </Row>
+
+      <Row :gutter="16" class="main-area">
+        <Col span="4" v-for="(item, index) in teamList"  :key="index" class="team-item">
+        <team-item :teamData="item" :selected="!!item.selected"  :key="index" @click.native="handleSelect(item)"></team-item>
+        </Col>
+      </Row>
+
   </div>
+  
 
 <!-- </div> -->
 
