@@ -35,7 +35,7 @@
       <Col span="6">
         <div class="control-panel">
           <div class="control-button" @click="toggleRandomEventModal" >
-            <img src="static/img/battle_btn/randomevents.jpg" alt="" style="width:10rem;">
+            <img src="static/img/vay2.png" alt="" style="width:10rem;">
             <div style="font-size:2rem;">
               <!-- <Badge count="1"> -->
                 传令信使
@@ -57,7 +57,7 @@
             </div>
           </div> -->
           <div class="control-button" @click="opRandomNumberModal = true">
-            <img src="static/img/battle_btn/wheelofdestiny.jpg" alt="" style="width:10rem;">
+            <img src="static/img/wheel_cut.png" alt="" style="width:10rem;">
             <div style="font-size:2rem;">
               命运之轮
             </div>
@@ -83,8 +83,8 @@
         class-name="vertical-center-modal">
         <p slot="footer"></p>
         <random-member-panel :members="members" :show="showPanel"
-                             :addMemberPickedCount="addMemberPickedCountMethod"
-        ></random-member-panel>
+                             :addMemberPickedCount="addMemberPickedCountMethod">
+        </random-member-panel>
       </Modal>
 
       <!-- <timeline :feeds="feeds" :startTime="startTime"></timeline> -->
@@ -109,28 +109,16 @@
                        :member="selectedMember"
                        :addScoreToMember="addScore"
                        :playMusic="playMusic"
-                       :removeCard="removeCard"
-      ></member-board>
+                       :removeCard="removeCard">
+      </member-board>
     </Modal>
 
     <Modal
       v-model="showRandomEventModal"
       width="80%"
       class-name="vertical-center-modal">
-      <p slot="header" style="text-align: center;">
-        随机事件
-      </p>
-      <div class="panel">
-          <Row type="flex" >
-            <Col span="4" v-for="event,index in randomEvents" :key="event._id" class="random-box" :class="selectedIndex == index ? 'selected': ''">
-              <img v-if="event.file" style=" height: 8rem;" :src="event.file.URL">
-              <p style="font-size: 1.5rem; font-weight: 600;">{{ event.name }}</p>
-              <p style="font-size: 1rem;">{{ event.description }}</p>
-            </Col>
-          </Row>
-      </div>
-      <div slot="footer">
-      </div>
+      <RandomEventPanel :randomEvents="randomEvents"></RandomEventPanel>
+      <p slot="footer"></p>
     </Modal>
 
     <audio ref="audioUseCard" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
@@ -146,10 +134,7 @@
     /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
   }
 
-  .panel{
-    padding: .5rem;
-    // display: inline-block;
-  }
+
   .vertical-center-modal {
     display: flex;
     align-items: center;
@@ -159,68 +144,55 @@
       top: 0;
     }
   }
-  .selected {
-    background-color: #ff6d10 !important;
-    color: white !important;
-    border: 1px solid gold !important;
-  }
 
-  .random-box {
-    text-align: center;
-    background-color: aliceblue;
-    border-radius: 5px;
-    margin: 1rem;
-    padding: 1rem;
-    border: 1px solid #888;
+  .control-panel{
+    background: rgba(255, 255, 255, 1);
+    margin: 10px 50px;
+    height: 35rem;
+    padding: 20px;
+    border-radius: 10px;
+    border: 5px solid #ccc;
+    // box-shadow: 0 0 0 5px #888;
   }
-.control-panel{
-  background: rgba(255, 255, 255, 1);
-  margin: 10px 50px;
-  height: 35rem;
-  padding: 20px;
-  border-radius: 10px;
-  border: 5px solid #ccc;
-  // box-shadow: 0 0 0 5px #888;
-}
-.control-button{
-  margin-top: 20px;
+  .control-button{
+    margin-top: 20px;
 
-}
+  }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0
   }
-.spacer{
-  padding: 5px;
-  background-color: rgba(0, 0, 0, .7);
-  color: #fff;
-}
-.lock{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255,255,255,.7);
-  background-size: cover;
-  z-index: 999;
-}
-.key{
-  background-color: rgba(0,0,0,.9);
-  height: 5rem;
-  width: 20rem;
-  font-size: 3rem;
-  color: #fff;
-  text-align: center;
-}
-.key-area{
-  position: relative;
-  top:30rem;
-  font-size: 2rem;
-}
-.mask {
+  .spacer{
+    padding: 5px;
+    background-color: rgba(0, 0, 0, .7);
+    color: #fff;
+  }
+  .lock{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,.7);
+    background-size: cover;
+    z-index: 999;
+  }
+  .key{
+    background-color: rgba(0,0,0,.9);
+    height: 5rem;
+    width: 20rem;
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+  }
+  .key-area{
+    position: relative;
+    top:30rem;
+    font-size: 2rem;
+  }
+  .mask {
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
@@ -228,11 +200,11 @@
     position: absolute;
     magin:auto;
     top:0;
-   left: 5rem;
-   right: 0;
-   bottom: 0;
-   color: #ccc;
-   font-size: 2rem;
+    left: 5rem;
+    right: 0;
+    bottom: 0;
+    color: #ccc;
+    font-size: 2rem;
 
     // left:0;
     /*border: 1px solid #ccc;*/
@@ -248,7 +220,8 @@
   import ScoreVS from '../components/battlePage/scoreVS';
   import MemberCell from '../components/battlePage/memberCell';
   import MemberBoard from '../components/battlePage/memberBoard';
-  import RandomMemberPanel from '../components/battlePage/randomMemberPanel.vue';
+  import RandomMemberPanel from '../components/battlePage/randomMemberPanel';
+  import RandomEventPanel from '../components/battlePage/randomEventPanel';
   const moment = require('moment');
   moment.locale('zh-cn');
   import { mapGetters, mapActions } from 'vuex';
@@ -457,6 +430,7 @@
       'score-vs': ScoreVS,
       'member-board': MemberBoard,
       RandomMemberPanel,
+      RandomEventPanel,
     },
     mounted() {
       const that = this;

@@ -4,7 +4,7 @@
       <Col span="8" class="left">
         <Row class="name-area"  type="flex" align="middle">
           <Col span="8">
-            <img :src="member.profileImageURL" >
+            <img class="head" :src="member.profileImageURL" >
           </Col>
           <Col span="16">
             <Row>
@@ -154,6 +154,12 @@
     width:8rem;
   }
 
+  .head {
+    height:8rem;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    width:8rem;
+  }
   .name{
     font-size: 3rem;
   }

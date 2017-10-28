@@ -101,6 +101,7 @@
 
   .pic {
     width: 10rem;
+    height: 10rem;
     border: 3px solid #ccc;
     // filter: grayscale(100%);
   }
