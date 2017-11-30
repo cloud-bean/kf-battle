@@ -8,6 +8,12 @@ export default {
       state[key] = initial[key];
     });
   },
+  [types.ADD_MEMBER](state, payload) {
+    const newState = state;
+    console.log(payload.groupIndex);
+    console.log(newState.battleTeams);
+    newState.battleTeams[payload.groupIndex].students.push(payload.member);
+  },
   [types.SET_TEAMS](state, payload) {
     const newState = state;
     newState.teamList = payload.teams;

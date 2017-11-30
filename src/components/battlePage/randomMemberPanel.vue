@@ -5,38 +5,41 @@
       <div @click="setAllMembers(false)" class="i-button">全不选</div>
     </Row>
     <Row class="panel" type="flex" justify="start">
-      <Col v-for="(member,index) in members" :key="member._id" span="3">
+      <Col v-for="(member,index) in members" :key="member._id" span="4">
       <div class="member-head" @click="toggleSelected(index)">
         <img :src="member.profileImageURL" v-bind:class="[(isActive==index) ? 'active' : '', 'pic']">
         <div >
           <div><Icon type="record" v-bind:class="[member.isSelected ? 'online' : 'offline']"/>{{member.displayName}}</div>
         </div>
+        <span>{{ member.pickedCount }}</span>
       </div>
       </Col>
     </Row>
     <Row type="flex" justify="center" align-items="center">
-          <div class="i-button" @click="randomMember" size="large" v-if="!startButton">开始</div>
-          <div  class="i-button" @click="stop" size="large"  v-if="!stopButton">停止</div>
+          <div class="i-button" @click="randomMember"  v-if="startButton">命运之轮</div>
+          <div  class="i-button"   v-if="!startButton" style="background-color:#eee">命运之轮</div>
     </Row>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['members'],
+    props: ['members', 'addMemberPickedCount'],
     data() {
       return {
         opModal: false,
         isActive: 0,
+        activedMemberIndex: 0,
         intervalId: 0,
-        startButton: false,
-        stopButton: true,
+        startButton: true,
       };
     },
     computed: {
     },
     methods: {
       randomMember() {
+        this.startButton = false;
+
         const selectedMembers = [];
         const selectedMembersIndexArray = [];
         this.members.forEach((item, index) => {
@@ -48,17 +51,22 @@
 
         const max = selectedMembers.length;
         this.intervalId = setInterval(() => {
-          const num = parseInt(Math.random() * max, 10);
-          this.isActive = selectedMembersIndexArray[num];
-        }, 100);
-        this.startButton = true;
-        this.stopButton = false;
+          this.isActive = selectedMembersIndexArray[parseInt(Math.random() * max, 10)];
+        }, 50);
+        setTimeout(() => {
+          if (this.intervalId) {
+            clearInterval(this.intervalId);
+          }
+          this.startButton = true;
+          this.addMemberPickedCount(this.members[this.isActive]._id);
+        }, 1500);
+        // this.stopButton = false;
       },
-      stop() {
-        clearInterval(this.intervalId);
-        this.startButton = false;
-        this.stopButton = true;
-      },
+      // stop() {
+      //   clearInterval(this.intervalId);
+      //   this.startButton = false;
+      //   this.stopButton = true;
+      // },
       toggleSelected(index) {
         const member = this.members[index];
         member.isSelected = !member.isSelected;
@@ -93,12 +101,14 @@
 
   .pic {
     width: 10rem;
-    border: 1px solid #ccc;
-
+    height: 10rem;
+    border: 3px solid #ccc;
+    // filter: grayscale(100%);
   }
 
   .active {
-    border: 5px solid #19be6b;
+    border: 6px solid #ed3f14;
+    // filter: grayscale(0%);
   }
 
   .online {

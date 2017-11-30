@@ -42,7 +42,7 @@ export default {
   color: #2c3e50;
   margin: 0;
   font-size: 20pt;
-  overflow:hidden;
+  /*overflow:hidden;*/
   height: 100%;
   width: 100%;
   position: absolute;
@@ -100,7 +100,7 @@ export default {
   .i-button{
     padding: 1rem;
     background-color: #2d8cf0;
-    max-width: 40rem;
+    max-width: 60rem;
     min-width: 10rem;
     width:15rem;
     height:5rem;

@@ -5,6 +5,9 @@ export default {
   resetState({ commit }) {
     commit(types.resetState);
   },
+  addTempMember({ commit }, payload) {
+    commit(types.ADD_MEMBER, payload);
+  },
   async getAllTeams({ commit }) {
     commit('FETCH_DATA');
     const res = await api.getAllTeams();

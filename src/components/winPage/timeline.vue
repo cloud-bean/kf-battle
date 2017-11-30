@@ -34,13 +34,13 @@
 </script>
 <style scoped>
   .time {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
   }
 
   .content {
     padding-left: 5px;
-    font-size: 12px;
+    font-size: 24px;
   }
 
   .timeline-box {

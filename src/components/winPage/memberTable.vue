@@ -9,7 +9,7 @@
       <th>贡献</th>
     </tr>
     <tr v-for="member in members" :class="member.isMVP ? 'winner': ''">
-      <td v-if="member.isMVP"><Badge count="MVP"><img  style="width: 4rem;"  :src="member.profileImageURL"></Badge></td>
+      <td v-if="member.isMVP"><Badge :count="honorName"><img  style="width: 4rem;"  :src="member.profileImageURL"></Badge></td>
       <td v-if="!member.isMVP"><img  style="width: 4rem;"  :src="member.profileImageURL"></td>
       <td><span>{{member.displayName}}</span></td>
       <td><span>{{member.get}}</span></td>
@@ -25,7 +25,7 @@
 
 <script>
   export default {
-    props: ['members', 'groupScore'],
+    props: ['members', 'groupScore', 'honorName'],
     data() {
       return {
 

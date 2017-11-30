@@ -39,4 +39,8 @@ export default {
     console.log('post result', res.data.data);
     commit(types.POST_SUCC);
   },
+  addMemberPickedCount({ commit }, payload) {
+    commit(types.ADD_MEMBER_PICKED_COUNT, payload);
+    console.log(payload);
+  },
 };
