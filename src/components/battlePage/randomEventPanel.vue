@@ -71,7 +71,7 @@
             clearInterval(this.randomTimer);
           }
           this.startButton = true;
-        }, 2000);
+        }, 1500);
       },
       setAllBoxs(isSelected) {
         this.randomEvents.map((event) => {

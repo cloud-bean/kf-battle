@@ -59,7 +59,7 @@
           }
           this.startButton = true;
           this.addMemberPickedCount(this.members[this.isActive]._id);
-        }, 3 * 1000);
+        }, 1500);
         // this.stopButton = false;
       },
       // stop() {
