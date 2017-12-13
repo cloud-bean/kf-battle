@@ -68,6 +68,7 @@
         <!-- <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button> -->
         <div class="i-button" @click="goToWinnerPage" style="background-color:#5cadff">结束游戏</div>
+        <Button @click="goToWinnerPage2">结束游戏2</Button>
         <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
         <div class="lock" v-if="lock">
           <div class="key-area">
@@ -376,6 +377,49 @@
 
         this.postBattleResult(battleResult);
         this.$router.push('/winPage');
+      },
+      goToWinnerPage2() {
+        this.$Modal.confirm({
+          title: '~打扫战场，上报天庭~',
+          content: '<p>是否将战况报告云上？</p>',
+          loading: true,
+          onOk: () => {
+            setTimeout(() => {
+              const finalScore = this.getScoreData();
+              this.setFinalScore(finalScore);
+              const groupIds = [this.groups[0]._id, this.groups[1]._id];
+              const memberIds = [];
+              this.members.forEach((member) => {
+                if (member._id) {
+                  memberIds.push(member._id);
+                }
+              });
+
+              const battleResult = {
+                feeds: this.feeds,
+                groups: this.groups,
+                groupIds,
+                memberIds,
+                finalScore,
+                members: this.members,
+                prizes: this.prizes || [],
+                started: this.startTime,
+                name: `battle @${this.startTime.toLocaleString()}`,
+              };
+
+              this.postBattleResult(battleResult);
+
+
+              this.$Modal.remove();
+              this.$Message.info('清扫完毕，上报完毕');
+              this.$router.push('/winPage');
+            }, 2000);
+          },
+          onCancel: () => {
+            this.$Message.info('清扫完毕');
+            this.$router.push('/winPage');
+          },
+        });
       },
       toggleRandomEventModal() {
         this.showRandomEventModal = !this.showRandomEventModal;

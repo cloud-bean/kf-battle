@@ -7,21 +7,17 @@
             <img class="head" :src="member.profileImageURL" >
           </Col>
           <Col span="16">
-            <Row>
+            <p>
               <span class="name">{{ member.displayName }}</span>
-            </Row>
-            <Row class="user-detail">
-              <Col span="10">
-              经验 : {{ member.option.exp }}
-              </Col>
-              <Col span="4">
-              -
-              </Col>
-              <Col span="10">
-              悦币 : {{ member.option.goldToken }}
-              </Col>
-            </Row>
+            </p>
 
+            <div>
+              <Tag checkable color="yellow">悦币: {{ member.option.goldToken }}</Tag>
+              <Tag checkable color="blue">等级: {{ exp2level(member.option.exp) }}</Tag>
+              <Progress :percent=" percent(member.option.exp) ">
+                <span>{{ member.option.exp + '/' + levelExp[exp2level(member.option.exp)] }}</span>
+              </Progress>
+            </div>
         </Col>
       </Row>
         <Row type="flex"  align="middle">
@@ -31,6 +27,7 @@
             <span style="color:#19be6b">{{member.get}}</span>
             <span>/</span>
             <span style="color:#808080">{{Math.abs(member.lost)}}</span>
+
           </div>
           </Col>
         </Row>
@@ -105,8 +102,18 @@
 </template>
 
 <script>
+
   export default {
+    data() {
+      return {
+        levelExp: [0, 50, 100, 200, 350, 550, 800, 1100, 1450, 1850, 2300, 2800,
+          3350, 3950, 4600, 5300, 6050, 6850, 7700, 8600, 9550],
+      };
+    },
     props: ['member', 'addScoreToMember', 'removeCard', 'playMusic'],
+    // computed: {
+    //   level: exp2level(this.member.option.exp),
+    // },
     methods: {
       removeIt(cardIndex) {
         this.removeCard({
@@ -125,6 +132,29 @@
         }
         this.addScoreToMember({ member: this.member, score: scoreNumber, type, desc });
         this.$forceUpdate();
+      },
+      exp2level(experience) {
+        const levelExp = this.levelExp;
+        let maxLevel = 1;
+        for (; maxLevel < levelExp.length; maxLevel++) {
+          if (experience < levelExp[maxLevel]) {
+            break;
+          }
+        }
+        return maxLevel;
+      },
+      percent(exp) {
+        let maxLevel = 1;
+        for (; maxLevel < this.levelExp.length; maxLevel++) {
+          if (exp < this.levelExp[maxLevel]) {
+            break;
+          }
+        }
+
+        const upNum = exp - this.levelExp[maxLevel - 1];
+        const downNum = this.levelExp[maxLevel] - this.levelExp[maxLevel - 1];
+
+        return upNum * 100 / downNum;
       },
     },
   };
