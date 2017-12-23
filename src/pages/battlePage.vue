@@ -67,8 +67,7 @@
       <!-- <ButtonGroup size="large"> -->
         <!-- <Button icon="ios-stopwatch-outline" @click="opRandomNumberModal = true">点 名</Button>
         <Button icon="wand" @click="toggleRandomEventModal">随机事件</Button> -->
-        <div class="i-button" @click="goToWinnerPage" style="background-color:#5cadff">结束游戏</div>
-        <Button @click="goToWinnerPage2">结束游戏2</Button>
+        <div class="i-button" @click="goToWinnerPage2" style="background-color:#5cadff">结束游戏</div>
         <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
         <div class="lock" v-if="lock">
           <div class="key-area">
