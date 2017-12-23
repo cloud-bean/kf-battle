@@ -6,6 +6,10 @@
         重返战场
       </span>
     </Affix>
+
+    <div>
+      <Button @click="openSetThemeModal()">选择主题</Button>
+    </div>
     <Row>
       <Col span="8" v-for="team in teamList" :key="team._id" style="padding: 10px; height:660px;">
         <Card>
@@ -47,6 +51,21 @@
       <p slot="footer"></p>
       <img  v-for="avatar in memberAvatars" :key="avatar._id" :src="avatar.URL" @click="setAvatar(avatar.URL)" style="margin: 10px; max-width: 8rem; max-height: 8rem; background-color: gray;">
     </Modal>
+
+
+    <Modal
+      title="设置主题"
+      v-model="showSelectThemeModal"
+      width="80%"
+      class-name="vertical-center-modal">
+      <p slot="footer"></p>
+      <div v-for="theme in battleThemes" :key="theme._id" style="display: inline-block; text-align: center;">
+        <img :src="theme.image.URL"  style="margin: 10px; max-width: 8rem; max-height: 8rem;">
+        <p>{{ theme.name }}</p>
+        <Tag checkable color="yellow" v-if="selectedTheme && selectedTheme._id === theme._id">已选中的主题</Tag>
+        <Button v-else @click="setTheme(theme)">使用主题</Button>
+      </div>
+    </Modal>
     <!-- <div class="">
       <div @click="goIndex"  class="i-button" style="background-color:#19be6b;">
         返回首页
@@ -70,12 +89,16 @@
         selectedMember: null,
         showMemberAvatarsModal: false,
         showLogosModal: false,
+        showSelectThemeModal: false,
+        themeId: '',
       };
     },
     computed: {
       ...mapGetters([
         'teamLogos',
         'memberAvatars',
+        'battleThemes',
+        'selectedTheme',
       ]),
       ...mapGetters('team', [
         'teamList',
@@ -90,6 +113,8 @@
         'getAllTeamLogos',
         'getAllMemberAvatars',
         'setMemberAvatar',
+        'getAllBattleThemes',
+        'setSelectedTheme',
       ]),
       saveTeam(team) {
         this.updateTeam({
@@ -105,6 +130,9 @@
       openSetTeamLogoModal(team) {
         this.selectedTeam = team;
         this.showLogosModal = true;
+      },
+      openSetThemeModal() {
+        this.showSelectThemeModal = true;
       },
       openSetMemberAvatarModal(member) {
         this.selectedMember = member;
@@ -134,11 +162,16 @@
         this.showMemberAvatarsModal = false;
         this.selectedMember.profileImageURL = profileImageURL;
       },
+      setTheme(theme) {
+        this.setSelectedTheme(theme);
+        this.showSelectThemeModal = false;
+      },
     },
     created() {
       this.getAllTeams();
       this.getAllTeamLogos();
       this.getAllMemberAvatars();
+      this.getAllBattleThemes();
     },
   };
 </script>

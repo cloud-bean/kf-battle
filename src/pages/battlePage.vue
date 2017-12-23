@@ -83,6 +83,7 @@
         class-name="vertical-center-modal">
         <p slot="footer"></p>
         <random-member-panel :members="members" :show="showPanel"
+                             :playMusic="playMusic"
                              :addMemberPickedCount="addMemberPickedCountMethod">
         </random-member-panel>
       </Modal>
@@ -117,14 +118,16 @@
       v-model="showRandomEventModal"
       width="80%"
       class-name="vertical-center-modal">
-      <RandomEventPanel :randomEvents="randomEvents"></RandomEventPanel>
+      <RandomEventPanel :randomEvents="randomEvents" :playMusic="playMusic"></RandomEventPanel>
       <p slot="footer"></p>
     </Modal>
 
-    <audio ref="audioUseCard" src="/static/audio/Events/useCard.m4a" preload="auto" style="display: none;"></audio>
-    <audio ref="audioGetScore" src="/static/audio/Events/get.m4a" preload="auto" style="display: none;"></audio>
-    <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>>
-    <audio ref="audioLoadBattle" src="/static/audio/Events/loadBattle.m4a" preload="auto" style="display: none;"></audio  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>  <audio ref="audioLostScore" src="/static/audio/Events/lost.m4a" preload="auto" style="display: none;"></audio>>
+    <audio ref="audioUseCard" :src="selectedTheme.useCardSound ? selectedTheme.useCardSound.URL : '/static/audio/Events/useCard.m4a'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioGetScore" :src="selectedTheme.getScoreSound ? selectedTheme.getScoreSound.URL : '/static/audio/Events/get.m4a'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioRandomEvent" :src="selectedTheme.randomEventSound ? selectedTheme.randomEventSound.URL : '/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioRandomPeople" :src="selectedTheme.randomPeopleSound ? selectedTheme.randomPeopleSound.URL : '/static/audio/Events/randomPeople.wav'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioLostScore" :src="selectedTheme.lostScoreSound ? selectedTheme.lostScoreSound.URL : '/static/audio/Events/lost.m4a'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioLoadBattle" :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'" preload="auto" style="display: none;"></audio>
   </div>
 </template>
 <style scoped lang="less">
@@ -263,6 +266,9 @@
       ]),
       ...mapGetters('timeline', [
         'feeds',
+      ]),
+      ...mapGetters([
+        'selectedTheme',
       ]),
     },
     watch: {
@@ -453,6 +459,12 @@
             break;
           case 3:
             this.$refs.audioLoadBattle.play();
+            break;
+          case 4:
+            this.$refs.audioRandomEvent.play();
+            break;
+          case 5:
+            this.$refs.audioRandomPeople.play();
             break;
           default:
             this.$refs.audioUseCard.play();

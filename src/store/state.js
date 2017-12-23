@@ -3,6 +3,8 @@ export function initialState() {
     teamLogos: [],
     memberAvatars: [],
     loading: false,
+    battleThemes: [],
+    selectedTheme: null,
   };
 }
 

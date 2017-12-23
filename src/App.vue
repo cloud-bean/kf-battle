@@ -2,7 +2,7 @@
   <div id="app">
     <router-view></router-view>
 
-    <div class="bg">
+    <div class="bg" :style="{ 'background-image': bgImage }">
     </div>
     <transition name="fade">
     <div class="bg-enter" v-if="showLogo" @click="close">
@@ -12,19 +12,41 @@
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data() {
-    return {
-      showLogo: true,
-    };
-  },
-  methods: {
-    close() {
-      this.showLogo = false;
+
+  import { mapGetters, mapActions } from 'vuex';
+
+  export default {
+    name: 'app',
+    data() {
+      return {
+        showLogo: true,
+      };
     },
-  },
-};
+    methods: {
+      ...mapActions([
+        'getAllBattleThemes',
+      ]),
+      close() {
+        this.showLogo = false;
+      },
+    },
+    computed: {
+      ...mapGetters([
+        'selectedTheme',
+      ]),
+      bgImage() {
+        let url = 'url(/static/img/battle_bg/team_bg_1.jpg)';
+        if (this.selectedTheme && this.selectedTheme.mainBgImg && this.selectedTheme.mainBgImg.URL) {
+          url = `url(${this.selectedTheme.mainBgImg.URL})`;
+        }
+        return url;
+      },
+    },
+    created() {
+      // 获取主题包，设置为默认主题
+      this.getAllBattleThemes();
+    },
+  };
 </script>
 
 <style>

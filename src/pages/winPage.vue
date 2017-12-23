@@ -143,9 +143,9 @@
       </div>
     </Modal>
 
-    <audio ref="audioTeamWin" src="/static/audio/Events/wonTeam_4s.m4a" preload="auto" style="display: none;"></audio>
-    <audio ref="audioMVP1" src="/static/audio/Events/mvp1.m4a" preload="auto" style="display: none;"></audio>
-    <audio ref="audioMVP2" src="/static/audio/Events/mvp2.m4a" preload="auto" style="display: none;"></audio>
+    <audio ref="audioTeamWin" :src="selectedTheme.teamWinSound ? selectedTheme.teamWinSound.URL : '/static/audio/Events/wonTeam_4s.m4a'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioMVP1" :src="selectedTheme.mvp1Sound ? selectedTheme.mvp1Sound.URL : '/static/audio/Events/mvp1.m4a'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioMVP2" :src="selectedTheme.mvp2Sound ? selectedTheme.mvp2Sound.URL : '/static/audio/Events/mvp2.m4a'" preload="auto" style="display: none;"></audio>
 
   </div>
 
@@ -179,6 +179,9 @@
       ]),
       ...mapGetters('timeline', [
         'feeds',
+      ]),
+      ...mapGetters([
+        'selectedTheme',
       ]),
       winnerTeam() {
         return (this.finalScore.left >= this.finalScore.right ? this.groups[0] : this.groups[1]);

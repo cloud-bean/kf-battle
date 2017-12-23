@@ -21,3 +21,5 @@ export const setMemberAvatar = (id, data) => service.put(`/users/${id}/change/av
 export const getAllTeamLogos = () => service.get('/imageGallerys?name=logoForTeams');
 
 export const getAllMemberAvatars = () => service.get('/imageGallerys?name=avatarForMember');
+
+export const getAllBattleThemes = () => service.get('/battleThemes');

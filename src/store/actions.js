@@ -21,6 +21,17 @@ export default {
     }
     commit(types.GOT_DATA);
   },
+  async getAllBattleThemes({ commit }) {
+    commit(types.FETCH_DATA);
+    const res = await api.getAllBattleThemes();
+    if (res.data.data) {
+      commit(types.SET_BATTLE_THEMES, { battleThemes: res.data.data });
+    }
+    commit(types.GOT_DATA);
+  },
+  setSelectedTheme({ commit }, payload) {
+    commit(types.SET_SELECTED_THEME, { selectedTheme: payload });
+  },
   async setMemberAvatar({ commit }, payload) {
     commit(types.POST_REQ);
     const res = await api.setMemberAvatar(payload.id, payload.data);

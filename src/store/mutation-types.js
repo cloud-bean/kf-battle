@@ -6,7 +6,10 @@ export default [
   'POST_SUCC',
   'SET_TEAM_LOGOS',
   'SET_MEMBER_AVATARS',
+  'SET_BATTLE_THEMES',
+  'SET_SELECTED_THEME',
 ].reduce((acc, value) => {
   acc[value] = value;
   return acc;
 }, {});
+

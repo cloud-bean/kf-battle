@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    props: ['members', 'addMemberPickedCount'],
+    props: ['members', 'addMemberPickedCount', 'playMusic'],
     data() {
       return {
         opModal: false,
@@ -39,6 +39,7 @@
     methods: {
       randomMember() {
         this.startButton = false;
+        this.playMusic(5);
 
         const selectedMembers = [];
         const selectedMembersIndexArray = [];

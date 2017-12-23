@@ -28,7 +28,7 @@
 
 <script>
   export default {
-    props: ['randomEvents'],
+    props: ['randomEvents', 'playMusic'],
     data() {
       return {
         defaultRandomImgURL: '/static/img/random.gif',
@@ -45,6 +45,7 @@
         }
       },
       randomEvent() {
+        this.playMusic(4);
         this.startButton = false;
 
         const selectedEvents = [];
