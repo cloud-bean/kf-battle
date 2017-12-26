@@ -35,7 +35,7 @@
       <Col span="6">
         <div class="control-panel">
           <div class="control-button" @click="toggleRandomEventModal" >
-            <img src="static/img/vay2.png" alt="" style="width:10rem;">
+            <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem;">
             <div style="font-size:2rem;">
               <!-- <Badge count="1"> -->
                 传令信使
@@ -57,7 +57,7 @@
             </div>
           </div> -->
           <div class="control-button" @click="opRandomNumberModal = true">
-            <img src="static/img/wheel_cut.png" alt="" style="width:10rem;">
+            <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:10rem;">
             <div style="font-size:2rem;">
               命运之轮
             </div>
