@@ -17,7 +17,7 @@
 
       <!-- </Card> -->
 
-      <card-item v-if="!showMemberWithCards" :card="card" :key="index" v-for="card, index in cardPool"></card-item>
+      <card-item v-if="!showMemberWithCards" :card="card" :key="index" v-for="card, index in getRandomCards"></card-item>
 
       <Row v-if="showMemberWithCards">
         <Col span="12" >
@@ -125,6 +125,21 @@
       ...mapGetters('team', [
         'battleTeams',
       ]),
+      ...mapGetters([
+        'selectedTheme',
+      ]),
+      getRandomCards() {
+        let randomCards = [];
+        if (this.selectedTheme
+          && this.selectedTheme.randomCards
+          && this.selectedTheme.randomCards.length > 0) {
+          randomCards = this.selectedTheme.randomCards;
+        } else {
+          randomCards = this.cardPool;
+        }
+
+        return randomCards;
+      },
     },
     methods: {
       ...mapActions('card', [
