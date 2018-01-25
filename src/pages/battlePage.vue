@@ -39,14 +39,26 @@
           </Col>
           <Col span="6">
             <div class="control-panel">
+
+
               <div class="control-button" @click="toggleRandomEventModal" >
-                <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem;">
+                <i-Circle
+                  :size="130"
+                  :trail-width="4"
+                  :stroke-width="5"
+                  :percent="randomEventCirclePercent"
+                  stroke-linecap="square"
+                  stroke-color="#43a3fb">
+                  <div class="demo-Circle-custom">
+                    <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+                  </div>
+                </i-Circle>
                 <div style="font-size:2rem;">
                   传令信使
                 </div>
               </div>
               <div class="control-button" @click="opRandomNumberModal = true">
-                <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:10rem;">
+                <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:10rem; border-radius: 50%;">
                 <div style="font-size:2rem;">
                   命运之轮
                 </div>
@@ -101,7 +113,7 @@
       v-model="showRandomEventModal"
       width="80%"
       class-name="vertical-center-modal">
-      <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playMusic" v-if="showRandomEventModal"></RandomEventPanel>
+      <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playRandomEventMusic" v-if="showRandomEventModal"></RandomEventPanel>
       <p slot="footer"></p>
     </Modal>
 
@@ -112,6 +124,7 @@
     <audio ref="audioLostScore" :src="selectedTheme.lostScoreSound ? selectedTheme.lostScoreSound.URL : '/static/audio/Events/lost.m4a'" preload="auto" style="display: none;"></audio>
     <audio ref="audioLoadBattle" :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'" preload="auto" style="display: none;"></audio>
 
+    <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
   </div>
 </template>
 <style scoped lang="less">
@@ -239,6 +252,8 @@
         inputKey: '',
         showAll: false,
         isControlPanelExpand: true,
+        randomEventTimeSpan: 10 * 60 * 1000, // 10 minutes a round
+        randomEventTimeSplash: 0,
       };
     },
     computed: {
@@ -266,6 +281,9 @@
         }
 
         return randomEvents;
+      },
+      randomEventCirclePercent() {
+        return this.randomEventTimeSplash * 100 / this.randomEventTimeSpan;
       },
     },
     watch: {
@@ -356,6 +374,7 @@
       },
       getTime() {
         this.now = moment().format('HH:mm:ss');
+        this.randomEventTimeSplash += 1000;
       },
       goToWinnerPage() {
         const finalScore = this.getScoreData();
@@ -428,7 +447,7 @@
       },
       toggleRandomEventModal() {
         this.showRandomEventModal = !this.showRandomEventModal;
-
+        this.randomEventTimeSplash = 0;
         // if (this.randomTimer) {
         //   clearInterval(this.randomTimer);
         //   this.randomTimer = null;
@@ -472,6 +491,14 @@
             break;
         }
       },
+      playRandomEventMusic(id) {
+        const audioRef = this.$refs[id];
+        if (audioRef && audioRef.length > 0) {
+          audioRef[0].play();
+        } else {
+          this.playMusic(4);
+        }
+      },
       toggleOpModal(member) {
         this.showMemberBoard = true;
         this.selectedMember = member;
@@ -513,6 +540,10 @@
         this.durationTime = moment(this.durationTime).add(1, 's');
         this.duration = this.durationTime.format('HH:mm:ss');
       }, 1000);
+
+      setInterval(() => {
+        this.toggleRandomEventModal();
+      }, this.randomEventTimeSpan);
     },
     created() {
       this.fetchRandomEvents();

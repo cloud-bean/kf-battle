@@ -48,7 +48,6 @@
         }
       },
       async randomEvent() {
-        this.playMusic(4);
         this.startButton = false;
 
         const selectedEvents = [];
@@ -72,6 +71,8 @@
         // }, 50);
         this.finalSelectedIndex = selectedEventsIndexArray[parseInt(Math.random() * max, 10)];
         this.selectedEvent = this.randomEvents[this.finalSelectedIndex];
+
+        this.playMusic(this.selectedEvent._id);
 
         // setTimeout(() => {
         //   if (this.randomTimer) {
