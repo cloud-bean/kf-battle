@@ -101,7 +101,7 @@
       v-model="showRandomEventModal"
       width="80%"
       class-name="vertical-center-modal">
-      <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playMusic"></RandomEventPanel>
+      <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playMusic" v-if="showRandomEventModal"></RandomEventPanel>
       <p slot="footer"></p>
     </Modal>
 
@@ -429,22 +429,23 @@
       toggleRandomEventModal() {
         this.showRandomEventModal = !this.showRandomEventModal;
 
-        if (this.randomTimer) {
-          clearInterval(this.randomTimer);
-          this.randomTimer = null;
-        }
+        // if (this.randomTimer) {
+        //   clearInterval(this.randomTimer);
+        //   this.randomTimer = null;
+        // }
 
-        if (this.showRandomEventModal) {
-          const len = this.randomEvents.length;
-          this.randomTimer = setInterval(() => {
-            this.selectedIndex = parseInt(Math.random() * len, 10);
-          }, 120);
-          setTimeout(() => {
-            if (this.randomTimer) {
-              clearInterval(this.randomTimer);
-            }
-          }, 2400);
-        }
+        // if (this.showRandomEventModal) {
+        //   const len = this.randomEvents.length;
+        //   this.selectedIndex = parseInt(Math.random() * len, 10);
+        //   // this.randomTimer = setInterval(() => {
+        //   //   this.selectedIndex = parseInt(Math.random() * len, 10);
+        //   // }, 120);
+        //   // setTimeout(() => {
+        //   //   if (this.randomTimer) {
+        //   //     clearInterval(this.randomTimer);
+        //   //   }
+        //   // }, 2400);
+        // }
       },
       playMusic(index) {
         switch (index) {

@@ -1,28 +1,30 @@
 <template>
   <div class="panel">
-    <Row type="flex" justify="center" align-items="center">
+    <!-- <Row type="flex" justify="center" align-items="center">
       <div class="i-button" @click="randomEvent"  v-if="startButton">命运之轮</div>
       <div class="i-button" v-if="!startButton" style="background-color:#eee">命运之轮</div>
-    </Row>
-    <Row type="flex" >
-      <Col span="4" v-for="event,index in randomEvents" :key="event._id" class="random-box"
-           :class="[finalSelectedIndex == index ? 'selected': '', event.isSelected ? 'online' : 'offline']">
-        <div @click="toggleSelected(index)">
-          <img v-if="event.file" style=" height: 8rem;" :src="event.file.URL">
-          <img v-else="event.file" style=" height: 8rem;" :src="defaultRandomImgURL">
-          <p style="font-size: 1.5rem; font-weight: 600;">{{ event.name }}</p>
-          <p style="font-size: 1rem;">{{ event.description }}</p>
+    </Row> -->
+    <!-- <Row type="flex" > -->
+      <!-- <Col span="4" v-for="event,index in randomEvents" :key="event._id" class="random-box"
+           :class="[finalSelectedIndex == index ? 'selected': '', event.isSelected ? 'online' : 'offline']"> -->
+        <div class="event-content">
+          <div class="desc">
+            <p style="font-size: 5rem; font-weight: 600; ">{{selectedEvent.name}}</p>
+            <p style="font-size: 3rem;">{{selectedEvent.description}}</p>
+          </div>
+          <img v-if="selectedEvent.file" style="height:29.5rem" :src="selectedEvent.file.URL">
+          <img v-else="selectedEvent.file" style="height:29.5rem" :src="defaultRandomImgURL">
         </div>
 
-      </Col>
-    </Row>
+      <!-- </Col> -->
+    <!-- </Row> -->
 
-    <Row type="flex" justify="center" align-items="center">
+    <!-- <Row type="flex" justify="center" align-items="center">
       <ButtonGroup>
         <Button @click="setAllBoxs(true)" style="font-size: 2em;">全选</Button>
         <Button @click="setAllBoxs(false)" style="font-size: 2em;">全不选</Button>
       </ButtonGroup>
-    </Row>
+    </Row> -->
   </div>
 </template>
 
@@ -31,10 +33,11 @@
     props: ['randomEvents', 'playMusic'],
     data() {
       return {
-        defaultRandomImgURL: '/static/img/random.gif',
+        defaultRandomImgURL: '/static/img/randomEvent.jpg',
         startButton: true,
         selectedIndex: -1,
         finalSelectedIndex: -1,
+        selectedEvent: -1,
       };
     },
     methods: {
@@ -44,13 +47,13 @@
           this.$forceUpdate();
         }
       },
-      randomEvent() {
+      async randomEvent() {
         this.playMusic(4);
         this.startButton = false;
 
         const selectedEvents = [];
         const selectedEventsIndexArray = [];
-        this.randomEvents.forEach((item, index) => {
+        await this.randomEvents.forEach((item, index) => {
           if (item.isSelected) {
             selectedEvents.push(selectedEvents);
             selectedEventsIndexArray.push(index);
@@ -59,38 +62,58 @@
 
         const max = selectedEvents.length;
 
-        if (this.randomTimer) {
-          clearInterval(this.randomTimer);
-          this.randomTimer = null;
-        }
+        // if (this.randomTimer) {
+        //   clearInterval(this.randomTimer);
+        //   this.randomTimer = null;
+        // }
 
-        this.randomTimer = setInterval(() => {
-          this.finalSelectedIndex = selectedEventsIndexArray[parseInt(Math.random() * max, 10)];
-        }, 50);
-        setTimeout(() => {
-          if (this.randomTimer) {
-            clearInterval(this.randomTimer);
-          }
-          this.startButton = true;
-        }, 1500);
+        // this.randomTimer = setInterval(() => {
+        //   this.finalSelectedIndex = selectedEventsIndexArray[parseInt(Math.random() * max, 10)];
+        // }, 50);
+        this.finalSelectedIndex = selectedEventsIndexArray[parseInt(Math.random() * max, 10)];
+        this.selectedEvent = this.randomEvents[this.finalSelectedIndex];
+
+        // setTimeout(() => {
+        //   if (this.randomTimer) {
+        //     clearInterval(this.randomTimer);
+        //   }
+        //   this.startButton = true;
+        // }, 1500);
       },
       setAllBoxs(isSelected) {
-        this.randomEvents.map((event) => {
-          event.isSelected = isSelected;
+        this.randomEvents.map((item) => {
+          item.isSelected = isSelected;
           return 0;
         });
         this.$forceUpdate();
       },
     },
-    mounted() {
+    beforeMount() {
+      console.log('beforeMount');
       this.setAllBoxs(true);
+      this.randomEvent();
+    },
+    updated() {
+      // this.randomEvent();
     },
   };
 </script>
 
 <style lang="less" scoped>
   .panel{
-    padding: .5rem;
+    // padding: .5rem;
+    .event-content{
+      position: relative;
+    }
+    .desc{
+      width: 100%;
+      position: absolute;
+      color:white;
+      text-align: center;
+      margin: 0 auto;
+      bottom: 1rem;
+      background-color: rgba(0,0,0,.3);
+    }
   }
 
   .random-box {
