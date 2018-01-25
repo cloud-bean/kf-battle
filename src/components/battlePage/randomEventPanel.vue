@@ -12,8 +12,8 @@
             <p style="font-size: 5rem; font-weight: 600; ">{{selectedEvent.name}}</p>
             <p style="font-size: 3rem;">{{selectedEvent.description}}</p>
           </div>
-          <img v-if="selectedEvent.file" style="height:29.5rem" :src="selectedEvent.file.URL">
-          <img v-else="selectedEvent.file" style="height:29.5rem" :src="defaultRandomImgURL">
+          <img v-if="selectedEvent.imageFile" style="height:29.5rem" :src="selectedEvent.imageFile.URL">
+          <img v-else="selectedEvent.imageFile" style="height:29.5rem" :src="defaultRandomImgURL">
         </div>
 
       <!-- </Col> -->
