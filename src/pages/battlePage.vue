@@ -541,9 +541,9 @@
         this.duration = this.durationTime.format('HH:mm:ss');
       }, 1000);
 
-      setInterval(() => {
-        this.toggleRandomEventModal();
-      }, this.randomEventTimeSpan);
+      // setInterval(() => {
+      //   this.toggleRandomEventModal();
+      // }, this.randomEventTimeSpan);
     },
     created() {
       this.fetchRandomEvents();
