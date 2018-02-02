@@ -42,7 +42,7 @@
 
 
               <div class="control-button" @click="toggleRandomEventModal" >
-                <i-Circle
+                <!-- <i-Circle
                   :size="130"
                   :trail-width="4"
                   :stroke-width="5"
@@ -52,7 +52,9 @@
                   <div class="demo-Circle-custom">
                     <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
                   </div>
-                </i-Circle>
+                </i-Circle> -->
+                <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+
                 <div style="font-size:2rem;">
                   传令信使
                 </div>
