@@ -5,7 +5,7 @@
         <div class="mask" v-if="selected">
           <Icon type="checkmark" size="80" class="icon"></Icon>
         </div>
-        <img :src="teamData.logo.URL" alt="">
+        <img :src="teamData.logo ? teamData.logo.URL : 'static/img/vay2_cut.png'" alt="">
       </div>
       <div slot="content">
         {{teamData.description}}

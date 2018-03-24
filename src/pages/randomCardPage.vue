@@ -85,7 +85,7 @@
   export default {
     data() {
       return {
-        maxCardsLimit: 1,
+        maxCardsLimit: 3,
         levelRate: [100, 0, 0],
         showMemberWithCards: false,
         chartData: {
