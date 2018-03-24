@@ -1,27 +1,15 @@
 <template>
-  <div>
     <div class="member-cell" @click="getScore()">
-
-      <div class="member-head">
         <div class="mask">
           <div class="mark">
-            <span class="color-green">{{member.get|| 0}}</span>
+            <span class="color-score">{{member.get|| 0}}</span>
           </div>
         </div>
-        <div class="">
+        <div class="member-head">
           <img :src="member.profileImageURL"></img>
         </div>
         <span style="font-size:1.5rem; color:#fff;">{{ member.displayName }}</span>
     </div>
-      <!-- <Row type="flex" justify="space-around">
-        <Col span="24">
-          <div class="mark">
-            <span class="color-green">{{member.get|| 0}}</span>
-          </div>
-        </Col>
-      </Row> -->
-    </div>
-  </div>
 </template>
 
 <script>
@@ -44,47 +32,27 @@
     // border:1px solid #fff;
     // padding: 1px;
     // box-shadow: 0 0 10px #888;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    // -webkit-border-radius: 5px;
+    // -moz-border-radius: 5px;
+    // border-radius: 5px;
   }
   .member-head{
     // padding: 0rem;
     // border-bottom: 1px solid #ccc;
   }
   img{
-    border-radius: 5px;
-    // border: 1px solid #eee;
-    // box-shadow: 0 0 5px #888;
+    // border-radius: 5px;
     width: 5rem;
     height: 5rem;
   }
-  // .ivu-card-body {
-  //     padding: 10px !important;
-  // }
-  .name-area{
-    padding-top: 10px;
-    // font-size: 1rem;
-    color: #888;
-  }
-  .user-detail{
-    font-size: 1rem;
-  }
+
   .mark{
     font-size: 2rem;
     color: #ccc;
     margin: 0 auto;
     text-align: center;
   }
-  .card-area{
-    margin-top: .5rem;
-  }
-
-  .color-gray {
-    color: gray;
-  }
-
-  .color-green {
+  .color-score {
     color: #fff;
     font-size: 3rem;
   }

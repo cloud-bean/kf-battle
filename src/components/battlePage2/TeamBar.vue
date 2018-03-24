@@ -15,9 +15,9 @@
         </Row>
       </Col>
       <Col span="14">
-            <Row type="flex" justify="start">
+            <Row type="flex" justify="start" class="member-area">
 
-            <Col span="4" v-for="member in members">
+            <Col span="4" v-for="member in members" >
               <transition-group name="list-complete" tag="p">
                 <memberCell :member="member" :addScore="addScore" :key="member._id" style="transition: all 1s;"></memberCell>
               </transition-group>
@@ -76,7 +76,11 @@ width: 8rem;
 height: 8rem;
 
 }
-
+.member-area{
+  background-color: rgba(0,0,0,.3);
+  border-radius: 10px;
+  padding: 10px;
+}
 .list-complete-enter, .list-complete-leave-to {
   opacity: 0;
   /*transform: translateY(30px);*/
