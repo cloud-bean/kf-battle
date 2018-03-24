@@ -47,7 +47,7 @@ export default {
     //   state.members[index].lost = 0;
     // }
     state.members[index].get += score;
-
+    // state.members.filter(member => member.groupId === state.members[index].groupId);
     // if (score > 0) {
     //   state.members[index].get += score;
     // } else {

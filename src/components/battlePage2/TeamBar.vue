@@ -14,15 +14,19 @@
           </Col>
         </Row>
       </Col>
-      <Col span="16">
-        <Row type="flex" justify="start">
-          <Col span="4" v-for="member in memberOrderByScore" :key="member._id">
-            <memberCell :member="member" :addScore="addScore"></memberCell>
-          </Col>
-        </Row>
+      <Col span="14">
+            <Row type="flex" justify="start">
+
+            <Col span="4" v-for="member in members">
+              <transition-group name="list-complete" tag="p">
+                <memberCell :member="member" :addScore="addScore" :key="member._id" style="transition: all 1s;"></memberCell>
+              </transition-group>
+              </Col>
+            </Row>
+
 
       </Col>
-      <Col span="2">
+      <Col span="4">
         <span class="score">{{team.get||0}}</span>
       </Col>
     </Row>
@@ -37,26 +41,10 @@
       return {
       };
     },
-    props: ['team', 'rank', 'addScore'],
+    props: ['team', 'rank', 'addScore', 'members'],
     components: {
       memberCell,
     },
-    computed: {
-      teamScore() {
-        let score = 0;
-        for (const item of this.team.students) {
-          score += item.get + item.lost;
-        }
-        return score;
-      },
-      memberOrderByScore() {
-        return this.team.students.sort((a, b) => b.get - a.get);
-      },
-    },
-    // computed: {
-    //   level: exp2level(this.member.option.exp),
-    // },
-    methods: {},
   };
 </script>
 
@@ -87,5 +75,13 @@ color: #FFFFFF;
 width: 8rem;
 height: 8rem;
 
+}
+
+.list-complete-enter, .list-complete-leave-to {
+  opacity: 0;
+  /*transform: translateY(30px);*/
+}
+.list-complete-leave-active {
+  position: absolute;
 }
 </style>

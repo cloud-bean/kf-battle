@@ -72,9 +72,11 @@
       <transition name="fade">
 
         <Row style="margin-top: 10px;" v-if="showMembers">
+          <transition-group name="flip-list" tag="ul">
           <div class="" style="color:#fff;background-color:#00B0FF;margin-top:1rem;" v-for="(team,index) in teamsOrderByScore" :key="team._id">
-            <team-bar :team="team" :rank="index+1" :addScore="addScore" :key="team._id"></team-bar>
+            <team-bar :team="team" :rank="index+1" :members="groupMembers(team._id)" :addScore="addScore" :key="team._id"></team-bar>
           </div>
+          </transition-group>
           <!-- <Col span="9">
             <Row type="flex"  :gutter="16" style="margin-left:5px">
               <Col span="8"  v-for="member in groupMembers(0)" :key="member._id">
@@ -154,6 +156,10 @@
     background-color: #fff;
     padding-top: .3rem;
     /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
+  }
+
+  .flip-list-move {
+    transition: transform 1s;
   }
 
 
@@ -284,8 +290,6 @@
       ...mapGetters('battle', [
         'members',
         'groups',
-        'groupOne',
-        'groupTwo',
         'randomEvents',
       ]),
       ...mapGetters('timeline', [
@@ -310,7 +314,17 @@
         return this.randomEventTimeSplash * 100 / this.randomEventTimeSpan;
       },
       teamsOrderByScore() {
-        return this.groups.sort((a, b) => b.get - a.get);
+        return this.groups.sort((a, b) => {
+          if (a.get === undefined) {
+            a.get = 0;
+          }
+
+          if (b.get === undefined) {
+            b.get = 0;
+          }
+
+          return b.get - a.get;
+        });
       },
     },
     watch: {
@@ -337,8 +351,9 @@
       setControlPanelVisable(state) {
         this.isControlPanelExpand = !!state;
       },
-      groupMembers(index) {
-        return this.members.filter((member) => member.groupIndex === index);
+      groupMembers(teamId) {
+        return this.members.filter((member) => member.groupId === teamId)
+          .sort((a, b) => b.get - a.get);
       },
       getScoreData() {
         let left = 0;
@@ -357,7 +372,7 @@
         };
       },
       addScore(payload) {
-        this.showMembers = false;
+        // this.showMembers = false;
         this.addScoreToMember(payload);
         // const groupName = \
         // payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
@@ -372,10 +387,10 @@
         //   },
         // });
         this.groups.sort((a, b) => a.get - b.get);
-        setTimeout(() => {
-          this.showMembers = true;
-          return 0;
-        }, 100);
+        // setTimeout(() => {
+        //   this.showMembers = true;
+        //   return 0;
+        // }, 100);
       },
       removeCard(payload) {
         this.showMembers = false;

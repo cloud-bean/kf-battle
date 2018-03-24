@@ -31,6 +31,7 @@
     methods: {
       getScore() {
         this.addScore({ member: this.member, score: 1 });
+        this.$forceUpdate();
       },
     },
   };
