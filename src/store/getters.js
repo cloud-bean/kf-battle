@@ -3,4 +3,5 @@ export default {
   memberAvatars: state => state.memberAvatars,
   selectedTheme: state => state.selectedTheme,
   battleThemes: state => state.battleThemes,
+  gameMode: state => state.gameMode,
 };

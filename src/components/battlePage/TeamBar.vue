@@ -2,25 +2,15 @@
   <div>
     <Row class="panel">
       <Col span="2">
-        {{rank}}
+        1
       </Col>
       <Col span="6">
-        <Row>
-          <Col span="6">
-            <img :src="team.logo.URL" style="width: 10rem;">
-          </Col>
-          <Col span="18">
-            <span class="teamName">{{team.name}}</span>
-          </Col>
-        </Row>
+        对标
       </Col>
       <Col span="12">
-        <Row>
-          <Col span="4" v-for="member in team.students">
-            <memberCell :member="member"></memberCell>
-          </Col>
-        </Row>
-
+        <span v-for="member in team.students">
+          <memberCell :member="member"></memberCell>
+        </span>
       </Col>
       <Col span="4">
         89
@@ -36,7 +26,7 @@
     data() {
       return {};
     },
-    props: ['team', 'rank'],
+    props: ['team'],
     components: {
       memberCell,
     },

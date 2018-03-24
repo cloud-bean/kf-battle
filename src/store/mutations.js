@@ -37,4 +37,7 @@ export default {
   [types.SET_MEMBER_AVATARS](state, payload) {
     state.memberAvatars = payload.memberAvatars;
   },
+  [types.SET_GAME_MODE](state, payload) {
+    state.gameMode = payload.gameMode;
+  },
 };

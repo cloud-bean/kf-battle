@@ -2,18 +2,28 @@
   <div>
     <Row class="panel">
       <Col span="2">
-        1
+        {{rank}}
       </Col>
       <Col span="6">
-        对标
+        <Row>
+          <Col span="6">
+            <img :src="team.logo.URL" style="width: 10rem;">
+          </Col>
+          <Col span="18">
+            <span class="teamName">{{team.name}}</span>
+          </Col>
+        </Row>
       </Col>
       <Col span="12">
-        <span v-for="member in team.students">
-          <memberCell :member="member"></memberCell>
-        </span>
+        <Row>
+          <Col span="4" v-for="member in team.students">
+            <memberCell :member="member" :addScore="addScore" :key="member._id"></memberCell>
+          </Col>
+        </Row>
+
       </Col>
       <Col span="4">
-        89
+        {{team.get}}
       </Col>
     </Row>
   </div>
@@ -24,11 +34,21 @@
 
   export default {
     data() {
-      return {};
+      return {
+      };
     },
-    props: ['team'],
+    props: ['team', 'rank', 'addScore'],
     components: {
       memberCell,
+    },
+    computed: {
+      teamScore() {
+        let score = 0;
+        for (const item of this.team.students) {
+          score += item.get + item.lost;
+        }
+        return score;
+      },
     },
     // computed: {
     //   level: exp2level(this.member.option.exp),

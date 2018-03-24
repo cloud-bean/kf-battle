@@ -13,6 +13,7 @@ export default [
   'POST_REQ',
   'POST_SUCC',
   'ADD_MEMBER_PICKED_COUNT',
+  'ADD_SCORE_TO_GROUP',
 ].reduce((acc, value) => {
   acc[value] = value;
   return acc;

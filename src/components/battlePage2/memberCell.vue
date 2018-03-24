@@ -28,7 +28,7 @@
         </Col>
       </Row>
     </Card> -->
-    <div class="member-cell" @click="toggleOpModal(member)">
+    <div class="member-cell" @click="getScore()">
       <!-- <p slot="extra">
       </p> -->
       <div class="member-head">
@@ -104,7 +104,12 @@
 <script>
   export default {
     name: 'MemberCell',
-    props: ['member', 'toggleOpModal'],
+    props: ['member', 'addScore'],
+    methods: {
+      getScore() {
+        this.addScore({ member: this.member, score: 1 });
+      },
+    },
   };
 </script>
 

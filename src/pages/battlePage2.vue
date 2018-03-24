@@ -1,7 +1,7 @@
 <template>
   <div v-show="showAll">
     <Row class="battle-top" type="flex"  align="middle">
-      <Col span="9">
+      <!-- <Col span="9">
         <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
       <Col span="6">
@@ -9,7 +9,48 @@
       </Col>
       <Col span="9">
         <group-bar position="right" :data="groupTwo"></group-bar>
+      </Col> -->
+      <Col span="4">
       </Col>
+      <Col span="4">
+      </Col>
+      <Col span="4">
+      </Col>
+
+      <Col span="4">
+        <div class="control-button" @click="opRandomNumberModal = true">
+          <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:5rem; border-radius: 50%;">
+          <div style="font-size:1.5rem;">
+            命运之轮
+          </div>
+        </div>
+      </Col>
+      <Col span="4">
+        <div class="control-button" @click="toggleRandomEventModal" >
+          <!-- <i-Circle
+            :size="130"
+            :trail-width="4"
+            :stroke-width="5"
+            :percent="randomEventCirclePercent"
+            stroke-linecap="square"
+            stroke-color="#43a3fb">
+            <div class="demo-Circle-custom">
+              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+            </div>
+          </i-Circle> -->
+          <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
+
+          <div style="font-size:1.5rem;">
+            传令信使
+          </div>
+        </div>
+      </Col>
+      <Col span="4">
+        <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
+        <div class="i-button" @click="goToWinnerPage2" style="background-color:#5cadff">结束游戏</div>
+
+      </Col>
+
     </Row>
 
     <div class="spacer">
@@ -29,8 +70,12 @@
 
     <div :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
       <transition name="fade">
+
         <Row style="margin-top: 10px;" v-if="showMembers">
-          <Col span="9">
+          <div class="" style="color:#fff" v-for="(team,index) in teamsOrderByScore">
+            <team-bar :team="team" :rank="index+1" :addScore="addScore" :key="team._id"></team-bar>
+          </div>
+          <!-- <Col span="9">
             <Row type="flex"  :gutter="16" style="margin-left:5px">
               <Col span="8"  v-for="member in groupMembers(0)" :key="member._id">
                 <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
@@ -41,33 +86,8 @@
             <div class="control-panel">
 
 
-              <div class="control-button" @click="toggleRandomEventModal" >
-                <!-- <i-Circle
-                  :size="130"
-                  :trail-width="4"
-                  :stroke-width="5"
-                  :percent="randomEventCirclePercent"
-                  stroke-linecap="square"
-                  stroke-color="#43a3fb">
-                  <div class="demo-Circle-custom">
-                    <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
-                  </div>
-                </i-Circle> -->
-                <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
 
-                <div style="font-size:2rem;">
-                  传令信使
-                </div>
-              </div>
-              <div class="control-button" @click="opRandomNumberModal = true">
-                <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:10rem; border-radius: 50%;">
-                <div style="font-size:2rem;">
-                  命运之轮
-                </div>
-              </div>
             </div>
-            <div class="i-button" @click="goToWinnerPage2" style="background-color:#5cadff">结束游戏</div>
-            <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
             <div class="lock" v-if="lock">
               <div class="key-area">
                 <div>输入解锁密码</div>
@@ -81,7 +101,7 @@
               <member-cell :member="member" :toggleOpModal="toggleOpModal" :key="member._id"></member-cell>
               </Col>
             </Row>
-          </Col>
+          </Col> -->
         </Row>
       </transition>
     </div>
@@ -218,12 +238,14 @@
   }
 </style>
 <script>
-  import GroupBar from '../components/battlePage/groupBar';
-  import ScoreVS from '../components/battlePage/scoreVS';
-  import MemberCell from '../components/battlePage/memberCell';
-  import MemberBoard from '../components/battlePage/memberBoard';
-  import RandomMemberPanel from '../components/battlePage/randomMemberPanel';
-  import RandomEventPanel from '../components/battlePage/randomEventPanel';
+  import GroupBar from '../components/battlePage2/groupBar';
+  import TeamBar from '../components/battlePage2/TeamBar';
+
+  import ScoreVS from '../components/battlePage2/scoreVS';
+  import MemberCell from '../components/battlePage2/memberCell';
+  import MemberBoard from '../components/battlePage2/memberBoard';
+  import RandomMemberPanel from '../components/battlePage2/randomMemberPanel';
+  import RandomEventPanel from '../components/battlePage2/randomEventPanel';
   const moment = require('moment');
   moment.locale('zh-cn');
   import { mapGetters, mapActions } from 'vuex';
@@ -287,6 +309,9 @@
       randomEventCirclePercent() {
         return this.randomEventTimeSplash * 100 / this.randomEventTimeSpan;
       },
+      teamsOrderByScore() {
+        return this.groups.sort((a, b) => a.get - b.get);
+      },
     },
     watch: {
       inputKey() {
@@ -308,6 +333,7 @@
       ...mapActions('timeline', [
         'addFeed',
       ]),
+
       setControlPanelVisable(state) {
         this.isControlPanelExpand = !!state;
       },
@@ -333,17 +359,18 @@
       addScore(payload) {
         this.showMembers = false;
         this.addScoreToMember(payload);
-        const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
-        this.addFeed({
-          feed: {
-            groupName,
-            people: payload.member.displayName,
-            created: new Date(),
-            color: payload.score > 0 ? 'green' : 'red',
-            type: payload.type,
-            description: `${payload.desc}`,
-          },
-        });
+        // const groupName = \
+        // payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
+        // this.addFeed({
+        //   feed: {
+        //     groupName,
+        //     people: payload.member.displayName,
+        //     created: new Date(),
+        //     color: payload.score > 0 ? 'green' : 'red',
+        //     type: payload.type,
+        //     description: `${payload.desc}`,
+        //   },
+        // });
 
         setTimeout(() => {
           this.showMembers = true;
@@ -516,6 +543,7 @@
       'member-board': MemberBoard,
       RandomMemberPanel,
       RandomEventPanel,
+      TeamBar,
     },
     mounted() {
       const that = this;

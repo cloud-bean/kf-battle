@@ -6,6 +6,7 @@ export default {
     commit(types.resetState);
   },
   setMembers({ commit }, payload) {
+    console.log(payload);
     commit(types.SET_MEMBERS, payload);
   },
   addCardToMember({ commit }, payload) {
@@ -16,6 +17,7 @@ export default {
   },
   addScoreToMember({ commit }, payload) {
     commit(types.ADD_SCORE_TO_MEMBER, payload);
+    commit(types.ADD_SCORE_TO_GROUP, payload);
   },
   clearCards({ commit }) {
     commit(types.clearCards);
