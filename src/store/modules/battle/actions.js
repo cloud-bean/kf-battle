@@ -6,6 +6,7 @@ export default {
     commit(types.resetState);
   },
   setMembers({ commit }, payload) {
+    console.log(payload);
     commit(types.SET_MEMBERS, payload);
   },
   addCardToMember({ commit }, payload) {

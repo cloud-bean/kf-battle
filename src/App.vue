@@ -1,13 +1,9 @@
 <template>
   <div id="app">
     <router-view></router-view>
-
     <div class="bg" :style="{ 'background-image': bgImage }">
     </div>
-    <transition name="fade">
-    <div class="bg-enter" v-if="showLogo" @click="close">
-    </div>
-  </transition>
+
   </div>
 </template>
 
@@ -18,17 +14,12 @@
   export default {
     name: 'app',
     data() {
-      return {
-        showLogo: true,
-      };
+      return {};
     },
     methods: {
       ...mapActions([
         'getAllBattleThemes',
       ]),
-      close() {
-        this.showLogo = false;
-      },
     },
     computed: {
       ...mapGetters([
@@ -36,7 +27,8 @@
       ]),
       bgImage() {
         let url = 'url(/static/img/battle_bg/team_bg_1.jpg)';
-        if (this.selectedTheme && this.selectedTheme.mainBgImg && this.selectedTheme.mainBgImg.URL) {
+        if (this.selectedTheme && this.selectedTheme.mainBgImg
+  && this.selectedTheme.mainBgImg.URL) {
           url = `url(${this.selectedTheme.mainBgImg.URL})`;
         }
         return url;
@@ -79,16 +71,7 @@
   background-size: cover;
   z-index: -1;
 }
-.bg-enter {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("/static/img/enterbg.jpg") no-repeat #000;
-  background-size: cover;
-  z-index: 999;
-}
+
 .container {
   position: relative;
   margin: auto;

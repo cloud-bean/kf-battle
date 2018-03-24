@@ -5,6 +5,7 @@ export function initialState() {
     loading: false,
     battleThemes: [],
     selectedTheme: null,
+    gameMode: 0,
   };
 }
 

@@ -10,6 +10,7 @@ export default {
   },
   [types.SET_MEMBERS](state, payload) {
     const members = payload;
+    console.log(members);
     members.map(member => {
       member.get = 0;
       member.lost = 0;

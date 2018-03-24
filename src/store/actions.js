@@ -32,6 +32,9 @@ export default {
   setSelectedTheme({ commit }, payload) {
     commit(types.SET_SELECTED_THEME, { selectedTheme: payload });
   },
+  setGameMode({ commit }, payload) {
+    commit(types.SET_GAME_MODE, { gameMode: payload });
+  },
   async setMemberAvatar({ commit }, payload) {
     commit(types.POST_REQ);
     const res = await api.setMemberAvatar(payload.id, payload.data);
