@@ -15,7 +15,7 @@
         <Card>
           <div @click="selectedTeam = team;">
             <p style="font-size: 3rem; color: #888">{{team.name}}</p>
-            <img :src="team.logo.URL" style="width: 15rem; margin:1rem 0;" @click="showLogosModal = true;">
+            <img :src="team.logo ? team.logo.URL : '/static/img/vay2.png'" style="width: 15rem; margin:1rem 0;" @click="showLogosModal = true;">
             <div>
               <!-- <Button @click="showLogosModal = true;">换战队logo</Button> -->
               <!-- <br>  v-if="selectedTeam && selectedTeam._id == team._id" -->
@@ -40,7 +40,7 @@
       width="80%"
       class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <img v-for="logo in teamLogos" :key="logo._id" :src="logo.URL" style="margin: 10px; max-width: 10rem; max-height: 10rem; background-color: gray;" @click="setLogo(logo)">
+      <img v-for="logo in teamLogos" :key="logo._id" :src="logo ? logo.URL : '/static/img/vay2.png'" style="margin: 10px; max-width: 10rem; max-height: 10rem; background-color: gray;" @click="setLogo(logo)">
     </Modal>
 
     <Modal
@@ -60,7 +60,7 @@
       class-name="vertical-center-modal">
       <p slot="footer"></p>
       <div v-for="theme in battleThemes" :key="theme._id" style="display: inline-block; text-align: center;">
-        <img :src="theme.image.URL"  style="margin: 10px; max-width: 8rem; max-height: 8rem;">
+        <img :src="theme.image ? theme.image.URL : '/static/img/vay2.png'"  style="margin: 10px; max-width: 8rem; max-height: 8rem;">
         <p>{{ theme.name }}</p>
         <Tag checkable color="yellow" v-if="selectedTheme && selectedTheme._id === theme._id">已选中的主题</Tag>
         <Button v-else @click="setTheme(theme)">使用主题</Button>
