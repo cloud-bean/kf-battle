@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Battle from '@/pages/BattlePage';
+import Battle2 from '@/pages/BattlePage2';
+
 import TeamMemberPage from '@/pages/teamMemberPage';
 import ChooseTeamPage from '@/pages/chooseTeamPage';
 import RandomCardPage from '@/pages/randomCardPage';
@@ -16,6 +18,11 @@ export default new Router({
       name: 'Battle',
       component: Battle,
     }, {
+      path: '/battle2',
+      name: 'Battle2',
+      component: Battle2,
+    },
+    {
       path: '/teamMemberPage',
       name: 'teamMemberPage',
       component: TeamMemberPage,
