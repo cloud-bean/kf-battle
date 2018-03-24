@@ -55,8 +55,10 @@ export default {
     // }
   },
   [types.ADD_SCORE_TO_GROUP](state, payload) {
-    const index = payload.member.groupIndex;
+    const groupId = payload.member.groupId;
     const score = payload.score;
+    const index = state.groups.findIndex(item => item._id === groupId);
+
     if (!state.groups[index].get) {
       state.groups[index].get = 0;
     }

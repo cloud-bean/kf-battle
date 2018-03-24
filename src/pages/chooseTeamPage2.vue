@@ -78,6 +78,7 @@
           console.log(team.name, groupIndex);
           if (team.students && team.students.length > 0) {
             team.students.forEach((member) => {
+              member.groupId = team._id;
               member.groupIndex = groupIndex;
               this.onlineMemebers.push(member);
             });

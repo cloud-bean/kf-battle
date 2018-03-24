@@ -68,11 +68,11 @@
       </Row>
     </div>
 
-    <div :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
+    <div :style="{ 'display': isControlPanelExpand ? '' : 'none' }" >
       <transition name="fade">
 
         <Row style="margin-top: 10px;" v-if="showMembers">
-          <div class="" style="color:#fff" v-for="(team,index) in teamsOrderByScore">
+          <div class="" style="color:#fff;background-color:#00B0FF;margin-top:1rem;" v-for="(team,index) in teamsOrderByScore" :key="team._id">
             <team-bar :team="team" :rank="index+1" :addScore="addScore" :key="team._id"></team-bar>
           </div>
           <!-- <Col span="9">
@@ -310,7 +310,7 @@
         return this.randomEventTimeSplash * 100 / this.randomEventTimeSpan;
       },
       teamsOrderByScore() {
-        return this.groups.sort((a, b) => a.get - b.get);
+        return this.groups.sort((a, b) => b.get - a.get);
       },
     },
     watch: {
@@ -371,7 +371,7 @@
         //     description: `${payload.desc}`,
         //   },
         // });
-
+        this.groups.sort((a, b) => a.get - b.get);
         setTimeout(() => {
           this.showMembers = true;
           return 0;
@@ -551,7 +551,6 @@
       setTimeout(() => {
         that.showAll = true;
       }, 2500);
-
       let timer = setInterval(() => {
         let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
         currentPosition -= 10;

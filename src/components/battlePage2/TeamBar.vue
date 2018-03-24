@@ -1,29 +1,29 @@
 <template>
   <div>
-    <Row class="panel">
+    <Row class="panel" type="flex" justify="center" align="middle">
       <Col span="2">
-        {{rank}}
+        <span class="rank">{{rank}}</span>
       </Col>
-      <Col span="6">
-        <Row>
-          <Col span="6">
-            <img :src="team.logo.URL" style="width: 10rem;">
+      <Col span="4">
+        <Row type="flex" justify="center" align="middle">
+          <Col span="12">
+            <img :src="team.logo.URL" class="team-logo">
           </Col>
-          <Col span="18">
+          <Col span="12">
             <span class="teamName">{{team.name}}</span>
           </Col>
         </Row>
       </Col>
-      <Col span="12">
-        <Row>
-          <Col span="4" v-for="member in team.students">
-            <memberCell :member="member" :addScore="addScore" :key="member._id"></memberCell>
+      <Col span="16">
+        <Row type="flex" justify="start">
+          <Col span="4" v-for="member in memberOrderByScore" :key="member._id">
+            <memberCell :member="member" :addScore="addScore"></memberCell>
           </Col>
         </Row>
 
       </Col>
-      <Col span="4">
-        {{team.get}}
+      <Col span="2">
+        <span class="score">{{team.get||0}}</span>
       </Col>
     </Row>
   </div>
@@ -49,6 +49,9 @@
         }
         return score;
       },
+      memberOrderByScore() {
+        return this.team.students.sort((a, b) => b.get - a.get);
+      },
     },
     // computed: {
     //   level: exp2level(this.member.option.exp),
@@ -59,58 +62,30 @@
 
 
 <style scoped lang="less">
-  .panel{
-    // padding:.5rem;
-  }
-  .vertical-center-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height:auto;
-    .ivu-modal {
-      top: 0;
-    }
-  }
-  .scoreBtn{
-    margin: 10px 0;
-  }
+.panel{
+  padding: 10px;
+}
+.teamName{
+  font-size: 3rem;
+}
+.rank{
+  /* 1: */
+font-family: PingFangSC-Regular;
+font-size: 100px;
+color: #FFFFFF;
+}
+.score{
+  font-family: PingFangSC-Regular;
+  font-size: 100px;
+  color: #FFFFFF;
+}
+.team-logo{
+  /* Rectangle 2: */
+/* Sketch doesnt export pattern fills at this point */
+// border: 2px solid #FFFFFF;
+// border-radius: 29px;
+width: 8rem;
+height: 8rem;
 
-  img{
-    border-radius: 10px;
-    border: 1px solid #eee;
-    width:8rem;
-  }
-
-  .head {
-    height:8rem;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    width:8rem;
-  }
-  .name{
-    font-size: 3rem;
-  }
-  .name-area{
-    font-size: 1.5rem;
-
-  }
-  .mark{
-    font-size: 10rem;
-    color: #ccc;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .left{
-    padding: 1rem;
-  }
-
-  .btn-get-score {
-    background-color: #19be6b;
-    width:auto;
-  }
-
-  .btn-lose-score {
-    background-color: gray;
-    width:auto;
-  }
+}
 </style>
