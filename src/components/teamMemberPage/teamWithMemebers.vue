@@ -19,16 +19,16 @@
       width="20%"
       class-name="vertical-center-modal">
       <p slot="header" style="text-align: center;">
-        添加外援
+        添加队员
       </p>
       <div class="panel" style="text-align:center;">
           <div style="text-align:center;font-size:2.5rem;color:#2d8cf0">
-            添加外援
+            添加队员
           </div>
           <div style="margin-top:2rem;">
-            <img src="static/img/defaultUserHead.jpeg" style="width:5rem;height:5rem;border-radius:0;margin:0 auto;" alt="">
+            <img src="static/img/defaultUserHead.jpg" style="width:5rem;height:5rem;border-radius:0;margin:0 auto;" alt="">
             <div style="margin-top:2rem;">
-              <input type="text" v-model="tempMember" value="" placeholder="外援姓名" style="text-align:center;font-size:1.5rem;width:10rem;border:1px solid #888;">
+              <input type="text" v-model="tempMember" value="" placeholder="队员姓名" style="text-align:center;font-size:1.5rem;width:10rem;border:1px solid #888;">
             </div>
           </div>
 
@@ -64,7 +64,7 @@ export default {
         member: {
           displayName: this.tempMember,
           groupIndex: this.groupIndex,
-          profileImageURL: 'static/img/defaultUserHead.jpeg',
+          profileImageURL: 'static/img/defaultUserHead.jpg',
           isSelected: true,
           _id: '',
           option: {

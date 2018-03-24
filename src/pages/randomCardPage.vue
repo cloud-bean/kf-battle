@@ -85,14 +85,14 @@
   export default {
     data() {
       return {
-        maxCardsLimit: 3,
-        levelRate: [65, 35, 0],
+        maxCardsLimit: 1,
+        levelRate: [100, 0, 0],
         showMemberWithCards: false,
         chartData: {
           columns: ['levelName', 'percent'],
           rows: [
-            { levelName: '一级卡牌', percent: 65 },
-            { levelName: '二级卡牌', percent: 35 },
+            { levelName: '一级卡牌', percent: 100 },
+            { levelName: '二级卡牌', percent: 0 },
             { levelName: '三级卡牌', percent: 0 },
           ],
           title: {
@@ -175,10 +175,11 @@
         const countLevel = (cardPool, level) => cardPool.filter(card => card.level === level).length;
 
         let index = -1;
-        const levelOneCount = countLevel(this.cardPool, 1);
-        const levelTwoCount = countLevel(this.cardPool, 2);
-        const levelThreeCount = countLevel(this.cardPool, 3);
+        const levelOneCount = countLevel(this.getRandomCards, 1);
+        const levelTwoCount = countLevel(this.getRandomCards, 2);
+        const levelThreeCount = countLevel(this.getRandomCards, 3);
 
+        console.log('randomLevel', randomLevel);
         switch (randomLevel) {
           case 1:
             if (levelOneCount > 0) {
@@ -202,12 +203,15 @@
         return parseInt(index, 10);
       },
       addCardToMemberTest() {
+        const cardPool = this.getRandomCards;
+        console.log(cardPool);
         this.members.map((member) => {
           for (let i = 0; i < this.maxCardsLimit; i++) {
             const randomCardIndex = this.getRandomCardIndex(this.getRandomLevel());
+            console.log('randomCardIndex', randomCardIndex);
             this.addCardToMember({
               member,
-              card: this.cardPool[randomCardIndex],
+              card: cardPool[randomCardIndex],
             });
           }
           return 0;
