@@ -1,6 +1,6 @@
 <template>
   <div v-show="showAll">
-    <Row class="battle-top" type="flex"  align="middle">
+    <Row class="battle-top" type="flex"  align="middle" :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
       <!-- <Col span="9">
         <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
@@ -68,7 +68,7 @@
       </Row>
     </div>
 
-    <div :style="{ 'display': isControlPanelExpand ? '' : 'none' }" >
+    <div>
       <transition name="fade">
 
         <Row style="margin-top: 10px;" v-if="showMembers">
