@@ -83,7 +83,7 @@
             </div>
           </Col>
           <Col>
-            <div class="control-button" @click="goToWinnerPage2" >
+            <div class="control-button" @click="showWinnerModal()" >
               <!-- <i-Circle
                 :size="130"
                 :trail-width="4"
@@ -196,6 +196,24 @@
                        :playMusic="playMusic"
                        :removeCard="removeCard">
       </member-board>
+    </Modal>
+
+    <Modal
+      v-model="winnerModal"
+      width="80%"
+      class-name="vertical-center-modal">
+      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
+         比赛结束
+      </div>
+      <div class="panel" style="padding:2rem;text-align:center">
+        <div class="winner-card">
+          <div class="winner-name" style="font-size: 3rem;">
+            大吉大利，今晚吃鸡
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+      </div>
     </Modal>
 
     <Modal
@@ -367,6 +385,7 @@
         randomEventTimeSplash: 0,
         scoreStatus: 1,
         showCardBoard: false,
+        winnerModal: false,
       };
     },
     computed: {
@@ -446,6 +465,9 @@
       },
       changeScoreStatus(status) {
         this.scoreStatus = status;
+      },
+      showWinnerModal() {
+        this.winnerModal = true;
       },
       getScoreData() {
         let left = 0;

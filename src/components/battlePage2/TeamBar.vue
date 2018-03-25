@@ -97,7 +97,7 @@ height: 6rem;
 
 }
 .member-area{
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0,0,0,.4);
   border-radius: 10px;
   padding: 10px;
 }
