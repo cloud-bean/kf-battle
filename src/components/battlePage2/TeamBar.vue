@@ -17,7 +17,7 @@
       <Col span="14">
             <Row type="flex" justify="start" class="member-area">
 
-            <Col span="4" v-for="member in members" >
+            <Col span="3" v-for="member in members" >
               <transition-group name="list-complete" tag="p">
                 <memberCell :member="member" :addScore="addScore" :scoreStatus="scoreStatus" :key="member._id" style="transition: all 1s;"></memberCell>
               </transition-group>
@@ -52,13 +52,16 @@
 .panel{
   padding: 10px;
   color: #FFFFFF;
+  border: solid 1px #fff;
+  margin: 0 .5rem;
 }
 .default{
-  background-color: #43a3fb;
+  background-color: #ccc;
+  color:#333;
 }
 .first{
   background-color: #0060FF;
-  // color:gold;
+  color:white;
 }
 .second{
   // background-color: #2F7DFF;
@@ -94,7 +97,7 @@ height: 6rem;
 
 }
 .member-area{
-  background-color: rgba(0,0,0,.2);
+  background-color: rgba(0,0,0,.6);
   border-radius: 10px;
   padding: 10px;
 }
