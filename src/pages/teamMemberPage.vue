@@ -60,15 +60,17 @@
         this.setMembers(this.onlineMembers);
         this.$router.push('/randomCardPage');
       },
-      setMemberOnline(member, groupIndex, status) {
+      setMemberOnline(member, groupIndex, status, groupId) {
         if (status === true) {
-          this.pushMember(member, groupIndex);
+          this.pushMember(member, groupIndex, groupId);
         } else {
           this.removeMember(member, groupIndex);
         }
       },
-      pushMember(member, groupIndex) {
+      pushMember(member, groupIndex, groupId) {
         member.groupIndex = parseInt(groupIndex, 10);
+        member.groupId = groupId;
+
         const index = this.onlineMembers.findIndex(item => item === member);
         if (index === -1) {
           this.onlineMembers.push(member);

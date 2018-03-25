@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    props: ['memberData', 'setMemberOnline', 'groupIndex'],
+    props: ['memberData', 'setMemberOnline', 'groupIndex', 'groupId'],
     data() {
       return {
         onLine: true,
@@ -20,11 +20,11 @@
     methods: {
       handleClick() {
         this.onLine = !this.onLine;
-        this.setMemberOnline(this.memberData, this.groupIndex, this.onLine);
+        this.setMemberOnline(this.memberData, this.groupIndex, this.onLine, this.groupId);
       },
     },
     mounted() {
-      this.setMemberOnline(this.memberData, this.groupIndex, this.onLine);
+      this.setMemberOnline(this.memberData, this.groupIndex, this.onLine, this.groupId);
     },
   };
 </script>

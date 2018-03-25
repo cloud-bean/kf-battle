@@ -61,10 +61,10 @@
   // color:gold;
 }
 .second{
-  background-color: #2F7DFF;
+  // background-color: #2F7DFF;
 }
 .third{
-  background-color: #78ABFF;
+  // background-color: #78ABFF;
 }
 .teamName{
   padding: 0.5rem;

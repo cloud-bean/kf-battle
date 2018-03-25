@@ -66,6 +66,26 @@
             </div>
           </Col>
           <Col>
+            <div class="control-button" @click="toggleCardBoardModal" >
+              <!-- <i-Circle
+                :size="130"
+                :trail-width="4"
+                :stroke-width="5"
+                :percent="randomEventCirclePercent"
+                stroke-linecap="square"
+                stroke-color="#43a3fb">
+                <div class="demo-Circle-custom">
+                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+                </div>
+              </i-Circle> -->
+              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
+
+              <div style="font-size:1.5rem;">
+                卡牌之树
+              </div>
+            </div>
+          </Col>
+          <Col>
             <div class="control-button" @click="goToWinnerPage2" >
               <!-- <i-Circle
                 :size="130"
@@ -189,6 +209,14 @@
       <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playRandomEventMusic" v-if="showRandomEventModal"></RandomEventPanel>
       <p slot="footer"></p>
     </Modal>
+    <Modal
+      v-model="showCardBoard"
+      width="85%"
+      :closable="false"
+      class-name="vertical-center-modal">
+      <p slot="footer"></p>
+      <card-board :cards="cardPool"></card-board>
+    </Modal>
 
     <audio ref="audioUseCard" :src="selectedTheme.useCardSound ? selectedTheme.useCardSound.URL : '/static/audio/Events/useCard.m4a'" preload="auto" style="display: none;"></audio>
     <audio ref="audioGetScore" :src="selectedTheme.getScoreSound ? selectedTheme.getScoreSound.URL : '/static/audio/Events/get.m4a'" preload="auto" style="display: none;"></audio>
@@ -305,6 +333,8 @@
   import ScoreVS from '../components/battlePage2/scoreVS';
   import MemberCell from '../components/battlePage2/memberCell';
   import MemberBoard from '../components/battlePage2/memberBoard';
+  import CardBoard from '../components/battlePage2/cardBoard';
+
   import RandomMemberPanel from '../components/battlePage2/randomMemberPanel';
   import RandomEventPanel from '../components/battlePage2/randomEventPanel';
   const moment = require('moment');
@@ -340,6 +370,7 @@
         randomEventTimeSpan: 10 * 60 * 1000, // 10 minutes a round
         randomEventTimeSplash: 0,
         scoreStatus: 1,
+        showCardBoard: false,
       };
     },
     computed: {
@@ -353,6 +384,9 @@
       ]),
       ...mapGetters([
         'selectedTheme',
+      ]),
+      ...mapGetters('card', [
+        'cardPool',
       ]),
       getRandomEvents() {
         let randomEvents = [];
@@ -399,6 +433,9 @@
         'fetchRandomEvents',
         'postBattleResult',
         'addMemberPickedCount',
+      ]),
+      ...mapActions('card', [
+        'fetchCardPool',
       ]),
       ...mapActions('timeline', [
         'addFeed',
@@ -551,23 +588,9 @@
       toggleRandomEventModal() {
         this.showRandomEventModal = !this.showRandomEventModal;
         this.randomEventTimeSplash = 0;
-        // if (this.randomTimer) {
-        //   clearInterval(this.randomTimer);
-        //   this.randomTimer = null;
-        // }
-
-        // if (this.showRandomEventModal) {
-        //   const len = this.randomEvents.length;
-        //   this.selectedIndex = parseInt(Math.random() * len, 10);
-        //   // this.randomTimer = setInterval(() => {
-        //   //   this.selectedIndex = parseInt(Math.random() * len, 10);
-        //   // }, 120);
-        //   // setTimeout(() => {
-        //   //   if (this.randomTimer) {
-        //   //     clearInterval(this.randomTimer);
-        //   //   }
-        //   // }, 2400);
-        // }
+      },
+      toggleCardBoardModal() {
+        this.showCardBoard = !this.showCardBoard;
       },
       playMusic(index) {
         switch (index) {
@@ -619,6 +642,7 @@
       RandomEventPanel,
       TeamBar,
       ScoreButton,
+      CardBoard,
     },
     mounted() {
       const that = this;
@@ -637,6 +661,7 @@
           timer = null;
         }
       }, 1);
+      this.fetchCardPool();
       setInterval(() => {
         this.getTime();
       }, 1000);
