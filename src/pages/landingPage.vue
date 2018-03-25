@@ -2,9 +2,10 @@
   <div>
     <div class="bg-enter" v-if="showLogo">
       <div style="margin-top: 100px;">
-        <Button type="default" shape="circle" icon="ios-locked" @click="setMode(1)" disabled>绝地求生</Button>
-        <Button type="primary" shape="circle" icon="xbox" @click="setMode(2)">双塔奇兵</Button>
-        <Button type="default" shape="circle" icon="ios-locked" @click="setMode(3)">深渊大乱斗</Button>
+        <Button type="primary" shape="circle" size="large" icon="xbox" @click="setMode(1)">双塔奇兵</Button>
+        <Button type="default" shape="circle" size="large" icon="ios-paw" @click="setMode(2)">深渊大乱斗</Button>
+        <Button type="default" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" >绝地求生</Button>
+        <Button type="default" shape="circle" size="large" icon="social-freebsd-devil" @click="setMode(4)" >Boss团战</Button>
       </div>
     </div>
   </div>
@@ -32,10 +33,14 @@
         console.log('game mode', mode);
         this.setGameMode(mode);
         this.showLogo = false;
-        if (mode === 2) {
+        if (mode === 1) {
           this.$router.push('/chooseTeamPage');
-        } else if (mode === 3) {
+        } else if (mode === 2) {
           this.$router.push('/chooseTeamPage2');
+        } else if (mode === 3) {
+          this.$router.push('/chooseTeamPage3');
+        } else if (mode === 4) {
+          this.$router.push('/chooseTeamPage4');
         }
       },
     },
