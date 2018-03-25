@@ -10,50 +10,98 @@
       <Col span="9">
         <group-bar position="right" :data="groupTwo"></group-bar>
       </Col> -->
-      <Col span="4">
-      </Col>
-      <Col span="4">
-      </Col>
-      <Col span="4">
+      <Col span="8">
       </Col>
 
-      <Col span="4">
-        <div class="control-button" @click="opRandomNumberModal = true">
-          <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:5rem; border-radius: 50%;">
-          <div style="font-size:1.5rem;">
-            命运之轮
-          </div>
-        </div>
-      </Col>
-      <Col span="4">
-        <div class="control-button" @click="toggleRandomEventModal" >
-          <!-- <i-Circle
-            :size="130"
-            :trail-width="4"
-            :stroke-width="5"
-            :percent="randomEventCirclePercent"
-            stroke-linecap="square"
-            stroke-color="#43a3fb">
-            <div class="demo-Circle-custom">
-              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+
+
+      <Col span="8">
+        <Row type="flex" justify="space-around">
+          <Col>
+          <div class="control-button" @click="opRandomNumberModal = true">
+            <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:5rem; border-radius: 50%;">
+            <div style="font-size:1.5rem;">
+              命运之轮
             </div>
-          </i-Circle> -->
-          <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
-
-          <div style="font-size:1.5rem;">
-            传令信使
           </div>
-        </div>
-      </Col>
-      <Col span="4">
-        <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
-        <div class="i-button" @click="goToWinnerPage2" style="background-color:#5cadff">结束游戏</div>
+          </Col>
+          <Col>
+            <div class="control-button" @click="toggleRandomEventModal" >
+              <!-- <i-Circle
+                :size="130"
+                :trail-width="4"
+                :stroke-width="5"
+                :percent="randomEventCirclePercent"
+                stroke-linecap="square"
+                stroke-color="#43a3fb">
+                <div class="demo-Circle-custom">
+                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+                </div>
+              </i-Circle> -->
+              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
 
+              <div style="font-size:1.5rem;">
+                传令信使
+              </div>
+            </div>
+          </Col>
+          <Col>
+            <div class="control-button" @click="lockScreen" >
+              <!-- <i-Circle
+                :size="130"
+                :trail-width="4"
+                :stroke-width="5"
+                :percent="randomEventCirclePercent"
+                stroke-linecap="square"
+                stroke-color="#43a3fb">
+                <div class="demo-Circle-custom">
+                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+                </div>
+              </i-Circle> -->
+              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
+
+              <div style="font-size:1.5rem;">
+                锁定屏幕
+              </div>
+            </div>
+          </Col>
+          <Col>
+            <div class="control-button" @click="goToWinnerPage2" >
+              <!-- <i-Circle
+                :size="130"
+                :trail-width="4"
+                :stroke-width="5"
+                :percent="randomEventCirclePercent"
+                stroke-linecap="square"
+                stroke-color="#43a3fb">
+                <div class="demo-Circle-custom">
+                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+                </div>
+              </i-Circle> -->
+              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
+
+              <div style="font-size:1.5rem;">
+                结束游戏
+              </div>
+            </div>
+          </Col>
+        </Row>
       </Col>
+      <Col span="8">
+        <Row style="padding:1rem 5rem;color:#fff;font-size:2rem;">
+          <Col span="12" style="background-color:green;padding:1rem 0;border-radius:20px 0 0 20px;" @click.native="changeScoreStatus(1)">
+            加分
+          </Col>
+          <Col span="12" style="background-color:red;padding:1rem 0;border-radius:0 20px 20px 0;" @click.native="changeScoreStatus(-1)">
+            减分
+          </Col>
+        </Row>
+      </Col>
+
 
     </Row>
 
-    <div class="spacer">
+    <div class="spacer" :class="[scoreStatus==1?'green':'red']">
       <Row>
         <Col span="10">
           当前时间：{{now}}
@@ -71,12 +119,18 @@
     <div>
       <transition name="fade">
 
-        <Row style="margin-top: 10px;" v-if="showMembers">
+        <Row style="" v-if="showMembers">
           <transition-group name="flip-list" tag="ul">
-          <div class="" style="color:#fff;background-color:#00B0FF;margin-top:1rem;" v-for="(team,index) in teamsOrderByScore" :key="team._id">
-            <team-bar :team="team" :rank="index+1" :members="groupMembers(team._id)" :addScore="addScore" :key="team._id"></team-bar>
+          <div class="" style="color:#fff;margin-top:0.5rem;" v-for="(team,index) in teamsOrderByScore" :key="team._id">
+            <team-bar :team="team" :rank="index+1" :members="groupMembers(team._id)" :addScore="addScore" :scoreStatus="scoreStatus" :key="team._id"></team-bar>
           </div>
           </transition-group>
+          <div class="lock" v-if="lock">
+            <div class="key-area">
+              <div>输入解锁密码</div>
+              <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
+            </div>
+          </div>
           <!-- <Col span="9">
             <Row type="flex"  :gutter="16" style="margin-left:5px">
               <Col span="8"  v-for="member in groupMembers(0)" :key="member._id">
@@ -90,12 +144,7 @@
 
 
             </div>
-            <div class="lock" v-if="lock">
-              <div class="key-area">
-                <div>输入解锁密码</div>
-                <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
-              </div>
-            </div>
+
           </Col>
           <Col span="9">
             <Row type="flex" :gutter="16"  style="margin-right:5px">
@@ -220,6 +269,12 @@
     top:30rem;
     font-size: 2rem;
   }
+  .red{
+    background-color: rgba(255,0,0,.5);
+  }
+  .green{
+    background-color: rgba(0,255,0,.5);
+  }
   .mask {
     width: 10rem;
     height: 10rem;
@@ -246,7 +301,7 @@
 <script>
   import GroupBar from '../components/battlePage2/groupBar';
   import TeamBar from '../components/battlePage2/TeamBar';
-
+  import ScoreButton from '../components/battlePage2/scoreButton';
   import ScoreVS from '../components/battlePage2/scoreVS';
   import MemberCell from '../components/battlePage2/memberCell';
   import MemberBoard from '../components/battlePage2/memberBoard';
@@ -284,6 +339,7 @@
         isControlPanelExpand: true,
         randomEventTimeSpan: 10 * 60 * 1000, // 10 minutes a round
         randomEventTimeSplash: 0,
+        scoreStatus: 1,
       };
     },
     computed: {
@@ -354,6 +410,9 @@
       groupMembers(teamId) {
         return this.members.filter((member) => member.groupId === teamId)
           .sort((a, b) => b.get - a.get);
+      },
+      changeScoreStatus(status) {
+        this.scoreStatus = status;
       },
       getScoreData() {
         let left = 0;
@@ -559,6 +618,7 @@
       RandomMemberPanel,
       RandomEventPanel,
       TeamBar,
+      ScoreButton,
     },
     mounted() {
       const that = this;

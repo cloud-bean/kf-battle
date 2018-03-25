@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Row class="panel" type="flex" justify="center" align="middle">
+    <Row class="panel default" :class="{first:(rank==1),second:(rank==2),third:(rank==3)}" type="flex" justify="center" align="middle">
       <Col span="2">
         <span class="rank">{{rank}}</span>
       </Col>
@@ -19,15 +19,14 @@
 
             <Col span="4" v-for="member in members" >
               <transition-group name="list-complete" tag="p">
-                <memberCell :member="member" :addScore="addScore" :key="member._id" style="transition: all 1s;"></memberCell>
+                <memberCell :member="member" :addScore="addScore" :scoreStatus="scoreStatus" :key="member._id" style="transition: all 1s;"></memberCell>
               </transition-group>
               </Col>
             </Row>
-
-
       </Col>
-      <Col span="4">
-        <span class="score">{{team.get||0}}</span>
+      <Col span="4" >
+
+        <div class="score">{{team.get||0}}</div>
       </Col>
     </Row>
   </div>
@@ -41,7 +40,7 @@
       return {
       };
     },
-    props: ['team', 'rank', 'addScore', 'members'],
+    props: ['team', 'rank', 'addScore', 'members', 'scoreStatus'],
     components: {
       memberCell,
     },
@@ -52,32 +51,50 @@
 <style scoped lang="less">
 .panel{
   padding: 10px;
+  color: #FFFFFF;
+}
+.default{
+  background-color: #888;
+}
+.first{
+  background-color: #0060FF;
+  // color:gold;
+}
+.second{
+  background-color: #2F7DFF;
+}
+.third{
+  background-color: #78ABFF;
 }
 .teamName{
-  font-size: 3rem;
+  padding: 0.5rem;
+  font-size: 2rem;
 }
 .rank{
   /* 1: */
 font-family: PingFangSC-Regular;
-font-size: 100px;
-color: #FFFFFF;
+font-size: 4rem;
+// color: gold;
 }
 .score{
   font-family: PingFangSC-Regular;
-  font-size: 100px;
-  color: #FFFFFF;
+  font-size: 6rem;
+  margin:0 5rem;
+  background-color: rgba(255,255,255,.3);
+  border-radius: 10px;
+  // color:#0EB495;
 }
 .team-logo{
   /* Rectangle 2: */
 /* Sketch doesnt export pattern fills at this point */
 // border: 2px solid #FFFFFF;
 // border-radius: 29px;
-width: 8rem;
-height: 8rem;
+width: 6rem;
+height: 6rem;
 
 }
 .member-area{
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,.2);
   border-radius: 10px;
   padding: 10px;
 }

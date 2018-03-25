@@ -15,10 +15,11 @@
 <script>
   export default {
     name: 'MemberCell',
-    props: ['member', 'addScore'],
+    props: ['member', 'addScore', 'scoreStatus'],
     methods: {
       getScore() {
-        this.addScore({ member: this.member, score: 1 });
+        const scoreStatus = this.scoreStatus;
+        this.addScore({ member: this.member, score: scoreStatus });
         this.$forceUpdate();
       },
     },
