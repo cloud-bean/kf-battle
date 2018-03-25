@@ -226,7 +226,7 @@
 </template>
 <style scoped lang="less">
   .battle-top {
-    background-color: #fff;
+    background-color: rgba(255,255,255,.8);
     padding-top: .3rem;
     /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
   }

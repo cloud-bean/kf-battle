@@ -54,7 +54,7 @@
   color: #FFFFFF;
 }
 .default{
-  background-color: #888;
+  background-color: #43a3fb;
 }
 .first{
   background-color: #0060FF;
