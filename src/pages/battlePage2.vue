@@ -19,7 +19,7 @@
         <Row type="flex" justify="space-around">
           <Col>
           <div class="control-button" @click="opRandomNumberModal = true">
-            <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:5rem; border-radius: 50%;">
+            <Icon type="compass" size="80"></Icon>
             <div style="font-size:1.5rem;">
               命运之轮
             </div>
@@ -38,8 +38,7 @@
                   <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
                 </div>
               </i-Circle> -->
-              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
-
+              <Icon type="paper-airplane" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 传令信使
               </div>
@@ -58,8 +57,7 @@
                   <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
                 </div>
               </i-Circle> -->
-              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
-
+              <Icon type="locked" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 锁定屏幕
               </div>
@@ -78,8 +76,7 @@
                   <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
                 </div>
               </i-Circle> -->
-              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
-
+              <Icon type="map" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 卡牌之树
               </div>
@@ -98,8 +95,7 @@
                   <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
                 </div>
               </i-Circle> -->
-              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:5rem; border-radius: 50%;">
-
+              <Icon type="ios-checkmark" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 结束游戏
               </div>
