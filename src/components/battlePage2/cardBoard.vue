@@ -2,10 +2,7 @@
   <div>
     <Row class="panel">
       <Col v-for="card,index in cards" span="4">
-        <div style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
-          <img style="width: 12rem; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL + '-kf_card_w200_h460'" @click="useCard(index)">
-          <p style="font-size: 2rem; padding:.2rem;">{{card.name}}</p>
-        </div>
+        <card-item :card="card"></card-item>
       </Col>
     </Row>
     <!-- <div v-if="use" style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
@@ -16,27 +13,27 @@
 </template>
 
 <script>
-
-  export default {
-    data() {
-      return {
-      };
-    },
-    props: ['cards'],
+import cardItem from './cardItem';
+export default {
+  data() {
+    return {
+      lock: true,
+    };
+  },
+  props: ['cards'],
     // computed: {
     //   level: exp2level(this.member.option.exp),
     // },
-    methods: {
-      useIt(cardIndex) {
-        this.removeCard({
-          member: this.member,
-          card: this.member.cards[cardIndex],
-        });
-        this.$forceUpdate();
-        this.playMusic();
-      },
+  methods: {
+    useCard(cardIndex) {
+      console.log(cardIndex);
+      this.$forceUpdate();
     },
-  };
+  },
+  components: {
+    cardItem,
+  },
+};
 </script>
 
 
@@ -94,5 +91,15 @@
   .btn-lose-score {
     background-color: gray;
     width:auto;
+  }
+  .lock{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,.7);
+    background-size: cover;
+    z-index: 999;
   }
 </style>

@@ -7,8 +7,9 @@ import store from './store';
 
 import Wilddog from 'wilddog';
 import WildVue from 'wildvue';
+import animate from 'animate.css';
 
-
+Vue.use(animate);
 Vue.use(Wilddog);
 Vue.use(WildVue);
 Vue.use(iView);
