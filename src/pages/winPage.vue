@@ -2,7 +2,7 @@
   <div style="overflow-y: scroll;">
     <Row class="battle-top">
       <Col span="9" class="groupName">
-        <group-bar position="left" :data="groups[0]" :win="finalScore.left >= finalScore.right" ></group-bar>
+        <group-bar position="left" :data="groups[0]" :win="winnerIndex === 0" ></group-bar>
         <!-- <span>{{groups[0].name}}</span> -->
         <!-- <Tag color="red" v-if="finalScore.left >= finalScore.right">Winner</Tag> -->
       </Col>
@@ -12,9 +12,7 @@
       </Col>
 
       <Col span="9" class="groupName">
-        <group-bar position="right" :data="groups[1]" :win="finalScore.left  < finalScore.right"></group-bar>
-         <!-- <span>{{groups[1].name}}</span> -->
-        <!-- <Tag color="red" v-if="finalScore.left < finalScore.right">Winner</Tag> -->
+        <group-bar position="right" :data="groups[1]" :win="winnerIndex === 1"></group-bar>
       </Col>
     </Row>
 
@@ -40,10 +38,12 @@
 
     <Row style="background: rgba(255,255,255,0.9);">
       <Col span="12" style="padding: 20px;">
-        <member-table :members="getMembers(0)" :groupScore="finalScore.left" :honorName="finalScore.left >= finalScore.right ? '王者' : '勇士'"></member-table>
+        <member-table :members="getMembers(0)" :groupScore="finalScore[groups[0]._id]"
+                      :honorName="honorName(0)"></member-table>
       </Col>
       <Col span="12" style="padding: 20px;">
-        <member-table :members="getMembers(1)" :groupScore="finalScore.right" :honorName="finalScore.left < finalScore.right ? '王者' : '勇士'"></member-table>
+        <member-table :members="getMembers(1)" :groupScore="finalScore[groups[1]._id]"
+                      :honorName="honorName(1)"></member-table>
       </Col>
     </Row>
 
@@ -184,10 +184,10 @@
         'selectedTheme',
       ]),
       winnerTeam() {
-        return (this.finalScore.left >= this.finalScore.right ? this.groups[0] : this.groups[1]);
+        return this.groups[this.winnerIndex];
       },
       winnerIndex() {
-        return (this.finalScore.left >= this.finalScore.right ? 0 : 1);
+        return (this.finalScore[this.groups[0]._id] >= this.finalScore[this.groups[1]._id] ? 0 : 1);
       },
       mvp1() {
         return this.getMembers(this.winnerIndex).filter(item => item.isMVP === true)[0];
@@ -198,7 +198,7 @@
     },
     methods: {
       getMembers(index) {
-        const filterMembers = this.members.filter(item => item.groupIndex === index);
+        const filterMembers = this.members.filter(item => item.groupId === this.groups[index]._id);
         let mvpIndex = 0;
         filterMembers.forEach((item, ord) => {
           item.isMVP = false;
@@ -210,6 +210,9 @@
 
         filterMembers[mvpIndex].isMVP = true;
         return filterMembers;
+      },
+      honorName(index) {
+        return index === this.winnerIndex ? '王者' : '勇士';
       },
       goInit() {
         this.$router.replace('/');

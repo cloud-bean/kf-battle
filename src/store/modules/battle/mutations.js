@@ -10,7 +10,6 @@ export default {
   },
   [types.SET_MEMBERS](state, payload) {
     const members = payload;
-    console.log(members);
     members.map(member => {
       member.get = 0;
       member.lost = 0;
@@ -43,16 +42,7 @@ export default {
     if (!state.members[index].get) {
       state.members[index].get = 0;
     }
-    // if (!state.members[index].lost) {
-    //   state.members[index].lost = 0;
-    // }
     state.members[index].get += score;
-    // state.members.filter(member => member.groupId === state.members[index].groupId);
-    // if (score > 0) {
-    //   state.members[index].get += score;
-    // } else {
-    //   state.members[index].lost += score;
-    // }
   },
   [types.ADD_SCORE_TO_GROUP](state, payload) {
     const groupId = payload.member.groupId;
@@ -62,15 +52,7 @@ export default {
     if (!state.groups[index].get) {
       state.groups[index].get = 0;
     }
-    // if (!state.groups[index].lost) {
-    //   state.members[index].lost = 0;
-    // }
     state.groups[index].get += score;
-    // if (score > 0) {
-    //   state.groups[index].get += score;
-    // } else {
-    //   state.groups[index].lost += score;
-    // }
   },
   [types.clearCards](state) {
     state.members.map((member) => {
@@ -82,10 +64,7 @@ export default {
     state.groups = payload.groups;
   },
   [types.SET_SCORE](state, payload) {
-    state.finalScore = {
-      left: payload.left,
-      right: payload.right,
-    };
+    state.finalScore = payload;
   },
   [types.FETCH_RANDOM_EVENTS](state, payload) {
     state.randomEvents = payload.randomEvents;
@@ -103,11 +82,7 @@ export default {
     state.loading = false;
   },
   [types.ADD_MEMBER_PICKED_COUNT](state, payload) {
-    const index = state.members.findIndex(item => {
-      console.log(item._id, payload.memberId);
-      return item._id === payload.memberId;
-    });
+    const index = state.members.findIndex(item => item._id === payload.memberId);
     state.members[index].pickedCount += 1;
-    console.log(state.members[index]);
   },
 };
