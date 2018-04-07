@@ -17,11 +17,6 @@
       </Alert>
 
       <div class="">
-        <div @click="goCustom" v-show="teamSelect.length < maxTeamCount" class="i-button">
-          <Icon type="ios-gear"></Icon>
-          配置战队
-        </div>
-
         <div @click="initNewGame" v-show="teamSelect.length == maxTeamCount" class="i-button">
           确认选择
           <Icon type="chevron-right"></Icon>
@@ -84,9 +79,6 @@
         this.setBattleTeams({ teams: this.teamSelect });
         this.$router.push('/teamMemberPage');
       },
-      goCustom() {
-        this.$router.push('/custom');
-      },
       switchSelected() {
         const tmpTeam = this.teamSelect[0];
         this.teamSelect[0] = this.teamSelect[1];
@@ -120,10 +112,6 @@
   .main-content {
     padding: 1rem 4rem;
   }
-
-  /*.team-list {
-    padding: 1rem 4rem;
-  }*/
 
   .team-item {
     margin: .5rem 0;

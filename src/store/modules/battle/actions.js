@@ -17,6 +17,7 @@ export default {
   },
   addScoreToMember({ commit }, payload) {
     commit(types.ADD_SCORE_TO_MEMBER, payload);
+    commit(types.ADD_SCORE_TO_GROUP, payload);
   },
   clearCards({ commit }) {
     commit(types.clearCards);

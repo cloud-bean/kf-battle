@@ -32,19 +32,45 @@ export default {
     state.members[index].cardsCount = state.members[index].cards.length;
   },
   [types.ADD_SCORE_TO_MEMBER](state, payload) {
-    const index = state.members.findIndex(item => item === payload.member);
+    let index = 0;
+    for (const item of state.members) {
+      if (item._id === payload.member._id) {
+        break;
+      }
+      index++;
+    }
     const score = payload.score;
     if (!state.members[index].get) {
       state.members[index].get = 0;
     }
-    if (!state.members[index].lost) {
-      state.members[index].lost = 0;
+    // if (!state.members[index].lost) {
+    //   state.members[index].lost = 0;
+    // }
+    state.members[index].get += score;
+    // state.members.filter(member => member.groupId === state.members[index].groupId);
+    // if (score > 0) {
+    //   state.members[index].get += score;
+    // } else {
+    //   state.members[index].lost += score;
+    // }
+  },
+  [types.ADD_SCORE_TO_GROUP](state, payload) {
+    const groupId = payload.member.groupId;
+    const score = payload.score;
+    const index = state.groups.findIndex(item => item._id === groupId);
+
+    if (!state.groups[index].get) {
+      state.groups[index].get = 0;
     }
-    if (score > 0) {
-      state.members[index].get += score;
-    } else {
-      state.members[index].lost += score;
-    }
+    // if (!state.groups[index].lost) {
+    //   state.members[index].lost = 0;
+    // }
+    state.groups[index].get += score;
+    // if (score > 0) {
+    //   state.groups[index].get += score;
+    // } else {
+    //   state.groups[index].lost += score;
+    // }
   },
   [types.clearCards](state) {
     state.members.map((member) => {

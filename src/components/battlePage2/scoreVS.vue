@@ -1,14 +1,14 @@
 <template>
   <Row type="flex" align="middle">
     <Col span="9" class="score-card">
-      {{ left }}
+      {{ scoreData.left }}
     </Col>
     <Col span="6" class="vs-card">
      <!-- <img src="/static/img/newGame/vs-text.png"> -->
      vs
     </Col>
     <Col span="9" class="score-card">
-      {{ right }}
+      {{ scoreData.right }}
     </Col>
   </Row>
 </template>
@@ -18,10 +18,7 @@
     name: 'ScoreVS',
     props: ['scoreData'],
     data() {
-      return {
-        left: Object.values(this.scoreData)[0],
-        right: Object.values(this.scoreData)[1],
-      };
+      return {};
     },
   };
 </script>

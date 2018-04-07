@@ -25,8 +25,8 @@
           <!-- <p>个人得分</p> -->
           <div class="mark">
             <span style="color:#19be6b">{{member.get}}</span>
-            <!-- <span>/</span> -->
-            <!-- <span style="color:#808080">{{Math.abs(member.lost)}}</span> -->
+            <span>/</span>
+            <span style="color:#808080">{{Math.abs(member.lost)}}</span>
 
           </div>
           </Col>
