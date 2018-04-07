@@ -4,7 +4,7 @@ export default [
   'GOT_DATA',
   'SET_BATTLE_TEAMS',
   'SET_BATTLE_MEMBERS',
-  'ADD_MEMBER',
+  'ADD_TEMP_MEMBER',
   'resetState',
   'POST_REQ',
   'POST_SUCC',

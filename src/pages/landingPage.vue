@@ -6,7 +6,7 @@
         <Button type="primary" size="default" icon="ios-color-wand-outline" @click="goBattleThemePage">主题</Button>
         <Button type="primary" size="default" icon="ios-color-filter-outline" @click="goCustomPage">团队</Button>
       </ButtonGroup>
-      <Carousel autoplay v-model="value1" loop>
+      <Carousel autoplay v-model="value1" loop v-if="showCarousel">
         <CarouselItem>
           <br>
           <br>
@@ -24,7 +24,7 @@
         <CarouselItem>
           <br>
           <br>
-          <Button class="large-plus" type="warning" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" >绝地求生</Button>
+          <Button class="large-plus" type="warning" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" disabled>绝地求生</Button>
           <br>
           <br>
         </CarouselItem>
@@ -49,6 +49,7 @@
       return {
         showLogo: true,
         value1: 0,
+        showCarousel: true,
       };
     },
     methods: {
@@ -63,6 +64,7 @@
         console.log('game mode', mode);
         this.setGameMode(mode);
         this.showLogo = false;
+        this.showCarousel = false;
         if (mode === 1) {
           this.$router.push('/chooseTeamPage');
         } else if (mode === 2) {

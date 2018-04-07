@@ -8,11 +8,15 @@ export default {
       state[key] = initial[key];
     });
   },
-  [types.ADD_MEMBER](state, payload) {
+  [types.ADD_TEMP_MEMBER](state, payload) {
     const newState = state;
-    console.log(payload.groupIndex);
-    console.log(newState.battleTeams);
-    newState.battleTeams[payload.groupIndex].students.push(payload.member);
+    if (newState.battleTeams && newState.battleTeams.length > 0 && payload.member !== undefined) {
+      newState.battleTeams.forEach((team) => {
+        if (team._id === payload.member.groupId) {
+          team.students.push(payload.member);
+        }
+      });
+    }
   },
   [types.SET_TEAMS](state, payload) {
     const newState = state;

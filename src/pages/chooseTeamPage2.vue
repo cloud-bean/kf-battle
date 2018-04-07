@@ -74,12 +74,10 @@
       goToMessBattle() { // 大乱斗
         this.setBattleTeams({ teams: this.teamSelect });
         this.setGroups({ groups: this.teamSelect });
-        this.teamSelect.forEach((team, groupIndex) => {
-          console.log(team.name, groupIndex);
+        this.teamSelect.forEach((team) => {
           if (team.students && team.students.length > 0) {
             team.students.forEach((member) => {
               member.groupId = team._id;
-              member.groupIndex = groupIndex;
               this.onlineMemebers.push(member);
             });
           }

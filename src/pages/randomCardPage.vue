@@ -21,7 +21,7 @@
 
       <Row v-if="showMemberWithCards">
         <Col span="12" >
-          <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 0" style="margin: 10px;">
+          <Card v-for="member, index in members" :key="member._id" v-if="member.groupId === battleTeams[0]._id" style="margin: 10px;">
             <div class="member-name">
               {{ member.displayName }}
             </div>
@@ -32,7 +32,7 @@
           </Card>
         </Col>
         <Col span="12">
-          <Card v-for="member, index in members" :key="member._id" v-if="member.groupIndex == 1" style="margin: 10px;">
+          <Card v-for="member, index in members" :key="member._id" v-if="member.groupId === battleTeams[1]._id" style="margin: 10px;">
             <div class="member-name">
               {{ member.displayName }}
             </div>

@@ -6,7 +6,7 @@ export default {
     commit(types.resetState);
   },
   addTempMember({ commit }, payload) {
-    commit(types.ADD_MEMBER, payload);
+    commit(types.ADD_TEMP_MEMBER, payload);
   },
   async getAllTeams({ commit }) {
     commit('FETCH_DATA');

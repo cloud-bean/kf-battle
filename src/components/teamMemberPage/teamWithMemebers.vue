@@ -8,7 +8,7 @@
     </div>
     <Row class="members" :gutter="16" type="flex" justify="start">
       <Col span="8" v-for="member, index in teamData.students" class="member-item"  :key="index">
-          <member-item :memberData="member" :setMemberOnline="setMemberOnline" :groupIndex="groupIndex" :groupId="teamData._id"></member-item>
+          <member-item :memberData="member" :setMemberOnline="setMemberOnline" :groupId="teamData._id"></member-item>
       </Col>
       <Col span="8" class="member-item" @click.native="showAddTempMemberPanel">
           <Card ><Icon type="plus-round" size="35"></Icon></Card>
@@ -47,7 +47,7 @@ import memberItem from './memberItem';
 import { mapActions } from 'vuex';
 
 export default {
-  props: ['teamData', 'setMemberOnline', 'groupIndex'],
+  props: ['teamData', 'setMemberOnline'],
   data() {
     return {
       showAddMemberModal: false,
@@ -60,13 +60,12 @@ export default {
     },
     addMember() {
       this.addTempMember({
-        groupIndex: this.groupIndex,
         member: {
           displayName: this.tempMember,
-          groupIndex: this.groupIndex,
           profileImageURL: 'static/img/defaultUserHead.jpg',
           isSelected: true,
           _id: '',
+          groupId: this.teamData._id,
           option: {
             exp: 0,
             goldToken: 0,

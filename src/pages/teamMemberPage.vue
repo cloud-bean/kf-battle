@@ -5,7 +5,7 @@
     </div>
     <Row class="main-area">
       <Col span="10">
-        <team-with-members :teamData="battleTeams[0]" :setMemberOnline="setMemberOnline" groupIndex="0"></team-with-members>
+        <team-with-members :teamData="battleTeams[0]" :setMemberOnline="setMemberOnline"></team-with-members>
       </Col>
       <Col span="4">
         <div class="vs">
@@ -15,7 +15,7 @@
          <!-- <img src="/static/newGame/vs-art.png" style="width: 50%"> -->
       </Col>
       <Col span="10">
-        <team-with-members :teamData="battleTeams[1]" :setMemberOnline="setMemberOnline" groupIndex="1"></team-with-members>
+        <team-with-members :teamData="battleTeams[1]" :setMemberOnline="setMemberOnline"></team-with-members>
       </Col>
     </Row>
     <div class="button-area">
@@ -60,15 +60,14 @@
         this.setMembers(this.onlineMembers);
         this.$router.push('/randomCardPage');
       },
-      setMemberOnline(member, groupIndex, status, groupId) {
+      setMemberOnline(member, status, groupId) {
         if (status === true) {
-          this.pushMember(member, groupIndex, groupId);
+          this.pushMember(member, groupId);
         } else {
-          this.removeMember(member, groupIndex);
+          this.removeMember(member);
         }
       },
-      pushMember(member, groupIndex, groupId) {
-        member.groupIndex = parseInt(groupIndex, 10);
+      pushMember(member, groupId) {
         member.groupId = groupId;
 
         const index = this.onlineMembers.findIndex(item => item === member);
@@ -76,8 +75,7 @@
           this.onlineMembers.push(member);
         }
       },
-      removeMember(member, groupIndex) {
-        member.groupIndex = parseInt(groupIndex, 10);
+      removeMember(member) {
         const index = this.onlineMembers.findIndex(item => item === member);
         if (index !== -1) {
           this.onlineMembers.splice(index, 1);

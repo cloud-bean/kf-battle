@@ -453,20 +453,21 @@
         this.postBattleResult(battleResult);
       },
       getScoreData() {
-        let left = 0;
-        let right = 0;
-        this.members.forEach(item => {
-          if (item.groupIndex === 0) {
-            left += item.get + item.lost;
-          } else {
-            right += item.get + item.lost;
-          }
-          return 0;
+        // score {}
+        // key is groupId
+        // value is the sum of each memeber's score
+        const scoreData = {};
+        this.groups.forEach((group) => {
+          scoreData[group._id] = 0;
         });
-        return {
-          left,
-          right,
-        };
+        this.members.forEach(item => {
+          if (scoreData[item.groupId] === undefined) {
+            scoreData[item.groupId] = 0;
+          }
+          scoreData[item.groupId] += item.get + item.lost;
+        });
+
+        return scoreData;
       },
       addScore(payload) {
         this.addScoreToMember(payload);

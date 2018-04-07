@@ -5,7 +5,7 @@
         <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
       <Col span="6">
-        <score-vs :scoreData="getScoreData()"></score-vs>
+        <score-vs v-if="showScoreBar" :scoreData="getScoreData()"></score-vs>
       </Col>
       <Col span="9">
         <group-bar position="right" :data="groupTwo"></group-bar>
@@ -256,6 +256,7 @@
         isControlPanelExpand: true,
         randomEventTimeSpan: 10 * 60 * 1000, // 10 minutes a round
         randomEventTimeSplash: 0,
+        showScoreBar: true,
       };
     },
     computed: {
@@ -313,28 +314,35 @@
         this.isControlPanelExpand = !!state;
       },
       groupMembers(index) {
-        return this.members.filter((member) => member.groupIndex === index);
+        return this.members.filter((member) => member.groupId === this.groups[index]._id);
       },
       getScoreData() {
-        let left = 0;
-        let right = 0;
-        this.members.forEach(item => {
-          if (item.groupIndex === 0) {
-            left += item.get + item.lost;
-          } else {
-            right += item.get + item.lost;
-          }
-          return 0;
+        const scoreData = {};
+        this.groups.forEach((group) => {
+          scoreData[group._id] = 0;
         });
-        return {
-          left,
-          right,
-        };
+        this.members.forEach(item => {
+          if (scoreData[item.groupId] === undefined) {
+            scoreData[item.groupId] = 0;
+          }
+          scoreData[item.groupId] += item.get + item.lost;
+        });
+
+        return scoreData;
       },
       addScore(payload) {
+        console.log('addScore:', payload);
         this.showMembers = false;
+        this.showScoreBar = false;
         this.addScoreToMember(payload);
-        const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
+        let groupName = '';
+        this.groups.some((group) => {
+          if (group._id === payload.member.groupId) {
+            groupName = group.name;
+            return true;
+          }
+          return false;
+        });
         this.addFeed({
           feed: {
             groupName,
@@ -345,16 +353,23 @@
             description: `${payload.desc}`,
           },
         });
-
         setTimeout(() => {
           this.showMembers = true;
+          this.showScoreBar = true;
           return 0;
         }, 100);
       },
       removeCard(payload) {
         this.showMembers = false;
         this.removeCardFromMember(payload);
-        const groupName = payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
+        let groupName = '';
+        this.groups.some((group) => {
+          if (group._id === payload.member.groupId) {
+            groupName = group.name;
+            return true;
+          }
+          return false;
+        });
         this.addFeed({
           feed: {
             groupName,
@@ -379,61 +394,6 @@
         this.now = moment().format('HH:mm:ss');
         this.randomEventTimeSplash += 1000;
       },
-      // goToWinnerPage() {
-      //   const finalScore = this.getScoreData();
-      //   this.setFinalScore(finalScore);
-      //   const groupIds = [this.groups[0]._id, this.groups[1]._id];
-      //   const memberIds = [];
-      //   this.members.forEach((member) => {
-      //     if (member._id) {
-      //       memberIds.push(member._id);
-      //     }
-      //   });
-      //
-      //   const battleResult = {
-      //     feeds: this.feeds,
-      //     groups: this.groups,
-      //     groupIds,
-      //     memberIds,
-      //     finalScore,
-      //     members: this.members,
-      //     prizes: this.prizes || [],
-      //     started: this.startTime,
-      //     name: `battle @${this.startTime.toLocaleString()}`,
-      //     battleTheme: this.selectedTheme._id,
-      //     battleMode: this.gameMode,
-      //   };
-      //
-      //   this.postBattleResult(battleResult);
-      //   this.$router.push('/winPage');
-      // }, // goToWinnerPage() {
-      //   const finalScore = this.getScoreData();
-      //   this.setFinalScore(finalScore);
-      //   const groupIds = [this.groups[0]._id, this.groups[1]._id];
-      //   const memberIds = [];
-      //   this.members.forEach((member) => {
-      //     if (member._id) {
-      //       memberIds.push(member._id);
-      //     }
-      //   });
-      //
-      //   const battleResult = {
-      //     feeds: this.feeds,
-      //     groups: this.groups,
-      //     groupIds,
-      //     memberIds,
-      //     finalScore,
-      //     members: this.members,
-      //     prizes: this.prizes || [],
-      //     started: this.startTime,
-      //     name: `battle @${this.startTime.toLocaleString()}`,
-      //     battleTheme: this.selectedTheme._id,
-      //     battleMode: this.gameMode,
-      //   };
-      //
-      //   this.postBattleResult(battleResult);
-      //   this.$router.push('/winPage');
-      // },
       goToWinnerPage2() {
         this.$Modal.confirm({
           title: '~打扫战场，上报天庭~',
