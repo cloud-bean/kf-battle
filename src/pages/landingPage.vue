@@ -1,12 +1,41 @@
 <template>
   <div>
     <div class="bg-enter" v-if="showLogo">
-      <div style="margin-top: 100px;">
-        <Button type="primary" shape="circle" size="large" icon="xbox" @click="setMode(1)">双塔奇兵</Button>
-        <Button type="default" shape="circle" size="large" icon="ios-paw" @click="setMode(2)">深渊大乱斗</Button>
-        <Button type="default" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" >绝地求生</Button>
-        <Button type="default" shape="circle" size="large" icon="social-freebsd-devil" @click="setMode(4)" >Boss团战</Button>
-      </div>
+      <!--<Button type="default" size="large" icon="ios-cog" @click="setMode(1)">配置</Button>-->
+      <ButtonGroup>
+        <Button type="primary" size="default" icon="ios-color-wand-outline" @click="goBattleThemePage">主题</Button>
+        <Button type="primary" size="default" icon="ios-color-filter-outline" @click="goCustomPage">团队</Button>
+      </ButtonGroup>
+      <Carousel autoplay v-model="value1" loop>
+        <CarouselItem>
+          <br>
+          <br>
+          <Button class="large-plus" type="primary" shape="circle" size="large" icon="xbox" @click="setMode(1)">双塔奇兵</Button>
+          <br>
+          <br>
+        </CarouselItem>
+        <CarouselItem>
+          <br>
+          <br>
+          <Button class="large-plus" type="success" shape="circle" size="large" icon="ios-paw" @click="setMode(2)">深渊大乱斗</Button>
+          <br>
+          <br>
+        </CarouselItem>
+        <CarouselItem>
+          <br>
+          <br>
+          <Button class="large-plus" type="warning" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" >绝地求生</Button>
+          <br>
+          <br>
+        </CarouselItem>
+        <CarouselItem>
+          <br>
+          <br>
+          <Button class="large-plus" type="error" shape="circle" size="large" icon="social-freebsd-devil" @click="setMode(4)" disabled>Boss团战</Button>
+          <br>
+          <br>
+        </CarouselItem>
+      </Carousel>
     </div>
   </div>
 </template>
@@ -19,6 +48,7 @@
     data() {
       return {
         showLogo: true,
+        value1: 0,
       };
     },
     methods: {
@@ -42,6 +72,12 @@
         } else if (mode === 4) {
           this.$router.push('/chooseTeamPage4');
         }
+      },
+      goCustomPage() {
+        this.$router.push('/custom');
+      },
+      goBattleThemePage() {
+        this.$router.push('/battleTheme');
       },
     },
     computed: {
@@ -121,5 +157,10 @@
     box-shadow: 0 0 2px #888;
     font-size: 1.8rem;
     text-align: center;
+  }
+  .large-plus {
+    font-size: 48px !important;
+    padding: 20px 40px !important;
+    margin-right: 20px !important;
   }
 </style>

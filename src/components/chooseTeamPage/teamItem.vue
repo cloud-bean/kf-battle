@@ -1,7 +1,7 @@
 <template>
   <div class="team-item">
     <Tooltip placement="top">
-      <div class="team-head" @click="handleClick">
+      <div class="team-head">
         <div class="mask" v-if="selected">
           <Icon type="checkmark" size="80" class="icon"></Icon>
         </div>
@@ -13,6 +13,7 @@
     </Tooltip>
     <div class="team-name">
       <p>{{teamData.name}}</p>
+      <Tag :color="selected ? 'green' : 'gray'">{{ teamData.students.length }}人</Tag>
     </div>
   </div>
 </template>
@@ -26,10 +27,6 @@
       };
     },
     methods: {
-      handleClick() {
-        // this.selected = !this.selected;
-        // this.onSelect(this.index, this.teamData, this.selected);
-      },
     },
   };
 </script>

@@ -1,19 +1,8 @@
 <template>
   <div v-show="showAll">
     <Row class="battle-top" type="flex"  align="middle" :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
-      <!-- <Col span="9">
-        <group-bar position="left" :data="groupOne"></group-bar>
-      </Col>
-      <Col span="6">
-        <score-vs :scoreData="getScoreData()"></score-vs>
-      </Col>
-      <Col span="9">
-        <group-bar position="right" :data="groupTwo"></group-bar>
-      </Col> -->
       <Col span="8">
       </Col>
-
-
 
       <Col span="8">
         <Row type="flex" justify="space-around">
@@ -27,17 +16,7 @@
           </Col>
           <Col>
             <div class="control-button" @click="toggleRandomEventModal" >
-              <!-- <i-Circle
-                :size="130"
-                :trail-width="4"
-                :stroke-width="5"
-                :percent="randomEventCirclePercent"
-                stroke-linecap="square"
-                stroke-color="#43a3fb">
-                <div class="demo-Circle-custom">
-                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
-                </div>
-              </i-Circle> -->
+
               <Icon type="paper-airplane" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 传令信使
@@ -46,17 +25,7 @@
           </Col>
           <Col>
             <div class="control-button" @click="lockScreen" >
-              <!-- <i-Circle
-                :size="130"
-                :trail-width="4"
-                :stroke-width="5"
-                :percent="randomEventCirclePercent"
-                stroke-linecap="square"
-                stroke-color="#43a3fb">
-                <div class="demo-Circle-custom">
-                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
-                </div>
-              </i-Circle> -->
+
               <Icon type="locked" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 锁定屏幕
@@ -65,17 +34,7 @@
           </Col>
           <Col>
             <div class="control-button" @click="toggleCardBoardModal" >
-              <!-- <i-Circle
-                :size="130"
-                :trail-width="4"
-                :stroke-width="5"
-                :percent="randomEventCirclePercent"
-                stroke-linecap="square"
-                stroke-color="#43a3fb">
-                <div class="demo-Circle-custom">
-                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
-                </div>
-              </i-Circle> -->
+
               <Icon type="map" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 卡牌之树
@@ -84,17 +43,7 @@
           </Col>
           <Col>
             <div class="control-button" @click="showWinnerModal()" >
-              <!-- <i-Circle
-                :size="130"
-                :trail-width="4"
-                :stroke-width="5"
-                :percent="randomEventCirclePercent"
-                stroke-linecap="square"
-                stroke-color="#43a3fb">
-                <div class="demo-Circle-custom">
-                  <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
-                </div>
-              </i-Circle> -->
+
               <Icon type="ios-checkmark" size="80"></Icon>
               <div style="font-size:1.5rem;">
                 结束游戏
@@ -399,6 +348,7 @@
       ]),
       ...mapGetters([
         'selectedTheme',
+        'gameMode',
       ]),
       ...mapGetters('card', [
         'cardPool',
@@ -468,6 +418,39 @@
       },
       showWinnerModal() {
         this.winnerModal = true;
+        const finalScore = this.getScoreData();
+        this.setFinalScore(finalScore);
+
+        const groupIds = [];
+        const memberIds = [];
+        this.groups.forEach((group) => {
+          if (group._id) {
+            groupIds.push(group._id);
+          }
+        });
+        this.members.forEach((member) => {
+          if (member._id) {
+            memberIds.push(member._id);
+          }
+        });
+
+        const battleResult = {
+          feeds: this.feeds,
+          groups: this.groups,
+          groupIds,
+          memberIds,
+          finalScore,
+          members: this.members,
+          prizes: this.prizes || [],
+          started: this.startTime,
+          name: `battle @${this.startTime.toLocaleString()}`,
+          battleTheme: this.selectedTheme._id,
+          battleMode: this.gameMode,
+        };
+
+        console.log('battleResult', battleResult);
+
+        this.postBattleResult(battleResult);
       },
       getScoreData() {
         let left = 0;
@@ -486,25 +469,8 @@
         };
       },
       addScore(payload) {
-        // this.showMembers = false;
         this.addScoreToMember(payload);
-        // const groupName = \
-        // payload.member.groupIndex === 0 ? this.groupOne.name : this.groupTwo.name;
-        // this.addFeed({
-        //   feed: {
-        //     groupName,
-        //     people: payload.member.displayName,
-        //     created: new Date(),
-        //     color: payload.score > 0 ? 'green' : 'red',
-        //     type: payload.type,
-        //     description: `${payload.desc}`,
-        //   },
-        // });
         this.groups.sort((a, b) => a.get - b.get);
-        // setTimeout(() => {
-        //   this.showMembers = true;
-        //   return 0;
-        // }, 100);
       },
       removeCard(payload) {
         this.showMembers = false;
@@ -533,32 +499,6 @@
       getTime() {
         this.now = moment().format('HH:mm:ss');
         this.randomEventTimeSplash += 1000;
-      },
-      goToWinnerPage() {
-        const finalScore = this.getScoreData();
-        this.setFinalScore(finalScore);
-        const groupIds = [this.groups[0]._id, this.groups[1]._id];
-        const memberIds = [];
-        this.members.forEach((member) => {
-          if (member._id) {
-            memberIds.push(member._id);
-          }
-        });
-
-        const battleResult = {
-          feeds: this.feeds,
-          groups: this.groups,
-          groupIds,
-          memberIds,
-          finalScore,
-          members: this.members,
-          prizes: this.prizes || [],
-          started: this.startTime,
-          name: `battle @${this.startTime.toLocaleString()}`,
-        };
-
-        this.postBattleResult(battleResult);
-        this.$router.push('/winPage');
       },
       goToWinnerPage2() {
         this.$Modal.confirm({
@@ -594,12 +534,12 @@
 
               this.$Modal.remove();
               this.$Message.info('清扫完毕，上报完毕');
-              this.$router.push('/winPage');
+              // this.$router.push('/winPage');
             }, 2000);
           },
           onCancel: () => {
             this.$Message.info('清扫完毕');
-            this.$router.push('/winPage');
+            // this.$router.push('/winPage');
           },
         });
       },

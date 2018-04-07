@@ -36,7 +36,7 @@
 
       </Row>
 
-      <Avatar v-for="name, index in board.userIds" size="large" :style="{ background: ColorList[index % 4], margin: '2px' }">{{ name }}</Avatar>
+      <Avatar v-for="name, index in board.userIds" :key="index" size="large" :style="{ background: ColorList[index % 4], margin: '2px' }">{{ name }}</Avatar>
 
 
       <!--<p>{{ board }}</p>-->

@@ -14,7 +14,7 @@ import RandomCardPage from '@/pages/randomCardPage';
 import WinPage from '@/pages/winPage';
 import CustomPage from '@/pages/customPage';
 import LandingPage from '@/pages/landingPage';
-
+import battleThemePage from '@/pages/setBattleThemePage';
 Vue.use(Router);
 
 export default new Router({
@@ -68,6 +68,11 @@ export default new Router({
       path: '/custom',
       name: 'customPage',
       component: CustomPage,
+    },
+    {
+      path: '/battleTheme',
+      name: 'battleThemePage',
+      component: battleThemePage,
     },
     {
       path: '/',

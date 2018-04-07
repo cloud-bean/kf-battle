@@ -4,7 +4,7 @@
         酒馆英雄
       </div>
 
-      <Alert type="info" show-icon style="width:30%;margin:10px auto; size: 2rem;">
+      <Alert type="info" show-icon style="width:30%;margin:10px auto; size: 2rem;" v-bind:hidden="teamSelect && teamSelect.length > 0">
         <span slot="desc" style="font-size:16px;">
             请选择参赛队伍
         </span>
@@ -13,7 +13,7 @@
       <div class="">
         <Button type="warning" style="margin: 10px 10px; font-size: 1em;" shape="circle" v-for="team in teamSelect" :key="team._id">{{ team.name }}</Button>
 
-        <div @click="goToMessBattle" class="i-button" style="margin-top: 20px; width: 300px; background-color: mediumseagreen;">
+        <div @click="goToMessBattle" class="i-button" style="margin-top: 20px; width: 300px; background-color: mediumseagreen;" v-if="teamSelect && teamSelect.length > 0">
           Tavern Brawl - 乱斗
           <Icon type="chevron-right"></Icon>
         </div>

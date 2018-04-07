@@ -271,6 +271,7 @@
       ]),
       ...mapGetters([
         'selectedTheme',
+        'gameMode',
       ]),
       getRandomEvents() {
         let randomEvents = [];
@@ -378,32 +379,61 @@
         this.now = moment().format('HH:mm:ss');
         this.randomEventTimeSplash += 1000;
       },
-      goToWinnerPage() {
-        const finalScore = this.getScoreData();
-        this.setFinalScore(finalScore);
-        const groupIds = [this.groups[0]._id, this.groups[1]._id];
-        const memberIds = [];
-        this.members.forEach((member) => {
-          if (member._id) {
-            memberIds.push(member._id);
-          }
-        });
-
-        const battleResult = {
-          feeds: this.feeds,
-          groups: this.groups,
-          groupIds,
-          memberIds,
-          finalScore,
-          members: this.members,
-          prizes: this.prizes || [],
-          started: this.startTime,
-          name: `battle @${this.startTime.toLocaleString()}`,
-        };
-
-        this.postBattleResult(battleResult);
-        this.$router.push('/winPage');
-      },
+      // goToWinnerPage() {
+      //   const finalScore = this.getScoreData();
+      //   this.setFinalScore(finalScore);
+      //   const groupIds = [this.groups[0]._id, this.groups[1]._id];
+      //   const memberIds = [];
+      //   this.members.forEach((member) => {
+      //     if (member._id) {
+      //       memberIds.push(member._id);
+      //     }
+      //   });
+      //
+      //   const battleResult = {
+      //     feeds: this.feeds,
+      //     groups: this.groups,
+      //     groupIds,
+      //     memberIds,
+      //     finalScore,
+      //     members: this.members,
+      //     prizes: this.prizes || [],
+      //     started: this.startTime,
+      //     name: `battle @${this.startTime.toLocaleString()}`,
+      //     battleTheme: this.selectedTheme._id,
+      //     battleMode: this.gameMode,
+      //   };
+      //
+      //   this.postBattleResult(battleResult);
+      //   this.$router.push('/winPage');
+      // }, // goToWinnerPage() {
+      //   const finalScore = this.getScoreData();
+      //   this.setFinalScore(finalScore);
+      //   const groupIds = [this.groups[0]._id, this.groups[1]._id];
+      //   const memberIds = [];
+      //   this.members.forEach((member) => {
+      //     if (member._id) {
+      //       memberIds.push(member._id);
+      //     }
+      //   });
+      //
+      //   const battleResult = {
+      //     feeds: this.feeds,
+      //     groups: this.groups,
+      //     groupIds,
+      //     memberIds,
+      //     finalScore,
+      //     members: this.members,
+      //     prizes: this.prizes || [],
+      //     started: this.startTime,
+      //     name: `battle @${this.startTime.toLocaleString()}`,
+      //     battleTheme: this.selectedTheme._id,
+      //     battleMode: this.gameMode,
+      //   };
+      //
+      //   this.postBattleResult(battleResult);
+      //   this.$router.push('/winPage');
+      // },
       goToWinnerPage2() {
         this.$Modal.confirm({
           title: '~打扫战场，上报天庭~',
@@ -431,6 +461,8 @@
                 prizes: this.prizes || [],
                 started: this.startTime,
                 name: `battle @${this.startTime.toLocaleString()}`,
+                battleTheme: this.selectedTheme._id,
+                battleMode: this.gameMode,
               };
 
               this.postBattleResult(battleResult);

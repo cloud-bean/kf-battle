@@ -17,7 +17,7 @@
       <Col span="14">
             <Row type="flex" justify="start" class="member-area">
 
-            <Col span="3" v-for="member in members" >
+            <Col span="3" v-for="member in members" :key="member._id">
               <transition-group name="list-complete" tag="p">
                 <memberCell :member="member" :addScore="addScore" :scoreStatus="scoreStatus" :key="member._id" style="transition: all 1s;"></memberCell>
               </transition-group>

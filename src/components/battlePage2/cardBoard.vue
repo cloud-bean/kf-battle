@@ -1,14 +1,10 @@
 <template>
   <div>
     <Row class="panel">
-      <Col v-for="card,index in cards" span="4">
+      <Col v-for="card,index in cards" span="4" :key="card._id">
         <card-item :card="card"></card-item>
       </Col>
     </Row>
-    <!-- <div v-if="use" style="text-align: center; margin: 5px; background-color: rgba(204,204,204,0.31); -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;">
-      <img style="width: 12rem; margin: 5px;margin-bottom:0; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" :src="card.file.URL + '-kf_card_w200_h460'" @click="useCard(index)">
-      <p style="font-size: 2rem; padding:.2rem;">{{card.name}}</p>
-    </div> -->
   </div>
 </template>
 
