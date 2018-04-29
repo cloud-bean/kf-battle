@@ -134,6 +134,7 @@
     created() {
       this.getAllTeams();
       this.getAllTeamLogos();
+      this.getAllMemberAvatars();
     },
   };
 </script>

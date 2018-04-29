@@ -1,5 +1,34 @@
 <template>
-
+  <div class="">
+    <div class="carousel" v-if="!showAll">
+      <Carousel
+        :autoplay="true"
+        dots="inside"
+        :radius-dot="true"
+        :loop="true"
+        arrow="never"
+        :height="800"
+        :autoplay-speed="4000">
+        <CarouselItem>
+            <img class="carousel-item" src="../../static/img/carousel/Carousel1.jpg" alt="">
+        </CarouselItem>
+        <CarouselItem>
+          <img class="carousel-item" src="../../static/img/carousel/Carousel2.jpg" alt="">
+        </CarouselItem>
+        <CarouselItem>
+          <img class="carousel-item" src="../../static/img/carousel/Carousel3.jpg" alt="">
+        </CarouselItem>
+        <CarouselItem>
+          <img  class="carousel-item" src="../../static/img/carousel/Carousel4.jpg" alt="">
+        </CarouselItem>
+    </Carousel>
+    <div class="loading">
+      正在玩命加载 %{{progress}}
+    </div>
+    <div class="">
+      <Button @click="skipFirstShow()">skip</Button>
+    </div>
+    </div>
     <div v-show="showAll">
       <Row class="battle-top" type="flex"  align="middle" :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
         <Col span="8">
@@ -170,6 +199,7 @@
 
       <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
     </div>
+  </div>
 
 </template>
 <style scoped lang="less">
@@ -192,6 +222,10 @@
     .ivu-modal {
       top: 0;
     }
+  }
+  .loading{
+    color: #fff;
+    font-size: 2rem;
   }
 
   .control-panel{
@@ -269,6 +303,14 @@
     position: relative;
     text-align: center;
   }
+  .carousel-item{
+    width:80%;
+    // width:640px;
+    // height:480px;
+  }
+  .carousel{
+    margin-top: 5rem;
+  }
 </style>
 <script>
   import GroupBar from '../components/battlePage2/groupBar';
@@ -316,6 +358,7 @@
         scoreStatus: 1,
         showCardBoard: false,
         winnerModal: false,
+        progress: 0,
       };
     },
     computed: {
@@ -572,6 +615,35 @@
             break;
         }
       },
+      stopMusic(index) {
+        switch (index) {
+          case 0:
+            this.$refs.audioUseCard.pause();
+            break;
+          case 1:
+            this.$refs.audioGetScore.pause();
+            break;
+          case 2:
+            this.$refs.audioLostScore.pause();
+            break;
+          case 3:
+            this.$refs.audioLoadBattle.pause();
+            break;
+          case 4:
+            this.$refs.audioRandomEvent.pause();
+            break;
+          case 5:
+            this.$refs.audioRandomPeople.pause();
+            break;
+          default:
+            this.$refs.audioUseCard.pause();
+            break;
+        }
+      },
+      skipFirstShow() {
+        this.showAll = true;
+        this.stopMusic(3);
+      },
       playRandomEventMusic(id) {
         const audioRef = this.$refs[id];
         if (audioRef && audioRef.length > 0) {
@@ -601,10 +673,16 @@
     },
     mounted() {
       const that = this;
+      // this.showAll = true;
       this.playMusic(3);
+      const loading = setInterval(() => {
+        if (that.progress < 100)that.progress++;
+      }, 700);
       setTimeout(() => {
+        clearInterval(loading);
         that.showAll = true;
       }, this.selectedTheme.loadTime * 1000);
+
       let timer = setInterval(() => {
         let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
         currentPosition -= 10;
