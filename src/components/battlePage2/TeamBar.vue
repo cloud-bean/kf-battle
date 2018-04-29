@@ -55,11 +55,11 @@
   margin: 0 .5rem;
 }
 .default{
-  background-color: #ccc;
+  background-color: rgba(255,255,255,.8);
   color:#333;
 }
 .first{
-  background-color: #0060FF;
+  background-color: rgba(0,96,255,.8);
   color:white;
 }
 .second{
