@@ -170,7 +170,7 @@
 
       <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
     </div>
-  
+
 </template>
 <style scoped lang="less">
   .battle-top {
@@ -452,6 +452,11 @@
       },
       addScore(payload) {
         this.addScoreToMember(payload);
+        if (payload.score > 0) {
+          this.playMusic(1);
+        } else {
+          this.playMusic(2);
+        }
         this.groups.sort((a, b) => a.get - b.get);
       },
       removeCard(payload) {
