@@ -25,7 +25,7 @@
       </Col>
       <Col span="4" >
 
-        <div class="score">{{team.get||0}}</div>
+        <div class="score" @click="addGroupScore()">{{team.get||0}}</div>
       </Col>
     </Row>
   </div>
@@ -39,9 +39,16 @@
       return {
       };
     },
-    props: ['team', 'rank', 'addScore', 'members', 'scoreStatus'],
+    props: ['team', 'rank', 'addScore', 'members', 'scoreStatus', 'addScoreToGroup'],
     components: {
       memberCell,
+    },
+    methods: {
+      addGroupScore() {
+        const scoreStatus = this.scoreStatus;
+        this.addScoreToGroup({ groupId: this.team._id, score: scoreStatus });
+        this.$forceUpdate();
+      },
     },
   };
 </script>

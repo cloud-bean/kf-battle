@@ -88,7 +88,7 @@
           <Row style="" v-if="showMembers">
             <transition-group name="flip-list" tag="ul">
               <div class="" style="color:#fff;margin-top:0.5rem;" v-for="(team,index) in teamsOrderByScore" :key="team._id">
-                <team-bar :team="team" :rank="index+1" :members="groupMembers(team._id)" :addScore="addScore" :scoreStatus="scoreStatus" :key="team._id"></team-bar>
+                <team-bar :team="team" :rank="index+1" :addScoreToGroup="addGroupScore" :members="groupMembers(team._id)" :addScore="addScore" :scoreStatus="scoreStatus" :key="team._id"></team-bar>
               </div>
             </transition-group>
             <div class="lock" v-if="lock">
@@ -379,6 +379,7 @@
         'fetchRandomEvents',
         'postBattleResult',
         'addMemberPickedCount',
+        'addScoreToGroup',
       ]),
       ...mapActions('card', [
         'fetchCardPool',
@@ -452,6 +453,15 @@
       },
       addScore(payload) {
         this.addScoreToMember(payload);
+        if (payload.score > 0) {
+          this.playMusic(1);
+        } else {
+          this.playMusic(2);
+        }
+        this.groups.sort((a, b) => a.get - b.get);
+      },
+      addGroupScore(payload) {
+        this.addScoreToGroup(payload);
         if (payload.score > 0) {
           this.playMusic(1);
         } else {
