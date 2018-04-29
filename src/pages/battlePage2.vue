@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <div v-show="!showAll">
-      <p>{{ selectedTheme.rules }}</p>
-    </div>
+
     <div v-show="showAll">
       <Row class="battle-top" type="flex"  align="middle" :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
         <Col span="8">
@@ -161,7 +158,7 @@
         :closable="false"
         class-name="vertical-center-modal">
         <p slot="footer"></p>
-        <card-board :cards="cardPool"></card-board>
+        <card-board :cards="selectedTheme.randomCards"></card-board>
       </Modal>
 
       <audio ref="audioUseCard" :src="selectedTheme.useCardSound ? selectedTheme.useCardSound.URL : '/static/audio/Events/useCard.m4a'" preload="auto" style="display: none;"></audio>
@@ -173,7 +170,7 @@
 
       <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
     </div>
-  </div>
+  
 </template>
 <style scoped lang="less">
   .battle-top {

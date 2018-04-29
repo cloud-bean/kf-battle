@@ -55,7 +55,7 @@
   margin: 0 .5rem;
 }
 .default{
-  background-color: rgba(255,255,255,.8);
+  background-color: rgba(255,255,255,.7);
   color:#333;
 }
 .first{
