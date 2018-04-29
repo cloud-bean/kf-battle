@@ -1,173 +1,178 @@
 <template>
-  <div v-show="showAll">
-    <Row class="battle-top" type="flex"  align="middle" :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
-      <Col span="8">
-      </Col>
-
-      <Col span="8">
-        <Row type="flex" justify="space-around">
-          <Col>
-          <div class="control-button" @click="opRandomNumberModal = true">
-            <Icon type="compass" size="80"></Icon>
-            <div style="font-size:1.5rem;">
-              命运之轮
-            </div>
-          </div>
-          </Col>
-          <Col>
-            <div class="control-button" @click="toggleRandomEventModal" >
-
-              <Icon type="paper-airplane" size="80"></Icon>
-              <div style="font-size:1.5rem;">
-                传令信使
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <div class="control-button" @click="lockScreen" >
-
-              <Icon type="locked" size="80"></Icon>
-              <div style="font-size:1.5rem;">
-                锁定屏幕
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <div class="control-button" @click="toggleCardBoardModal" >
-
-              <Icon type="map" size="80"></Icon>
-              <div style="font-size:1.5rem;">
-                卡牌之树
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <div class="control-button" @click="showWinnerModal()" >
-
-              <Icon type="ios-checkmark" size="80"></Icon>
-              <div style="font-size:1.5rem;">
-                结束游戏
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Col>
-      <Col span="8">
-        <Row style="padding:1rem 5rem;color:#fff;font-size:2rem;">
-          <Col span="12" style="background-color:green;padding:1rem 0;border-radius:20px 0 0 20px;" @click.native="changeScoreStatus(1)">
-            加分
-          </Col>
-          <Col span="12" style="background-color:red;padding:1rem 0;border-radius:0 20px 20px 0;" @click.native="changeScoreStatus(-1)">
-            减分
-          </Col>
-        </Row>
-      </Col>
-
-
-    </Row>
-
-    <div class="spacer" :class="[scoreStatus==1?'green':'red']">
-      <Row>
-        <Col span="10">
-          当前时间：{{now}}
+  <div>
+    <div v-show="!showAll">
+      <p>{{ selectedTheme.rules }}</p>
+    </div>
+    <div v-show="showAll">
+      <Row class="battle-top" type="flex"  align="middle" :style="{ 'display': isControlPanelExpand ? '' : 'none' }">
+        <Col span="8">
         </Col>
-        <Col span="4">
-          <Button type="primary" shape="circle" size="large" icon="arrow-shrink" v-if="isControlPanelExpand" @click="setControlPanelVisable(false)"></Button>
-          <Button type="primary" shape="circle" size="large" icon="arrow-expand" v-if="!isControlPanelExpand" @click="setControlPanelVisable(true)"></Button>
+
+        <Col span="8">
+          <Row type="flex" justify="space-around">
+            <Col>
+              <div class="control-button" @click="opRandomNumberModal = true">
+                <Icon type="compass" size="80"></Icon>
+                <div style="font-size:1.5rem;">
+                  命运之轮
+                </div>
+              </div>
+            </Col>
+            <Col>
+              <div class="control-button" @click="toggleRandomEventModal" >
+
+                <Icon type="paper-airplane" size="80"></Icon>
+                <div style="font-size:1.5rem;">
+                  传令信使
+                </div>
+              </div>
+            </Col>
+            <Col>
+              <div class="control-button" @click="lockScreen" >
+
+                <Icon type="locked" size="80"></Icon>
+                <div style="font-size:1.5rem;">
+                  锁定屏幕
+                </div>
+              </div>
+            </Col>
+            <Col>
+              <div class="control-button" @click="toggleCardBoardModal" >
+
+                <Icon type="map" size="80"></Icon>
+                <div style="font-size:1.5rem;">
+                  卡牌之树
+                </div>
+              </div>
+            </Col>
+            <Col>
+              <div class="control-button" @click="showWinnerModal()" >
+
+                <Icon type="ios-checkmark" size="80"></Icon>
+                <div style="font-size:1.5rem;">
+                  结束游戏
+                </div>
+              </div>
+            </Col>
+          </Row>
         </Col>
-        <Col span="10">
-          比赛已开始：{{duration}}
+        <Col span="8">
+          <Row style="padding:1rem 5rem;color:#fff;font-size:2rem;">
+            <Col span="12" style="background-color:green;padding:1rem 0;border-radius:20px 0 0 20px;" @click.native="changeScoreStatus(1)">
+              加分
+            </Col>
+            <Col span="12" style="background-color:red;padding:1rem 0;border-radius:0 20px 20px 0;" @click.native="changeScoreStatus(-1)">
+              减分
+            </Col>
+          </Row>
         </Col>
+
+
       </Row>
-    </div>
 
-    <div>
-      <transition name="fade">
-
-        <Row style="" v-if="showMembers">
-          <transition-group name="flip-list" tag="ul">
-          <div class="" style="color:#fff;margin-top:0.5rem;" v-for="(team,index) in teamsOrderByScore" :key="team._id">
-            <team-bar :team="team" :rank="index+1" :members="groupMembers(team._id)" :addScore="addScore" :scoreStatus="scoreStatus" :key="team._id"></team-bar>
-          </div>
-          </transition-group>
-          <div class="lock" v-if="lock">
-            <div class="key-area">
-              <div>输入解锁密码</div>
-              <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
-            </div>
-          </div>
-
+      <div class="spacer" :class="[scoreStatus==1?'green':'red']">
+        <Row>
+          <Col span="10">
+            当前时间：{{now}}
+          </Col>
+          <Col span="4">
+            <Button type="primary" shape="circle" size="large" icon="arrow-shrink" v-if="isControlPanelExpand" @click="setControlPanelVisable(false)"></Button>
+            <Button type="primary" shape="circle" size="large" icon="arrow-expand" v-if="!isControlPanelExpand" @click="setControlPanelVisable(true)"></Button>
+          </Col>
+          <Col span="10">
+            比赛已开始：{{duration}}
+          </Col>
         </Row>
-      </transition>
-    </div>
-
-    <Modal
-      v-model="opRandomNumberModal"
-      width="80%"
-      class-name="vertical-center-modal">
-      <p slot="footer"></p>
-      <random-member-panel :members="members" :show="showPanel"
-                           :playMusic="playMusic"
-                           :addMemberPickedCount="addMemberPickedCountMethod">
-      </random-member-panel>
-    </Modal>
-
-    <Modal
-      v-model="showMemberBoard"
-      width="85%"
-      :closable="false"
-      class-name="vertical-center-modal">
-      <p slot="footer"></p>
-      <member-board v-if="selectedMember"
-                       :member="selectedMember"
-                       :addScoreToMember="addScore"
-                       :playMusic="playMusic"
-                       :removeCard="removeCard">
-      </member-board>
-    </Modal>
-
-    <Modal
-      v-model="winnerModal"
-      width="80%"
-      class-name="vertical-center-modal">
-      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
-         比赛结束
       </div>
-      <div class="panel" style="padding:2rem;text-align:center">
-        <div class="winner-card">
-          <div class="winner-name" style="font-size: 3rem;">
-            大吉大利，今晚吃鸡
+
+      <div>
+        <transition name="fade">
+
+          <Row style="" v-if="showMembers">
+            <transition-group name="flip-list" tag="ul">
+              <div class="" style="color:#fff;margin-top:0.5rem;" v-for="(team,index) in teamsOrderByScore" :key="team._id">
+                <team-bar :team="team" :rank="index+1" :members="groupMembers(team._id)" :addScore="addScore" :scoreStatus="scoreStatus" :key="team._id"></team-bar>
+              </div>
+            </transition-group>
+            <div class="lock" v-if="lock">
+              <div class="key-area">
+                <div>输入解锁密码</div>
+                <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
+              </div>
+            </div>
+
+          </Row>
+        </transition>
+      </div>
+
+      <Modal
+        v-model="opRandomNumberModal"
+        width="80%"
+        class-name="vertical-center-modal">
+        <p slot="footer"></p>
+        <random-member-panel :members="members" :show="showPanel"
+                             :playMusic="playMusic"
+                             :addMemberPickedCount="addMemberPickedCountMethod">
+        </random-member-panel>
+      </Modal>
+
+      <Modal
+        v-model="showMemberBoard"
+        width="85%"
+        :closable="false"
+        class-name="vertical-center-modal">
+        <p slot="footer"></p>
+        <member-board v-if="selectedMember"
+                      :member="selectedMember"
+                      :addScoreToMember="addScore"
+                      :playMusic="playMusic"
+                      :removeCard="removeCard">
+        </member-board>
+      </Modal>
+
+      <Modal
+        v-model="winnerModal"
+        width="80%"
+        class-name="vertical-center-modal">
+        <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
+          比赛结束
+        </div>
+        <div class="panel" style="padding:2rem;text-align:center">
+          <div class="winner-card">
+            <div class="winner-name" style="font-size: 3rem;">
+              大吉大利，今晚吃鸡
+            </div>
           </div>
         </div>
-      </div>
-      <div slot="footer">
-      </div>
-    </Modal>
+        <div slot="footer">
+        </div>
+      </Modal>
 
-    <Modal
-      v-model="showRandomEventModal"
-      width="80%"
-      class-name="vertical-center-modal">
-      <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playRandomEventMusic" v-if="showRandomEventModal"></RandomEventPanel>
-      <p slot="footer"></p>
-    </Modal>
-    <Modal
-      v-model="showCardBoard"
-      width="85%"
-      :closable="false"
-      class-name="vertical-center-modal">
-      <p slot="footer"></p>
-      <card-board :cards="cardPool"></card-board>
-    </Modal>
+      <Modal
+        v-model="showRandomEventModal"
+        width="80%"
+        class-name="vertical-center-modal">
+        <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playRandomEventMusic" v-if="showRandomEventModal"></RandomEventPanel>
+        <p slot="footer"></p>
+      </Modal>
+      <Modal
+        v-model="showCardBoard"
+        width="85%"
+        :closable="false"
+        class-name="vertical-center-modal">
+        <p slot="footer"></p>
+        <card-board :cards="cardPool"></card-board>
+      </Modal>
 
-    <audio ref="audioUseCard" :src="selectedTheme.useCardSound ? selectedTheme.useCardSound.URL : '/static/audio/Events/useCard.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioGetScore" :src="selectedTheme.getScoreSound ? selectedTheme.getScoreSound.URL : '/static/audio/Events/get.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioRandomEvent" :src="selectedTheme.randomEventSound ? selectedTheme.randomEventSound.URL : '/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioRandomPeople" :src="selectedTheme.randomPeopleSound ? selectedTheme.randomPeopleSound.URL : '/static/audio/Events/randomPeople.wav'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioLostScore" :src="selectedTheme.lostScoreSound ? selectedTheme.lostScoreSound.URL : '/static/audio/Events/lost.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioLoadBattle" :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioUseCard" :src="selectedTheme.useCardSound ? selectedTheme.useCardSound.URL : '/static/audio/Events/useCard.m4a'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioGetScore" :src="selectedTheme.getScoreSound ? selectedTheme.getScoreSound.URL : '/static/audio/Events/get.m4a'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioRandomEvent" :src="selectedTheme.randomEventSound ? selectedTheme.randomEventSound.URL : '/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioRandomPeople" :src="selectedTheme.randomPeopleSound ? selectedTheme.randomPeopleSound.URL : '/static/audio/Events/randomPeople.wav'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioLostScore" :src="selectedTheme.lostScoreSound ? selectedTheme.lostScoreSound.URL : '/static/audio/Events/lost.m4a'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioLoadBattle" :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'" preload="auto" style="display: none;"></audio>
 
-    <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
+      <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
+    </div>
   </div>
 </template>
 <style scoped lang="less">
@@ -587,7 +592,7 @@
       this.playMusic(3);
       setTimeout(() => {
         that.showAll = true;
-      }, 2500);
+      }, this.selectedTheme.loadTime * 1000);
       let timer = setInterval(() => {
         let currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
         currentPosition -= 10;
