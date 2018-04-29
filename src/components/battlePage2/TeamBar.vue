@@ -16,12 +16,11 @@
       </Col>
       <Col span="14">
             <Row type="flex" justify="start" class="member-area">
-
-            <Col span="3" v-for="member in members" :key="member._id">
-              <transition-group name="list-complete" tag="p">
-                <memberCell :member="member" :addScore="addScore" :scoreStatus="scoreStatus" :key="member._id" style="transition: all 1s;"></memberCell>
+              <transition-group name="list-complete" tag="p" style="width: 100%;">
+                <Col span="3" v-for="member in members" :key="member._id" class="list-complete-item">
+                    <memberCell  :member="member" :addScore="addScore" :scoreStatus="scoreStatus" :key="member._id"></memberCell>
+                  </Col>
               </transition-group>
-              </Col>
             </Row>
       </Col>
       <Col span="4" >
@@ -101,9 +100,16 @@ height: 6rem;
   border-radius: 10px;
   padding: 10px;
 }
-.list-complete-enter, .list-complete-leave-to {
+
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-to
+  /* .list-complete-leave-active below version 2.1.8 */ {
   opacity: 0;
-  /*transform: translateY(30px);*/
+  transform: translateY(30px);
 }
 .list-complete-leave-active {
   position: absolute;

@@ -96,28 +96,7 @@
               <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
             </div>
           </div>
-          <!-- <Col span="9">
-            <Row type="flex"  :gutter="16" style="margin-left:5px">
-              <Col span="8"  v-for="member in groupMembers(0)" :key="member._id">
-                <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
-              </Col>
-            </Row>
-          </Col>
-          <Col span="6">
-            <div class="control-panel">
 
-
-
-            </div>
-
-          </Col>
-          <Col span="9">
-            <Row type="flex" :gutter="16"  style="margin-right:5px">
-              <Col span="8" v-for="member in groupMembers(1)" :key="member._id">
-              <member-cell :member="member" :toggleOpModal="toggleOpModal" :key="member._id"></member-cell>
-              </Col>
-            </Row>
-          </Col> -->
         </Row>
       </transition>
     </div>

@@ -6,36 +6,43 @@
         <Button type="primary" size="default" icon="ios-color-wand-outline" @click="goBattleThemePage">主题</Button>
         <Button type="primary" size="default" icon="ios-color-filter-outline" @click="goCustomPage">团队</Button>
       </ButtonGroup>
-      <Carousel autoplay v-model="value1" loop v-if="showCarousel">
-        <CarouselItem>
-          <br>
-          <br>
-          <Button class="large-plus" type="primary" shape="circle" size="large" icon="xbox" @click="setMode(1)">双塔奇兵</Button>
-          <br>
-          <br>
-        </CarouselItem>
-        <CarouselItem>
-          <br>
-          <br>
-          <Button class="large-plus" type="success" shape="circle" size="large" icon="ios-paw" @click="setMode(2)">深渊大乱斗</Button>
-          <br>
-          <br>
-        </CarouselItem>
-        <CarouselItem>
-          <br>
-          <br>
-          <Button class="large-plus" type="warning" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" disabled>绝地求生</Button>
-          <br>
-          <br>
-        </CarouselItem>
-        <CarouselItem>
-          <br>
-          <br>
-          <Button class="large-plus" type="error" shape="circle" size="large" icon="social-freebsd-devil" @click="setMode(4)" disabled>Boss团战</Button>
-          <br>
-          <br>
-        </CarouselItem>
-      </Carousel>
+
+      <div style="margin-top: 30px;">
+        <Button class="large-plus" type="primary" shape="circle" size="large" icon="xbox" @click="setMode(1)">双塔奇兵</Button>
+        <Button class="large-plus" type="success" shape="circle" size="large" icon="ios-paw" @click="setMode(2)">深渊大乱斗</Button>
+        <Button class="large-plus" type="warning" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" disabled>绝地求生</Button>
+        <Button class="large-plus" type="error" shape="circle" size="large" icon="social-freebsd-devil" @click="setMode(4)" disabled>Boss团战</Button>
+      </div>
+      <!--<Carousel autoplay v-model="value1" loop v-if="showCarousel">-->
+        <!--<CarouselItem>-->
+          <!--<br>-->
+          <!--<br>-->
+          <!--<Button class="large-plus" type="primary" shape="circle" size="large" icon="xbox" @click="setMode(1)">双塔奇兵</Button>-->
+          <!--<br>-->
+          <!--<br>-->
+        <!--</CarouselItem>-->
+        <!--<CarouselItem>-->
+          <!--<br>-->
+          <!--<br>-->
+          <!--<Button class="large-plus" type="success" shape="circle" size="large" icon="ios-paw" @click="setMode(2)">深渊大乱斗</Button>-->
+          <!--<br>-->
+          <!--<br>-->
+        <!--</CarouselItem>-->
+        <!--<CarouselItem>-->
+          <!--<br>-->
+          <!--<br>-->
+          <!--<Button class="large-plus" type="warning" shape="circle" size="large" icon="social-snapchat-outline" @click="setMode(3)" disabled>绝地求生</Button>-->
+          <!--<br>-->
+          <!--<br>-->
+        <!--</CarouselItem>-->
+        <!--<CarouselItem>-->
+          <!--<br>-->
+          <!--<br>-->
+          <!--<Button class="large-plus" type="error" shape="circle" size="large" icon="social-freebsd-devil" @click="setMode(4)" disabled>Boss团战</Button>-->
+          <!--<br>-->
+          <!--<br>-->
+        <!--</CarouselItem>-->
+      <!--</Carousel>-->
     </div>
   </div>
 </template>
@@ -161,8 +168,8 @@
     text-align: center;
   }
   .large-plus {
-    font-size: 48px !important;
-    padding: 20px 40px !important;
+    font-size: 32px !important;
+    padding: 10px 20px !important;
     margin-right: 20px !important;
   }
 </style>
