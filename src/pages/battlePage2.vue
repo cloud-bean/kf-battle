@@ -676,9 +676,12 @@
       // this.showAll = true;
       this.playMusic(3);
       const loading = setInterval(() => {
-        if (that.progress < 100)that.progress++;
-      }, 700);
+        if (that.progress < 100) {
+          that.progress = that.progress + 1;
+        }
+      }, 600);
       setTimeout(() => {
+        that.progress = 100;
         clearInterval(loading);
         that.showAll = true;
       }, this.selectedTheme.loadTime * 1000);
