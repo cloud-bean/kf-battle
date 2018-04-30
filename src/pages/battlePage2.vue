@@ -72,7 +72,7 @@
               </div>
             </Col>
             <Col>
-              <div class="control-button" @click="showWinnerModal()" >
+              <div class="control-button" @click="finishBattle()" >
 
                 <Icon type="ios-checkmark" size="80"></Icon>
                 <div style="font-size:1.5rem;">
@@ -157,8 +157,11 @@
       </Modal>
 
       <Modal
-        v-model="winnerModal"
+        v-model="showWinnerModal"
         width="80%"
+        :closable="false"
+        :mask-closable="false"
+        ok-text="新的比赛"
         class-name="vertical-center-modal">
         <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
           比赛结束
@@ -169,6 +172,45 @@
               大吉大利，今晚吃鸡
             </div>
           </div>
+        </div>
+        <div slot="footer">
+
+        </div>
+      </Modal>
+
+      <Modal
+        v-model="showMVPModal"
+        width="80%"
+        class-name="vertical-center-modal">
+        <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
+           王者
+        </div>
+        <div class="panel" style="padding:2rem;text-align:center">
+          <div class="winner-card">
+            <img :src="mvp.profileImageURL" alt="" style="width:200px;">
+            <div class="winner-name" style="font-size: 3rem;">
+              {{mvp.displayName}}
+            </div>
+          </div>
+        </div>
+        <div slot="footer">
+        </div>
+      </Modal>
+
+      <Modal
+        v-model="showWinnerTeamModal"
+        width="80%"
+        class-name="vertical-center-modal">
+        <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
+           获胜队伍
+        </div>
+        <div class="panel" style="padding:2rem;text-align:center">
+            <div class="winner-card">
+              <img :src="winnerTeam.logo.URL" alt="" style="width:200px;">
+              <div class="winner-name" style="font-size: 3rem;">
+                {{winnerTeam.name}}
+              </div>
+            </div>
         </div>
         <div slot="footer">
         </div>
@@ -198,6 +240,9 @@
       <audio ref="audioLoadBattle" :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'" preload="auto" style="display: none;"></audio>
 
       <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioTeamWin" :src="selectedTheme.teamWinSound ? selectedTheme.teamWinSound.URL : '/static/audio/Events/wonTeam_4s.m4a'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioMVP1" :src="selectedTheme.mvp1Sound ? selectedTheme.mvp1Sound.URL : '/static/audio/Events/mvp1.m4a'" preload="auto" style="display: none;"></audio>
+      <audio ref="audioMVP2" :src="selectedTheme.mvp2Sound ? selectedTheme.mvp2Sound.URL : '/static/audio/Events/mvp2.m4a'" preload="auto" style="display: none;"></audio>
     </div>
   </div>
 
@@ -357,8 +402,11 @@
         randomEventTimeSplash: 0,
         scoreStatus: 1,
         showCardBoard: false,
-        winnerModal: false,
+        showWinnerModal: false,
         progress: 0,
+        showWinnerTeamModal: false,
+        showMVPModal: false,
+        mvp: {},
       };
     },
     computed: {
@@ -391,6 +439,10 @@
       },
       randomEventCirclePercent() {
         return this.randomEventTimeSplash * 100 / this.randomEventTimeSpan;
+      },
+
+      winnerTeam() {
+        return this.teamsOrderByScore[0];
       },
       teamsOrderByScore() {
         return this.groups.sort((a, b) => {
@@ -441,8 +493,13 @@
       changeScoreStatus(status) {
         this.scoreStatus = status;
       },
-      showWinnerModal() {
-        this.winnerModal = true;
+      async finishBattle() {
+        this.playMusic(6);
+        this.getMvp();
+        this.showWinnerTeamModal = true;
+        this.showMVPModal = true;
+        this.showWinnerModal = true;
+
         const finalScore = this.getScoreData();
         this.setFinalScore(finalScore);
 
@@ -458,7 +515,6 @@
             memberIds.push(member._id);
           }
         });
-
         const battleResult = {
           feeds: this.feeds,
           groups: this.groups,
@@ -472,10 +528,17 @@
           battleTheme: this.selectedTheme._id,
           battleMode: this.gameMode,
         };
-
         console.log('battleResult', battleResult);
-
-        this.postBattleResult(battleResult);
+        await this.postBattleResult(battleResult);
+        this.$Message.info('清扫完毕，上报完毕');
+      },
+      getMvp() {
+        this.mvp = this.members[0];
+        for (const member of this.members) {
+          if (member.get > this.mvp.get) {
+            this.mvp = member;
+          }
+        }
       },
       getScoreData() {
         // score {}
@@ -483,14 +546,14 @@
         // value is the sum of each memeber's score
         const scoreData = {};
         this.groups.forEach((group) => {
-          scoreData[group._id] = 0;
+          scoreData[group._id] = group.get;
         });
-        this.members.forEach(item => {
-          if (scoreData[item.groupId] === undefined) {
-            scoreData[item.groupId] = 0;
-          }
-          scoreData[item.groupId] += item.get + item.lost;
-        });
+        // this.members.forEach(item => {
+        //   if (scoreData[item.groupId] === undefined) {
+        //     scoreData[item.groupId] = 0;
+        //   }
+        //   scoreData[item.groupId] += item.get + item.lost;
+        // });
 
         return scoreData;
       },
@@ -609,6 +672,12 @@
             break;
           case 5:
             this.$refs.audioRandomPeople.play();
+            break;
+          case 6:
+            this.$refs.audioTeamWin.play();
+            break;
+          case 7:
+            this.$refs.audioMVP1.play();
             break;
           default:
             this.$refs.audioUseCard.play();
