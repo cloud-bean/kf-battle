@@ -80,7 +80,7 @@
 
   import { mapGetters, mapActions } from 'vuex';
   import CardItem from '../components/randomCardPage/cardItem';
-  import VeRing from 'v-charts/lib/ring';
+  // import VeRing from 'v-charts/lib/ring';
 
   export default {
     data() {
@@ -231,7 +231,7 @@
     },
     components: {
       'card-item': CardItem,
-      'vue-ring': VeRing,
+      // 'vue-ring': VeRing,
     },
   };
 </script>

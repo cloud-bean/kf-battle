@@ -23,7 +23,9 @@
         </CarouselItem>
     </Carousel>
     <div class="loading">
-      正在玩命加载 %{{progress}}
+      <i-circle :percent="progress">
+        <span class="demo-Circle-inner" style="font-size:24px">{{progress}}%</span>
+      </i-circle>
     </div>
     <div class="">
       <Button @click="skipFirstShow()">skip</Button>
@@ -269,8 +271,8 @@
     }
   }
   .loading{
+    margin-top: 1rem;
     color: #fff;
-    font-size: 2rem;
   }
 
   .control-panel{
