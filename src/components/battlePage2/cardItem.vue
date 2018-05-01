@@ -50,7 +50,9 @@
     props: ['card'],
     methods: {
       useCard() {
-        this.$refs.cardUse.play();
+        if (!this.display) {
+          this.$refs.cardUse.play();
+        }
         this.display = !this.display;
       },
     },

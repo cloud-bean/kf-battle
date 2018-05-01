@@ -176,7 +176,7 @@
           </div>
         </div>
         <div slot="footer">
-
+          <Button type="default" size="large" icon="arrow-shrink" @click="goInit()">重新开赛</Button>
         </div>
       </Modal>
 
@@ -484,7 +484,9 @@
       ...mapActions('timeline', [
         'addFeed',
       ]),
-
+      goInit() {
+        this.$router.replace('/');
+      },
       setControlPanelVisable(state) {
         this.isControlPanelExpand = !!state;
       },
