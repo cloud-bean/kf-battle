@@ -17,9 +17,15 @@
           进入战场
           <!-- <Icon type="chevron-right"></Icon> -->
         </div>
+
+        <ButtonGroup>
+            <Button v-if="page > 1" @click="getTeams(--page)">上一页</Button>
+            <Button type="primary">{{ page }}</Button>
+            <Button v-if="page < maxPage" @click="getTeams(++page)">下一页</Button>
+        </ButtonGroup>
       </div>
 
-      <Row :gutter="16" class="main-area">
+      <Row type="flex" justify="center" :gutter="16" class="main-area">
         <Col span="4" v-for="item in teamList"  :key="item._id" class="team-item">
           <team-item :teamData="item" :selected="isSelected(item) > -1" @click.native="handleSelect(item)"></team-item>
         </Col>
@@ -38,9 +44,10 @@
   export default {
     data() {
       return {
-        teamCount: 0,
         teamSelect: [],
         onlineMemebers: [],
+        page: 1,
+        limit: 18,
       };
     },
     methods: {
@@ -85,14 +92,21 @@
         this.setMembers(this.onlineMemebers);
         this.$router.push('/battle2');
       },
+      getTeams(page) {
+        this.getAllTeams({ page, limit: this.limit });
+      },
     },
     computed: {
       ...mapGetters('team', [
         'teamList',
+        'totalTeamCount',
       ]),
+      maxPage() {
+        return Math.ceil(this.totalTeamCount / this.limit);
+      },
     },
     created() {
-      this.getAllTeams();
+      this.getAllTeams({ page: this.page, limit: this.limit });
     },
     components: {
       TeamItem,

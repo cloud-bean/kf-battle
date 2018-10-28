@@ -189,7 +189,7 @@
         </div>
         <div class="panel" style="padding:2rem;text-align:center">
           <div class="winner-card">
-            <img :src="mvp.profileImageURL" alt="" style="width:200px;">
+            <img :src="mvp.profileImageURL ? mvp.profileImageURL : defaultAvatarLogoURL" alt="" style="width:200px;">
             <div class="winner-name" style="font-size: 3rem;">
               {{mvp.displayName}}
             </div>
@@ -208,7 +208,7 @@
         </div>
         <div class="panel" style="padding:2rem;text-align:center">
             <div class="winner-card">
-              <img :src="winnerTeam.logo.URL" alt="" style="width:200px;">
+              <img :src="winnerTeam.logo ? winnerTeam.logo.URL : defaultTeamLogoURL" alt="" style="width:200px;">
               <div class="winner-name" style="font-size: 3rem;">
                 {{winnerTeam.name}}
               </div>
@@ -241,7 +241,7 @@
       <audio ref="audioLostScore" :src="selectedTheme.lostScoreSound ? selectedTheme.lostScoreSound.URL : '/static/audio/Events/lost.m4a'" preload="auto" style="display: none;"></audio>
       <audio ref="audioLoadBattle" :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'" preload="auto" style="display: none;"></audio>
 
-      <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
+      <audio v-for="(rEvent, index) of getRandomEvents" :key="index" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
       <audio ref="audioTeamWin" :src="selectedTheme.teamWinSound ? selectedTheme.teamWinSound.URL : '/static/audio/Events/wonTeam_4s.m4a'" preload="auto" style="display: none;"></audio>
       <audio ref="audioMVP1" :src="selectedTheme.mvp1Sound ? selectedTheme.mvp1Sound.URL : '/static/audio/Events/mvp1.m4a'" preload="auto" style="display: none;"></audio>
       <audio ref="audioMVP2" :src="selectedTheme.mvp2Sound ? selectedTheme.mvp2Sound.URL : '/static/audio/Events/mvp2.m4a'" preload="auto" style="display: none;"></audio>
@@ -334,7 +334,7 @@
     border-radius: 50%;
     background-color: rgba(0, 0, 0, .7);
     position: absolute;
-    magin:auto;
+    margin:auto;
     top:0;
     left: 5rem;
     right: 0;
@@ -409,6 +409,8 @@
         showWinnerTeamModal: false,
         showMVPModal: false,
         mvp: {},
+        defaultTeamLogoURL: '../../static/img/defaultTeamLogoURL.png',
+        defaultAvatarLogoURL: '../../static/img/defaultUserHead.jpg',
       };
     },
     computed: {

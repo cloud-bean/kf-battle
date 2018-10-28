@@ -8,10 +8,10 @@ export default {
   addTempMember({ commit }, payload) {
     commit(types.ADD_TEMP_MEMBER, payload);
   },
-  async getAllTeams({ commit }) {
+  async getAllTeams({ commit }, payload) {
     commit('FETCH_DATA');
-    const res = await api.getAllTeams();
-    commit('SET_TEAMS', { teams: res.data.data });
+    const res = await api.getAllTeams(payload.page, payload.limit);
+    commit('SET_TEAMS', { teams: res.data.data, totalTeamCount: res.data.totalCount });
     commit('GOT_DATA');
   },
   setBattleTeams({ commit }, payload) {

@@ -1,7 +1,7 @@
 <template>
   <div style="width: 95%; margin: 10px auto; overflow:scroll;">
     <Affix>
-      <span @click="goIndex" class="demo-affix" style="padding: 5px; color: white; background-color: green; border-radius: 5px;">
+      <span @click="goIndex" class="demo-affix" style="padding: 10px; vertical-align: middle; color: white; background-color: green; border-radius: 5px;">
         <Icon type="chevron-left"></Icon>
         重返战场
       </span>

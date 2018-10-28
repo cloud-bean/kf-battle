@@ -5,16 +5,16 @@
         <div class="">
           <!-- <div @click="goCustom"  class="i-button" style="background-color:#19be6b;margin:0 30px;">
             配置战队信息 -->
-
           <!-- </div> -->
         </div>
+
       </div>
 
-      <Alert type="info" show-icon style="width:30%;margin:10px auto; size: 2rem;">
-        <span slot="desc" style="font-size:16px;">
-            请选择两支战队
-        </span>
-      </Alert>
+      <ButtonGroup style="margin: 10px;">
+            <Button v-if="page > 1" @click="getTeams(--page)">上一页</Button>
+            <Button type="primary">{{ page }}</Button>
+            <Button v-if="page < maxPage" @click="getTeams(++page)">下一页</Button>
+        </ButtonGroup>
 
       <div class="">
         <div @click="initNewGame" v-show="teamSelect.length == maxTeamCount" class="i-button">
@@ -31,9 +31,9 @@
         <Col span="8">{{ teamSelect[1].name }}</Col>
       </Row>
 
-      <Row :gutter="16" class="main-area">
+      <Row type="flex" justify="center" :gutter="16" class="main-area">
         <Col span="4" v-for="(item, index) in teamList"  :key="index" class="team-item">
-        <team-item :teamData="item" :selected="!!item.selected"  :key="index" @click.native="handleSelect(item)"></team-item>
+          <team-item :teamData="item" :selected="!!item.selected"  :key="index" @click.native="handleSelect(item)"></team-item>
         </Col>
       </Row>
 
@@ -51,9 +51,10 @@
   export default {
     data() {
       return {
-        teamCount: 0,
         teamSelect: [],
         maxTeamCount: 2,
+        page: 1,
+        limit: 18,
       };
     },
     methods: {
@@ -85,14 +86,21 @@
         this.teamSelect[1] = tmpTeam;
         this.$forceUpdate();
       },
+      getTeams(page) {
+        this.getAllTeams({ page, limit: this.limit });
+      },
     },
     computed: {
       ...mapGetters([
         'teamList',
+        'totalTeamCount',
       ]),
+      maxPage() {
+        return Math.ceil(this.totalTeamCount / this.limit);
+      },
     },
     created() {
-      this.getAllTeams();
+      this.getAllTeams({ page: this.page, limit: this.limit });
     },
     components: {
       TeamItem,

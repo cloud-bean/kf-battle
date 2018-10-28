@@ -1,5 +1,5 @@
 npm run build
-rm dist.tar
-tar cf dist.tar dist
-scp dist.tar hygkui@120.25.227.156:/home/hygkui/ 
+rm kf-battle-dist.tar
+tar cf kf-battle-dist.tar dist
+scp kf-battle-dist.tar hygkui@120.25.227.156:/home/hygkui/ 
 rm dist.tar
