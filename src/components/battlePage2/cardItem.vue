@@ -17,6 +17,7 @@
       </div>
     </transition>
 
+    <audio ref="cardUse" :src="card.audioFile ? card.audioFile.URL : '/static/audio/Events/useCard.m4a'" preload="auto" style="display: none;"></audio>
 
   </div>
 
@@ -49,6 +50,9 @@
     props: ['card'],
     methods: {
       useCard() {
+        if (!this.display) {
+          this.$refs.cardUse.play();
+        }
         this.display = !this.display;
       },
     },

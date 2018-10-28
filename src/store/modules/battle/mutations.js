@@ -45,7 +45,7 @@ export default {
     state.members[index].get += score;
   },
   [types.ADD_SCORE_TO_GROUP](state, payload) {
-    const groupId = payload.member.groupId;
+    const groupId = payload.groupId;
     const score = payload.score;
     const index = state.groups.findIndex(item => item._id === groupId);
 

@@ -17,6 +17,9 @@ export default {
   },
   addScoreToMember({ commit }, payload) {
     commit(types.ADD_SCORE_TO_MEMBER, payload);
+    commit(types.ADD_SCORE_TO_GROUP, { groupId: payload.member.groupId, score: payload.score });
+  },
+  addScoreToGroup({ commit }, payload) {
     commit(types.ADD_SCORE_TO_GROUP, payload);
   },
   clearCards({ commit }) {

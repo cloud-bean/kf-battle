@@ -1,7 +1,7 @@
 <template>
   <div>
     <Row class="panel">
-      <Col v-for="card,index in cards" span="4" :key="card._id">
+      <Col v-for="card in cards" span="4" :key="card._id">
         <card-item :card="card"></card-item>
       </Col>
     </Row>
@@ -21,10 +21,6 @@ export default {
     //   level: exp2level(this.member.option.exp),
     // },
   methods: {
-    useCard(cardIndex) {
-      console.log(cardIndex);
-      this.$forceUpdate();
-    },
   },
   components: {
     cardItem,

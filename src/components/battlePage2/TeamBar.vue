@@ -16,17 +16,16 @@
       </Col>
       <Col span="14">
             <Row type="flex" justify="start" class="member-area">
-
-            <Col span="3" v-for="member in members" :key="member._id">
-              <transition-group name="list-complete" tag="p">
-                <memberCell :member="member" :addScore="addScore" :scoreStatus="scoreStatus" :key="member._id" style="transition: all 1s;"></memberCell>
+              <transition-group name="list-complete" tag="p" style="width: 100%;">
+                <Col span="3" v-for="member in members" :key="member._id" class="list-complete-item">
+                    <memberCell  :member="member" :addScore="addScore" :scoreStatus="scoreStatus" :key="member._id"></memberCell>
+                  </Col>
               </transition-group>
-              </Col>
             </Row>
       </Col>
       <Col span="4" >
 
-        <div class="score">{{team.get||0}}</div>
+        <div class="score" @click="addGroupScore()">{{team.get||0}}</div>
       </Col>
     </Row>
   </div>
@@ -40,9 +39,16 @@
       return {
       };
     },
-    props: ['team', 'rank', 'addScore', 'members', 'scoreStatus'],
+    props: ['team', 'rank', 'addScore', 'members', 'scoreStatus', 'addScoreToGroup'],
     components: {
       memberCell,
+    },
+    methods: {
+      addGroupScore() {
+        const scoreStatus = this.scoreStatus;
+        this.addScoreToGroup({ groupId: this.team._id, score: scoreStatus });
+        this.$forceUpdate();
+      },
     },
   };
 </script>
@@ -56,11 +62,11 @@
   margin: 0 .5rem;
 }
 .default{
-  background-color: #ccc;
+  background-color: rgba(255,255,255,.7);
   color:#333;
 }
 .first{
-  background-color: #0060FF;
+  background-color: rgba(0,96,255,.8);
   color:white;
 }
 .second{
@@ -101,9 +107,16 @@ height: 6rem;
   border-radius: 10px;
   padding: 10px;
 }
-.list-complete-enter, .list-complete-leave-to {
+
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-to
+  /* .list-complete-leave-active below version 2.1.8 */ {
   opacity: 0;
-  /*transform: translateY(30px);*/
+  transform: translateY(30px);
 }
 .list-complete-leave-active {
   position: absolute;

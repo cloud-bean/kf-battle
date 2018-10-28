@@ -25,7 +25,6 @@ export default {
   },
   [types.SET_BATTLE_THEMES](state, payload) {
     state.battleThemes = payload.battleThemes;
-    console.log('get battleThemes');
     if (state.selectedTheme === null) {
       state.selectedTheme = payload.battleThemes[0];
       console.log('set selectedTheme');
