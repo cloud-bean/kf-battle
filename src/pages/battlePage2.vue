@@ -9,17 +9,8 @@
         arrow="never"
         :height="800"
         :autoplay-speed="4000">
-        <CarouselItem>
-            <img class="carousel-item" src="../../static/img/carousel/Carousel1.jpg" alt="">
-        </CarouselItem>
-        <CarouselItem>
-          <img class="carousel-item" src="../../static/img/carousel/Carousel2.jpg" alt="">
-        </CarouselItem>
-        <CarouselItem>
-          <img class="carousel-item" src="../../static/img/carousel/Carousel3.jpg" alt="">
-        </CarouselItem>
-        <CarouselItem>
-          <img  class="carousel-item" src="../../static/img/carousel/Carousel4.jpg" alt="">
+        <CarouselItem v-for="(item, index) in carouselItems" :key="index">
+            <img class="carousel-item" :src="item" alt="">
         </CarouselItem>
     </Carousel>
     <div class="loading">
@@ -411,6 +402,12 @@
         mvp: {},
         defaultTeamLogoURL: '../../static/img/defaultTeamLogoURL.png',
         defaultAvatarLogoURL: '../../static/img/defaultUserHead.jpg',
+        carouselItems: [
+          'http://qn.joywill.com/Carousel1.jpg-1080p',
+          'http://qn.joywill.com/Carousel3.jpg-1080p',
+          'http://qn.joywill.com/Carousel2.jpg-1080p',
+          'http://qn.joywill.com/Carousel4.jpg-1080p',
+        ],
       };
     },
     computed: {
