@@ -21,6 +21,7 @@ export default {
   [types.SET_TEAMS](state, payload) {
     const newState = state;
     newState.teamList = payload.teams;
+    newState.totalTeamCount = payload.totalTeamCount;
   },
   [types.FETCH_DATA](state) {
     const newState = state;

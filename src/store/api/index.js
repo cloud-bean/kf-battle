@@ -6,7 +6,7 @@ const service = axios.create({
   timeout: 5000, // 请求超时时间
 });
 
-export const getAllTeams = () => service.get('/teams');
+export const getAllTeams = (page, limit) => service.get(`/teams?page=${page}&limit=${limit}`);
 
 export const getCardPool = () => service.get('/cards?category=课堂battle');
 
