@@ -5,20 +5,10 @@ import App from './App';
 import router from './router';
 import store from './store';
 
-import Wilddog from 'wilddog';
-import WildVue from 'wildvue';
 import animate from 'animate.css';
 
 Vue.use(animate);
-Vue.use(Wilddog);
-Vue.use(WildVue);
 Vue.use(iView);
-
-const wilddogApp = Wilddog.initializeApp({
-  syncURL: 'https://kuafu.wilddogio.com/',
-});
-const sync = wilddogApp.sync();
-const ref = sync.ref();
 
 iView.LoadingBar.config({
   color: '#5cb85c',
@@ -30,7 +20,8 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-router.afterEach((to, from) => { // eslint-disable-line
+router.afterEach(() => {
+  // eslint-disable-line
   iView.LoadingBar.finish();
 });
 Vue.config.productionTip = false;
@@ -41,7 +32,4 @@ new Vue({
   store,
   template: '<App/>',
   components: { App },
-  wilddog: {
-    ref,
-  },
 });

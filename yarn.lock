@@ -5819,16 +5819,6 @@ wide-align@^1.1.0:
   dependencies:
     string-width "^1.0.2"
 
-wilddog@^2.5.17:
-  version "2.5.17"
-  resolved "https://registry.yarnpkg.com/wilddog/-/wilddog-2.5.17.tgz#8ccbcf3e7352d635b63365502af888cd4291db57"
-  dependencies:
-    engine.io-client "1.6.8"
-
-wildvue@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/wildvue/-/wildvue-1.1.1.tgz#3ef08d58462f721cd6b3c93b1674c587aabc0572"
-
 window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"

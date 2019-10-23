@@ -1,6 +1,6 @@
 npm run build
-mv dist kf-battle-dist
-tar cf kf-battle-dist.tar kf-battle-dist
-scp kf-battle-dist.tar hygkui@120.25.227.156:/home/hygkui/ 
-rm -rf kf-battle-dist
-rm kf-battle-dist.tar
+mv dist joybox-battle-dist
+tar cf joybox-battle-dist.tar joybox-battle-dist
+scp joybox-battle-dist.tar bridgeWater:/home/bridgeWater/srv/joybox-battle 
+rm -rf joybox-battle-dist
+rm joybox-battle-dist.tar

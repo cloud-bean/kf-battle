@@ -1,7 +1,8 @@
 <template>
   <div style="width: 95%; margin: 10px auto; overflow:scroll;">
     <Affix>
-      <span @click="goIndex" class="demo-affix" style="padding: 10px; vertical-align: middle; color: white; background-color: green; border-radius: 5px;">
+      <span @click="goIndex" class="demo-affix"
+        style="padding: 10px; vertical-align: middle; color: white; background-color: green; border-radius: 5px;">
         <Icon type="chevron-left"></Icon>
         重返战场
       </span>
@@ -10,54 +11,53 @@
 
     <Row>
       <Col span="8" v-for="team in teamList" :key="team._id" style="padding: 10px; height:660px;">
-        <Card>
-          <div @click="selectedTeam = team;">
-            <p style="font-size: 3rem; color: #888">{{team.name}}</p>
-            <img :src="team.logo ? team.logo.URL : '/static/img/vay2.png'" style="width: 15rem; margin:1rem 0;" @click="showLogosModal = true;">
-            <div>
-              <!-- <Button @click="showLogosModal = true;">换战队logo</Button> -->
-              <!-- <br>  v-if="selectedTeam && selectedTeam._id == team._id" -->
-              <!-- <input v-model="team.name"/>
+      <Card>
+        <div @click="selectedTeam = team;">
+          <p style="font-size: 3rem; color: #888">{{team.name}}</p>
+          <img :src="team.logo ? team.logo.URL : '/static/img/vay2.png'" style="width: 15rem; margin:1rem 0;"
+            @click="showLogosModal = true;">
+          <div>
+            <!-- <Button @click="showLogosModal = true;">换战队logo</Button> -->
+            <!-- <br>  v-if="selectedTeam && selectedTeam._id == team._id" -->
+            <!-- <input v-model="team.name"/>
               <Button @click="saveTeam(team)">换个战队名字</Button> -->
 
-              <Row class="member-container">
-                <Col span="4" v-for="member in team.students" :key="member._id" style=" margin: 5px;">
-                  <img :src="member.profileImageURL" style="width: 5rem;" @click="openSetMemberAvatarModal(member)">
-                  <p style="font-size:1rem;">{{ member.displayName }}</p>
-                </Col>
-              </Row>
-            </div>
+            <Row class="member-container">
+              <Col span="4" v-for="member in team.students" :key="member._id" style=" margin: 5px;">
+              <img :src="member.profileImageURL" style="width: 5rem;" @click="openSetMemberAvatarModal(member)">
+              <p style="font-size:1rem;">{{ member.displayName }}</p>
+              </Col>
+            </Row>
           </div>
-        </Card>
+        </div>
+      </Card>
       </Col>
     </Row>
 
-    <Modal
-      title="设置团队logo"
-      v-model="showLogosModal"
-      width="80%"
-      class-name="vertical-center-modal">
+    <Modal title="设置团队logo" v-model="showLogosModal" width="80%" class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <img v-for="logo in teamLogos" :key="logo._id" :src="logo ? logo.URL : '/static/img/vay2.png'" style="margin: 10px; max-width: 10rem; max-height: 10rem; background-color: gray;" @click="setLogo(logo)">
+      <img v-for="logo in teamLogos" :key="logo._id" :src="logo ? logo.URL : '/static/img/vay2.png'"
+        style="margin: 10px; max-width: 10rem; max-height: 10rem; background-color: gray;" @click="setLogo(logo)">
     </Modal>
 
-    <Modal
-      title="设置头像"
-      v-model="showMemberAvatarsModal"
-      width="80%"
-      class-name="vertical-center-modal">
+    <Modal title="设置头像" v-model="showMemberAvatarsModal" width="80%" class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <img  v-for="avatar in memberAvatars" :key="avatar._id" :src="avatar.URL" @click="setAvatar(avatar.URL)" style="margin: 10px; max-width: 8rem; max-height: 8rem; background-color: gray;">
+      <img v-for="avatar in memberAvatars" :key="avatar._id" :src="avatar.URL" @click="setAvatar(avatar.URL)"
+        style="margin: 10px; max-width: 8rem; max-height: 8rem; background-color: gray;">
     </Modal>
   </div>
 </template>
 <style scoped>
-.member-container{
-  margin-top: 20px;
-}
+  .member-container {
+    margin-top: 20px;
+  }
+
 </style>
 <script>
-  import { mapGetters, mapActions } from 'vuex';
+  import {
+    mapGetters,
+    mapActions,
+  } from 'vuex';
   export default {
     name: 'customPage',
     data() {
@@ -66,6 +66,8 @@
         selectedMember: null,
         showMemberAvatarsModal: false,
         showLogosModal: false,
+        page: 1,
+        limit: 20,
       };
     },
     computed: {
@@ -132,9 +134,13 @@
       },
     },
     created() {
-      this.getAllTeams();
+      this.getAllTeams({
+        page: this.page,
+        limit: this.limit,
+      });
       this.getAllTeamLogos();
       this.getAllMemberAvatars();
     },
   };
+
 </script>
