@@ -379,7 +379,7 @@
   moment.locale('zh-cn');
   import {
     mapGetters,
-    mapActions
+    mapActions,
   } from 'vuex';
   //  import Vue from 'vue';
   export default {
@@ -618,7 +618,7 @@
       },
       addMemberPickedCountMethod(memberId) {
         this.addMemberPickedCount({
-          memberId
+          memberId,
         });
       },
       getTime() {
