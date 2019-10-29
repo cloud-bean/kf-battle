@@ -2,17 +2,17 @@
   <div style="overflow-y: scroll;">
     <Row class="battle-top">
       <Col span="9" class="groupName">
-        <group-bar position="left" :data="groups[0]" :win="winnerIndex === 0" ></group-bar>
-        <!-- <span>{{groups[0].name}}</span> -->
-        <!-- <Tag color="red" v-if="finalScore.left >= finalScore.right">Winner</Tag> -->
+      <group-bar position="left" :data="groups[0]" :win="winnerIndex === 0"></group-bar>
+      <!-- <span>{{groups[0].name}}</span> -->
+      <!-- <Tag color="red" v-if="finalScore.left >= finalScore.right">Winner</Tag> -->
       </Col>
 
       <Col span="6">
-        <score-vs :scoreData="finalScore"></score-vs>
+      <score-vs :scoreData="finalScore"></score-vs>
       </Col>
 
       <Col span="9" class="groupName">
-        <group-bar position="right" :data="groups[1]" :win="winnerIndex === 1"></group-bar>
+      <group-bar position="right" :data="groups[1]" :win="winnerIndex === 1"></group-bar>
       </Col>
     </Row>
 
@@ -38,12 +38,12 @@
 
     <Row style="background: rgba(255,255,255,0.9);">
       <Col span="12" style="padding: 20px;">
-        <member-table :members="getMembers(0)" :groupScore="finalScore[groups[0]._id]"
-                      :honorName="honorName(0)"></member-table>
+      <member-table :members="getMembers(0)" :groupScore="finalScore[groups[0]._id]" :honorName="honorName(0)">
+      </member-table>
       </Col>
       <Col span="12" style="padding: 20px;">
-        <member-table :members="getMembers(1)" :groupScore="finalScore[groups[1]._id]"
-                      :honorName="honorName(1)"></member-table>
+      <member-table :members="getMembers(1)" :groupScore="finalScore[groups[1]._id]" :honorName="honorName(1)">
+      </member-table>
       </Col>
     </Row>
 
@@ -56,46 +56,40 @@
       </ButtonGroup>
       </Col>
       <Col span="4">
-          <div class="i-button" @click="showTimeLineModal=true">
-            回看比赛
-          </div>
+      <div class="i-button" @click="showTimeLineModal=true">
+        回看比赛
+      </div>
       </Col>
       <Col span="4">
-        <div class="i-button" @click="goInit" style="background-color:#ed3f14;display:in-block">
-          重新开战
-        </div>
+      <div class="i-button" @click="goInit" style="background-color:#ed3f14;display:in-block">
+        重新开战
+      </div>
       </Col>
     </Row>
-    <div class="" >
+    <div class="">
 
 
     </div>
 
-    <Modal
-      v-model="showWinnerTeamModal"
-      width="80%"
-      class-name="vertical-center-modal">
-      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
-         获胜队伍
+    <Modal v-model="showWinnerTeamModal" width="80%" class-name="vertical-center-modal">
+      <div style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
+        获胜队伍
       </div>
       <div class="panel" style="padding:2rem;text-align:center">
-          <div class="winner-card">
-            <img :src="winnerTeam.logo.URL" alt="" style="width:200px;">
-            <div class="winner-name" style="font-size: 3rem;">
-              {{winnerTeam.name}}
-            </div>
+        <div class="winner-card">
+          <img :src="winnerTeam.logo ? winnerTeam.logo.URL : defaultTeamLogoURL" alt="" style="width:200px;">
+          <div class="winner-name" style="font-size: 3rem;">
+            {{winnerTeam.name}}
           </div>
+        </div>
       </div>
       <div slot="footer">
       </div>
     </Modal>
 
-    <Modal
-      v-model="showMVP1Modal"
-      width="80%"
-      class-name="vertical-center-modal">
-      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
-         王者
+    <Modal v-model="showMVP1Modal" width="80%" class-name="vertical-center-modal">
+      <div style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
+        王者
       </div>
       <div class="panel" style="padding:2rem;text-align:center">
         <div class="winner-card">
@@ -109,12 +103,9 @@
       </div>
     </Modal>
 
-    <Modal
-      v-model="showMVP2Modal"
-      width="80%"
-      class-name="vertical-center-modal">
-      <div  style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
-         勇士
+    <Modal v-model="showMVP2Modal" width="80%" class-name="vertical-center-modal">
+      <div style="text-align: center;font-size:5rem; color:#5cadff;margin-top:20px;">
+        勇士
       </div>
       <div class="panel" style="padding:.5rem;text-align:center;">
         <div class="winner-card">
@@ -129,10 +120,7 @@
     </Modal>
 
 
-    <Modal
-      v-model="showTimeLineModal"
-      width="80%"
-      class-name="vertical-center-modal">
+    <Modal v-model="showTimeLineModal" width="80%" class-name="vertical-center-modal">
       <p slot="header" style="text-align: center;">
         事件回看
       </p>
@@ -143,9 +131,15 @@
       </div>
     </Modal>
 
-    <audio ref="audioTeamWin" :src="selectedTheme.teamWinSound ? selectedTheme.teamWinSound.URL : '/static/audio/Events/wonTeam_4s.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioMVP1" :src="selectedTheme.mvp1Sound ? selectedTheme.mvp1Sound.URL : '/static/audio/Events/mvp1.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioMVP2" :src="selectedTheme.mvp2Sound ? selectedTheme.mvp2Sound.URL : '/static/audio/Events/mvp2.m4a'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioTeamWin"
+      :src="selectedTheme.teamWinSound ? selectedTheme.teamWinSound.URL : '/static/audio/Events/wonTeam_4s.m4a'"
+      preload="auto" style="display: none;"></audio>
+    <audio ref="audioMVP1"
+      :src="selectedTheme.mvp1Sound ? selectedTheme.mvp1Sound.URL : '/static/audio/Events/mvp1.m4a'" preload="auto"
+      style="display: none;"></audio>
+    <audio ref="audioMVP2"
+      :src="selectedTheme.mvp2Sound ? selectedTheme.mvp2Sound.URL : '/static/audio/Events/mvp2.m4a'" preload="auto"
+      style="display: none;"></audio>
 
   </div>
 
@@ -156,7 +150,9 @@
   import MemberTable from '../components/winPage/memberTable';
   import GroupBar from '../components/battlePage/groupBar';
   import TimeLine from '../components/winPage/timeline';
-  import { mapGetters } from 'vuex';
+  import {
+    mapGetters,
+  } from 'vuex';
 
   // import { createNamespacedHelpers } from 'vuex';
   // const { mapGetters } = createNamespacedHelpers('battle');
@@ -169,6 +165,7 @@
         showMVP1Modal: false,
         showMVP2Modal: false,
         startTime: new Date(),
+        defaultTeamLogoURL: '../../static/img/defaultTeamLogoURL.png',
       };
     },
     computed: {
@@ -262,6 +259,7 @@
       }, 1000);
     },
   };
+
 </script>
 
 <style scoped>
@@ -276,22 +274,26 @@
     padding-top: 20px;
     font-size: 2.4em;
   }
+
   .battle-top {
     background-color: #fff;
     padding-top: .3rem;
     /*background: #fff url('/static/img/battle_bg/battle_top_bg.jpg') top/cover; */
   }
-  .winner-card{
+
+  .winner-card {
     padding: 2rem;
     /*box-shadow: 0 0 10px #f00;*/
     /*width: 40%;*/
     margin: 0 auto;
   }
-  .winner-name{
+
+  .winner-name {
     /*text-shadow:0 0 10px #fccc4d,
                 -0 -0 10px #fccc4d;*/
     font-size: 2rem;
-    margin:.5rem;
+    margin: .5rem;
     color: #888;
   }
+
 </style>
