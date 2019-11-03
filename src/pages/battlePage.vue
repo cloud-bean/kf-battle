@@ -425,7 +425,7 @@
         this.setFinalScore(finalScore);
         const groupIds = [this.groups[0]._id, this.groups[1]._id];
         const memberIds = [];
-        this.members.map((member) => {
+        this.members.forEach((member) => {
           if (member._id) {
             memberIds.push(member._id);
           }
@@ -435,7 +435,6 @@
           // 默认buffer大小 在32位系统上默认是8k，在64位系统上默认是16k
           // 改为128k;
           // client_body_buffer_size 128k;
-          return member;
         });
 
         const battleResult = {
@@ -452,10 +451,7 @@
           battleMode: this.gameMode,
         };
 
-        console.log('battleResult', battleResult);
-        setTimeout(() => {
-          this.postBattleResult(battleResult);
-        }, 200);
+        await this.postBattleResult(battleResult);
         this.$Message.info('清扫完毕，上报完毕');
         this.$router.push('/winPage');
       },
