@@ -1,28 +1,30 @@
 <template>
   <div v-show="showAll">
-    <Row class="battle-top" type="flex"  align="middle">
+    <Row class="battle-top" type="flex" align="middle">
       <Col span="9">
-        <group-bar position="left" :data="groupOne"></group-bar>
+      <group-bar position="left" :data="groupOne"></group-bar>
       </Col>
       <Col span="6">
-        <score-vs v-if="showScoreBar" :scoreData="getScoreData()"></score-vs>
+      <score-vs v-if="showScoreBar" :scoreData="getScoreData()"></score-vs>
       </Col>
       <Col span="9">
-        <group-bar position="right" :data="groupTwo"></group-bar>
+      <group-bar position="right" :data="groupTwo"></group-bar>
       </Col>
     </Row>
 
     <div class="spacer">
       <Row>
         <Col span="10">
-          当前时间：{{now}}
+        当前时间：{{now}}
         </Col>
         <Col span="4">
-          <Button type="primary" shape="circle" size="large" icon="arrow-shrink" v-if="isControlPanelExpand" @click="setControlPanelVisable(false)"></Button>
-          <Button type="primary" shape="circle" size="large" icon="arrow-expand" v-if="!isControlPanelExpand" @click="setControlPanelVisable(true)"></Button>
+        <Button type="primary" shape="circle" size="large" icon="arrow-shrink" v-if="isControlPanelExpand"
+          @click="setControlPanelVisable(false)"></Button>
+        <Button type="primary" shape="circle" size="large" icon="arrow-expand" v-if="!isControlPanelExpand"
+          @click="setControlPanelVisable(true)"></Button>
         </Col>
         <Col span="10">
-          比赛已开始：{{duration}}
+        比赛已开始：{{duration}}
         </Col>
       </Row>
     </div>
@@ -31,18 +33,18 @@
       <transition name="fade">
         <Row style="margin-top: 10px;" v-if="showMembers">
           <Col span="9">
-            <Row type="flex"  :gutter="16" style="margin-left:5px">
-              <Col span="8"  v-for="member in groupMembers(0)" :key="member._id">
-                <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
-              </Col>
-            </Row>
+          <Row type="flex" :gutter="16" style="margin-left:5px">
+            <Col span="8" v-for="member in groupMembers(0)" :key="member._id">
+            <member-cell :member="member" :toggleOpModal="toggleOpModal"></member-cell>
+            </Col>
+          </Row>
           </Col>
           <Col span="6">
-            <div class="control-panel">
+          <div class="control-panel">
 
 
-              <div class="control-button" @click="toggleRandomEventModal" >
-                <!-- <i-Circle
+            <div class="control-button" @click="toggleRandomEventModal">
+              <!-- <i-Circle
                   :size="130"
                   :trail-width="4"
                   :stroke-width="5"
@@ -53,80 +55,83 @@
                     <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
                   </div>
                 </i-Circle> -->
-                <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt="" style="width:10rem; border-radius: 50%;">
+              <img :src="selectedTheme.randomEventImg ? selectedTheme.randomEventImg.URL : 'static/img/vay2.png'" alt=""
+                style="width:10rem; border-radius: 50%;">
 
-                <div style="font-size:2rem;">
-                  传令信使
-                </div>
-              </div>
-              <div class="control-button" @click="opRandomNumberModal = true">
-                <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'" alt="" style="width:10rem; border-radius: 50%;">
-                <div style="font-size:2rem;">
-                  命运之轮
-                </div>
+              <div style="font-size:2rem;">
+                传令信使
               </div>
             </div>
-            <div class="i-button" @click="goToWinnerPage2" style="background-color:#5cadff">结束游戏</div>
-            <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
-            <div class="lock" v-if="lock">
-              <div class="key-area">
-                <div>输入解锁密码</div>
-                <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
+            <div class="control-button" @click="opRandomNumberModal = true">
+              <img :src="selectedTheme.randomPeopleImg ? selectedTheme.randomPeopleImg.URL : 'static/img/wheel_cut.png'"
+                alt="" style="width:10rem; border-radius: 50%;">
+              <div style="font-size:2rem;">
+                命运之轮
               </div>
             </div>
+          </div>
+          <div class="i-button" @click="goToWinnerPage2" style="background-color:#5cadff">结束游戏</div>
+          <div class="i-button" @click="lockScreen" style="background-color:#888; margin-top:1rem;">锁定屏幕</div>
+          <div class="lock" v-if="lock">
+            <div class="key-area">
+              <div>输入解锁密码</div>
+              <input type="password" name="" value="" class="key" v-model="inputKey" maxlength="4" autofocus>
+            </div>
+          </div>
           </Col>
           <Col span="9">
-            <Row type="flex" :gutter="16"  style="margin-right:5px">
-              <Col span="8" v-for="member in groupMembers(1)" :key="member._id">
-              <member-cell :member="member" :toggleOpModal="toggleOpModal" :key="member._id"></member-cell>
-              </Col>
-            </Row>
+          <Row type="flex" :gutter="16" style="margin-right:5px">
+            <Col span="8" v-for="member in groupMembers(1)" :key="member._id">
+            <member-cell :member="member" :toggleOpModal="toggleOpModal" :key="member._id"></member-cell>
+            </Col>
+          </Row>
           </Col>
         </Row>
       </transition>
     </div>
 
-    <Modal
-      v-model="opRandomNumberModal"
-      width="80%"
-      class-name="vertical-center-modal">
+    <Modal v-model="opRandomNumberModal" width="80%" class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <random-member-panel :members="members" :show="showPanel"
-                           :playMusic="playMusic"
-                           :addMemberPickedCount="addMemberPickedCountMethod">
+      <random-member-panel :members="members" :show="showPanel" :playMusic="playMusic"
+        :addMemberPickedCount="addMemberPickedCountMethod">
       </random-member-panel>
     </Modal>
 
-    <Modal
-      v-model="showMemberBoard"
-      width="85%"
-      :closable="false"
-      class-name="vertical-center-modal">
+    <Modal v-model="showMemberBoard" width="85%" :closable="false" class-name="vertical-center-modal">
       <p slot="footer"></p>
-      <member-board v-if="selectedMember"
-                       :member="selectedMember"
-                       :addScoreToMember="addScore"
-                       :playMusic="playMusic"
-                       :removeCard="removeCard">
+      <member-board v-if="selectedMember" :member="selectedMember" :addScoreToMember="addScore" :playMusic="playMusic"
+        :removeCard="removeCard">
       </member-board>
     </Modal>
 
-    <Modal
-      v-model="showRandomEventModal"
-      width="80%"
-      class-name="vertical-center-modal">
-      <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playRandomEventMusic" v-if="showRandomEventModal"></RandomEventPanel>
+    <Modal v-model="showRandomEventModal" width="80%" class-name="vertical-center-modal">
+      <RandomEventPanel :randomEvents="getRandomEvents" :playMusic="playRandomEventMusic" v-if="showRandomEventModal">
+      </RandomEventPanel>
       <p slot="footer"></p>
     </Modal>
 
-    <audio ref="audioUseCard" :src="selectedTheme.useCardSound ? selectedTheme.useCardSound.URL : '/static/audio/Events/useCard.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioGetScore" :src="selectedTheme.getScoreSound ? selectedTheme.getScoreSound.URL : '/static/audio/Events/get.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioRandomEvent" :src="selectedTheme.randomEventSound ? selectedTheme.randomEventSound.URL : '/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioRandomPeople" :src="selectedTheme.randomPeopleSound ? selectedTheme.randomPeopleSound.URL : '/static/audio/Events/randomPeople.wav'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioLostScore" :src="selectedTheme.lostScoreSound ? selectedTheme.lostScoreSound.URL : '/static/audio/Events/lost.m4a'" preload="auto" style="display: none;"></audio>
-    <audio ref="audioLoadBattle" :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'" preload="auto" style="display: none;"></audio>
+    <audio ref="audioUseCard"
+      :src="selectedTheme.useCardSound ? selectedTheme.useCardSound.URL : '/static/audio/Events/useCard.m4a'"
+      preload="auto" style="display: none;"></audio>
+    <audio ref="audioGetScore"
+      :src="selectedTheme.getScoreSound ? selectedTheme.getScoreSound.URL : '/static/audio/Events/get.m4a'"
+      preload="auto" style="display: none;"></audio>
+    <audio ref="audioRandomEvent"
+      :src="selectedTheme.randomEventSound ? selectedTheme.randomEventSound.URL : '/static/audio/Events/randomEvent.wav'"
+      preload="auto" style="display: none;"></audio>
+    <audio ref="audioRandomPeople"
+      :src="selectedTheme.randomPeopleSound ? selectedTheme.randomPeopleSound.URL : '/static/audio/Events/randomPeople.wav'"
+      preload="auto" style="display: none;"></audio>
+    <audio ref="audioLostScore"
+      :src="selectedTheme.lostScoreSound ? selectedTheme.lostScoreSound.URL : '/static/audio/Events/lost.m4a'"
+      preload="auto" style="display: none;"></audio>
+    <audio ref="audioLoadBattle"
+      :src="selectedTheme.loadBattleSound ? selectedTheme.loadBattleSound.URL : '/static/audio/Events/loadBattle.m4a'"
+      preload="auto" style="display: none;"></audio>
 
-    <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id" :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto" style="display: none;"></audio>
+    <audio v-for="(rEvent, index) of getRandomEvents" :ref="rEvent._id"
+      :src="rEvent.audioFile ? rEvent.audioFile.URL :'/static/audio/Events/randomEvent.wav'" preload="auto"
+      style="display: none;"></audio>
   </div>
 </template>
 <style scoped lang="less">
@@ -142,12 +147,13 @@
     align-items: center;
     justify-content: center;
     height: auto;
+
     .ivu-modal {
       top: 0;
     }
   }
 
-  .control-panel{
+  .control-panel {
     background: rgba(255, 255, 255, 1);
     margin: 10px 50px;
     height: 35rem;
@@ -156,52 +162,65 @@
     border: 5px solid #ccc;
     // box-shadow: 0 0 0 5px #888;
   }
-  .control-button{
+
+  .control-button {
     margin-top: 20px;
 
   }
-  .fade-enter-active, .fade-leave-active {
+
+  .fade-enter-active,
+  .fade-leave-active {
     transition: opacity .5s
   }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+  .fade-enter,
+  .fade-leave-to
+
+  /* .fade-leave-active below version 2.1.8 */
+    {
     opacity: 0
   }
-  .spacer{
+
+  .spacer {
     padding: 5px;
     background-color: rgba(0, 0, 0, .7);
     color: #fff;
   }
-  .lock{
+
+  .lock {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255, 255, 255, .7);
     background-size: cover;
     z-index: 999;
   }
-  .key{
-    background-color: rgba(0,0,0,.9);
+
+  .key {
+    background-color: rgba(0, 0, 0, .9);
     height: 5rem;
     width: 20rem;
     font-size: 3rem;
     color: #fff;
     text-align: center;
   }
-  .key-area{
+
+  .key-area {
     position: relative;
-    top:30rem;
+    top: 30rem;
     font-size: 2rem;
   }
+
   .mask {
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, .7);
     position: absolute;
-    magin:auto;
-    top:0;
+    magin: auto;
+    top: 0;
     left: 5rem;
     right: 0;
     bottom: 0;
@@ -212,10 +231,12 @@
     /*border: 1px solid #ccc;*/
     /*box-shadow: 0 0 5px #888;*/
   }
-  .team-head{
+
+  .team-head {
     position: relative;
     text-align: center;
   }
+
 </style>
 <script>
   import GroupBar from '../components/battlePage/groupBar';
@@ -226,8 +247,11 @@
   import RandomEventPanel from '../components/battlePage/randomEventPanel';
   const moment = require('moment');
   moment.locale('zh-cn');
-  import { mapGetters, mapActions } from 'vuex';
-//  import Vue from 'vue';
+  import {
+    mapGetters,
+    mapActions,
+  } from 'vuex';
+  //  import Vue from 'vue';
   export default {
     name: 'BattlePage',
     data() {
@@ -276,9 +300,9 @@
       ]),
       getRandomEvents() {
         let randomEvents = [];
-        if (this.selectedTheme
-          && this.selectedTheme.randomEvents
-          && this.selectedTheme.randomEvents.length > 0) {
+        if (this.selectedTheme &&
+          this.selectedTheme.randomEvents &&
+          this.selectedTheme.randomEvents.length > 0) {
           randomEvents = this.selectedTheme.randomEvents;
         } else {
           randomEvents = this.randomEvents;
@@ -388,7 +412,9 @@
         }, 100);
       },
       addMemberPickedCountMethod(memberId) {
-        this.addMemberPickedCount({ memberId });
+        this.addMemberPickedCount({
+          memberId,
+        });
       },
       getTime() {
         this.now = moment().format('HH:mm:ss');
@@ -418,24 +444,9 @@
           battleTheme: this.selectedTheme._id,
           battleMode: this.gameMode,
         };
-
-        this.$Modal.confirm({
-          title: '~打扫战场，上报天庭~',
-          content: '<p>是否将战况报告云上？</p>',
-          loading: true,
-          onOk: () => {
-            setTimeout(() => {
-              this.postBattleResult(battleResult);
-              this.$Modal.remove();
-              this.$Message.info('清扫完毕，上报完毕');
-              this.$router.push('/winPage');
-            }, 1000);
-          },
-          onCancel: () => {
-            this.$Message.info('清扫完毕');
-            this.$router.push('/winPage');
-          },
-        });
+        this.postBattleResult(battleResult);
+        this.$Message.info('清扫完毕，上报完毕');
+        this.$router.push('/winPage');
       },
       toggleRandomEventModal() {
         this.showRandomEventModal = !this.showRandomEventModal;
@@ -541,4 +552,5 @@
       this.fetchRandomEvents();
     },
   };
+
 </script>
