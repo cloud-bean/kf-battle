@@ -420,15 +420,22 @@
         this.now = moment().format('HH:mm:ss');
         this.randomEventTimeSplash += 1000;
       },
-      goToWinnerPage2() {
+      async goToWinnerPage2() {
         const finalScore = this.getScoreData();
         this.setFinalScore(finalScore);
         const groupIds = [this.groups[0]._id, this.groups[1]._id];
         const memberIds = [];
-        this.members.forEach((member) => {
+        this.members.map((member) => {
           if (member._id) {
             memberIds.push(member._id);
           }
+          // delete member.cards;
+          // 不能删除，因为是随机抽的卡的记录数据。
+          // 解决办法是设置服务器端ngnix的设定了request body的缓冲大小,
+          // 默认buffer大小 在32位系统上默认是8k，在64位系统上默认是16k
+          // 改为128k;
+          // client_body_buffer_size 128k;
+          return member;
         });
 
         const battleResult = {
@@ -444,7 +451,11 @@
           battleTheme: this.selectedTheme._id,
           battleMode: this.gameMode,
         };
-        this.postBattleResult(battleResult);
+
+        console.log('battleResult', battleResult);
+        setTimeout(() => {
+          this.postBattleResult(battleResult);
+        }, 200);
         this.$Message.info('清扫完毕，上报完毕');
         this.$router.push('/winPage');
       },

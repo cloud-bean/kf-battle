@@ -420,10 +420,10 @@
         defaultTeamLogoURL: '../../static/img/defaultTeamLogoURL.png',
         defaultAvatarLogoURL: '../../static/img/defaultUserHead.jpg',
         carouselItems: [
-          'http://qn.file.classmaster.cn/Carousel1.jpg-1080p',
-          'http://qn.file.classmaster.cn/Carousel3.jpg-1080p',
-          'http://qn.file.classmaster.cn/Carousel2.jpg-1080p',
-          'http://qn.file.classmaster.cn/Carousel4.jpg-1080p',
+          'https://qn.file.classmaster.cn/Carousel1.jpg-1080p',
+          'https://qn.file.classmaster.cn/Carousel3.jpg-1080p',
+          'https://qn.file.classmaster.cn/Carousel2.jpg-1080p',
+          'https://qn.file.classmaster.cn/Carousel4.jpg-1080p',
         ],
       };
     },
@@ -624,49 +624,6 @@
       getTime() {
         this.now = moment().format('HH:mm:ss');
         this.randomEventTimeSplash += 1000;
-      },
-      goToWinnerPage2() {
-        this.$Modal.confirm({
-          title: '~打扫战场，上报天庭~',
-          content: '<p>是否将战况报告云上？</p>',
-          loading: true,
-          onOk: () => {
-            setTimeout(() => {
-              const finalScore = this.getScoreData();
-              this.setFinalScore(finalScore);
-              const groupIds = [this.groups[0]._id, this.groups[1]._id];
-              const memberIds = [];
-              this.members.forEach((member) => {
-                if (member._id) {
-                  memberIds.push(member._id);
-                }
-              });
-
-              const battleResult = {
-                feeds: this.feeds,
-                groups: this.groups,
-                groupIds,
-                memberIds,
-                finalScore,
-                members: this.members,
-                prizes: this.prizes || [],
-                started: this.startTime,
-                name: `battle @${this.startTime.toLocaleString()}`,
-              };
-
-              this.postBattleResult(battleResult);
-
-
-              this.$Modal.remove();
-              this.$Message.info('清扫完毕，上报完毕');
-              // this.$router.push('/winPage');
-            }, 2000);
-          },
-          onCancel: () => {
-            this.$Message.info('清扫完毕');
-            // this.$router.push('/winPage');
-          },
-        });
       },
       toggleRandomEventModal() {
         this.showRandomEventModal = !this.showRandomEventModal;
